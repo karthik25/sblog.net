@@ -1,0 +1,2 @@
+﻿@(Request.IsAuthenticated ? Html.RouteLink("log off", "Logoff", new {}, new {@class = "log-off"}) 
+      : Html.RouteLink("log in", "Logon", new {}, new {@class = "log-off"}))

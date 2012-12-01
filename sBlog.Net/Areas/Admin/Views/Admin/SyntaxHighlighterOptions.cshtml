@@ -1,0 +1,63 @@
+﻿@model sBlog.Net.Models.SyntaxHighlighterViewModel
+
+@{
+    ViewBag.Title = string.Format("Syntax Highlighter Options || {0}", Model.Title);
+}
+
+@Html.Partial("UpdateStatus", Model.UpdateStatus)
+
+@if (!Model.IsEnabled)
+{
+     if (Model.CanEnable)
+     {
+         <div class="cpHeader">
+             <b>Syntax Highlighter Options</b>
+         </div>
+         <div class="cpContent">
+             @using (Html.BeginForm("EnableSyntaxHighlighter", "Admin"))
+             {
+                 @Html.CheckBox("enableSyntaxHighlighter", new {@id = "enableSyntaxHighlighter"})
+                 <label for="enableSyntaxHighlighter">Enable Syntax Highlighter</label>
+                 <input type="submit" value="Enable"/>
+             }        
+         </div>
+     }
+     else
+     {
+         <div class="cpHeader">
+             <b>Syntax Highlighter Options</b>
+         </div>
+         <div class="cpContent">
+             Please contact the <b>administrator</b> to enable syntax highlighter for this blog.
+         </div>
+     }
+}
+
+@if (Model.IsEnabled)
+{
+    <div class="cpHeader">
+        <b>Syntax Highlighter Options</b>
+    </div>
+    <div class="cpContent">
+        @using (Html.BeginForm())
+        {
+            <b>Code highlighter theme:</b>
+            <br />
+            <br />
+            @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
+            <b>(admin only)</b>
+            <br />
+            <br />
+            <b>Brushes:</b>
+            <br />
+            <br />
+            <div style="width: 200px;">
+                @Html.Partial("CheckBoxList", Model.Brushes)
+            </div>
+            <br />
+            <br />
+            <input type="submit" value="Update Preferences" class="submitBtn" />
+            @:&nbsp; @Html.Action("SyntaxHighlighterHelp", "Admin")
+        }
+    </div>
+}

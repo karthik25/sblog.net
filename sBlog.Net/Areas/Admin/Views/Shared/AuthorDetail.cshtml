@@ -1,0 +1,20 @@
+﻿@model sBlog.Net.Domain.Entities.UserEntity
+
+<tr>
+    <td>
+        <b>@Model.UserDisplayName</b><br /><br />
+        @Html.Partial("AuthorOptions", Model)
+    </td>
+    <td>
+        @Model.UserName
+    </td>
+    <td>
+        @Model.PostsCount
+    </td>
+    <td>
+        @Model.UserActiveStatusString
+    </td>
+    <td>
+        @Model.LastLoginDate
+    </td>    
+</tr>

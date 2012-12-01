@@ -1,0 +1,14 @@
+﻿@model sBlog.Net.Domain.Entities.CategoryEntity
+
+@if (Model.IsCategoryEntityValid())
+{
+    <tr>
+        <td>
+            <b>@Html.RouteLink(Model.CategoryName, "Category", new {categoryName = Model.CategorySlug}, new {@class = "mainLink"})</b><br /><br />
+            @Html.Partial("CategoryOptions", Model)
+        </td>
+        <td>
+            @Model.CategorySlug
+        </td>
+    </tr>
+}

@@ -1,0 +1,11 @@
+﻿@model string
+
+<div id="tags">
+    <span id="tag-info">&nbsp;(click tags to remove)</span><br />
+	<input type="text" id="txtTag" name="txtTag" value="" /><button id="btnAddTags">add</button>
+    <br /><br />
+    <div id="addedTags" class="tagCollection">
+            
+    </div>
+    <input type="hidden" id="hdnAddedTags" name="hdnAddedTags" value="@Model" />
+</div>

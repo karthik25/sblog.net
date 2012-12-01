@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.GenerateAdminStyles()
+
+    <script type="text/javascript" language="javascript">
+        var siteRoot = '@Url.Content("~/")';
+    </script>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/CKEditor/ckeditor.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/CKEditor/adapters/jquery.js")" type="text/javascript"></script>
+
+    @Html.GenerateAdminScripts()
+</head>
+    <body>
+        @Html.Partial("AdminShortcuts")
+        <div id="menu">
+            @if (Request.IsAuthenticated)
+            {
+                var userId = ((sBlog.Net.Domain.Interfaces.IUserInfo)User.Identity).UserId;
+        
+                <ul id="sub-nav">
+                    @Html.AdminLink("Dashboard", "AdminIndex", "Index", "Admin", "~/Content/Images/dashboard.png")
+                    @Html.AdminLinkWithSubmenu("Posts", "AdminPosts", "ManagePosts", "Post", "~/Content/Images/manageposts.png", "~/Content/Images/manageposts.png", "~/Content/Images/post.png")
+            
+                    @if (userId == "1")
+                    {
+                        @Html.AdminLinkWithSubmenu("Pages", "AdminPages", "ManagePages", "Page", "~/Content/Images/managepages.png", "~/Content/Images/managepages.png", "~/Content/Images/page.png")
+                        @Html.AdminLink("Categories", "AdminCategories", "ManageCategories", "CategoryAdmin", "~/Content/Images/categories.png")
+                        @Html.AdminLink("Tags", "AdminTags", "ManageTags", "TagAdmin", "~/Content/Images/tags.png")
+                        @Html.AdminLink("Uploads", "AdminUploads", "ManageUploads", "Uploads", "~/Content/Images/uploads.png")
+                        @Html.AdminLink("User Content Mgmt.", "AdminUserManagement", "UserManagement", "UserAdmin", "~/Content/Images/user_management.png", "User Content Management")
+                        @Html.AdminLink("Settings", "AdminSettings", "Settings", "Admin", "~/Content/Images/settings.png")
+                        @Html.AdminLink("Social Sharing", "AdminSocialSharingOptions", "SocialSharingOptions", "Admin", "~/Content/Images/sharing.png")
+                    }
+
+                    @Html.AdminLink("Syn. Highlighter", "AdminSyntaxHighlighterOptions", "SyntaxHighlighterOptions", "Admin", "~/Content/Images/highlighter.png", "Syntax Highlighter")
+                    @Html.AdminLink("Comments", "AdminComments", "ManageComments", "CommentAdmin", "~/Content/Images/comments.png")
+                    @Html.AdminLink("My Profile", "AdminUpdateProfile", "UpdateProfile", "Admin", "~/Content/Images/profile.png")
+                    <li class="collapse">&nbsp;&nbsp;&nbsp;
+                        <a href="#">
+                            <div>
+                                <img alt="collapse" src="@Url.Content("~/Content/Images/collapse.png")" class="adminImage" />
+                                <span>Collapse</span>
+                            </div>
+                        </a>&nbsp;&nbsp;&nbsp;
+                    </li>
+                </ul>
+            }​
+        </div>
+        <div id="restore" class="restore-menu init-state">
+            <span class="restore-link"><a href="#" id="restoreMenu" class="restore-link-tag">show</a></span>
+        </div>
+        <div id="content" class="content-actual">
+            @RenderBody()
+        </div>
+    </body>
+</html>

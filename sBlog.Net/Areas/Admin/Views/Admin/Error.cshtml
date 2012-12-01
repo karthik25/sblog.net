@@ -1,0 +1,9 @@
+﻿@model sBlog.Net.Models.BlogErrorViewModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Error");
+}
+
+<div style="padding: 30px">
+    <h1 class="site-error">@Model.ErrorDescription</h1>
+</div>

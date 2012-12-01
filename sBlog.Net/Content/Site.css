@@ -1,0 +1,846 @@
+﻿body
+{
+    font-family:"Open Sans Condensed",sans-serif;
+    font-size: 12px
+}
+
+#sub-nav {
+  list-style: none;
+  position: absolute;
+  top: 40px;
+  padding:0
+}
+
+#sub-nav li {
+  margin-bottom: 2px;
+  list-style-type:none
+}
+
+#sub-nav a {
+  background: #ededed;
+  color: #666;
+  display: block;
+  font-size: 12px;
+  font-family:"Open Sans Condensed",sans-serif;
+  font-weight:700;
+  padding: 10px 10px;
+  text-decoration: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px
+}
+
+#sub-nav li .sub-menu a
+{
+  background: #ededed;
+  color: #666;
+  display: block;
+  font-size: 12px;
+  font-family:"Open Sans Condensed",sans-serif;
+  font-weight:700;
+  padding: 10px 10px;
+  text-decoration: none
+}
+
+#sub-nav a:hover { background: #dedede }
+
+#sub-nav li .sub-menu a:hover { background: #dedede }
+
+#sub-nav .current a {
+  background: #666;
+  color: #ededed
+}
+
+#sub-nav li .sub-menu .current a 
+{
+  background: #BDBDBD;
+  color: #000000
+}
+
+#sub-nav .collapse a {
+  background: red;
+  color: #ededed
+}
+
+.current { }
+
+.restore-menu {
+	position: fixed;
+	top: 330px
+}
+
+.restore-link {
+	font-weight: bolder;
+	background-color: #dedede
+}
+
+.init-state {
+	display: none
+}
+
+.restore-link-tag {
+	text-decoration: none;
+	color: red
+}
+
+.sub-menu { }
+
+.display { }
+
+.no-display { display: none }
+
+.col-no-display { }
+
+/* new */
+a:link, a:visited, a:active { color: #3c9632; text-decoration: none; outline:none }
+a:hover { text-decoration: none; color: #34742d; }
+
+a.spam:link, a.spam:visited, a.spam:active { color: #FF0000; text-decoration: none; outline:none }
+a.spam:hover { text-decoration: none; color: #DF0101; }
+
+a.pending:link, a.pending:visited, a.pending:active { color: #FFBF00; text-decoration: none; outline:none }
+a.pending:hover { text-decoration: none; color: #DBA901; }
+
+a.allcmts:link, a.allcmts:visited, a.allcmts:active { color: #0000FF; text-decoration: none; outline:none }
+a.allcmts:hover { text-decoration: none; color: #0404B4; }
+
+a.admin-quick-links:link, a.admin-quick-links:visited, a.admin-quick-links:active { color: white; text-decoration: none; outline:none }
+a.admin-quick-links:hover { text-decoration: none; color: white; }
+
+a.log-off:link, a.log-off:visited, a.log-off:active { color: red; text-decoration: none; outline:none }
+a.log-off:hover { text-decoration: none; color: red }
+
+.dropdown_items { display: none }
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border-width: 0px
+}
+
+.inputBoxBig
+{
+    width: 600px;
+    height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em
+}
+
+.inputBoxBigEmail
+{
+    width: 300px;
+    height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em
+}
+
+.inputBoxBigPost
+{
+    width: 98%;
+    height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em
+}
+
+.inputBoxBigOrder
+{
+    width: 30px;
+    height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em
+}
+
+.inputBoxBigCategory
+{
+    width: 180px;
+    height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em
+}
+
+.inputBoxBigTextArea
+{
+    width: 600px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	font-size: 1.6em;
+	font-weight: bold
+}
+
+.cpHeader
+{
+	background-color:#E3E3E3;
+	padding:7px;
+	border:1px solid #E3E3E3
+}
+
+.cpContent
+{
+	background-color:#F3F3F2;
+	padding:7px;
+	border:1px solid #E3E3E3
+}
+
+.cpContentLogin
+{
+	padding:7px;
+	border:1px solid #E3E3E3;
+	width: 650px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    text-align: left;
+    font-size: larger;
+    color: #151515
+}
+
+.adminHeader
+{
+    font-size: x-large;
+    font-weight: bolder;
+    color: Black
+}
+
+.cpContentPlain
+{
+	padding:7px;
+	border:1px solid #E3E3E3
+}
+
+.publishBtn { width: 100px }
+
+.cpCheckBoxContent
+{
+    height: 130px;
+    width: 200px;
+    overflow-y: scroll
+}
+
+.dropDownBox
+{
+    width: 600px;
+	height: 40px;
+	padding: 6px 0 0 7px;
+	border: 3px solid #E7E7E7;
+	color: #000000;
+	background:transparent;
+	padding:2px 10px;
+	font-size: 20px
+}
+
+#dialog { display: none }
+
+.tag
+{
+    background-color: #E6E6E6;
+    font-weight: bolder;
+    cursor: pointer
+}
+
+#tag-info { display: none }
+
+.submitBtn
+{
+	width: 200px;
+	height: 60px;
+	font-size: 1.2em
+}
+
+.content-actual {
+    margin-left: 180px;
+    margin-top: 60px
+}
+
+.content-collapsed {
+    margin-left: 50px;
+    margin-top: 60px
+}
+
+.adminImage
+{
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    border: 0px
+}
+
+.addPost
+{
+    background-color: #E6E6E6;
+    padding: 5px
+}
+
+#manage-table
+{
+	margin: 45px;
+	width: 95%;
+	text-align: left;
+	border-collapse: collapse
+}
+#manage-table th.header
+{
+	font-size: 13px;
+	font-weight: bold;
+	padding: 8px;
+	background: #D8D8D8;
+	border-top: 4px solid #424242;
+	border-bottom: 1px solid #fff;
+	color: #039
+}
+#manage-table th.footer
+{
+	font-size: 13px;
+	font-weight: bold;
+	padding: 8px;
+	background: #D8D8D8;
+	border-bottom: 4px solid #424242;
+	border-top: 1px solid #fff;
+	color: #039
+}
+#manage-table td
+{
+	padding: 8px;
+	background: #fff; 
+	border-bottom: 1px solid #D8D8D8;
+	border-top: 1px solid transparent;
+	vertical-align: top
+}
+#manage-table tr:hover td
+{
+	background: #F2F2F2;
+	color: #339
+}
+#manage-table .mainLink
+{
+    color: Blue;
+    font-weight: bold
+}
+#manage-table .subLink:hover { text-decoration: underline }
+
+.deleteFile
+{
+    width: 24px; 
+    height: 24px
+}
+
+.fileUpload { margin-left: 25% }
+
+a.selected:link, a.selected:active, a.selected:visited
+{
+    background-color: #D8D8D8;
+    font-weight: bolder;
+    font-size: xx-large
+}
+
+.possibilityHeader
+{
+    width: 500px;
+    background-color: #A4A4A4;
+    border: 1px solid #6E6E6E;
+    font-weight: bolder;
+    text-align: left;
+    margin: 0 auto;
+    float: left;
+    padding: 10px;
+    cursor: pointer;
+    font-family: Verdana, Tahoma, Arial , Sans-Serif
+}
+
+.possibilityContent
+{
+    width: 500px;
+    background-color: #F2F2F2;
+    border: 1px solid #6E6E6E;
+    text-align: left;
+    margin: 0 auto;
+    float: left;
+    padding: 10px;
+    font-family: Verdana, Tahoma, Arial , Sans-Serif
+}
+​
+#accordion { padding: 10px }
+
+#updateStatus
+{
+    width: 90%;
+    background-color: lightYellow;
+    border: 1px solid #FFFF00;
+    text-align: left;
+    margin: 0 auto;
+    float: left;
+    padding: 10px
+}
+
+.trashComment { }
+
+.tagCollection
+{
+   width: 200px;
+   word-wrap: break-word
+}
+
+.akismetAdvancedOptions fieldset
+{
+    border: 3px;
+    background-color: #FFFFFF;
+    width: 60%;
+    border-color:#000000;
+    border-style: solid
+}
+
+.akismetAdvancedOptions legend
+{
+    color: #2A0A12;
+    font-weight: bolder;
+    font-size: large
+}
+
+.akismetAdvancedOptions { display: none }
+
+.urlControls { }
+
+.display-label,.editor-label,.display-field,.editor-field
+{
+    margin: 0.5em 0;
+    font-weight: bold
+}
+
+.editor-display-field { }
+
+.validation-summary-errors { color: #ff0000 }
+
+/* Fixed menu */
+.qLinksContent
+{
+    background-color: #424242;
+    color: white;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;    
+    width: 130px;
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    right: 10px;    
+    width: 95%;
+    z-index: 9999;
+    padding: 5px 15px 5px 15px
+}
+.qLinks
+{
+    background-color: #424242;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;    
+    color: #D8D8D8;
+    width: 130px;
+    text-align: center;
+    position: fixed;
+    top: 23px;
+    right: 30px;
+    z-index: 9999
+}
+
+.settings-info 
+{
+    color: #848484;
+    font-size: small
+}
+
+.add-msg {
+    font-weight: bold;
+    font-style: italic
+}
+
+.manage-row { border-bottom: 1px solid #6E6E6E }
+
+.manage-cell {
+    vertical-align: top;
+    text-align: left;
+    padding: 10px
+}
+
+.field-validation-error { color: #ff0000 }
+
+.field-validation-valid { display: none }
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee
+}
+
+.setup-errors {
+    width: 70%; 
+    background-color: #F78181; 
+    border: 1px solid #FE2E2E; 
+    font-weight: bolder;
+    text-align: left; 
+    margin: 0 auto; 
+    padding: 20px; 
+    color: Black
+}
+
+.setup-errors .notice 
+{
+    font-weight: bold;
+    color: blue
+}
+
+.setup-errors .setup-link { text-decoration: none }
+
+/* Slick login */
+#slick-login {
+	width: 220px;
+	height: 155px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -110px;
+	margin-top: -75px;
+
+	-webkit-animation: login 1s ease-in-out;
+	-moz-animation: login 1s ease-in-out;
+	-ms-animation: login 1s ease-in-out;
+	-o-animation: login 1s ease-in-out;
+	animation: login 1s ease-in-out
+}
+
+#slick-login label,#slick-forgotten label { display: none }
+
+#slick-login .remember-me label { display: inline-block }
+
+.placeholder { color: #444 }
+
+#slick-login input[type="text"],#slick-login input[type="password"],
+#slick-forgotten input[type="text"],#slick-forgotten input[type="password"] {
+	width: 197px;
+	height: 40px;
+	positon: relative;
+	margin-top: 7px;
+	font-size: 14px;
+	color: #444;
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, .49);
+
+	padding-left: 20px;
+	
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding-box;
+	background-clip: padding-box;
+	border-radius: 6px;
+
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+	background-image: linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+
+	-webkit-box-shadow: inset 0px 2px 0px #d9d9d9;
+	box-shadow: inset 0px 2px 0px #d9d9d9;
+
+	-webkit-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	-ms-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out
+}
+
+#slick-login input[type="text"]:focus,#slick-login input[type="password"]:focus,
+#slick-forgotten input[type="text"]:focus,#slick-forgotten input[type="password"]:focus {
+	-webkit-box-shadow: inset 0px 2px 0px #a7a7a7;
+	box-shadow: inset 0px 2px 0px #a7a7a7
+}
+
+#slick-login input:first-child,#slick-forgotten input:first-child { margin-top: 0px }
+
+#slick-login input[type="submit"],#slick-forgotten input[type="submit"] {
+	width: 100%;
+	height: 50px;
+	margin-top: 7px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0px -1px 0px #5b6ddc;
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, .49);
+
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding-box;
+	background-clip: padding-box;
+	border-radius: 6px;
+
+	background-color: #5466da;
+	background-image: -webkit-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
+	background-image: -moz-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
+	background-image: -o-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
+	background-image: -ms-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
+	background-image: linear-gradient(bottom, #5466da 0%, #768ee4 100%);
+	
+	-webkit-box-shadow: inset 0px 1px 0px #9ab1ec;
+	box-shadow: inset 0px 1px 0px #9ab1ec;
+	
+	cursor: pointer;
+
+	-webkit-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	-ms-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out
+}
+
+#slick-login input[type="submit"]:hover,#slick-forgotten input[type="submit"]:hover {
+	background-color: #5f73e9;
+	background-image: -webkit-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
+	background-image: -moz-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
+	background-image: -o-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
+	background-image: -ms-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
+	background-image: linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
+
+	-webkit-box-shadow: inset 0px 1px 0px #aab9f4;
+	box-shadow: inset 0px 1px 0px #aab9f4;
+	margin-top: 10px
+}
+
+#slick-login input[type="submit"]:active,#slick-forgotten input[type="submit"]:active {
+	background-color: #7588e1;
+	background-image: -webkit-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
+	background-image: -moz-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
+	background-image: -o-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
+	background-image: -ms-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
+	background-image: linear-gradient(bottom, #7588e1 0%, #7184df 100%);
+
+	-webkit-box-shadow: inset 0px 1px 0px #93a9e9;
+	box-shadow: inset 0px 1px 0px #93a9e9
+}
+
+.addl-links { text-align: center }
+
+#forgottenPswd 
+{
+	color: #848484;
+	text-decoration: none; 
+	border-bottom:1px dashed
+}
+
+#forgottenPswd:hover
+{
+	color: #848484;
+	text-decoration: none; 
+	border-bottom:1px dashed
+}
+
+#loginForm
+{
+	color: #848484;
+	text-decoration: none;
+	border-bottom:1px dashed
+}
+
+#loginForm:hover
+{
+	color: #848484;
+	text-decoration: none; 
+	border-bottom:1px dashed
+}
+
+#passwd { display: none }
+
+.client-login-errors {
+    left: 43%;
+	top: 30%;
+	position: absolute;
+    color: #848484;
+    text-align: center;
+    font-weight: bolder
+}
+
+.login-errors
+{
+    left: 35%;
+	top: 30%;
+	position: absolute;
+    color: #848484;
+    text-align: center;
+    font-weight: bolder
+}
+
+.login-errors ul { list-style-type: none }
+
+/* Forgotten password */
+#slick-forgotten {
+	width: 220px;
+	height: 155px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -110px;
+	margin-top: -75px;
+    display: none;
+
+	-webkit-animation: login 1s ease-in-out;
+	-moz-animation: login 1s ease-in-out;
+	-ms-animation: login 1s ease-in-out;
+	-o-animation: login 1s ease-in-out;
+	animation: login 1s ease-in-out
+}
+
+#showOptions
+{
+	color: #848484;
+	text-decoration: none; 
+	border-bottom:1px dashed
+}
+
+.remember-me {
+    text-align: right;
+    display: none
+}
+
+.remember-me label {
+    vertical-align: text-bottom;
+    font-size: large;
+    color: #A4A4A4
+}
+
+#showHelp {
+    color: red;
+    font-weight: bold
+}
+
+.field-info
+{
+    display: none;
+    color: green;
+    font-size: small;
+    font-weight: bold
+}
+
+.sharing-disabled { color: red }
+
+.add-post-page {
+    width: 16px; 
+    height: 16px;
+    vertical-align: middle
+}
+
+.selected-brushes-title { font-weight: bold }
+
+a.edit-trash {
+    color: red;
+    border-bottom: 1px dashed red
+}
+
+#request-account {
+    position: absolute;
+    right: 25px;
+    bottom: 5px
+}
+
+#request-account img {
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+    border: 0px
+}
+
+#requestAccount {
+    color: black;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bolder
+}
+
+.request-form {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: none;
+    width: 30%;
+    position: absolute;
+    bottom: 0px;
+    right: 10px
+}
+
+.request-form-title{
+    font-weight: bolder;
+    text-align: center;    
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+
+.request-form-content {
+    padding: 20px
+}
+
+.request-form-content input[type="text"] {
+    width: 95%
+}
+
+.request-form-content textarea {
+    width: 95%;    
+}
+
+.request-form-content #closeForm {
+    color: #848484;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+    cursor: pointer    
+}
+
+.request-form-content input[type="submit"] {
+    width: 200px;
+    font-weight: bolder
+}
+
+#requestStatus {
+    display: none
+}
+
+#forgottenStatus {
+    display: none
+}
+
+#requestResults {
+    font-weight: bold;
+    color: #6E6E6E
+}
+
+.closeWindow 
+{
+    float: right;
+    width: 12px;
+    height: 12px
+}
+
+.upload-item {
+    color: black !important;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.upload-item:hover {
+    color: #FF0000 !important;
+}
+
+.upload-img {
+    width: 32px; 
+    height: 32px; 
+    vertical-align: middle
+}
+
+.comment-col {
+    width: 60%
+}

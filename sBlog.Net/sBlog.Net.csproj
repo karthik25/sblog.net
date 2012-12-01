@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC507F49-A83A-4F00-952C-0E6068698237}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sBlog.Net</RootNamespace>
+    <AssemblyName>sBlog.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=79764a4ef1548af1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteDebug, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RouteDebug\RouteDebug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IFormsAuthenticationService.cs" />
+    <Compile Include="Abstract\IMembershipService.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminAuthorsViewModel.cs" />
+    <Compile Include="Areas\Setup\Services\UploadFolderVerifier.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
+    <Compile Include="CustomExceptions\InvalidMonthException.cs" />
+    <Compile Include="CustomExceptions\InvalidThemeException.cs" />
+    <Compile Include="FluentExtensions\AccountValidationFluentExtensions.cs" />
+    <Compile Include="FluentExtensions\CacheServiceFluentExtensions.cs" />
+    <Compile Include="FluentExtensions\EntityValidatorExtensions.cs" />
+    <Compile Include="FluentExtensions\HtmlHelperExtensions.cs" />
+    <Compile Include="FluentExtensions\PostExtensions.cs" />
+    <Compile Include="FluentExtensions\StringUrlExtensions.cs" />
+    <Compile Include="CustomExceptions\UrlNotFoundException.cs" />
+    <Compile Include="FluentExtensions\TagExtensions.cs" />
+    <Compile Include="Infrastructure\ErrorLogger.cs" />
+    <Compile Include="Infrastructure\PasswordHelper.cs" />
+    <Compile Include="Infrastructure\UniqueUrlHelper.cs" />
+    <Compile Include="Models\Account\AccountBaseViewModel.cs" />
+    <Compile Include="Models\Account\LogOnModel.cs" />
+    <Compile Include="Models\Account\NewUserModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Models\Account\RequestAccountModel.cs" />
+    <Compile Include="Models\Account\UpdateProfileModel.cs" />
+    <Compile Include="Models\Account\ResetPasswordModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminSocialSharingOptions.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUploadsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\JsonEntities\CommentEntry.cs" />
+    <Compile Include="Areas\Setup\Controllers\InitController.cs" />
+    <Compile Include="Areas\Setup\Controllers\Page2Controller.cs" />
+    <Compile Include="Areas\Setup\Models\SetupDefaultParametersViewModel.cs" />
+    <Compile Include="Areas\Setup\Models\SetupStatusViewModel.cs" />
+    <Compile Include="Areas\Setup\SetupAreaRegistration.cs" />
+    <Compile Include="Binders\CheckBoxListViewModelBinder.cs" />
+    <Compile Include="Binders\PostViewModelBinder.cs" />
+    <Compile Include="Collections\Archive.cs" />
+    <Compile Include="Collections\ArchiveCollection.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
+    <Compile Include="Controllers\RecentsController.cs" />
+    <Compile Include="Controllers\RssFeedController.cs" />
+    <Compile Include="Controllers\ViewPageController.cs" />
+    <Compile Include="CustomResults\RssActionResult.cs" />
+    <Compile Include="DependencyManagement\InstanceFactory.cs" />
+    <Compile Include="DependencyManagement\NinjectControllerFactory.cs" />
+    <Compile Include="Enumerations\CommentStatus.cs" />
+    <Compile Include="Enumerations\PostStatus.cs" />
+    <Compile Include="Filters\BlogErrorAttribute.cs" />
+    <Compile Include="HtmlHelpers\AdminMenuHtmlExtensions.cs" />
+    <Compile Include="FluentExtensions\CommentInfoExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FluentExtensions\CommentLinkExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FluentExtensions\PostViewModelBinderExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FluentExtensions\PostViewModelExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\AdminScriptProviderHelpers.cs" />
+    <Compile Include="HtmlHelpers\BlogMenuHelper.cs" />
+    <Compile Include="HtmlHelpers\BlogScriptStyleProvider.cs" />
+    <Compile Include="HtmlHelpers\CodeHighlighterManager.cs" />
+    <Compile Include="HtmlHelpers\CheckBoxListHtmlHelpers.cs" />
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="HtmlHelpers\ThemeRoller.cs" />
+    <Compile Include="Infrastructure\ApplicationConfiguration.cs" />
+    <Compile Include="Infrastructure\CustomMembershipProvider.cs" />
+    <Compile Include="Infrastructure\Emailer.cs" />
+    <Compile Include="Infrastructure\Hasher.cs" />
+    <Compile Include="Mappers\PathMapper.cs" />
+    <Compile Include="Areas\Admin\Models\AdminBaseViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminCategoriesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminCommentViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminDashboardViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminPostOrPageViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminSettingsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminTagsViewModel.cs" />
+    <Compile Include="Models\BlogErrorViewModel.cs" />
+    <Compile Include="Models\BlogMenuViewModel.cs" />
+    <Compile Include="Models\BlogPostPageViewModel.cs" />
+    <Compile Include="Models\CheckBoxListViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Comments\CommentInfo.cs" />
+    <Compile Include="Areas\Admin\Models\Comments\CommentLink.cs" />
+    <Compile Include="Areas\Admin\Models\Comments\CommentLinkType.cs" />
+    <Compile Include="Models\Comments\RecentComment.cs" />
+    <Compile Include="Models\Comments\CommentViewModel.cs" />
+    <Compile Include="Models\LogoViewModel.cs" />
+    <Compile Include="Models\PagingInformation.cs" />
+    <Compile Include="Areas\Admin\Models\PostViewModel.cs" />
+    <Compile Include="Models\RssFeedViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\JsonEntities\FileEntry.cs" />
+    <Compile Include="Models\SyntaxHighlighterViewModel.cs" />
+    <Compile Include="Models\UserIdentity.cs" />
+    <Compile Include="Models\ViewPostOrPageModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\SyntaxHighlighterBrushesModel.cs" />
+    <Compile Include="Rss\RssFeedGenerator.cs" />
+    <Compile Include="Services\AccountMembershipService.cs" />
+    <Compile Include="Services\CacheService.cs" />
+    <Compile Include="Services\FormsAuthenticationService.cs" />
+    <Compile Include="ShortCodeManager\Entities\SyntaxPossibility.cs" />
+    <Compile Include="ShortCodeManager\SyntaxPossibilities.cs" />
+    <Compile Include="ShortCodeManager\SyntaxPossibilitiesViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Content\images\confirm.png" />
+    <Content Include="Areas\Setup\Content\images\error.png" />
+    <Content Include="Areas\Setup\Content\images\info.png" />
+    <Content Include="Areas\Setup\Content\images\warning.png" />
+    <Content Include="Areas\Setup\Content\Site.css" />
+    <Content Include="Content\CKEditor\adapters\jquery.js" />
+    <Content Include="Content\CKEditor\ckeditor.js" />
+    <Content Include="Content\CKEditor\config.js" />
+    <Content Include="Content\CKEditor\contents.css" />
+    <Content Include="Content\CKEditor\images\spacer.gif" />
+    <Content Include="Content\CKEditor\lang\en.js" />
+    <Content Include="Content\CKEditor\lang\_languages.js" />
+    <Content Include="Content\CKEditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Content\CKEditor\plugins\a11yhelp\lang\en.js" />
+    <Content Include="Content\CKEditor\plugins\a11yhelp\lang\he.js" />
+    <Content Include="Content\CKEditor\plugins\about\dialogs\about.js" />
+    <Content Include="Content\CKEditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Content\CKEditor\plugins\adobeair\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\ajax\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\autogrow\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\bbcode\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Content\CKEditor\plugins\colordialog\dialogs\colordialog.js" />
+    <Content Include="Content\CKEditor\plugins\devtools\lang\en.js" />
+    <Content Include="Content\CKEditor\plugins\devtools\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Content\CKEditor\plugins\div\dialogs\div.js" />
+    <Content Include="Content\CKEditor\plugins\docprops\dialogs\docprops.js" />
+    <Content Include="Content\CKEditor\plugins\docprops\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\find\dialogs\find.js" />
+    <Content Include="Content\CKEditor\plugins\flash\dialogs\flash.js" />
+    <Content Include="Content\CKEditor\plugins\flash\images\placeholder.png" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\button.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\form.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\radio.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\select.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\textarea.js" />
+    <Content Include="Content\CKEditor\plugins\forms\dialogs\textfield.js" />
+    <Content Include="Content\CKEditor\plugins\forms\images\hiddenfield.gif" />
+    <Content Include="Content\CKEditor\plugins\iframedialog\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\iframe\dialogs\iframe.js" />
+    <Content Include="Content\CKEditor\plugins\iframe\images\placeholder.png" />
+    <Content Include="Content\CKEditor\plugins\image\dialogs\image.js" />
+    <Content Include="Content\CKEditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Content\CKEditor\plugins\link\dialogs\link.js" />
+    <Content Include="Content\CKEditor\plugins\link\images\anchor.gif" />
+    <Content Include="Content\CKEditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="Content\CKEditor\plugins\pagebreak\images\pagebreak.gif" />
+    <Content Include="Content\CKEditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Content\CKEditor\plugins\pastetext\dialogs\pastetext.js" />
+    <Content Include="Content\CKEditor\plugins\placeholder\dialogs\placeholder.js" />
+    <Content Include="Content\CKEditor\plugins\placeholder\lang\en.js" />
+    <Content Include="Content\CKEditor\plugins\placeholder\lang\he.js" />
+    <Content Include="Content\CKEditor\plugins\placeholder\placeholder.gif" />
+    <Content Include="Content\CKEditor\plugins\placeholder\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Content\CKEditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_address.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_div.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h1.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h2.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h3.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h4.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h5.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_h6.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_p.png" />
+    <Content Include="Content\CKEditor\plugins\showblocks\images\block_pre.png" />
+    <Content Include="Content\CKEditor\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\envelope.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\heart.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\kiss.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="Content\CKEditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Content\CKEditor\plugins\specialchar\lang\en.js" />
+    <Content Include="Content\CKEditor\plugins\stylesheetparser\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\styles\styles\default.js" />
+    <Content Include="Content\CKEditor\plugins\tableresize\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Content\CKEditor\plugins\table\dialogs\table.js" />
+    <Content Include="Content\CKEditor\plugins\templates\dialogs\templates.js" />
+    <Content Include="Content\CKEditor\plugins\templates\templates\default.js" />
+    <Content Include="Content\CKEditor\plugins\templates\templates\images\template1.gif" />
+    <Content Include="Content\CKEditor\plugins\templates\templates\images\template2.gif" />
+    <Content Include="Content\CKEditor\plugins\templates\templates\images\template3.gif" />
+    <Content Include="Content\CKEditor\plugins\uicolor\dialogs\uicolor.js" />
+    <Content Include="Content\CKEditor\plugins\uicolor\lang\en.js" />
+    <Content Include="Content\CKEditor\plugins\uicolor\lang\he.js" />
+    <Content Include="Content\CKEditor\plugins\uicolor\plugin.js" />
+    <Content Include="Content\CKEditor\plugins\uicolor\uicolor.gif" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\assets\hue_bg.png" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\assets\hue_thumb.png" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\assets\picker_mask.png" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\assets\picker_thumb.png" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\assets\yui.css" />
+    <Content Include="Content\CKEditor\plugins\uicolor\yui\yui.js" />
+    <Content Include="Content\CKEditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Content\CKEditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Content\CKEditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Content\CKEditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Content\CKEditor\plugins\xml\plugin.js" />
+    <Content Include="Content\CKEditor\skins\kama\dialog.css" />
+    <Content Include="Content\CKEditor\skins\kama\editor.css" />
+    <Content Include="Content\CKEditor\skins\kama\icons.png" />
+    <Content Include="Content\CKEditor\skins\kama\icons_rtl.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\dialog_sides.gif" />
+    <Content Include="Content\CKEditor\skins\kama\images\dialog_sides.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\dialog_sides_rtl.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\mini.gif" />
+    <Content Include="Content\CKEditor\skins\kama\images\noimage.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\sprites.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\sprites_ie6.png" />
+    <Content Include="Content\CKEditor\skins\kama\images\toolbar_start.gif" />
+    <Content Include="Content\CKEditor\skins\kama\skin.js" />
+    <Content Include="Content\CKEditor\skins\kama\templates.css" />
+    <Content Include="Content\CKEditor\skins\office2003\dialog.css" />
+    <Content Include="Content\CKEditor\skins\office2003\editor.css" />
+    <Content Include="Content\CKEditor\skins\office2003\icons.png" />
+    <Content Include="Content\CKEditor\skins\office2003\icons_rtl.png" />
+    <Content Include="Content\CKEditor\skins\office2003\images\dialog_sides.gif" />
+    <Content Include="Content\CKEditor\skins\office2003\images\dialog_sides.png" />
+    <Content Include="Content\CKEditor\skins\office2003\images\dialog_sides_rtl.png" />
+    <Content Include="Content\CKEditor\skins\office2003\images\mini.gif" />
+    <Content Include="Content\CKEditor\skins\office2003\images\noimage.png" />
+    <Content Include="Content\CKEditor\skins\office2003\images\sprites.png" />
+    <Content Include="Content\CKEditor\skins\office2003\images\sprites_ie6.png" />
+    <Content Include="Content\CKEditor\skins\office2003\skin.js" />
+    <Content Include="Content\CKEditor\skins\office2003\templates.css" />
+    <Content Include="Content\CKEditor\skins\v2\dialog.css" />
+    <Content Include="Content\CKEditor\skins\v2\editor.css" />
+    <Content Include="Content\CKEditor\skins\v2\icons.png" />
+    <Content Include="Content\CKEditor\skins\v2\icons_rtl.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\dialog_sides.gif" />
+    <Content Include="Content\CKEditor\skins\v2\images\dialog_sides.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\dialog_sides_rtl.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\mini.gif" />
+    <Content Include="Content\CKEditor\skins\v2\images\noimage.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\sprites.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\sprites_ie6.png" />
+    <Content Include="Content\CKEditor\skins\v2\images\toolbar_start.gif" />
+    <Content Include="Content\CKEditor\skins\v2\skin.js" />
+    <Content Include="Content\CKEditor\skins\v2\templates.css" />
+    <Content Include="Content\CKEditor\themes\default\theme.js" />
+    <Content Include="Content\codeHighlighter\scripts\shAutoloader.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushAppleScript.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushAS3.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushBash.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushColdFusion.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushCpp.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushCSharp.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushCss.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushDelphi.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushDiff.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushErlang.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushGroovy.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushJava.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushJavaFX.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushJScript.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushPerl.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushPhp.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushPlain.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushPowerShell.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushPython.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushRuby.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushSass.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushScala.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushSql.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushVb.js" />
+    <Content Include="Content\codeHighlighter\scripts\shBrushXml.js" />
+    <Content Include="Content\codeHighlighter\scripts\shCore.js" />
+    <Content Include="Content\codeHighlighter\scripts\shLegacy.js" />
+    <Content Include="Content\codeHighlighter\styles\shCore.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreDefault.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreDjango.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreEclipse.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreEmacs.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreFadeToGrey.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreMDUltra.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreMidnight.css" />
+    <Content Include="Content\codeHighlighter\styles\shCoreRDark.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeDefault.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeDjango.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeEclipse.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeEmacs.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeFadeToGrey.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeMDUltra.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeMidnight.css" />
+    <Content Include="Content\codeHighlighter\styles\shThemeRDark.css" />
+    <Content Include="Content\Images\404_black.png" />
+    <Content Include="Content\Images\404_brown.png" />
+    <Content Include="Content\Images\new_window_icon.png" />
+    <Content Include="Content\Images\preview.png" />
+    <Content Include="Content\Images\profile.png" />
+    <Content Include="Content\Images\arrow.png" />
+    <Content Include="Content\Images\categories.png" />
+    <Content Include="Content\Images\Classic1.png" />
+    <Content Include="Content\Images\collapse.png" />
+    <Content Include="Content\Images\comments.png" />
+    <Content Include="Content\Images\dashboard.png" />
+    <Content Include="Content\Images\close_delete.png" />
+    <Content Include="Content\Images\expand.png" />
+    <Content Include="Content\Images\extension_icons\css.png" />
+    <Content Include="Content\Images\extension_icons\doc.png" />
+    <Content Include="Content\Images\extension_icons\jpg.png" />
+    <Content Include="Content\Images\extension_icons\js.png" />
+    <Content Include="Content\Images\extension_icons\pdf.png" />
+    <Content Include="Content\Images\extension_icons\png.png" />
+    <Content Include="Content\Images\extension_icons\rar.png" />
+    <Content Include="Content\Images\extension_icons\txt.png" />
+    <Content Include="Content\Images\extension_icons\unknown.png" />
+    <Content Include="Content\Images\extension_icons\xls.png" />
+    <Content Include="Content\Images\extension_icons\xml.png" />
+    <Content Include="Content\Images\extension_icons\zip.png" />
+    <Content Include="Content\Images\highlighter.png" />
+    <Content Include="Content\Images\Horizontal.png" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\managepages.png" />
+    <Content Include="Content\Images\manageposts.png" />
+    <Content Include="Content\Images\Multichannel.png" />
+    <Content Include="Content\Images\page.png" />
+    <Content Include="Content\Images\post.png" />
+    <Content Include="Content\Images\Rectangle Button.png" />
+    <Content Include="Content\Images\request_account.png" />
+    <Content Include="Content\Images\sblog-logo-v1-3.jpg" />
+    <Content Include="Content\Images\settings.png" />
+    <Content Include="Content\Images\sharing.png" />
+    <Content Include="Content\Images\tags.png" />
+    <Content Include="Content\Images\under_construction.png" />
+    <Content Include="Content\Images\uploads.png" />
+    <Content Include="Content\Images\user_management.png" />
+    <Content Include="Content\Images\Vertical.png" />
+    <Content Include="Content\sBlog\jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site.min.css" />
+    <Content Include="Content\SiteCommons.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.custom.css" />
+    <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Scripts\Additional\jquery.tabSlideOut.v1.3.js" />
+    <Content Include="Scripts\Required\debug\02-CategoryList.admin.js" />
+    <Content Include="Content\sBlog\Site.js" />
+    <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.admin.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.sticky.js" />
+    <Content Include="Scripts\Additional\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
+    <Content Include="Scripts\Additional\modernizr-1.7.js" />
+    <Content Include="Scripts\Additional\modernizr-1.7.min.js" />
+    <Content Include="Scripts\Required\debug\01-jquery-ui.custom.admin.js" />
+    <Content Include="Scripts\Required\debug\06-jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Scripts\Required\minified\script-bundle.min.js" />
+    <Content Include="Scripts\SyntaxHighlighter.js" />
+    <Content Include="Themes\GreenForest\css\style.css" />
+    <Content Include="Themes\GreenForest\images\img01.gif" />
+    <Content Include="Themes\GreenForest\images\img02.gif" />
+    <Content Include="Themes\GreenForest\images\img03.gif" />
+    <Content Include="Themes\GreenForest\images\img04.gif" />
+    <Content Include="Themes\GreenForest\images\img05.gif" />
+    <Content Include="Themes\GreenForest\images\img06.jpg" />
+    <Content Include="Themes\HandCrafted\css\style.css" />
+    <Content Include="Themes\HandCrafted\images\img01.gif" />
+    <Content Include="Themes\OfficeMemo\css\style.css" />
+    <Content Include="Themes\OfficeMemo\images\img04.jpg" />
+    <Content Include="Themes\PerfectBlemish\css\style.css" />
+    <Content Include="Themes\PerfectBlemish\images\img01.jpg" />
+    <Content Include="Themes\PlainClean\css\style.css" />
+    <Content Include="Themes\PlainClean\images\img01.jpg" />
+    <Content Include="Themes\PlainClean\images\img02.jpg" />
+    <Content Include="Themes\PlainClean\images\img03.jpg" />
+    <Content Include="Themes\PlainClean\images\img04.jpg" />
+    <Content Include="Themes\PlainClean\images\img05.jpg" />
+    <Content Include="Themes\PlainClean\images\img06.gif" />
+    <Content Include="Themes\PlainClean\images\img07.jpg" />
+    <Content Include="Themes\PlainClean\images\img08.jpg" />
+    <Content Include="Themes\PrePaid\css\style.css" />
+    <Content Include="Themes\PrePaid\images\img06.jpg" />
+    <Content Include="Themes\PrePaid\images\img07.jpg" />
+    <Content Include="Themes\PrePaid\images\img08.jpg" />
+    <Content Include="Themes\RacetrackPlaya\css\slidertron.css" />
+    <Content Include="Themes\RacetrackPlaya\css\style.css" />
+    <Content Include="Themes\RacetrackPlaya\images\img01.gif" />
+    <Content Include="Themes\RacetrackPlaya\images\img02.gif" />
+    <Content Include="Themes\RacetrackPlaya\images\img03.gif" />
+    <Content Include="Themes\RacetrackPlaya\images\img04.jpg" />
+    <Content Include="Themes\RacetrackPlaya\images\img05.jpg" />
+    <Content Include="Themes\RacetrackPlaya\images\img06.jpg" />
+    <Content Include="Themes\RacetrackPlaya\images\img07.jpg" />
+    <Content Include="Themes\RacetrackPlaya\images\img08.jpg" />
+    <Content Include="Themes\RacetrackPlaya\js\jquery.slidertron-0.1.js" />
+    <Content Include="Themes\UnThemed\css\style.css" />
+    <Content Include="Themes\UnThemed\images\img01.jpg" />
+    <Content Include="Uploads\sBlog.Net.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Required\debug\03-jquery.unobtrusive-ajax.admin.js" />
+    <Content Include="Scripts\Additional\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Required\debug\05-jquery.validate.unobtrusive.admin.js" />
+    <Content Include="Scripts\Additional\MicrosoftAjax.js" />
+    <Content Include="Scripts\Additional\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\Additional\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\Additional\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\Additional\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\Additional\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\UpdateProfile.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCSocialHelper\MVCSocialHelper.csproj">
+      <Project>{2C3E0B68-C70C-44B4-B391-85A868F7CEC9}</Project>
+      <Name>MVCSocialHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Akismet\sBlog.Net.Akismet.csproj">
+      <Project>{BF9A2FB1-604B-4185-847F-0C4FDB04739A}</Project>
+      <Name>sBlog.Net.Akismet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Domain\sBlog.Net.Domain.csproj">
+      <Project>{B8FBB6E2-F283-45E4-ADBA-3010F5323B89}</Project>
+      <Name>sBlog.Net.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.MetaData\sBlog.Net.MetaData.csproj">
+      <Project>{5463815F-1105-4C86-8E01-D7EC06335907}</Project>
+      <Name>sBlog.Net.MetaData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Category.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\CategoryAdmin\CategoryOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Comment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\CommentPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\PostDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\PostOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\TagAdmin\Tag.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\TagAdmin\TagOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\AddEditPost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\BlogCategories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Categories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\CheckBoxList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Post.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PostCategories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PostComments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PostTags.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\RecentComments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\RecentPosts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SharingOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SiteActions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Tags.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\UserComment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ViewPage\Pages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\HandCrafted\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\HandCrafted\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\OfficeMemo\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\OfficeMemo\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PerfectBlemish\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PerfectBlemish\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PlainClean\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PlainClean\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\CategoryAdmin\ManageCategories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\CommentAdmin\ManageComments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Page\ManagePages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Post\ManagePosts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\TagAdmin\ManageTags.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Settings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\SocialSharingOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\SyntaxHighlighterOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Errors\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ViewPage\Credits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\PostsByCategory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\PostsByTag.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\PostsByYearAndMonth.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\View.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Page\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Page\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\BlogArchives.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Post\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ViewPage\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\SyntaxHighlighterHelp.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Uploads\ManageUploads.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Uploads\SelectFile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Uploads\UploadFile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PrePaid\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PrePaid\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\GreenForest\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\GreenForest\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\CommentAddStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\RacetrackPlaya\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\RacetrackPlaya\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\UpdateStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PostPager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PagesList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Views\Init\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Setup\Views\Page2\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\UserAdmin\UserManagement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\UserAdmin\ManagePublicPosts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\AuthorDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\AuthorOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\UpdatePostOrPageStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\UserAdmin\ManagePublicComments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AdminShortcuts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Maintenance\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SideBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Logo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AdminLinks.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\ItemInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SetupStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\RequestAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Maintenance\InvalidTheme.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Error.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55516</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/sblog2</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>type "$(ProjectDir)Scripts\Required\debug\*.admin.js" |  "$(SolutionDir)sBlog.Net.Tools\Minifiers\jsmin" &gt; "$(ProjectDir)Scripts\Required\minified\script-bundle.min.js"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

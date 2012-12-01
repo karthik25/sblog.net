@@ -1,0 +1,21 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div id="qShortcutsContent">
+        <div id="qShortcuts">
+            <span class="shortcut-info">s</span>hortcuts
+        </div>
+        <div class="admin-menu">
+            @Html.RouteLink("dashboard", "AdminIndex") <br /><br />
+            @Html.ActionLink("new post", "Add", "Post", new { Area = "Admin" }, new { }) <br /><br />
+            @{
+                var userId = ((sBlog.Net.Domain.Interfaces.IUserInfo) User.Identity).UserId;
+            }
+            @if (userId == "1")
+            {
+                @Html.RouteLink("new page", "AdminPagesAdd", new { }, new { }) <br /><br />
+            }
+            @Html.ActionLink("manage comments", "ManageComments", "CommentAdmin", new { Area = "Admin", type = "pending" }, new { }) <br /><br />
+            @Html.Partial("_LogOnPartial") <br /><br />
+        </div>
+    </div>    
+}

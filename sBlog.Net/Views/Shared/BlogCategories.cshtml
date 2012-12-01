@@ -1,0 +1,16 @@
+﻿@model List<sBlog.Net.Domain.Entities.CategoryEntity>
+
+<div id="section3" class="menu">
+	<h2>categories</h2>
+	<ul style="list-style-type:none;">
+	    @foreach(var category in Model)
+        {
+            <li>
+                @{ 
+                    var url = Url.RouteUrl("Category", new { categoryName = category.CategorySlug });
+                }
+                <a href="@url" title="@category.CategoryName">@category.CategoryName</a>
+            </li>
+        }
+    </ul>
+</div>

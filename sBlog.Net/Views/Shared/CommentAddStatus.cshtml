@@ -1,0 +1,15 @@
+﻿@if (TempData["CommentErrors"] != null)
+{
+    var list = ((List<string>)TempData["CommentErrors"]);
+    if (list.Count > 0)
+    {
+        <div class="comment-errors">
+            <ul>
+                @foreach (var error in list)
+                {
+                    <li style="text-align: left;">@error</li>
+                }
+            </ul>
+        </div>
+    }
+}

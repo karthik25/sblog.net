@@ -1,0 +1,51 @@
+﻿@model sBlog.Net.Areas.Setup.Models.SetupDefaultParametersViewModel
+
+@{
+    ViewBag.Title = "sBlog.Net Setup || Page 2";
+}
+
+<div style="text-align: center" >
+    <h2>Finalizing the setup</h2>
+</div>
+
+<div>
+    As promised, here is the final step. Please enter the following information. The caption is not used by some of the themes though.
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <b>@Html.LabelFor(model => model.BlogName)</b> <br />
+    @Html.TextBoxFor(model => model.BlogName, new { @class = "inputBoxBig" }) <br />
+    <span class="field-info">please enter your blog's title (for ex. "the .net way")</span>
+
+    <br />
+
+    <b>@Html.LabelFor(model => model.AkismetUrl)</b> <br />
+    @Html.TextBoxFor(model => model.AkismetUrl, new { @class = "inputBoxBig" }) <br />
+    <span class="field-info">please enter your blog's root url (for ex. "http://thekfactor.info")</span>
+    
+    <br />
+    
+    <b>User name</b>
+    <div>admin</div>
+
+    <br />
+    
+    <b>@Html.LabelFor(model => model.Password)</b> <br />
+    @Html.PasswordFor(model => model.Password, new { @class = "inputBoxBig" }) <br />
+    <span class="field-info">please enter a password [<a title="6 - 20 characters, lowercase/uppercase letters, at least a number, at least one of @@, #, $, % symbols" href="#">?</a>]</span>
+    
+    <br />
+
+    <b>@Html.LabelFor(model => model.ConfirmPassword)</b> <br />
+    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "inputBoxBig" }) <br />
+    <span class="field-info">please re-enter the password for verification [<a title="6 - 20 characters, lowercase/uppercase letters, at least a number, at least one of @@, #, $, % symbols" href="#">?</a>]</span>
+    
+    <br /><br />
+
+    <div style="text-align: center" >
+        <button type="submit" class="important">Finish Setup</button>
+    </div>
+}

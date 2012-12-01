@@ -1,0 +1,45 @@
+﻿@model sBlog.Net.Models.Account.RequestAccountModel
+
+<div id="request-account">
+    <a href="javascript:void(0)" id="requestAccount"><img src="@Url.Content("~/Content/Images/request_account.png")" alt="request an account" title="request an account"/>&nbsp;request an account</a>
+</div>
+
+<div class="request-form">
+    <div class="request-form-title">
+        request an account
+        <img class="closeWindow" src="@Url.Content("~/Content/Images/close_delete.png")" alt="" title="close request account popup" />
+    </div>
+    
+    <div class="request-form-content">
+        @using (Ajax.BeginForm("RequestAccount", "Account", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "requestResults", LoadingElementId = "requestStatus" }, new { @id = "requestAccountFrm" }))
+        {
+            <div>@Html.LabelFor(model => model.AuthorName)</div>
+            <div>
+                @Html.TextBoxFor(model => model.AuthorName, new { @class = "validate-html" })<br/>
+                @Html.ValidationMessageFor(model => model.AuthorName)
+            </div>
+            <br />
+            <div>@Html.LabelFor(model => model.AuthorEmail)</div>
+            <div>
+                @Html.TextBoxFor(model => model.AuthorEmail, new { @class = "validate-html" })<br/>
+                @Html.ValidationMessageFor(model => model.AuthorEmail)
+            </div>
+            <br />
+            <div>@Html.LabelFor(model => model.AuthorMessage)</div>
+            <div>
+                @Html.TextAreaFor(model => model.AuthorMessage, new { @cols = "30", @rows = "10", @class = "validate-html" })<br/>
+                @Html.ValidationMessageFor(model => model.AuthorMessage)
+            </div>
+            <br/><br/>
+            <div style="float: left">
+                <a id="closeForm">close</a>
+            </div>
+            <div style="float: right">
+                <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="requestStatus" />
+                <input type="submit" id="sendRequest" value="send request"/>
+            </div>
+            <br/><br/>
+            <div id="requestResults"></div>
+        }
+    </div>
+</div>

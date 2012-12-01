@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Under Construction :: sBlog.Net</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")"></script>
+    <style type="text/css">
+        #ms-sql-perm {
+            border-radius: 10px;
+            padding: 5px; 
+            border: 2px solid #E6E6E6;
+            background-color: #E6E6E6;
+            display: none;
+        }
+        
+        #how-to {
+            text-decoration: none;
+            color: navy;
+        }
+        
+        .setup-info {
+            border-radius: 0 10px 10px 0;
+            padding: 5px; 
+            border: 2px solid navy;
+            background-color: navy;
+            font-weight: bolder;
+            width: 70%;
+            color: white;
+            text-align: right;
+        }
+        
+        .setup-info .page-link {
+            color: red;
+            text-decoration: none;
+        }
+        
+        #main-content {
+            width: 85%; 
+            text-align: center; 
+            margin-top: 100px;
+            margin-left: 5%
+        }
+        
+        .section-title {
+            font-size: large; 
+            font-weight: bold
+        }
+        
+        .bold-text {
+            font-weight: bolder;
+        }
+        
+        .content-left {
+            float: left
+        }
+        
+        .content-right {
+            float: right; 
+            text-align: left
+        }
+        
+        .main-note {
+            margin-left: 5%
+        }
+        
+        .under-construction {
+            width: 200px; 
+            height: 200px
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#how-to').click(function (e) {
+                e.preventDefault();
+                $('#ms-sql-perm').toggle('fast');
+            });
+        });
+    </script>
+</head>
+    <body>
+        <div class="setup-info">
+            Click <a class="page-link" href="@Url.Action("Index", "Init", new { area = "Setup" })">here</a> to try accessing the setup page again
+        </div>
+        
+        <div id="main-content">
+            <div class="content-left">
+                <img src="@Url.Content("~/Content/Images/under_construction.png")" class="under-construction" alt="under construction" title="under construction" />            
+            </div>
+            <div class="content-right">
+                <h1>Snap! This blog hasn't been setup yet!!!</h1>
+                <h3>Could be any of the following reasons...</h3>
+                <ul>
+                    <li>The entire connection string in the <i>web.config</i> file is incorrect</li>
+                    <li>The <i>database</i> name specified in the connection string is incorrect</li>
+                    <li>The database exists, but the <b>Init.sql</b> script has never been run on the database in the connection string</li>
+                    <li>The database exists, you have run <b>Init.sql</b>, but the user name used in the <i>web.config</i>'s connections string does 
+                        not have <span title="User should have the db_owner role">access</span> to this database [<a href="javascript:void(0)" id="how-to">?</a>]
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <div style="clear: both"></div>
+    
+        <div class="main-note">
+            <br/>
+            <span class="bold-text">Note</span>: If you <span class="bold-text">had</span> to do any of the steps mentioned above, even if it didn't require you to
+            modify/save the <i>web.config</i>, you <span class="bold-text">may still have</span> to do that, so that the application
+            restarts.
+            <br/>
+        </div>
+
+        <div id="ms-sql-perm">
+            <span class="section-title">Steps:</span>
+            <ul>
+                <li>Connect to the ms sql server instance that has your database</li>
+                <li>Expand the <b>Security</b> node</li>
+                <li>Expand the <b>Logins</b> node</li>
+                <li>Locate the user used in <i>web.config</i> and right-click on it and select <b>Properties</b></li>
+                <li>From the <b>Select a page</b> menu, choose <b>User Mapping</b></li>
+                <li>Select the checkbox corresponding to the sblog database</li>
+                <li>In the <b>Database role for:</b> section below, select the checkbox corresponding to <b>db_owner</b></li>
+                <li>Click on <b>Ok</b></li>
+            </ul>
+        </div>
+    </body>
+</html>

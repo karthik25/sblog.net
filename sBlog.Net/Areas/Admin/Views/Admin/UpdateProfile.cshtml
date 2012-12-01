@@ -1,0 +1,59 @@
+﻿@model sBlog.Net.Models.Account.UpdateProfileModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Update your profile");
+}
+
+@Html.Partial("UpdateStatus", Model.UpdateStatus)
+
+<div class="cpHeader">
+    <b>Profile settings</b>
+</div>
+<div class="cpContent">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <div>
+            <fieldset>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserEmailAddress)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserEmailAddress, new { @class = "inputBoxBig" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserDisplayName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserDisplayName, new { @class = "inputBoxBig" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.NewPassword)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(m => m.NewPassword, new { @class = "inputBoxBig" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "inputBoxBig" })
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserSite)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserSite, new { @class = "inputBoxBig" })
+                </div>
+
+                <p>
+                    <input type="submit" value="Update Profile" class="submitBtn" />
+                </p>
+            </fieldset>
+        </div>
+    }
+</div>

@@ -1,0 +1,8 @@
+﻿sBlog.Net
+-------------
+
+This is just a default file in the uploads folder that forces Visual Studio to create the folder
+when publishing the project. Feel free to delete this file from the "Uploads" section.
+
+Thanks for trying out sBlog.Net!
+http://sblogproject.net

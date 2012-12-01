@@ -1,0 +1,39 @@
+﻿@model sBlog.Net.ShortCodeManager.SyntaxPossibilitiesViewModel
+
+@if (Model.IsEnabled)
+{
+    <a href="javascript:void(0)" id="showHelp">syntax highlighter usage</a>
+
+    <div id="dialog" title="Syntax Highlighter Help">
+        <div class="selected-brushes-title">Selected brushes:</div>
+        <br/>
+        <div id="accordion">
+            @foreach (sBlog.Net.ShortCodeManager.Entities.SyntaxPossibility possibility in Model.SyntaxPossibilities)
+            {
+                var cssClass = possibility.IsSelected ? "possibilityHeader brush-selected" : "possibilityHeader brush-not-selected";
+                <div class="@cssClass">
+                    Brush: @possibility.BrushName
+                </div>
+                <div class="possibilityContent">
+                    @foreach (var alias in possibility.PossibleAliases)
+                    {
+                        @:&lt;pre class="brush: @alias;"&gt;<br/>
+                        <span style="white-space: pre">        </span>
+                        @:// Some code for @alias brush<br/>
+                        @:&lt;/pre&gt;
+                        <hr />
+                    }
+                </div>
+            }
+        </div>
+    
+        <div style="float: right">
+            <input type="checkbox" id="chk-show-all" />
+            <label for="chk-show-all">Show all brushes (including unselected)</label>
+        </div>
+    </div>
+}
+else
+{
+    <span>syntax highlighter: </span> @Html.RouteLink("enable", "AdminSyntaxHighlighterOptions")
+}

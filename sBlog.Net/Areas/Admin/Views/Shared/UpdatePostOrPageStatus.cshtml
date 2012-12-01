@@ -1,0 +1,18 @@
+﻿@model sBlog.Net.Areas.Admin.Models.PostViewModel
+
+@if (Model.UpdateStatus)
+{
+    <div id="updateStatus">
+        @{
+            var entryType = Model.Post.EntryType;
+            var updateType = Model.IsNewPostOrPage ? "added" : "updated";
+            var url = Url.RouteUrl("IndividualPost", new { year = Model.Post.PostAddedDate.Year.ToString(), month = Model.Post.PostMonth, url = Model.Post.PostUrl });
+            if (entryType == 2)
+            {
+                url = Url.RouteUrl("Pages", new { pageUrl = Model.Post.PostUrl });
+            }
+        }
+        <span>Successfully @updateType the @Model.Post.ItemType. Click <a href="@url">here</a> <a href="@url" target="_blank"><img src="@Url.Content("~/Content/Images/new_window_icon.png")" alt="" title="open in a new window" style="border:0px; width: 12px; height: 12px" /></a> to view the @Model.Post.ItemType.</span>
+    </div>
+    <br /><br /><br /><br />
+}

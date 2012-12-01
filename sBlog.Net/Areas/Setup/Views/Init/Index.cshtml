@@ -1,0 +1,77 @@
+﻿@model sBlog.Net.Areas.Setup.Models.SetupStatusViewModel
+
+@{
+    ViewBag.Title = "sBlog.Net Setup || Page 1";
+}
+
+<div style="text-align: center">
+    <h2>sBlog.Net installation</h2>
+</div>
+
+<div>
+    You are at the installation page for sBlog.Net. This page informs you whether the connection string you have entered in
+    the <b>web.config</b> file is valid and whether you have a "writeable" <b title="Already created when you publish the project">Uploads</b> 
+    folder in the root directory. Unless the <b>AppDb</b> key in the application settings (&lt;connectionStrings /&gt;) is present and 
+    valid, you will not be able to proceed on to the next step, where you get to enter more information about your blog. 
+</div>
+
+<br />
+
+<div>
+    Before you proceed, an optional feature is specifying the hasher that will be used to hash sensitive information in your blog. 
+    It is identified by the <b>hasher</b> key in the &lt;appSettings /&gt; section in your <b>web.config</b>, which is populated by a 
+    default value to begin with. You can create your own hashers to be used by the blog, refer to the default hasher for more information. 
+    Remember, after the initial setup, you <span style="color: red; font-weight: bolder">CANNOT</span> modify  this value, as this would 
+    cause <i>all hell to break loose!</i> (Implying you will have issues accessing your system!).
+</div>
+
+<br />
+
+<div>
+    Another optional feature is to set the cache duration. Caching your data (posts, comments etc) speeds up the process of loading the 
+    pages. This, in turn reduces the time spent by the user to wait for the page to load. It is identified by the <b>CacheDuration</b> 
+    key in the &lt;appSettings /&gt; section. It is populated with a default value of 5 to begin with.    
+</div>
+
+<br/>
+
+<div class="message @Model.ConnectionStatusClass">
+    @Model.Message
+</div>
+
+<div class="message @Model.UploadsFolderStatusClass">
+    @Model.UploadsMessage
+</div>
+
+<div class="screen-options">
+    <a href="@Url.RouteUrl("SetupIndex")" id="refreshPage">refresh status</a>
+</div>
+<br/>
+
+@if (Model.IsConnectionStringValid && Model.IsUploadsFolderValid)
+{
+    <br />
+    <div>
+        Looks like you have got everything right and so lets proceed on to the next step! Just one more step, you will be 
+        ready to run your instance of sBlog.Net! To confirm you are infact the owner of this blog, please enter the database 
+        server's credentials to verify, as in your <b>web.config</b>.
+    </div>
+}
+
+<div style="text-align: center;">
+    @if (Model.IsConnectionStringValid && Model.IsUploadsFolderValid)
+    {
+        using (Html.BeginForm())
+        {
+            <br />
+            <span class="left-align">@Html.LabelFor(model => model.ConnectionString)</span> 
+            <span>[<span style="color: red;cursor: pointer" title="A case-sensitive validation is performed. So make sure you maintain case when you enter the connection string.">?</span>]</span><br/>
+            @Html.TextBoxFor(model => model.ConnectionString, new { @class = "inputBoxBigConnStr", autocomplete = "off" })<br/>
+            @Html.ValidationMessageFor(model => model.ConnectionString)
+        
+            <br/>
+            
+            <button type="submit" class="important">Continue >></button>
+        }
+    }    
+</div>

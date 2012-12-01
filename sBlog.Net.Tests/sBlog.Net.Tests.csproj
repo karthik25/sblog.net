@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4F7F8BBC-C9AB-42B6-A7CD-47D501445FA6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sBlog.Net.Tests</RootNamespace>
+    <AssemblyName>sBlog.Net.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AkismetTests\AkismetTest.cs" />
+    <Compile Include="AkismetTests\CommentProcessorPipelineTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
+    <Compile Include="Controllers\ViewPageControllerTests.cs" />
+    <Compile Include="Generators\SlugGeneratorTests.cs" />
+    <Compile Include="Generators\UniqueUrlGeneratorTests.cs" />
+    <Compile Include="Hasher\HasherTests.cs" />
+    <Compile Include="Helpers\MockObjectFactory.cs" />
+    <Compile Include="MockCollections\ArchiveCollectionTests.cs" />
+    <Compile Include="MockFrameworkObjects\MockCacheService.cs" />
+    <Compile Include="MockFrameworkObjects\MockHttpContext.cs" />
+    <Compile Include="MockFrameworkObjects\MockHttpRequest.cs" />
+    <Compile Include="MockFrameworkObjects\MockPathMapper.cs" />
+    <Compile Include="MockObjects\MockAkismetService.cs" />
+    <Compile Include="MockObjects\MockArchiveCollection.cs" />
+    <Compile Include="MockObjects\MockCategory.cs" />
+    <Compile Include="MockObjects\MockComment.cs" />
+    <Compile Include="MockObjects\MockError.cs" />
+    <Compile Include="MockObjects\MockPost.cs" />
+    <Compile Include="MockObjects\MockSettings.cs" />
+    <Compile Include="MockObjects\MockTag.cs" />
+    <Compile Include="MockObjects\MockUser.cs" />
+    <Compile Include="MockObjects\MockUserIdentity.cs" />
+    <Compile Include="PostShortCodeManager\PostShortCodeManagerTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sBlog.Net.Akismet\sBlog.Net.Akismet.csproj">
+      <Project>{BF9A2FB1-604B-4185-847F-0C4FDB04739A}</Project>
+      <Name>sBlog.Net.Akismet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Domain\sBlog.Net.Domain.csproj">
+      <Project>{B8FBB6E2-F283-45E4-ADBA-3010F5323B89}</Project>
+      <Name>sBlog.Net.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net\sBlog.Net.csproj">
+      <Project>{DC507F49-A83A-4F00-952C-0E6068698237}</Project>
+      <Name>sBlog.Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,37 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminTagsViewModel
+
+@{
+    ViewBag.Title = string.Format("Manage Tags || {0}", Model.Title);
+}
+
+<div id="left" style="float: left; width: 20%; padding: 5px;"> 
+    <b>Add tags</b><br /><br />
+    <input type="text" class="inputBoxBigCategory" id="txtTag" name="txtTag" size="20" /><br /><br />
+    <input type="button" class="submitBtn" id="btnCreateTags" value="Add Tag" /><br /><br />
+    <span class="add-msg"></span>
+</div>
+<div id="right" style="float: left; width: 60%">
+    <table id="manage-table">
+        <thead>
+            <tr>
+                <th class="header" scope="col">Tag Name</th>
+                <th class="header" scope="col">Tag Slug</th>
+            </tr>
+        </>
+        <tbody>
+            @foreach(var tag in Model.Tags)
+            {
+                @Html.Partial("Tag", tag)
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="footer" scope="col">Tag Name</th>
+                <th class="footer" scope="col">Tag Slug</th>
+            </tr>        
+        </tfoot>
+    </table>
+    
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageTags", new { page = x }))
+    @Html.HiddenFor(model => Model.OneTimeCode)
+</div>

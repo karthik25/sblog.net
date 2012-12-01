@@ -1,0 +1,19 @@
+﻿@model  Int32
+
+<b>share the love!</b><br />
+@if (Model == 1)
+{
+    @ShareThisHelper.Classic()
+}
+else if (Model == 2)
+{
+    @ShareThisHelper.MultiChannel()
+}
+else if (Model == 3)
+{
+    @ShareThisHelper.HorizontalCounters()
+}
+else
+{
+    @ShareThisHelper.VerticalCounters()
+}

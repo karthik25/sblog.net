@@ -1,0 +1,24 @@
+﻿@model sBlog.Net.Domain.Entities.PostEntity
+
+<div class="post">
+    @{ var url = Url.RouteUrl("IndividualPost", new { year = Model.PostYear, month = Model.PostMonth, url = Model.PostUrl, status = string.Empty }); }
+    <h2 class="title"><a href="@url">@Model.PostTitle</a></h2>
+    <p class="meta">
+        <span class="date">@Model.PostAddedDate.ToLongDateString()</span>
+        <span class="posted" style="float: right;">Posted by <b>@Model.OwnerUserName</b> under @Html.Partial("PostCategories", Model.Categories)</span>
+    </p>
+    <div class="entry">
+	    <p>
+            @Html.Raw(Model.PostContent)
+        </p>
+
+        @{
+            var count = Model.Comments != null ? Model.Comments.Count : 0;
+        }
+
+	    <p class="meta">
+            Tagged @Html.Partial("PostTags", Model.Tags)
+            <span class="posted">@count <a href="@(url + "#user-comments")">Comments</a></span>
+        </p>
+    </div>
+</div>

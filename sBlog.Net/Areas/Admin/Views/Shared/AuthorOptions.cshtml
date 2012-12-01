@@ -1,0 +1,16 @@
+﻿@model sBlog.Net.Domain.Entities.UserEntity
+
+@Html.ActionLink("delete author", "DeleteAuthor", "UserAdmin", new { @userID = Model.UserID }, new { @class = "deleteAuthor subLink" })
+
+@{
+    var typeOfActivation = string.Empty;
+    if (Model.UserActiveStatus.HasValue)
+    {
+        typeOfActivation = Model.UserActiveStatus.Value == 1 ? " deactivate" : "activate";
+    }
+}
+@if (!string.IsNullOrEmpty(typeOfActivation))
+{
+    <span>|</span>
+    @Html.ActionLink(typeOfActivation, "ActivateDeactivateAuthor", "UserAdmin", new { @authorId = Model.UserID, @currentStatus = Model.UserActiveStatus }, new { @class = "deactivateAuthor subLink" })
+}

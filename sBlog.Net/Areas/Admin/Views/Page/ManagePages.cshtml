@@ -1,0 +1,46 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminPostOrPageViewModel
+
+@{
+    ViewBag.Title = string.Format("Manage Pages || {0}", Model.Title);
+}
+
+@Html.ActionLink("All", "ManagePages", new { type = "all" })  (@Model.AllPostsCount ) |
+@Html.ActionLink("Published", "ManagePages", new { type = "pub" }) (@Model.PublicPostsCount ) | 
+@Html.ActionLink("Private", "ManagePages", new { type = "pri" }) (@Model.PrivatePostsCount ) | 
+
+<span class="addPost">
+    <img src="@Url.Content("~/Content/Images/page.png")" alt="Add a new page" class="add-post-page" />
+    @Html.ActionLink("Add a new page", "Add", "Page") 
+</span>
+
+<table id="manage-table">
+    <thead>
+        <tr>
+            <th class="header" scope="col">Page</th>
+            <th class="header col-no-display" scope="col">Author</th>
+            <th class="header col-no-display" scope="col">Categories</th>
+            <th class="header col-no-display" scope="col">Tags</th>
+            <th class="header" scope="col">Comments</th>
+            <th class="header" scope="col">Added/Edited Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Partial("ItemInfo", Model.Posts.Count)
+        @foreach(var post in Model.Posts){ 
+            @Html.Partial("PostDetail", post)
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="footer" scope="col">Page</th>
+            <th class="footer" scope="col">Author</th>
+            <th class="footer" scope="col">Categories</th>
+            <th class="footer" scope="col">Tags</th>
+            <th class="footer" scope="col">Comments</th>
+            <th class="footer" scope="col">Added/Edited Date</th>
+        </tr>
+    </tfoot>
+</table>
+    
+@Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePages", new { page = x, type = Model.Type }))
+@Html.HiddenFor(model => Model.OneTimeCode)

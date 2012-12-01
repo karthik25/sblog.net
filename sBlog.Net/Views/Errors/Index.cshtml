@@ -1,0 +1,18 @@
+﻿@model String
+
+@{
+    ViewBag.Title = "Something went wrong!";
+}
+
+<div>
+    <div id="left" style="float: left; width: 50%;"> 
+        <h3><b><i>Page Not Found</i></b></h3>
+        <br />
+        Sorry, the page you were looking was not found. <br /><br />
+        Use links on the top to explore other posts / pages.
+    </div>
+
+    <div id="right" style="float: left;">
+        <img src="@Url.Content("~/Content/Images/404_brown.png")" style="width:500px;height:300px;" alt="not found" title="page not found" />
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model sBlog.Net.Models.Account.NewUserModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Add a New User");
+}
+
+<div class="cpHeader">
+    <b>Create a new blog author</b>
+</div>
+<div class="cpContent">
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary()
+        <div>
+            <fieldset>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserDisplayName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserDisplayName, new { @class = "inputBoxBig" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserEmailAddress)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserEmailAddress, new { @class = "inputBoxBig" })
+                </div>
+
+                <p>
+                    <input type="submit" value="Add User" class="submitBtn" />
+                </p>
+            </fieldset>
+        </div>
+    }
+</div>

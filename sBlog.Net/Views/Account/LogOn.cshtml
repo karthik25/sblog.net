@@ -1,0 +1,59 @@
+﻿@model sBlog.Net.Models.Account.LogOnModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Log On");
+}
+
+<div style="height: 75px;"></div>
+@Html.Action("IncompleteSetup","Blog")
+
+<br/>
+
+<div>
+    @Html.ValidationSummary(true, string.Empty, new { @class = "login-errors" })
+    <div class="client-login-errors"></div>
+
+    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @id = "slick-login" }))
+    {
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @id = "username", @Value = "username", @autocomplete = "off" }) @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Password)
+        <input type="text" id="fake-password" name="fake-password" value="password" />
+        @Html.PasswordFor(m => m.Password, new { @id = "passwd", @value = "password" }) @Html.ValidationMessageFor(m => m.Password)
+        
+        <br/><br/>
+        
+        <div class="remember-me">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe)
+        </div>
+        
+        <input type="submit" value="log in" id="btnLogin" />
+        <br/><br/>
+        <div class="addl-links">
+            <div style="float: left">
+                <a href="javascript:void(0)" id="showOptions">options</a>
+            </div>
+            <div style="float: right">
+                <a href="javascript:void(0)" id="forgottenPswd">forgot password</a>
+            </div>
+        </div>
+    }
+    
+    @using (Ajax.BeginForm("ForgotPassword", "Account", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "results", LoadingElementId = "forgottenStatus" }, new { @id = "slick-forgotten" }))
+    {
+        <input type="text" id="emailAddress" name="emailAddress" value="your email address" autocomplete="off" />
+        <br />
+        <p style="text-align:right;">
+            <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="forgottenStatus" />
+            <input type="submit" value="reset password" class="submitBtn" id="btnForgottenPswd" />
+        </p>
+        <div id="results"></div>
+        <div class="addl-links">
+	        <a href="javascript:void(0)" id="loginForm">login</a>
+        </div>
+    }
+</div>
+
+@Html.Partial("RequestAccount", new sBlog.Net.Models.Account.RequestAccountModel())

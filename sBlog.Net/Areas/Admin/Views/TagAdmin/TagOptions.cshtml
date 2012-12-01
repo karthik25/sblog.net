@@ -1,0 +1,5 @@
+﻿@model sBlog.Net.Domain.Entities.TagEntity
+
+@Html.RouteLink("view posts", "Tag", new { tagName = Model.TagSlug })
+<span>|</span>
+@Html.ActionLink("delete", "DeleteTag", "TagAdmin", new { tagId = Model.TagID }, new { @class = "deleteTag subLink" })

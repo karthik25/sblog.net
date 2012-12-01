@@ -1,0 +1,115 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminSettingsViewModel
+
+@{
+    ViewBag.Title = string.Format("Update Settings || {0}", Model.Title);
+}
+
+@Html.Partial("UpdateStatus", Model.UpdateStatus)
+
+<div class="cpHeader">
+    <b>Blog settings</b>
+</div>
+<div class="cpContent">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        <b>@Html.LabelFor(model => model.BlogName)</b> <br /><br />
+        @Html.TextBoxFor(model => model.BlogName, new { @class = "inputBoxBig" })
+
+        <br /><br />
+
+        <b>@Html.LabelFor(model => model.BlogCaption)</b> <br /><br />
+        @Html.TextBoxFor(model => model.BlogCaption, new { @class = "inputBoxBig" })
+
+        <br /><br />
+
+        <b>@Html.LabelFor(model => model.BlogTheme)</b> <br /><br />
+        @Html.DropDownListFor(model => model.BlogTheme, Model.BlogThemes, new { @class = "dropDownBox" })
+    
+        <br /><br />
+        
+        <b>@Html.LabelFor(model => model.AdminEmailAddress)</b> <br /><br />
+        @Html.TextBoxFor(model => model.AdminEmailAddress, new { @class = "inputBoxBig" })<br/><br/>
+        <span class="settings-info">(will be used as the from address in emails sent, and also as the user name for the smtp server if a password is specified)</span><br/>
+        
+        <br /><br />
+
+        <b>@Html.LabelFor(model => model.BlogSmtpAddress)</b> <br /><br />
+        @Html.TextBoxFor(model => model.BlogSmtpAddress, new { @class = "inputBoxBig" })<br /><br />
+        <span class="settings-info">(without a valid smtp address, sending emails [site errors & forgotten password] would fail)</span>
+        
+        <br /><br /><br />
+
+        <b>@Html.LabelFor(model => model.BlogSmtpPassword)</b> <br /><br />
+        @Html.PasswordFor(model => model.BlogSmtpPassword, new { @class = "inputBoxBig" })<br /><br />
+        <span class="settings-info">(some email servers might require a password, enter if any [not shown, if you have entered already])</span><br />
+        <span class="settings-info">(the smtp password won't be updated if you leave this field blank. so after you enter the password for the first time, you don't have to enter it every time)</span><br/>
+        
+        <br /><br />
+
+        <b>Social sharing options</b> <br /><br />
+        @Html.CheckBoxFor(model => model.BlogSocialSharing)
+        @Html.LabelFor(model => model.BlogSocialSharing)
+
+        <br /><br /><br />
+
+        <b>Syntax highlighting</b> <br /><br />
+        @Html.CheckBoxFor(model => model.BlogSyntaxHighlighting)
+        @Html.LabelFor(model => model.BlogSyntaxHighlighting)
+
+        <br /><br /><br />
+
+        <b>@Html.LabelFor(model => model.PostsPerPage)</b> <br /><br />
+        @Html.TextBoxFor(model => model.PostsPerPage, new { @class = "inputBoxBig" })
+
+        <br /><br /><br />
+        
+        <b>@Html.LabelFor(model => model.ManageItemsPerPage)</b> <br /><br />
+        @Html.TextBoxFor(model => model.ManageItemsPerPage, new { @class = "inputBoxBig" })
+
+        <br /><br /><br />
+        
+        <b>Site Errors</b> <br /><br />
+        @Html.CheckBoxFor(model => model.BlogErrorAction)
+        @Html.LabelFor(model => model.BlogErrorAction)
+
+        <br /><br /><br />
+
+        <b>Akismet Status</b> <br /><br />
+        @Html.CheckBoxFor(model => model.AkismetEnabled)
+        @Html.LabelFor(model => model.AkismetEnabled)
+
+        <br /><br />
+        
+        <div class="akismetAdvancedOptions">
+            <fieldset>
+                <legend>Akismet Advanced Options</legend>
+
+                <b>Akismet Spam Message Handling</b> <br /><br />
+                @Html.CheckBoxFor(model => model.AkismetDeleteSpam)
+                @Html.LabelFor(model => model.AkismetDeleteSpam)
+
+                <br /><br />
+
+                <b title="you will have to register in the akismet's site (http://akismet.com/) by specifying your blog's url to obtain this key">
+                    @Html.LabelFor(model => model.AkismetKey)
+                </b> 
+                <br /><br />
+                @Html.TextBoxFor(model => model.AkismetKey, new { @class = "inputBoxBig" })
+
+                <br /><br />
+
+                <b title="by default, this field is populated with the root site address identified by the url in the address bar">
+                    @Html.LabelFor(model => model.AkismetUrl)
+                </b> 
+                <br /><br />
+                @Html.TextBoxFor(model => model.AkismetUrl, new { @class = "inputBoxBig" })
+            </fieldset>
+
+            <br /><br />    
+        </div>
+        
+        <input type="submit" value="Update Settings" class="submitBtn" />
+    }
+</div>

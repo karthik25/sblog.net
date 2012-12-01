@@ -1,0 +1,50 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminUploadsViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Please select a file</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .file-item 
+        {
+            background-color: #E6E6E6;
+            padding: 10px;
+        }
+        
+        .clickable {
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('a').click(function (e) {
+                e.preventDefault();
+                var ckEditorNum = parseInt($('#CKEditorFuncNum').val());
+                window.opener.CKEDITOR.tools.callFunction(ckEditorNum, '@Url.Content("~/")' + 'uploads/' + $(this).html(), '');
+                window.close();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        Select a file :<br /><br />
+        @foreach (var item in Model.FileEntries)
+        {
+            var imgUrl = Url.Content("~/Content/Images/extension_icons/" + item.FileIconName);
+            <div class="file-item">
+                <img src="@imgUrl" alt="" style="width: 32px; height: 32px; vertical-align: middle" />
+                <a class="clickable" href="#" style="font-size: larger;">@item.FileName</a>            
+            </div>
+            <br />
+        }
+        @Html.HiddenFor(model => model.CKEditorFuncNum)
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminCommentViewModel
+
+@{
+    ViewBag.Title = string.Format("Manage Comments || {0}", Model.Title);
+}
+
+@Html.RouteLink("Manage Public Posts", "AdminPostManagement") | 
+@Html.RouteLink("Manage Comments", "AdminCommentManagement") | 
+<span class="addPost">
+    <img src="@Url.Content("~/Content/Images/profile.png")" alt="" style="width: 16px; height: 16px;" />
+    @Html.ActionLink("Create a new blog author", "Register", "Account", new { Area = "" }, new { })
+</span>
+
+<br/><br/>
+<hr />
+
+@Html.ActionLink("All", "ManagePublicComments", new { type = "all" })  (@Model.AllCommentsCount ) |
+@Html.ActionLink("Approved", "ManagePublicComments", new { type = "approved" }) (@Model.ApprovedCommentsCount ) | 
+@Html.ActionLink("Pending", "ManagePublicComments", new { type = "pending" }) (@Model.PendingCommentsCount ) | 
+@Html.ActionLink("Spam", "ManagePublicComments", new { type = "spam" }) (@Model.SpamCommentsCount ) | 
+@Html.ActionLink("Trash", "ManagePublicComments", new { type = "trash" }) (@Model.TrashCommentsCount ) | 
+
+<table id="manage-table">
+    <thead>
+        <tr>
+            <th class="header" scope="col">Author</th>
+            <th class="header" scope="col">Comment</th>
+            <th class="header" scope="col">Post</th>
+        </tr>
+    </thead>
+        @Html.Partial("ItemInfo", Model.Comments.Count)
+        @foreach(var comment in Model.Comments){ 
+            @Html.Partial("Comment", comment)
+        }
+    <tfoot>
+        <tr>
+            <th class="footer" scope="col">Author</th>
+            <th class="footer" scope="col">Comment</th>
+            <th class="footer" scope="col">Post</th>
+        </tr>        
+    </tfoot>
+</table>
+    
+@Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePublicComments", new { page = x, type = Model.Type }))
+@Html.HiddenFor(model => Model.OneTimeCode)

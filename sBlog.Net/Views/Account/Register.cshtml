@@ -1,0 +1,64 @@
+﻿@model sBlog.Net.Models.Account.RegisterModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Register");
+}
+
+<div class="cpHeader">
+    <b>Register as an author</b>
+</div>
+<div class="cpContent">
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary()
+        <div>
+            <fieldset>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserDisplayName)
+                </div>
+                <br/>
+                <div class="editor-display-field" title="You can modify the display name after you complete registration">
+                    @Model.UserDisplayName
+                </div>
+                <br/>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "inputBoxBig" })
+                </div>
+                <span class="field-info">please enter your user name [<a title="alphabets and numbers, underscore and hyphen, no spaces" href="#">?</a>]</span>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "inputBoxBig" })
+                </div>
+                <span class="field-info">please enter your email address</span>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Password)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(m => m.Password, new { @class = "inputBoxBig" })
+                </div>
+                <span class="field-info">please enter a password [<a title="6 - 20 characters, lowercase/uppercase letters, at least a number, at least one of @@, #, $, % symbols" href="#">?</a>]</span>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "inputBoxBig" })
+                </div>
+                <span class="field-info">please enter a password [<a title="6 - 20 characters, lowercase/uppercase letters, at least a number, at least one of @@, #, $, % symbols" href="#">?</a>]</span>
+                @Html.HiddenFor(m => m.NewUserTicket)
+                @Html.HiddenFor(m => m.UserID)
+
+                <p>
+                    <input type="submit" value="Register" class="submitBtn" />
+                </p>
+            </fieldset>
+        </div>
+    }
+</div>

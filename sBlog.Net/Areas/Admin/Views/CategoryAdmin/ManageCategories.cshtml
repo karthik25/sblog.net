@@ -1,0 +1,37 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminCategoriesViewModel
+
+@{
+    ViewBag.Title = string.Format("Manage Categories || {0}", Model.Title);
+}
+
+<div id="left" style="float: left; width: 20%; padding: 5px;"> 
+    <b>Add a category</b><br /><br />
+    <input type="text" class="inputBoxBigCategory" id="txtCat" name="txtCat" size="20" /><br /><br />
+    <input type="button" class="submitBtn" id="btnCreateCategory" value="Add Category" /><br /><br />
+    <span class="add-msg"></span>
+</div>
+<div id="right" style="float: left; width: 60%">
+    <table id="manage-table">
+        <thead>
+            <tr>
+                <th class="header" scope="col">Category Name</th>
+                <th class="header" scope="col">Category Slug</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                @Html.Partial("Category", category)
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="footer" scope="col">Category Name</th>
+                <th class="footer" scope="col">Category Slug</th>
+            </tr>        
+        </tfoot>
+    </table>
+    
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageCategories", new { page = x }))
+    @Html.HiddenFor(model => Model.OneTimeCode)
+</div>

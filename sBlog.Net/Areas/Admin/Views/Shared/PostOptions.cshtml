@@ -1,0 +1,14 @@
+﻿@model sBlog.Net.Domain.Entities.PostEntity
+
+@if (Model.EntryType == 1)
+{
+    @Html.ActionLink("edit", "Edit", "Post", new { postID = Model.PostID }, new { @class = "subLink" }) <span>|</span> 
+    @Html.RouteLink("view", "IndividualPost", new { year = Model.PostYear, month = Model.PostMonth, url = Model.PostUrl }, new { @class = "subLink" }) <span>|</span>
+    @Html.ActionLink("trash", "Delete", "Post", new { postID = Model.PostID }, new { @class = "deletePost subLink" })
+}
+else
+{
+    @Html.ActionLink("edit", "Edit", "Page", new { postID = Model.PostID }, new { @class = "subLink" }) <span>|</span> 
+    @Html.RouteLink("view", "Pages", new { pageUrl = Model.PostUrl }, new { @class = "subLink" }) <span>|</span>
+    @Html.ActionLink("trash", "Delete", "Page", new { postID = Model.PostID }, new { @class = "deletePage subLink" })
+}

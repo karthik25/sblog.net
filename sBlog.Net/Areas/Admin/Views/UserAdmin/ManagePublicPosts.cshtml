@@ -1,0 +1,44 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminPostOrPageViewModel
+
+@{
+    ViewBag.Title = string.Format("Manage Public Posts || {0}", Model.Title);
+}
+
+@Html.RouteLink("Manage Public Posts", "AdminPostManagement") | 
+@Html.RouteLink("Manage Comments", "AdminCommentManagement") | 
+<span class="addPost">
+    <img src="@Url.Content("~/Content/Images/profile.png")" alt="" style="width: 16px; height: 16px;" />
+    @Html.ActionLink("Create a new blog author", "Register", "Account", new { Area = "" }, new { })
+</span>
+
+<table id="manage-table">
+    <thead>
+        <tr>
+            <th class="header" scope="col">Post</th>
+            <th class="header" scope="col">Author</th>
+            <th class="header" scope="col">Categories</th>
+            <th class="header" scope="col">Tags</th>
+            <th class="header" scope="col">Comments</th>
+            <th class="header" scope="col">Added/Edited Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Partial("ItemInfo", Model.Posts.Count)
+        @foreach(var post in Model.Posts)
+        {
+            @Html.Partial("PostDetail", post)
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="footer" scope="col">Post</th>
+            <th class="footer" scope="col">Author</th>
+            <th class="footer" scope="col">Categories</th>
+            <th class="footer" scope="col">Tags</th>
+            <th class="footer" scope="col">Comments</th>
+            <th class="footer" scope="col">Added/Edited Date</th>
+        </tr>
+    </tfoot>
+</table>
+    
+@Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePublicPosts", new { page = x }))

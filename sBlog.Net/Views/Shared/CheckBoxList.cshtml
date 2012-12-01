@@ -1,0 +1,14 @@
+﻿@model sBlog.Net.Models.CheckBoxListViewModel
+
+<div>
+    <b>@Html.CheckBoxListHeader(Model.HeaderText)</b>
+</div>
+<div class="cpCheckBoxContent">
+    @foreach (var item in Model.Items)
+    {
+        @Html.CheckBoxValue(Model.HeaderText, item, Model.Items.IndexOf(item))
+        @Html.CheckBoxInput(Model.HeaderText, item, Model.Items.IndexOf(item))
+        @Html.CheckBoxInputLabel(Model.HeaderText, item, Model.Items.IndexOf(item))
+        <br />
+    }
+</div>

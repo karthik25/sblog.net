@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.GetCommonScriptsAndStyles()
+    @Html.LoadStylesAndScripts(Html.Action("GetBlogTheme", "Blog").ToString())
+</head>
+<body>
+@Html.Partial("AdminLinks")
+<div id="wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			@Html.Action("Logo", "Blog")
+			<p>@Html.Action("BlogCaption","Blog")</p>
+		</div>
+		<div id="menu">
+			@Html.Action("Pages", "ViewPage")
+            <img id="more-pages" src="@Url.Content("~/Content/Images/arrow.png")" alt="more pages" />
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="page" class="container">
+			<div id="pagecontent">
+				<div class="pagecontent">
+					@RenderBody()
+				</div>
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+			<!-- end #content -->			
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+		
+		<!-- end #content -->		
+		<div style="clear: both;">&nbsp;</div>
+</div>
+<div id="footer">
+	@Html.Action("BlogFooter", "Blog")
+</div>
+<!-- end #footer -->
+</body>
+</html>

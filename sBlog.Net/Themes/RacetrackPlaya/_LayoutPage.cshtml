@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.GetCommonScriptsAndStyles()
+    @Html.LoadStylesAndScripts(Html.Action("GetBlogTheme", "Blog").ToString())
+</head>
+<body>
+@Html.Partial("AdminLinks")
+<!-- end #header-wrapper -->
+<div id="header">
+	<div id="logo">
+		@Html.Action("Logo", "Blog")
+		<p>@Html.Action("BlogCaption","Blog")</p>
+	</div>
+	<div id="menu">
+		@Html.Action("Pages", "ViewPage")
+        <img id="more-pages" src="@Url.Content("~/Content/Images/arrow.png")" alt="more pages" />
+	</div>
+	<!-- end #menu -->
+</div>
+<!-- end #header -->
+<hr />
+<div id="wrapper">
+	<!-- end #logo -->
+	<div id="slideshow">
+		<!-- start -->
+		<div id="foobar">
+			<div id="slides">
+				<div class="viewer">
+					<div class="reel">
+						<div class="slide"><img src="/Themes/RacetrackPlaya/images/img04.jpg" width="960" height="335" alt="" /></div>
+						<div class="slide"><img src="/Themes/RacetrackPlaya/images/img07.jpg" width="960" height="335" alt="" /></div>
+						<div class="slide"><img src="/Themes/RacetrackPlaya/images/img08.jpg" width="960" height="335" alt="" /></div>
+					</div>
+				</div>
+				<div class="nav"><span><a href="#" class="previous">Previous</a></span> <span><a href="#" class="next">Next</a></span></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+		    $('#foobar').slidertron({
+		        viewerSelector: '.viewer',
+		        reelSelector: '.viewer .reel',
+		        slidesSelector: '.viewer .reel .slide',
+		        navPreviousSelector: '.previous',
+		        navNextSelector: '.next',
+		        navFirstSelector: '.first',
+		        navLastSelector: '.last'
+		    });
+		</script>
+		<!-- end -->
+	</div>
+</div>
+<div id="page">
+	<div id="page-bgtop">
+		<div id="pagecontent">
+			@RenderBody()
+		</div>
+		<!-- end #content -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	@Html.Action("BlogFooter", "Blog")
+</div>
+<!-- end #footer -->
+</body>
+</html>

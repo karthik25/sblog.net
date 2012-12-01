@@ -1,0 +1,17 @@
+﻿@model List<sBlog.Net.Areas.Admin.Models.Comments.CommentLink>
+
+@using System.Linq
+
+@{ 
+    var commentID = Model.First().CommentID;
+    var divId = "commentStatus" + commentID;
+}
+
+<div id="@divId">
+    @foreach(var link in Model)
+    {
+        @Ajax.ActionLink(link.LinkText, link.ActionMethod, "CommentAdmin", new {link.CommentID, link.PostID, link.CommentStatus }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "commentStatus" + link.CommentID }) <span>|</span>
+    }
+    <a href="#" class="trashComment">delete permanently</a>
+    <input type="hidden" value="@commentID" class="trashCommentID" />
+</div>

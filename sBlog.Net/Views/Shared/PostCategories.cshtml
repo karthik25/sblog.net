@@ -1,0 +1,6 @@
+﻿@model List<sBlog.Net.Domain.Entities.CategoryEntity>
+
+@foreach (var category in Model.Where(category => category.IsCategoryEntityValid()))
+{
+    @:@Html.RouteLink(category.CategoryName, "Category", new { categoryName = category.CategorySlug })&nbsp;
+}

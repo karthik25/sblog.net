@@ -1,0 +1,10 @@
+﻿@model Boolean
+
+@if (!Model)
+{
+    <div class="setup-errors">
+        <span class="notice">Notice to the owner:</span> Looks like you have not completed your blog's setup. People will <i>still</i> be able
+        to view your blog with the default content. In order to manage your blog you <b><i>have to</i></b> complete the
+        @Html.ActionLink("setup", "Index", "Init", new { area = "Setup" }, new { }).
+    </div>
+}

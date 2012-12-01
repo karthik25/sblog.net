@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>sBlog.Net || Invalid Theme</title>
+    <style type="text/css">
+        #logo img {
+            border: 0px;
+            width: 200px;
+            height: 75px;
+            position: absolute;
+            top: 5px;
+            right: 10px
+        }
+        
+        #content 
+        {
+            position: fixed;
+            top: 80px
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">
+        <a href="http://sblogproject.net" target="_blank"><img src="@Url.Content("~/Content/Images/sblog-logo-v1-3.jpg")" alt="sBlog.Net" /></a>
+    </div>
+    <div id="content">
+        <h2>Unable to find a theme with the name specified. Did you mess with the database? Caught you :-)</h2>
+        Click @Html.RouteLink("here", "Logon") to go to the administration section to try and fix it!!!
+    </div>
+</body>
+</html>

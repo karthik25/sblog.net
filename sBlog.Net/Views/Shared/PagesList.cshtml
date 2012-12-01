@@ -1,0 +1,8 @@
+﻿@model List<sBlog.Net.Domain.Entities.PostEntity>
+
+<div style="padding: 20px;">
+    @foreach (var page in Model)
+    {
+        @Html.RouteLink(page.PostTitle, "Pages", new { pageUrl = page.PostUrl, status = string.Empty })<br /><br />
+    }
+</div>

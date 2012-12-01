@@ -1,0 +1,32 @@
+﻿@model sBlog.Net.Domain.Entities.PostEntity
+
+<tr>
+    <td>
+        @{
+            var type = Model.EntryType == 1 ? "Post" : "Page";
+        }
+        <b>@Html.ActionLink(Model.PostTitle, "Edit", type, new { postID = Model.PostID }, new { @class = "mainLink" })</b><br /><br />
+        @Html.Partial("PostOptions", Model)
+    </td>
+    <td>
+        @Model.OwnerUserName
+    </td>
+    <td>
+        @Html.Partial("PostCategories", Model.Categories)
+    </td>
+    <td>
+        @Html.Partial("PostTags", Model.Tags)
+    </td>
+    <td>
+        @{
+            var url = Model.EntryType == 1 ? Url.RouteUrl("IndividualPost", new { year = Model.PostYear, month = Model.PostMonth, url = Model.PostUrl }) : Url.RouteUrl("Pages", new { pageUrl = Model.PostUrl });
+        }
+        <a href="@(url + "#user-comments")">@Model.Comments.Count</a>
+    </td>
+    <td>
+        @{
+            var date = Model.PostEditedDate ?? Model.PostAddedDate;
+         }
+        @date.ToLongDateString()
+    </td>
+</tr>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8FBB6E2-F283-45E4-ADBA-3010F5323B89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sBlog.Net.Domain</RootNamespace>
+    <AssemblyName>sBlog.Net.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationDomainConfiguration.cs" />
+    <Compile Include="Concrete\Category.cs" />
+    <Compile Include="Concrete\Comment.cs" />
+    <Compile Include="Concrete\DbContext.cs" />
+    <Compile Include="Concrete\DefaultDisposable.cs" />
+    <Compile Include="Concrete\Error.cs" />
+    <Compile Include="Concrete\Post.cs" />
+    <Compile Include="Concrete\Settings.cs" />
+    <Compile Include="Concrete\Tag.cs" />
+    <Compile Include="Concrete\User.cs" />
+    <Compile Include="Entities\ApplicationErrorEntity.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\CategoryMapping.cs" />
+    <Compile Include="Entities\CommentEntity.cs" />
+    <Compile Include="Entities\PostEntity.cs" />
+    <Compile Include="Entities\SettingsEntity.cs" />
+    <Compile Include="Entities\TagEntity.cs" />
+    <Compile Include="Entities\TagMapping.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Generators\RandomStringGenerator.cs" />
+    <Compile Include="Hashers\Md5Hasher.cs" />
+    <Compile Include="Interfaces\ICacheService.cs" />
+    <Compile Include="Interfaces\ICategory.cs" />
+    <Compile Include="Interfaces\IComment.cs" />
+    <Compile Include="Interfaces\IError.cs" />
+    <Compile Include="Interfaces\IHasher.cs" />
+    <Compile Include="Interfaces\IPathMapper.cs" />
+    <Compile Include="Interfaces\IPost.cs" />
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\ITag.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IUserInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\AESEncryption.cs" />
+    <Compile Include="Utilities\CryptExtensions.cs" />
+    <Compile Include="Utilities\HashExtensions.cs" />
+    <Compile Include="Generators\SlugGenerator.cs" />
+    <Compile Include="Utilities\TripleDES.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sBlog.Net.MetaData\sBlog.Net.MetaData.csproj">
+      <Project>{5463815F-1105-4C86-8E01-D7EC06335907}</Project>
+      <Name>sBlog.Net.MetaData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

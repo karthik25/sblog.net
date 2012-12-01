@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link type="text/css" href="@Url.Content("~/Areas/Setup/Content/Site.css")" rel="Stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input:text,input:password').focus(function () {
+                $(this).next().next('.field-info').show();
+            }).blur(function () {
+                $(this).next().next('.field-info').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="setup-body-content">
+        @RenderBody()
+    </div>
+</body>
+</html>

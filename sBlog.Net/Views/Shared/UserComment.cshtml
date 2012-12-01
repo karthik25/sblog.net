@@ -1,0 +1,71 @@
+﻿@model sBlog.Net.Models.Comments.CommentViewModel
+
+<span class="post-comment">post your comment</span>
+<br /><br />
+
+@Html.Partial("CommentAddStatus")
+
+@using (Html.BeginForm("Add", "Comment", FormMethod.Post, new { id="userComment" }))
+{
+    <div style="margin-left: 50px;">
+        @if (!Request.IsAuthenticated)
+        {
+            <div class="editor-label">
+                <b>name <span class="required-field">(*)</span><span class="required-field-info">&nbsp;- required</span></b>
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Comment.CommentUserFullName, new {@class = "inputBoxBig required-box validate-html"})
+            </div>
+            <div class="editor-label">
+                <b>email address <span class="required-field">(*)</span><span class="required-field-info">&nbsp;- required</span></b>
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Comment.CommenterEmail, new { @class = "inputBoxBig required-box validate-html" })
+            </div>
+            <div class="editor-label">
+                <b>site address</b>
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Comment.CommenterSite, new { @class = "inputBoxBig validate-html" })
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.Comment.CommentUserFullName)
+            @Html.HiddenFor(model => model.Comment.CommenterEmail)
+            @Html.HiddenFor(model => model.Comment.CommenterSite)
+        }
+
+        <div class="editor-label">
+            <b>your comment <span class="required-field">(*)</span><span class="required-field-info">&nbsp;- required</span></b>
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Comment.CommentContent, new { @class = "inputBoxBigTextArea required-box validate-html", @rows = 10 })
+        </div>
+        
+        @if(!Request.IsAuthenticated)
+        {
+            <div class="editor-label misc-field-lbl">
+                <span></span>
+            </div>
+            <div class="editor-field  misc-field">
+                
+            </div>
+            <div id="user-tests">
+                <label for="DisplayName">Enter your name again:</label>
+                <input type="text" id="DisplayName" name="DisplayName" value=""/>
+            </div>
+        }
+
+        @Html.HiddenFor(model => model.Post.PostID)
+        @Html.HiddenFor(model => model.Post.PostTitle)
+        @Html.HiddenFor(model => model.Post.PostUrl)
+        @Html.HiddenFor(model => model.Post.PostAddedDate)
+        @Html.HiddenFor(model => model.Post.EntryType)
+	
+        <p>
+            <input type="submit" value="submit your comment" class="anonymous-comment submitBtn" />
+            <span class="required-field">(*)</span> - required
+        </p>
+    </div>
+}

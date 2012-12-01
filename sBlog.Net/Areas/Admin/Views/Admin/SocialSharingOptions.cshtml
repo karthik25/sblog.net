@@ -1,0 +1,50 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminSocialSharingOptions
+
+@{
+    ViewBag.Title = string.Format("Social Sharing Options || {0}", Model.Title);
+}
+
+@Html.Partial("UpdateStatus", Model.UpdateStatus)
+
+@if (Model.IsEnabled)
+{
+    <div class="cpHeader">
+        Social Sharing Settings
+    </div>
+    <div class="cpContentPlain">
+        @using (Html.BeginForm())
+        {
+            foreach (var shareable in Model.Options)
+            {
+                var id = string.Format("radio{0}", shareable.Value);
+
+                if (shareable.Selected)
+                {
+                    <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" checked="checked" />
+                }
+                else
+                {
+                    <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" />
+                }
+                <span><img src="@Url.Content(shareable.ImageUrl)" alt="" class="@Model.ImageClass" /></span>
+                <br />
+            }
+            <br />
+            <input type="submit" value="Update Settings" class="submitBtn" />
+        }
+    </div>
+}
+else
+{
+    <div class="cpHeader">
+        Social Sharing Settings
+    </div>
+    <div class="cpContent">
+        @using(Html.BeginForm("EnableSocialSharing","Admin"))
+        {
+            @Html.CheckBox("enableSocialSharing", new { @id = "enableSocialSharing" })
+            <label for="enableSocialSharing">Enable Social Sharing</label>
+            <input type="submit" value="Enable"/>
+        }
+    </div>
+}

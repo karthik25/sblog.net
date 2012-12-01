@@ -1,0 +1,14 @@
+﻿@model sBlog.Net.Domain.Entities.TagEntity
+
+@if (Model.IsTagEntityValid())
+{
+    <tr>
+        <td>
+            <b>@Html.RouteLink(Model.TagName, "Tag", new {tagName = Model.TagSlug}, new {@class = "mainLink"})</b><br /><br />
+            @Html.Partial("TagOptions", Model)
+        </td>
+        <td>
+            @Model.TagSlug
+        </td>
+    </tr>
+}

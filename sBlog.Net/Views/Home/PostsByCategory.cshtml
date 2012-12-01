@@ -1,0 +1,30 @@
+﻿@model sBlog.Net.Models.BlogPostPageViewModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1} || page {2}", Model.Category.CategoryName, Model.BlogName.ToLower(), Model.CurrentPageNumber);
+}
+
+@if (!Model.Any)
+{
+    <div>there are no posts for the selected category.</div>
+}
+
+@foreach(var post in Model.Posts)
+{
+    @Html.Partial("Post", post)
+}
+<br />
+
+@if (Model.Any && Model.PreviousPageValid)
+{
+    <div style="float: left">
+        @Html.RouteLink("<< Previous Page", "CategoryPaged", new { categoryName = Model.Category.CategorySlug, pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
+    </div>
+}
+
+@if (Model.Any && Model.NextPageValid)
+{
+    <div style="float: right">
+        @Html.RouteLink("Next Page >>", "CategoryPaged", new { categoryName = Model.Category.CategorySlug, pageNumber = Model.NextPageNumber }, new { @class = "link" })
+    </div>
+}

@@ -1,0 +1,43 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminAuthorsViewModel
+
+@{
+    ViewBag.Title = string.Format("User Management || {0}", Model.Title);
+}
+
+@Html.RouteLink("Manage Public Posts", "AdminPostManagement") | 
+@Html.RouteLink("Manage Comments", "AdminCommentManagement") | 
+<span class="addPost">
+    <img src="@Url.Content("~/Content/Images/profile.png")" alt="" style="width: 16px; height: 16px;" />
+    @Html.ActionLink("Create a new blog author", "add", "account", new { Area = "" }, new { })
+</span>
+
+<table id="manage-table">
+    <thead>
+        <tr>
+            <th class="header" scope="col">Author Name</th>
+            <th class="header" scope="col">Author User Name</th>
+            <th class="header" scope="col">Number of Posts</th>
+            <th class="header" scope="col">User Status</th>
+            <th class="header" scope="col">Last Login Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Partial("ItemInfo", Model.AuthorsCount)
+        @foreach(var author in Model.Authors)
+        {
+            @Html.Partial("AuthorDetail", author)
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="header" scope="col">Author Name</th>
+            <th class="header" scope="col">Author User Name</th>
+            <th class="header" scope="col">Number of Posts</th>
+            <th class="header" scope="col">User Status</th>
+            <th class="header" scope="col">Last Login Date</th>
+        </tr>
+    </tfoot>
+</table>
+    
+@Html.PageLinks(Model.PagingInfo, x => Url.Action("UserManagement", new { page = x }))
+@Html.HiddenFor(model => Model.OneTimeCode)

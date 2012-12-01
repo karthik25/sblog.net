@@ -1,0 +1,7 @@
+﻿@model sBlog.Net.Areas.Admin.Models.PostViewModel
+
+@{
+    ViewBag.Title = string.Format("Add a Post || {0}", Model.Title);
+}
+
+@Html.Partial("AddEditPost", Model)

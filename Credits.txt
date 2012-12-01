@@ -1,0 +1,79 @@
+Credits
+--------
+
+Following are the credits due for the sBlog.Net blog engine
+
+Many thanks to...
+ASP.Net MVC (http://www.asp.net/mvc)
+jQuery (http://jquery.com)
+Free CSS Templates (http://www.freecsstemplates.org/)
+CKEditor (http://ckeditor.com/)
+Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
+
+	IconFinder (http://www.iconfinder.com/)
+
+    The images used in the administration section and the blog were downloaded from the IconFinder site and most of them use the 
+    Creative Commons or the LGPL license. Few of them use their own ways of licensing. Every image is listed below along with the
+    specific version of the license and a link to the author's website.
+
+    Creative Commons
+    
+    Add post (http://www.iconfinder.com/icondetails/9241/48/add_document_file_new_page_plus_icon) | License: http://creativecommons.org/licenses/by-nc-nd/2.5/ - CC-nc-nd 3.0 | Author - http://www.oxygen-icons.org/
+    Arrow (blog) (http://www.iconfinder.com/icondetails/35769/32/arrow_bullet_down_icon) | License: http://creativecommons.org/licenses/by/3.0/us/ - CC 3.0 | Author - http://www.fatcow.com/
+    Comments (http://www.iconfinder.com/icondetails/34641/48/comments_forum_icon) | License: http://www.iconfinder.com/data/icons/bloggin/Terms%20Of%20Use.txt - CC 3.0 | Author - http://www.blogperfume.com/
+    Categories (http://www.iconfinder.com/icondetails/45908/16/category_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://p.yusukekamiyamane.com/
+    Collapse (http://www.iconfinder.com/icondetails/62028/48/collapse_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC-sa 3.0 | Author - http://www.wpzoom.com/
+    Css (http://www.iconfinder.com/icondetails/49312/128/css_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://tooschee.com/
+    Doc (http://www.iconfinder.com/icondetails/49296/128/doc_icon) | License: http://creativecommons.org/licenses/by/3.0/us/ - CC 3.0 | Author - http://www.vistaico.com/
+    Expand (http://www.iconfinder.com/icondetails/62032/48/expand_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC-sa 3.0 | Author - http://www.wpzoom.com/
+    Javascript (http://www.iconfinder.com/icondetails/36495/128/file_javascript_icon) | License: http://creativecommons.org/licenses/by-nc-sa/3.0/ - CC-nc-sa 3.0 | Author - http://ahmad-hania.wateentech.com/
+    Manage posts (http://www.iconfinder.com/icondetails/48812/128/manage_school_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC-sa 3.0 | Author - http://neurovit.deviantart.com/
+    Profile (http://www.iconfinder.com/icondetails/10593/48/employee_man_people_profile_user_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://www.webappers.com/
+    Rar (http://www.iconfinder.com/icondetails/47562/128/file_rar_icon) | License: http://creativecommons.org/licenses/by/3.0/CC 3.0 | Author - http://tooschee.com/
+    Request an account (http://www.iconfinder.com/icondetails/59177/32/account_contact_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://pc.de/
+    Social sharing (http://www.iconfinder.com/icondetails/54526/128/network_social_social_network_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC-sa 3.0 | Author - http://www.aha-soft.com/
+    Tags (http://www.iconfinder.com/icondetails/64877/32/tags_three_icon) | License: http://creativecommons.org/licenses/by/3.0/us/ - CC 3.0 | Author - http://www.fatcow.com/
+    Unknown file (http://www.iconfinder.com/icondetails/9122/128/unknown_icon) | License: http://creativecommons.org/licenses/by-nc-nd/2.5/ - CC-nc-nd 3.0 | Author - http://www.oxygen-icons.org/
+    Under construction (http://www.iconfinder.com/icondetails/49270/128/construction_under_icon) | License: http://creativecommons.org/licenses/by/3.0/us/ - CC 3.0 | Author - http://www.vistaico.com/
+    Uploads (http://www.iconfinder.com/icondetails/27886/128/upload_icon) | License: http://creativecommons.org/licenses/by-nd/3.0/ - CC-nd 3.0 | Author - http://www.visualpharm.com/
+    Xls (http://www.iconfinder.com/icondetails/8898/128/document_excel_spreadsheet_table_icon) | License: http://creativecommons.org/licenses/by-nc-nd/2.5/ - CC-nc-nd 2.5 | Author - http://www.oxygen-icons.org/
+    Zip (http://www.iconfinder.com/icondetails/47569/128/file_zip_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://tooschee.com/
+
+    LGPL
+
+    Add page (http://www.iconfinder.com/icondetails/3784/128/blank_document_file_page_paper_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+    Close/Delete/Remove (http://www.iconfinder.com/icondetails/3206/128/cancel_close_cross_delete_exit_no_remove_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+    Jpeg (http://www.iconfinder.com/icondetails/2385/128/jpeg_icon) | License: http://www.gnu.org/licenses/lgpl.html- LGPL | Author - http://sa-ki.deviantart.com/
+    Manage pages (http://www.iconfinder.com/icondetails/1447/128/administrator_employee_male_man_manager_operator_personal_user_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.icon-king.com/
+    Pdf (http://www.iconfinder.com/icondetails/3745/128/document_pdf_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+    Png (http://www.iconfinder.com/icondetails/2407/128/png_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://sa-ki.deviantart.com/
+    Settings (http://www.iconfinder.com/icondetails/17814/128/preferences_settings_tools_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+    Syntax highlighter (http://www.iconfinder.com/icondetails/17933/128/highlight_marker_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+    Txt (http://www.iconfinder.com/icondetails/6417/128/paper_text_txt_writing_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://sa-ki.deviantart.com/
+    User management (http://www.iconfinder.com/icondetails/17879/128/community_group_help_user_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+
+    Others
+
+    Dashboard (http://www.iconfinder.com/icondetails/82136/128/_icon) | License: http://www.iconfinder.com/data/icons/ledicons/readme.txt | Author - http://rimshotdesign.com/
+    Preview (http://www.iconfinder.com/icondetails/32560/24/preview_text_icon) | License: http://www.iconfinder.com/data/icons/freeapplication/readme.txt | Author - http://www.aha-soft.com/
+    Xml (http://www.iconfinder.com/icondetails/15209/128/document_file_xml_icon) | Author - http://www.woothemes.com/
+
+    Findicons (http://findicons.com/)
+        
+	Open in new window (http://findicons.com/icon/437377/open_in_new_window) | License: http://creativecommons.org/licenses/by-nd/3.0/ - CC-nd 3.0 | Author - http://www.interactivemania.com
+    
+    404 Images (http://vaishnavicharanya.wordpress.com/)
+
+
+And also...
+
+jQuery UI - http://jqueryui.com
+
+MVC Social Helper
+
+    Growmap anti-spam plugin (http://growmap.com/growmap-anti-spambot-plugin/)
+
+    Native commenting in sBlog.Net borrows the idea of this wordpress plugin to stop spam, without the use of CAPTCHA or reCAPTCHA.
+
+	Akismet (http://akismet.com/) and Akismet Api for .Net (http://akismetapi.codeplex.com/)
+	JS Min (http://www.crockford.com/javascript/jsmin.html)

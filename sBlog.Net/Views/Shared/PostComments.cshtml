@@ -1,0 +1,43 @@
+﻿@model sBlog.Net.Domain.Entities.PostEntity
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        var pageUrl = document.location.href;
+        if (pageUrl.indexOf('comment-posted') >= 0) {
+            var commentsTop = $('#user-comments').offset().top;
+            $("html, body").animate({ scrollTop: commentsTop }, 1000);
+        }
+    });
+</script>
+
+<div id="user-comments">
+    <br />
+    <b>comments</b>
+    <br /><br />
+
+    @if (Model.UserCanAddComments && Model.Comments.Count == 0)
+    {
+        <span>there are no comments for this post. be the first to post one!</span>
+    }
+    
+    <br />
+    @foreach (var comment in Model.Comments)
+    {
+        var site = comment.CommenterSite.GetValidUrl();
+       <div class="comment">
+	        @if (comment.CommentStatus == 1)
+            {
+                <div style="float: right; color: #5858FA; font-size: x-small"><i title="your comment is awaiting moderator action. if the content of the message is not acceptable as per this blog's standards, it might be deleted.">comment awaiting moderation</i></div>
+            }
+            @comment.CommentContent
+            <br /><br />
+	        posted by <a href="@site" target="_blank"><b>@comment.CommentUserFullName</b></a> at <i title="@comment.CommentPostedDate.ToLongDateString()">@comment.CommentPostedDate.ToString()</i><br/><br/>
+        </div>
+        <br />
+    }
+    
+    @if (!Model.UserCanAddComments)
+    {
+       <span>administrator or the author has disabled comments for this post</span>
+    }
+</div>

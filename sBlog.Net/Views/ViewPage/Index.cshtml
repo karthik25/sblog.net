@@ -1,0 +1,29 @@
+﻿@using sBlog.Net.Models.Comments
+@model sBlog.Net.Models.ViewPostOrPageModel
+
+@{
+    ViewBag.Title = string.Format("{0} || {1}", Model.Post.PostTitle, Model.BlogName);
+}
+
+@if (Model.UserCanEdit)
+{
+    <div style="float: right">
+        @Html.ActionLink("edit", "Edit", "Page", new { Area = "Admin", postID = Model.Post.PostID }, new { @class = "editLink" })
+    </div>
+    <br /><br />
+}
+
+@Html.Raw(Model.Post.PostContent)
+<br /><br />
+@if (Model.BlogSharingEnabled && Model.Post.CanBeShared)
+{
+    @Html.Partial("SharingOptions", Model.SharingType)
+    <br /><br />
+}
+
+@Html.Partial("PostComments", Model.Post)
+<br />
+@if (Model.Post.UserCanAddComments)
+{
+    @Html.Partial("UserComment", new CommentViewModel { Post = Model.Post, Comment = Model.CommentEntity })
+}

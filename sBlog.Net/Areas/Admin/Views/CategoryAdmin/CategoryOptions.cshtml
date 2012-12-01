@@ -1,0 +1,8 @@
+﻿@model sBlog.Net.Domain.Entities.CategoryEntity
+
+@Html.RouteLink("view posts", "Category", new { categoryName = Model.CategorySlug }, new { @class = "subLink" })
+@if (Model.CategoryID != 1)
+{
+    <span> | </span>
+    @Html.ActionLink("delete", "DeleteCategory", "CategoryAdmin", new {categoryId = Model.CategoryID}, new {@class = "deleteCategory subLink"})
+}
