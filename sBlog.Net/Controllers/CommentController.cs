@@ -77,27 +77,27 @@ namespace sBlog.Net.Controllers
         [ChildActionOnly]
         public ActionResult RecentComments()
         {
-            var recents = new List<RecentComment>();
-            var comments = GetRecentComments();
-            comments.ForEach(comment =>
-            {
-                var post = _postRepository.GetPostByID(comment.PostID);
-                recents.Add(new RecentComment { CommentContent = comment.CommentContent, PostAddedDate = post.PostAddedDate, PostUrl = post.PostUrl, EntryType = post.EntryType });
-            });
-            return PartialView("RecentComments", recents);
+            var comments = GetRecentComments();            
+            return PartialView("RecentComments", comments);
         }
 
-        private List<CommentEntity> GetRecentComments()
+        private List<RecentComment> GetRecentComments()
         {
-            var allPosts = Request.IsAuthenticated ? _postRepository.GetPosts().Concat(_postRepository.GetPages()) :
+            var recents = new List<RecentComment>();
+            var allPosts = Request.IsAuthenticated ? _postRepository.GetPosts().Concat(_postRepository.GetPages()).ToList() :
                            _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey)
-                                        .Concat(_cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey));
+                                        .Concat(_cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey)).ToList();
             var topComments = allPosts.SelectMany(p => p.Comments)
                                       .Where(c => c.CommentStatus == 0)
                                       .OrderByDescending(c => c.CommentPostedDate)
                                       .Take(5)
                                       .ToList();
-            return topComments;
+            topComments.ForEach(comment =>
+            {
+                var post = allPosts.Single(p => p.PostID == comment.PostID);
+                recents.Add(new RecentComment { CommentContent = comment.CommentContent, PostAddedDate = post.PostAddedDate, PostUrl = post.PostUrl, EntryType = post.EntryType });
+            });
+            return recents;
         }
 
         private ActionResult RedirectByPostType(CommentViewModel commentViewModel, bool commentingStatus)
