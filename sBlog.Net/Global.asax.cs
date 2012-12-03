@@ -70,11 +70,11 @@ namespace sBlog.Net
                             new { controller = "Home", action = "PostsByCategory" },
                             new { categoryName = @"\S+" });
 
-            routes.MapRoute("TagPaged", "tags/{tagName}/page/{pageNumber}",
+            routes.MapRoute("TagPaged", "tag/{tagName}/page/{pageNumber}",
                             new { controller = "Home", action = "PostsByTag" },
                             new { tagName = @"\S+", pageNumber = @"\d+" });
 
-            routes.MapRoute("Tag", "tags/{tagName}",
+            routes.MapRoute("Tag", "tag/{tagName}",
                             new { controller = "Home", action = "PostsByTag" },
                             new { tagName = @"\S+" });
 

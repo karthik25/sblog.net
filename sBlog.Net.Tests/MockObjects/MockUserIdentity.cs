@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Web.Security;
 using sBlog.Net.Domain.Interfaces;
 
@@ -28,7 +27,7 @@ namespace sBlog.Net.Tests.MockObjects
 
         public string Name
         {
-            get { return _ticket.Name; }
+            get { return "TestName"; }
         }
 
         public string UserId
@@ -38,7 +37,7 @@ namespace sBlog.Net.Tests.MockObjects
 
         public string UserToken
         {
-            get { return _ticket.UserData.Split(':').Last(); }
+            get { return "TestToken"; }
         }
 
         public void SetUserID(int userID)
