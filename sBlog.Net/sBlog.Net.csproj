@@ -469,7 +469,6 @@
     <Content Include="Content\themes\base\jquery-ui.custom.css" />
     <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Scripts\Additional\jquery.tabSlideOut.v1.3.js" />
     <Content Include="Scripts\Required\debug\02-CategoryList.admin.js" />
     <Content Include="Content\sBlog\Site.js" />
     <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />
@@ -478,7 +477,6 @@
     <Content Include="Scripts\jquery-ui-1.8.11.admin.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.sticky.js" />
-    <Content Include="Scripts\Additional\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
     <Content Include="Scripts\Additional\modernizr-1.7.js" />
     <Content Include="Scripts\Additional\modernizr-1.7.min.js" />
@@ -536,14 +534,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\Required\debug\03-jquery.unobtrusive-ajax.admin.js" />
-    <Content Include="Scripts\Additional\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Required\debug\05-jquery.validate.unobtrusive.admin.js" />
-    <Content Include="Scripts\Additional\MicrosoftAjax.js" />
-    <Content Include="Scripts\Additional\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\Additional\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\Additional\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\Additional\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\Additional\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UpdateProfile.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
