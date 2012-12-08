@@ -32,12 +32,12 @@ namespace sBlog.Net.MetaData.MetaData
 
         [Required(ErrorMessage = "Password is required")]
         [DisplayName("Enter your password")]
-        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "Password entered is invalid")]
+        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "Password entered is invalid [6 - 20 characters, lower & uppercase letters, at least a number, at least one of @, #, $, % symbols]")]
         public object Password { get; set; }
 
         [Required(ErrorMessage = "Confirm password is required")]
         [DisplayName("Re-enter your password")]
-        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "Confirm password entered is invalid")]
+        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "Confirm password entered is invalid [6 - 20 characters, lower & uppercase letters, at least a number, at least one of @, #, $, % symbols]")]
         public object ConfirmPassword { get; set; }
     }
 }

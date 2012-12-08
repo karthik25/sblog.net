@@ -15,9 +15,13 @@
 /* *********************************************** */
 
 #endregion
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
+using sBlog.Net.FluentExtensions;
 using sBlog.Net.Models;
 using sBlog.Net.Rss;
 using sBlog.Net.CustomResults;
@@ -27,11 +31,15 @@ namespace sBlog.Net.Controllers
     public class RssFeedController : BlogController
     {
         private readonly IPost _postRepository;
+        private readonly ICacheService _cacheService;
 
-        public RssFeedController(IPost postRepository, ISettings settingsRepository)
+        private const int NumberOfPostsInFeed = 10;
+
+        public RssFeedController(IPost postRepository, ICacheService cacheService, ISettings settingsRepository)
             : base(settingsRepository)
         {
             _postRepository = postRepository;
+            _cacheService = cacheService;
         }
 
         public ActionResult Index()
@@ -50,9 +58,15 @@ namespace sBlog.Net.Controllers
                                BlogCaption = SettingsRepository.BlogCaption,
                                BlogLanguage = "en-us",
                                BlogUrl = GetRootUrl(),
-                               Posts = _postRepository.GetPosts().Take(10).ToList()
+                               Posts = GetPostsInternal()
                            };
             return null;
+        }
+
+        private List<PostEntity> GetPostsInternal()
+        {
+            var posts = _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey);
+            return posts.Take(NumberOfPostsInFeed).ToList();
         }
     }
 }
