@@ -22,9 +22,9 @@ namespace sBlog.Net.Domain.Hashers
 {
     public class Md5Hasher : IHasher
     {
-        public string HashString(string password)
+        public string HashString(string srcString)
         {
-            return HashExtensions.GetMD5Hash(password);
+            return HashExtensions.GetMD5Hash(srcString);
         }
     }
 }

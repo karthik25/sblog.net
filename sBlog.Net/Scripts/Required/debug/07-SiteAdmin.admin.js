@@ -475,6 +475,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#forgottenPswd').click(function (e) {
         e.preventDefault();
+        $('.login-errors').html('');
+        $('.client-login-errors').html('');
         $('#username').val('username');
         $('#fake-password').show().val('password');
         $('#passwd').hide();
@@ -485,7 +487,7 @@ $(document).ready(function () {
     $('#loginForm').click(function (e) {
         e.preventDefault();
         $('#results').html('');
-        $('#emailAddress').val('email address');
+        $('#emailAddress').val('your email address');
         $('#slick-login').show();
         $('#slick-forgotten').hide();
     });
@@ -504,6 +506,7 @@ $(document).ready(function () {
         if ($.trim($('#emailAddress').val()) != '' && $.trim($('#emailAddress').val()) != 'your email address') {
             return true;
         }
+        $('#emailAddress').val('your email address');
         return false;
     });
 

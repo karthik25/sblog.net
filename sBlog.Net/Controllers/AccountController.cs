@@ -107,9 +107,9 @@ namespace sBlog.Net.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                var userIdentity = (IUserInfo) User.Identity;
-                _userRepository.SetOneTimeToken(int.Parse(userIdentity.UserId), null);
-                _userRepository.UpdateLastLoginDate(int.Parse(userIdentity.UserId));
+                var userIdentity = GetUserId();
+                _userRepository.SetOneTimeToken(userIdentity, null);
+                _userRepository.UpdateLastLoginDate(userIdentity);
                 FormsService.SignOut();
             }
 

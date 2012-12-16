@@ -19,6 +19,6 @@ namespace sBlog.Net.Domain.Interfaces
 {
     public interface IHasher
     {
-        string HashString(string password);
+        string HashString(string srcString);
     }
 }

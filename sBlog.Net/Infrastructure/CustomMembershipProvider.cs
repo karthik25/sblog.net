@@ -252,7 +252,8 @@ namespace sBlog.Net.Infrastructure
             if (!possibleUser.UserActiveStatus.HasValue || possibleUser.UserActiveStatus == 0)
                 return false;
 
-            var sha1Pswd = PasswordHelper.GetHashedPassword(password, possibleUser.UserCode);
+            var decryptedCode = TripleDES.DecryptString(possibleUser.UserCode);
+            var sha1Pswd = PasswordHelper.GenerateHashedPassword(password, decryptedCode);
             return possibleUser.Password == sha1Pswd;
         }
     }
