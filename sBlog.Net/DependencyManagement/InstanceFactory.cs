@@ -24,25 +24,17 @@ namespace sBlog.Net.DependencyManagement
     {
         public static IUser CreateUserInstance()
         {
-            var applicationFactory = GetFactory();
-            return applicationFactory.CreateConcreteInstance<IUser>();
+            return DependencyResolver.Current.GetService<IUser>();
         }
 
         public static ISettings CreateSettingsInstance()
         {
-            var applicationFactory = GetFactory();
-            return applicationFactory.CreateConcreteInstance<ISettings>();
+            return DependencyResolver.Current.GetService<ISettings>();
         }
 
         public static IError CreateErrorInstance()
         {
-            var applicationFactory = GetFactory();
-            return applicationFactory.CreateConcreteInstance<IError>();
-        }
-
-        private static NinjectControllerFactory GetFactory()
-        {
-            return (NinjectControllerFactory) ControllerBuilder.Current.GetControllerFactory();
+            return DependencyResolver.Current.GetService<IError>();
         }
     }
 }

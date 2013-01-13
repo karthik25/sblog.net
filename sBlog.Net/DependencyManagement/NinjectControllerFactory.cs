@@ -35,6 +35,15 @@ namespace sBlog.Net.DependencyManagement
         private readonly IKernel _kernel = new StandardKernel(new ApplicationIocServices());
 
         /// <summary>
+        /// Gets a reference to the kernel, so that it could be shared with the dependency resolver
+        /// </summary>
+        /// <returns></returns>
+        public IKernel GetKernel()
+        {
+            return _kernel;
+        }
+
+        /// <summary>
         /// Retrieves the controller instance for the specified request context and controller type.
         /// </summary>
         /// <returns>
@@ -59,19 +68,6 @@ namespace sBlog.Net.DependencyManagement
             }
 
             return (IController)_kernel.Get(controllerType);
-        }
-
-        /// <summary>
-        /// Creates the concrete instance of the type T passed
-        /// </summary>
-        /// <typeparam name="T">Type for which an instance is needed, necessarily an interface, so that Ninject can identify a concrete type bound to this abstract type</typeparam>
-        /// <returns></returns>
-        public T CreateConcreteInstance<T>()
-        {
-            var requiredInstance = _kernel.TryGet(typeof(T));
-            if (requiredInstance != null)
-                return (T)requiredInstance;
-            throw new InvalidOperationException(string.Format("Unable to create an instance of {0}", typeof(T).FullName));
         }
 
         private class ApplicationIocServices : NinjectModule

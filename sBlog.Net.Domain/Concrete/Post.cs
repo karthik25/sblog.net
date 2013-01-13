@@ -169,8 +169,7 @@ namespace sBlog.Net.Domain.Concrete
         public List<PostEntity> GetPages()
         {
             var postEntities = _postsTable.Where(p => !p.IsPrivate && p.EntryType == 2)
-                             .OrderByDescending(p => p.PostEditedDate)
-                             .ToList();
+                               .ToList();
             return PostProcessEntities(postEntities);
         }
 
@@ -184,8 +183,7 @@ namespace sBlog.Net.Domain.Concrete
         public List<PostEntity> GetPages(int userID)
         {
             var postEntities = _postsTable.Where(p => (!p.IsPrivate && p.EntryType == 2) || (p.IsPrivate && p.EntryType == 2 && p.OwnerUserID == userID))
-                             .OrderByDescending(p => p.PostEditedDate)
-                             .ToList();
+                               .ToList();
             return PostProcessEntities(postEntities);
         }
 

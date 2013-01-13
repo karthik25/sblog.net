@@ -88,6 +88,7 @@
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="CustomExceptions\InvalidMonthException.cs" />
     <Compile Include="CustomExceptions\InvalidThemeException.cs" />
+    <Compile Include="DependencyManagement\NinjectDependencyResolver.cs" />
     <Compile Include="FluentExtensions\AccountValidationFluentExtensions.cs" />
     <Compile Include="FluentExtensions\CacheServiceFluentExtensions.cs" />
     <Compile Include="FluentExtensions\EntityValidatorExtensions.cs" />

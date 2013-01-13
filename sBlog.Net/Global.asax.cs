@@ -109,13 +109,15 @@ namespace sBlog.Net
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
+            SetupDependencyManagement();
 
             RegisterRoutes(RouteTable.Routes);
             RegisterGlobalFilters(GlobalFilters.Filters);
 
-            ModelBinders.Binders.Add(typeof(CheckBoxListViewModel), new CheckBoxListViewModelBinder());
-            ModelBinders.Binders.Add(typeof(PostViewModel), new PostViewModelBinder());
+            SetupCustomModelBinders();
+
+            SetupViewEngines();
 
             VerifyInstallation();
         }
@@ -156,6 +158,30 @@ namespace sBlog.Net
         {
             PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
             base.Init();
+        }
+
+        private void SetupDependencyManagement()
+        {
+            var ninjectControllerFactory = new NinjectControllerFactory();
+            ControllerBuilder.Current.SetControllerFactory(ninjectControllerFactory);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(ninjectControllerFactory.GetKernel()));
+        }
+
+        private void SetupCustomModelBinders()
+        {
+            ModelBinders.Binders.Add(typeof(CheckBoxListViewModel), new CheckBoxListViewModelBinder());
+            ModelBinders.Binders.Add(typeof(PostViewModel), new PostViewModelBinder());
+        }
+
+        /// <summary>
+        /// At this point, the engine does not use .aspx or .ascx files.
+        /// So let us save some cycles. If at all you decide to use more view engines,
+        /// add them here!
+        /// </summary>
+        private void SetupViewEngines()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
 
         private void VerifyInstallation()
