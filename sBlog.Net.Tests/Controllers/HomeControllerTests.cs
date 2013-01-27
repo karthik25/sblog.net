@@ -16,7 +16,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_First_Page_With_5_Items()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.Index(null);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -28,7 +28,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Second_Page_With_5_Items()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = new MockHttpContext() };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.Index(2);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -76,7 +76,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Year_Month()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByYearAndMonth("2012", "04", null);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -89,7 +89,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Year_Month_Page_Two()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByYearAndMonth("2012", "04", 2);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -128,7 +128,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Tag_Name_Page_1()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByTag("csharp", null);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -142,7 +142,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Tag_Name_Page_2()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByTag("csharp", 2);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -184,7 +184,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Category_Name_Page_1()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByCategory("CSharp", null);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -198,7 +198,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_Category_Name_Page_2()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.PostsByCategory("CSharp", 2);
             var posts = (result.ViewData.Model as BlogPostPageViewModel).Posts;
             Assert.IsNotNull(posts);
@@ -249,7 +249,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Return_Posts_By_URL()
         {
             var postController = GetHomeControllerInstance();
-            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            postController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)postController.View("2012", "04", "a-test-url-1", "");
             var post = (result.ViewData.Model as ViewPostOrPageModel).Post;
             Assert.IsNotNull(post);
@@ -317,11 +317,9 @@ namespace sBlog.Net.Tests.Controllers
             return postController;
         }
 
-        private MockHttpContext GetHttpContext(bool isAuthenticated, int userID)
+        private static MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
         {
-            var mockContext = new MockHttpContext();
-            mockContext.SetAuth(isAuthenticated);
-            mockContext.SetUserID(userID);
+            var mockContext = new MockHttpContext(userId, isAuthenticated);
             return mockContext;
         }
     }

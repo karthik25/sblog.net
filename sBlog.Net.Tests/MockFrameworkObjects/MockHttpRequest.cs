@@ -5,7 +5,12 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
 {
     public class MockHttpRequest : HttpRequestBase
     {
-        private bool _isAuthenticated = false;
+        private readonly bool _isAuthenticated;
+
+        public MockHttpRequest(bool isAuthenticated)
+        {
+            _isAuthenticated = isAuthenticated;
+        }
 
         public override Uri Url
         {
@@ -21,11 +26,6 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
             {
                 return _isAuthenticated;
             }
-        }
-
-        public void SetAuth(bool isAuthenticated)
-        {
-            _isAuthenticated = isAuthenticated;
         }
     }
 }

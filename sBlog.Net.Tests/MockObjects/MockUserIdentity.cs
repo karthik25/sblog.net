@@ -7,12 +7,12 @@ namespace sBlog.Net.Tests.MockObjects
     public class MockUserIdentity : IIdentity, IUserInfo
     {
         private FormsAuthenticationTicket _ticket;
+        private readonly int _userId = 1;
 
-        private int _userID = 1;
-
-        public MockUserIdentity(FormsAuthenticationTicket ticket)
+        public MockUserIdentity(FormsAuthenticationTicket ticket, int userId)
         {
             _ticket = ticket;
+            _userId = userId;
         }
 
         public string AuthenticationType
@@ -32,17 +32,12 @@ namespace sBlog.Net.Tests.MockObjects
 
         public string UserId
         {
-            get { return _userID.ToString(); }
+            get { return _userId.ToString(); }
         }
 
         public string UserToken
         {
             get { return "TestToken"; }
-        }
-
-        public void SetUserID(int userID)
-        {
-            _userID = userID;
         }
     }
 }

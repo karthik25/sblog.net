@@ -6,18 +6,23 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
 {
     public class MockHttpContext : HttpContextBase
     {
-        public MockHttpRequest httpRequest;
+        public MockHttpRequest HttpRequest;
 
-        private int _userID = 1;
-        private bool _isAuthenticated;
+        private readonly int _userId = 1;
+        private readonly bool _isAuthenticated;
+
+        public MockHttpContext(int userId, bool isAuthenticated)
+        {
+            _userId = userId;
+            _isAuthenticated = isAuthenticated;
+        }
 
         public override HttpRequestBase Request
         {
             get
             {
-                httpRequest = new MockHttpRequest();
-                httpRequest.SetAuth(_isAuthenticated);
-                return httpRequest;
+                HttpRequest = new MockHttpRequest(_isAuthenticated);
+                return HttpRequest;
             }
         }
 
@@ -25,8 +30,7 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
         {
             get
             {
-                var identity = new MockUserIdentity(null);
-                identity.SetUserID(_userID);
+                var identity = new MockUserIdentity(null, _userId);
                 IPrincipal principal = new GenericPrincipal(identity, null);
                 return principal;
             }
@@ -34,16 +38,6 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
             {
                 
             }
-        }
-
-        public void SetUserID(int userID)
-        {
-            _userID = userID;
-        }
-
-        public void SetAuth(bool auth)
-        {
-            _isAuthenticated = auth;
         }
     }
 }

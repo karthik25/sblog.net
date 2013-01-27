@@ -19,7 +19,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Get_A_Single_Page()
         {
             var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
             var result = (ViewResult)pageController.Index("a-test-url-29", "");
             var page = (result.ViewData.Model as ViewPostOrPageModel).Post;
             Assert.IsNotNull(page);
@@ -53,7 +53,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Generate_All_Pages()
         {
             var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
 
             var result = (PartialViewResult)pageController.Pages();
             var blogMenuModel = result.ViewData.Model as BlogMenuViewModel;
@@ -73,7 +73,7 @@ namespace sBlog.Net.Tests.Controllers
         public void Can_Generate_Other_Pages()
         {
             var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 1) };
+            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
 
             var result = (PartialViewResult)pageController.PagesList();
             var posts = result.ViewData.Model as List<PostEntity>;
@@ -107,11 +107,9 @@ namespace sBlog.Net.Tests.Controllers
             Assert.AreEqual("a-test-url-40", second.PostUrl);
         }
 
-        private MockHttpContext GetHttpContext(bool isAuthenticated, int userID)
+        private MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
         {
-            var mockContext = new MockHttpContext();
-            mockContext.SetAuth(isAuthenticated);
-            mockContext.SetUserID(userID);
+            var mockContext = new MockHttpContext(userId, isAuthenticated);
             return mockContext;
         }
 
