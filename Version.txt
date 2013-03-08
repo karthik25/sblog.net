@@ -1,0 +1,9 @@
+Version
+-----------
+
+sBlog.Net v1.0
+
+A minimalistic blog engine using the ASP.Net MVC 3 framework
+
+Copyright (c) 2012, Karthik Ananthapadmanaban
+All rights reserved.
