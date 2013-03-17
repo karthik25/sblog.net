@@ -16,7 +16,10 @@
 
 #endregion
 using System.Linq;
+using System.ServiceModel.Syndication;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using System.Xml;
 using sBlog.Net.Akismet;
 using sBlog.Net.Akismet.Entities;
 using sBlog.Net.Models.Comments;
@@ -84,19 +87,46 @@ namespace sBlog.Net.Controllers
         private List<RecentComment> GetRecentComments()
         {
             var recents = new List<RecentComment>();
-            var allPosts = Request.IsAuthenticated ? _postRepository.GetPosts().Concat(_postRepository.GetPages()).ToList() :
-                           _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey)
-                                        .Concat(_cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey)).ToList();
-            var topComments = allPosts.SelectMany(p => p.Comments)
-                                      .Where(c => c.CommentStatus == 0)
-                                      .OrderByDescending(c => c.CommentPostedDate)
-                                      .Take(5)
-                                      .ToList();
-            topComments.ForEach(comment =>
+            if (!SettingsRepository.DisqusEnabled)
             {
-                var post = allPosts.Single(p => p.PostID == comment.PostID);
-                recents.Add(new RecentComment { CommentContent = comment.CommentContent, PostAddedDate = post.PostAddedDate, PostUrl = post.PostUrl, EntryType = post.EntryType });
-            });
+                var allPosts = Request.IsAuthenticated
+                                   ? _postRepository.GetPosts().Concat(_postRepository.GetPages()).ToList()
+                                   : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey)
+                                                  .Concat(_cacheService.GetPagesFromCache(_postRepository,
+                                                                                          CachePagesUnauthKey)).ToList();
+                var topComments = allPosts.SelectMany(p => p.Comments)
+                                          .Where(c => c.CommentStatus == 0)
+                                          .OrderByDescending(c => c.CommentPostedDate)
+                                          .Take(5)
+                                          .ToList();
+                topComments.ForEach(comment =>
+                    {
+                        var post = allPosts.Single(p => p.PostID == comment.PostID);
+                        recents.Add(new RecentComment
+                            {
+                                CommentContent = comment.CommentContent,
+                                PostAddedDate = post.PostAddedDate,
+                                PostUrl = post.PostUrl,
+                                EntryType = post.EntryType
+                            });
+                    });
+            }
+            else
+            {
+                var rssUrl = string.Format("http://{0}.disqus.com/latest.rss", SettingsRepository.BlogDisqusShortName);
+                var reader = XmlReader.Create(rssUrl);
+                var feed = SyndicationFeed.Load(reader);
+
+                if (feed != null)
+                {
+                    const string pattern = @"<(.|\n)*?>";
+                    recents.AddRange(feed.Items.Take(5).Select(syndicationItem => new RecentComment
+                        {
+                            PostUrl = syndicationItem.Links.First().Uri.ToString(), DisqusComment = true, CommentContent = Regex.Replace(syndicationItem.Summary.Text, pattern, string.Empty)
+                        }));
+                }
+            }
+
             return recents;
         }
 

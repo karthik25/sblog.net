@@ -5,10 +5,17 @@
 	<ul style="list-style-type:none;">
         @foreach (var comment in Model)
         {
-            var url = comment.EntryType == 1 ? Url.RouteUrl("IndividualPost", new { year = comment.PostAddedDate.Year, month = comment.PostAddedDate.Month.ToString("00"), url = comment.PostUrl, status = string.Empty })
+            if (!comment.DisqusComment)
+            {
+                var url = comment.EntryType == 1 ? Url.RouteUrl("IndividualPost", new { year = comment.PostAddedDate.Year, month = comment.PostAddedDate.Month.ToString("00"), url = comment.PostUrl, status = string.Empty })
                                              : Url.RouteUrl("Pages", new { pageUrl = comment.PostUrl });
-            url = url + "#user-comments";
-            <li><a href="@url">@comment.CommentContent</a></li>
+                url = url + "#user-comments";
+                <li><a href="@url">@comment.CommentContent</a></li>
+            }
+            else
+            {
+                <li><a href="@comment.PostUrl">@comment.CommentContent</a></li>
+            }
         }
 	</ul>
 </div>

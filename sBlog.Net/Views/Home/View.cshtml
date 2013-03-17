@@ -1,5 +1,6 @@
-﻿@using sBlog.Net.Models.Comments
-@model sBlog.Net.Models.ViewPostOrPageModel
+﻿@using sBlog.Net.Models
+@using sBlog.Net.Models.Comments
+@model ViewPostOrPageModel
 
 @{
     ViewBag.Title = string.Format("{0} || {1}", Model.Post.PostTitle, Model.BlogName);
@@ -15,19 +16,28 @@
     </div>
 }
 
-@Html.Partial("Post", Model.Post)
+@Html.Partial("Post", new PostModel { Post = Model.Post, DisqusEnabled = Model.DisqusEnabled, RootUrl = Model.DisqusUrl })
 
 @if (Model.BlogSharingEnabled && Model.Post.CanBeShared)
 {
     @Html.Partial("SharingOptions", Model.SharingType)
     <br /><br />
 }
-   
-@Html.Partial("PostComments", Model.Post)
-<br /><br />
-@if (Model.Post.UserCanAddComments)
+
+@if (!Model.DisqusEnabled)
 {
-    @Html.Partial("UserComment", new CommentViewModel { Post = Model.Post, Comment = Model.CommentEntity })
+    @Html.Partial("PostComments", Model.Post)
+    <br />
+    <br />
+    if (Model.Post.UserCanAddComments)
+    {
+        @Html.Partial("UserComment", new CommentViewModel {Post = Model.Post, Comment = Model.CommentEntity})
+    }
 }
+else
+{
+    @Html.Partial("DisqusComments", Model)
+}
+
 <br />
 @Html.Partial("PostPager", Model)

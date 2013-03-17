@@ -94,6 +94,7 @@
     <Compile Include="FluentExtensions\EntityValidatorExtensions.cs" />
     <Compile Include="FluentExtensions\HtmlHelperExtensions.cs" />
     <Compile Include="FluentExtensions\PostExtensions.cs" />
+    <Compile Include="FluentExtensions\PostModelExtensions.cs" />
     <Compile Include="FluentExtensions\StringUrlExtensions.cs" />
     <Compile Include="CustomExceptions\UrlNotFoundException.cs" />
     <Compile Include="FluentExtensions\TagExtensions.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Models\LogoViewModel.cs" />
     <Compile Include="Models\PagingInformation.cs" />
     <Compile Include="Areas\Admin\Models\PostViewModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\RssFeedViewModel.cs" />
     <Compile Include="Areas\Admin\Models\JsonEntities\FileEntry.cs" />
     <Compile Include="Models\SyntaxHighlighterViewModel.cs" />
@@ -467,6 +469,7 @@
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\themes\base\jquery-ui.custom.css" />
     <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
     <Content Include="favicon.ico" />
@@ -475,8 +478,6 @@
     <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.admin.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.sticky.js" />
     <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
     <Content Include="Scripts\Additional\modernizr-1.7.js" />
@@ -860,6 +861,12 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Admin\Error.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisqusComments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisqusCounts.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -877,7 +884,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55516</DevelopmentServerPort>
+          <DevelopmentServerPort>54601</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/sblog2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

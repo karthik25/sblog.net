@@ -348,7 +348,7 @@ a.selected:link, a.selected:active, a.selected:visited
 .possibilityHeader
 {
     width: 500px;
-    background-color: #A4A4A4;
+    background-color: #D8D8D8;
     border: 1px solid #6E6E6E;
     font-weight: bolder;
     text-align: left;
@@ -396,7 +396,7 @@ a.selected:link, a.selected:active, a.selected:visited
 {
     border: 3px;
     background-color: #FFFFFF;
-    width: 60%;
+    width: 75%;
     border-color:#000000;
     border-style: solid
 }

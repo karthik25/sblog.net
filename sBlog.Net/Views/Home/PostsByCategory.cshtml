@@ -4,12 +4,14 @@
     ViewBag.Title = string.Format("{0} || {1} || page {2}", Model.Category.CategoryName, Model.BlogName.ToLower(), Model.CurrentPageNumber);
 }
 
+@Html.Partial("DisqusCounts", Model)
+
 @if (!Model.Any)
 {
     <div>there are no posts for the selected category.</div>
 }
 
-@foreach(var post in Model.Posts)
+@foreach (var post in Model.Posts)
 {
     @Html.Partial("Post", post)
 }

@@ -7,6 +7,7 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
     public class MockHttpContext : HttpContextBase
     {
         public MockHttpRequest HttpRequest;
+        public MockHttpResponse HttpResponse;
 
         private readonly int _userId = 1;
         private readonly bool _isAuthenticated;
@@ -21,8 +22,17 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
         {
             get
             {
-                HttpRequest = new MockHttpRequest(_isAuthenticated);
+                HttpRequest = new MockHttpRequest(this, _isAuthenticated);
                 return HttpRequest;
+            }
+        }
+
+        public override HttpResponseBase Response
+        {
+            get
+            {
+                HttpResponse = new MockHttpResponse();
+                return HttpResponse;
             }
         }
 
@@ -39,5 +49,13 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
                 
             }
         }
-    }
+
+        public override bool IsDebuggingEnabled
+        {
+            get
+            {
+                return true;
+            }
+        }
+    }    
 }

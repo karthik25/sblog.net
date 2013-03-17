@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Tests.MockObjects;
@@ -15,13 +17,43 @@ namespace sBlog.Net.Tests.Controllers
     [TestClass]
     public class ViewPageControllerTests
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            HttpContext.Current = MockHelperFactory.FakeHttpContext();
+
+            var item = RouteTable.Routes.Cast<Route>().SingleOrDefault(r => r.Url == "pages/{pageUrl}/{status}");
+
+            if (item == null)
+            {
+                var routeValueDictionary = new RouteValueDictionary
+                    {
+                        {"controller", "ViewPage"},
+                        {"action", "Index"},
+                        {"status", UrlParameter.Optional}
+                    };
+
+                var constraintDictionary = new RouteValueDictionary
+                    {
+                        {"pageUrl", @"\S+"},
+                        {"status", @"[a-z\-]*"}
+                    };
+
+                RouteTable.Routes.Add("Pages", new Route("pages/{pageUrl}/{status}", routeValueDictionary,
+                                                         constraintDictionary, null));
+            }
+        }
+
         [TestMethod]
         public void Can_Get_A_Single_Page()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
+            var httpContext = GetHttpContext(false, 0);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
             var result = (ViewResult)pageController.Index("a-test-url-29", "");
-            var page = (result.ViewData.Model as ViewPostOrPageModel).Post;
+            var model = result.ViewData.Model as ViewPostOrPageModel;
+            Assert.IsNotNull(model);
+            var page = model.Post;
             Assert.IsNotNull(page);
             Assert.AreEqual("Page Title 29", page.PostTitle);
             Assert.AreEqual("Page Content  29", page.PostContent);
@@ -30,10 +62,13 @@ namespace sBlog.Net.Tests.Controllers
         [TestMethod]
         public void Can_Get_A_Single_Page_Private()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(true, 1) };
+            var httpContext = GetHttpContext(true, 1);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
             var result = (ViewResult)pageController.Index("a-test-url-36", "");
-            var page = (result.ViewData.Model as ViewPostOrPageModel).Post;
+            var model = result.ViewData.Model as ViewPostOrPageModel;
+            Assert.IsNotNull(model);
+            var page = model.Post;
             Assert.IsNotNull(page);
             Assert.AreEqual("[Private] Page Title 36", page.PostTitle);
             Assert.AreEqual("Page Content  36", page.PostContent);
@@ -43,17 +78,21 @@ namespace sBlog.Net.Tests.Controllers
         [ExpectedException(typeof(UrlNotFoundException), "Unable to find a page w/ the url a-test-url-36")]
         public void Can_Throw_Exception_For_Illegal_Access()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(true, 2) };
+            var httpContext = GetHttpContext(true, 2);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
             var result = (ViewResult)pageController.Index("a-test-url-36", "");
-            var page = (result.ViewData.Model as ViewPostOrPageModel).Post;            
+            var model = result.ViewData.Model as ViewPostOrPageModel;
+            Assert.IsNotNull(model);
+            var page = model.Post;
         }
 
         [TestMethod]
         public void Can_Generate_All_Pages()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
+            var httpContext = GetHttpContext(false, 0);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
 
             var result = (PartialViewResult)pageController.Pages();
             var blogMenuModel = result.ViewData.Model as BlogMenuViewModel;
@@ -72,8 +111,9 @@ namespace sBlog.Net.Tests.Controllers
         [TestMethod]
         public void Can_Generate_Other_Pages()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(false, 0) };
+            var httpContext = GetHttpContext(false, 0);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
 
             var result = (PartialViewResult)pageController.PagesList();
             var posts = result.ViewData.Model as List<PostEntity>;
@@ -91,8 +131,9 @@ namespace sBlog.Net.Tests.Controllers
         [TestMethod]
         public void Can_Generate_Other_Pages_Authenticated()
         {
-            var pageController = GetViewPageController();
-            pageController.ControllerContext = new ControllerContext { HttpContext = GetHttpContext(true, 1) };
+            var httpContext = GetHttpContext(true, 1);
+            var pageController = GetViewPageController(httpContext);
+            pageController.ControllerContext = new ControllerContext { HttpContext = httpContext };
 
             var result = (PartialViewResult)pageController.PagesList();
             var posts = result.ViewData.Model as List<PostEntity>;
@@ -107,19 +148,22 @@ namespace sBlog.Net.Tests.Controllers
             Assert.AreEqual("a-test-url-40", second.PostUrl);
         }
 
-        private MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
+        private static MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
         {
             var mockContext = new MockHttpContext(userId, isAuthenticated);
             return mockContext;
         }
 
-        private static ViewPageController GetViewPageController()
+        private static ViewPageController GetViewPageController(MockHttpContext httpContext)
         {
             var post = MockObjectFactory.CreatePostRepository();
             var cacheService = MockObjectFactory.CreateCacheService();
             var settings = new MockSettings();
             var user = MockObjectFactory.CreateUserRepository();
-            var pageController = new ViewPageController(post, user, settings, cacheService);
+            var pageController = new ViewPageController(post, user, settings, cacheService)
+                                 {
+                                     Url = new UrlHelper(httpContext.Request.RequestContext, RouteTable.Routes)
+                                 };
 
             return pageController;
         }

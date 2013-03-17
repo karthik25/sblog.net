@@ -6,8 +6,11 @@
 	    @foreach(var post in Model)
         {
             <li>
-                @{ var url = Url.RouteUrl("IndividualPost", new { year = post.PostYear, month = post.PostMonth, url = post.PostUrl, status = string.Empty }); }
-                <a href="@url" title="@post.PostTitle">@post.PostTitle</a>
+                @{
+                    var url = Url.RouteUrl("IndividualPost", new { year = post.PostYear, month = post.PostMonth, url = post.PostUrl, status = string.Empty });
+                    var shortTitle = post.PostTitle.Length > 25 ? string.Format("{0}...", post.PostTitle.Substring(0, 25)) : post.PostTitle;
+                }
+                <a href="@url" title="@post.PostTitle">@shortTitle</a>
             </li>
         }
     </ul>

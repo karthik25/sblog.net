@@ -71,7 +71,11 @@ namespace sBlog.Net.Controllers
                 UserCanEdit = Request.IsAuthenticated && GetUserId() == 1,
                 BlogName = SettingsRepository.BlogName,
                 BlogCaption = SettingsRepository.BlogCaption,
-                CommentEntity = GetCommentEntityByAuth()
+                CommentEntity = GetCommentEntityByAuth(),
+                DisqusEnabled = SettingsRepository.DisqusEnabled,
+                DisqusUrl = GetRootUrl().TrimEnd('/') + Url.RouteUrl("Pages", new { pageUrl = page.PostUrl }),
+                ShortName = SettingsRepository.BlogDisqusShortName,
+                DisqusDevMode = System.Web.HttpContext.Current.IsDebuggingEnabled
             };
             return View(model);
         }

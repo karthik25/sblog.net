@@ -126,7 +126,11 @@ namespace sBlog.Net.Controllers
                 UserCanEdit = Request.IsAuthenticated && (currentPost.OwnerUserID == GetUserId() || GetUserId() == 1),
                 BlogName = SettingsRepository.BlogName,
                 BlogCaption = SettingsRepository.BlogCaption,
-                CommentEntity = GetCommentEntityByAuth()
+                CommentEntity = GetCommentEntityByAuth(),
+                DisqusEnabled = SettingsRepository.DisqusEnabled,
+                DisqusUrl = GetRootUrl().TrimEnd('/') + Url.RouteUrl("IndividualPost", new { year = currentPost.PostAddedDate.Year.ToString(), month = currentPost.PostMonth, url = currentPost.PostUrl }),
+                ShortName = SettingsRepository.BlogDisqusShortName,
+                DisqusDevMode = System.Web.HttpContext.Current.IsDebuggingEnabled
             };
             return View(model);
         }
@@ -179,13 +183,35 @@ namespace sBlog.Net.Controllers
             var pgNumber = pageNumber ?? 1;
             var totalItems = GetPageCount(posts.Count);
             var blogPostModel = GetBlogPostPageModel(pgNumber, totalItems);
-            blogPostModel.Posts = posts.Skip((pgNumber - 1) * _postsPerPage)
+            var postList = posts.Skip((pgNumber - 1) * _postsPerPage)
                                        .Take(_postsPerPage)
                                        .ToList();
+            blogPostModel.Posts = GetPostList(postList);
             blogPostModel.BlogName = SettingsRepository.BlogName;
             blogPostModel.BlogCaption = SettingsRepository.BlogCaption;
             blogPostModel.CurrentPageNumber = pageNumber.HasValue ? pageNumber.Value : 1;
+
+            blogPostModel.DisqusEnabled = SettingsRepository.DisqusEnabled;
+            blogPostModel.ShortName = SettingsRepository.BlogDisqusShortName;
+            blogPostModel.DisqusDevMode = System.Web.HttpContext.Current.IsDebuggingEnabled;
+
             return blogPostModel;
+        }
+
+        private List<PostModel> GetPostList(List<PostEntity> postList)
+        {
+            var disqusEnabled = SettingsRepository.DisqusEnabled;
+            var rootUrl = GetRootUrl().TrimEnd('/');
+
+            var postModeList = new List<PostModel>();
+
+            postList.ForEach(post =>
+                {
+                    var postModel = new PostModel { Post = post, RootUrl = rootUrl, DisqusEnabled = disqusEnabled };
+                    postModeList.Add(postModel);
+                });
+
+            return postModeList;
         }
 
         private int GetPageCount(int totalItems)

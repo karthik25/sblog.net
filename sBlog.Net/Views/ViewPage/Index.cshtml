@@ -21,9 +21,16 @@
     <br /><br />
 }
 
-@Html.Partial("PostComments", Model.Post)
-<br />
-@if (Model.Post.UserCanAddComments)
+@if (!Model.DisqusEnabled)
 {
-    @Html.Partial("UserComment", new CommentViewModel { Post = Model.Post, Comment = Model.CommentEntity })
+    @Html.Partial("PostComments", Model.Post)
+    <br />
+    if (Model.Post.UserCanAddComments)
+    {
+        @Html.Partial("UserComment", new CommentViewModel {Post = Model.Post, Comment = Model.CommentEntity})
+    }
+}
+else
+{
+    @Html.Partial("DisqusComments", Model)
 }

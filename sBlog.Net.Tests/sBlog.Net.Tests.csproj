@@ -59,9 +59,12 @@
     <Compile Include="Helpers\MockObjectFactory.cs" />
     <Compile Include="MockCollections\ArchiveCollectionTests.cs" />
     <Compile Include="MockFrameworkObjects\MockCacheService.cs" />
+    <Compile Include="MockFrameworkObjects\MockHelperFactory.cs" />
     <Compile Include="MockFrameworkObjects\MockHttpContext.cs" />
     <Compile Include="MockFrameworkObjects\MockHttpRequest.cs" />
+    <Compile Include="MockFrameworkObjects\MockHttpResponse.cs" />
     <Compile Include="MockFrameworkObjects\MockPathMapper.cs" />
+    <Compile Include="MockFrameworkObjects\MockRequestContext.cs" />
     <Compile Include="MockObjects\MockAkismetService.cs" />
     <Compile Include="MockObjects\MockArchiveCollection.cs" />
     <Compile Include="MockObjects\MockCategory.cs" />

@@ -108,7 +108,9 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 BlogSmtpAddress = SettingsRepository.BlogSmtpAddress,
                 ManageItemsPerPage = SettingsRepository.ManageItemsPerPage,
                 BlogErrorAction =  SettingsRepository.BlogSiteErrorEmailAction,
-                Title = SettingsRepository.BlogName
+                Title = SettingsRepository.BlogName,
+                DisqusEnabled = SettingsRepository.DisqusEnabled,
+                DisqusShortName = SettingsRepository.BlogDisqusShortName
             };
             return View(adminSettings);
         }
@@ -141,6 +143,8 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
                 SettingsRepository.ManageItemsPerPage = adminSettingsViewModel.ManageItemsPerPage;
                 SettingsRepository.BlogSiteErrorEmailAction = adminSettingsViewModel.BlogErrorAction;
+                SettingsRepository.DisqusEnabled = adminSettingsViewModel.DisqusEnabled;
+                SettingsRepository.BlogDisqusShortName = adminSettingsViewModel.DisqusShortName;
             }
 
             adminSettingsViewModel.UpdateStatus = true;

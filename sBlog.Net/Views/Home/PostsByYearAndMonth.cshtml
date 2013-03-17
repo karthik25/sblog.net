@@ -4,12 +4,14 @@
     ViewBag.Title = string.Format("{0} {1} || {2} || page {3}", Model.Month.GetMonthName(), Model.Year, Model.BlogName.ToLower(), Model.CurrentPageNumber);
 }
 
+@Html.Partial("DisqusCounts", Model)
+
 @if (!Model.Any)
 {
     <div>there are no posts for this year & month.</div>
 }
 
-@foreach(var post in Model.Posts)
+@foreach (var post in Model.Posts)
 {
     @Html.Partial("Post", post)
 }

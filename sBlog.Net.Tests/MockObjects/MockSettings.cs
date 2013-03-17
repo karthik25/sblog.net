@@ -307,6 +307,50 @@ namespace sBlog.Net.Tests.MockObjects
             }
         }
 
+        public bool DisqusEnabled
+        {
+            get
+            {
+                var disqusEnabled = GetValue("DisqusEnabled");
+                bool result;
+                if (!bool.TryParse(disqusEnabled, out result))
+                    result = false;
+                return result;
+            }
+            set
+            {
+                UpdateSettings("DisqusEnabled", value.ToString());
+            }
+        }
+
+        public string BlogDisqusShortName
+        {
+            get
+            {
+                var disqusShortName = GetValue("BlogDisqusShortName");
+                return disqusShortName ?? string.Empty;
+            }
+            set
+            {
+                var disqusShortName = GetValueInternal(value) ?? string.Empty;
+                UpdateSettings("BlogDisqusShortName", disqusShortName);
+            }
+        }
+
+        public string BlogDbVersion
+        {
+            get
+            {
+                var blogDbVersion = GetValue("BlogDbVersion");
+                return blogDbVersion ?? string.Empty;
+            }
+            set
+            {
+                var blogDbVersion = GetValueInternal(value) ?? string.Empty;
+                UpdateSettings("BlogDbVersion", blogDbVersion);
+            }
+        }
+
         public string GetValue(string key)
         {
             string value = null;

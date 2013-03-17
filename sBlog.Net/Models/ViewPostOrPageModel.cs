@@ -30,5 +30,11 @@ namespace sBlog.Net.Models
         public string BlogName { get; set; }
         public string BlogCaption { get; set; }
         public CommentEntity CommentEntity { get; set; }
+
+        // For disqus
+        public bool DisqusEnabled { get; set; }
+        public string DisqusUrl { get; set; }
+        public string ShortName { get; set; }
+        public bool DisqusDevMode { get; set; }
     }
 }

@@ -42,11 +42,13 @@ namespace sBlog.Net.HtmlHelpers
             if (IsDebug())
             {
                 builder.AppendLine(GetStyleElement(urlHelper, "~/Content/Site.css"));
+                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.css"));
                 builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.custom.css"));
             }
             else
             {
                 builder.AppendLine(GetStyleElement(urlHelper, "~/Content/Site.min.css"));
+                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.css"));
                 builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.custom.min.css"));                
             }
             return MvcHtmlString.Create(builder.ToString());

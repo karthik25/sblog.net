@@ -40,10 +40,13 @@ namespace sBlog.Net.Domain.Interfaces
         string BlogSmtpPassword { get; set; }
         bool InstallationComplete { get; set; }
         int ManageItemsPerPage { get; set; }
+        bool DisqusEnabled { get; set; }
+        string BlogDisqusShortName { get; set; }
+
+        string BlogDbVersion { get; set; }
 
         // raw methods
         string GetValue(string key);
         bool UpdateSettings(string key, string value);
-
     }
 }

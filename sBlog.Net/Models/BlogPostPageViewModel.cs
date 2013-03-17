@@ -27,13 +27,18 @@ namespace sBlog.Net.Models
         public bool PreviousPageValid { get; set; }
         public int PreviousPageNumber { get; set; }
         public int CurrentPageNumber { get; set; }
-        public List<PostEntity> Posts { get; set; }
+        public List<PostModel> Posts { get; set; }
         public CategoryEntity Category { get; set; }
         public TagEntity Tag { get; set; }
         public string Year { get; set; }
         public string Month { get; set; }
         public string BlogName { get; set; }
         public string BlogCaption { get; set; }
+
+        // For disqus
+        public bool DisqusEnabled { get; set; }
+        public string ShortName { get; set; }
+        public bool DisqusDevMode { get; set; }
 
         public bool Any
         {

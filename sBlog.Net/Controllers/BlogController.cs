@@ -94,7 +94,7 @@ namespace sBlog.Net.Controllers
 
         protected string GetRootUrl()
         {
-            return string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+            return string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));            
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

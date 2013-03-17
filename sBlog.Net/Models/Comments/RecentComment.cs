@@ -37,5 +37,7 @@ namespace sBlog.Net.Models.Comments
         public DateTime PostAddedDate { get; set; }
         public string PostUrl { get; set; }
         public byte EntryType { get; set; }
+
+        public bool DisqusComment { get; set; }
     }
 }

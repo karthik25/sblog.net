@@ -41,5 +41,7 @@ namespace sBlog.Net.Areas.Admin.Models
         public string BlogSmtpAddress { get; set; }
         public string BlogSmtpPassword { get; set; }
         public bool BlogErrorAction { get; set; }
+        public bool DisqusEnabled { get; set; }
+        public string DisqusShortName { get; set; }
     }
 }

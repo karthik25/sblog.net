@@ -55,7 +55,8 @@ namespace sBlog.Net.Filters
         {
             var urlHelper = new UrlHelper(exceptionContext.HttpContext.Request.RequestContext);
             var exception = exceptionContext.Exception;
-            var isAdminController = ((IControllerProperties) exceptionContext.Controller).IsAdminController;
+            var iController = exceptionContext.Controller as IControllerProperties;
+            var isAdminController = iController != null && iController.IsAdminController;
 
             if (exception is UnauthorizedAccessException)
                 errType = "unauthorized";

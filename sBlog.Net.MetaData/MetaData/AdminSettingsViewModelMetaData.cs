@@ -76,5 +76,11 @@ namespace sBlog.Net.MetaData.MetaData
 
         [DisplayName("Enable sending emails when there are site errors")]
         public object BlogErrorAction { get; set; }
+
+        [DisplayName("Enable disqus instead of the default commenting system")]
+        public object DisqusEnabled { get; set; }
+
+        [DisplayName("Enter your site's disqus short name (required if disqus is enabled)")]
+        public object DisqusShortName { get; set; }
     }
 }
