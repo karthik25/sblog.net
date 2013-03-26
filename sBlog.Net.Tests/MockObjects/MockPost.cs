@@ -71,6 +71,7 @@ namespace sBlog.Net.Tests.MockObjects
                 post.Categories = _categoryRepository.GetCategoriesByPostID(post.PostID);
                 post.Tags = _tagRepository.GetTagsByPostID(post.PostID);
                 post.OwnerUserName = user.UserDisplayName;
+                post.UserName = user.UserName;
             }
             return post;
         }
@@ -202,7 +203,10 @@ namespace sBlog.Net.Tests.MockObjects
                 p.Comments = _commentRepository.GetCommentsByPostID(p.PostID);
                 p.Categories = _categoryRepository.GetCategoriesByPostID(p.PostID);
                 p.Tags = _tagRepository.GetTagsByPostID(p.PostID);
-                p.OwnerUserName = users.Single(u => u.UserID == p.OwnerUserID).UserDisplayName;
+
+                var user = users.Single(u => u.UserID == p.OwnerUserID);
+                p.OwnerUserName = user.UserDisplayName;
+                p.UserName = user.UserName;
             });
             return postEntities;
         }

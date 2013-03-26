@@ -26,7 +26,6 @@
  * 
  * */
 
-using System;
 using System.Linq;
 using System.Data.Linq;
 using System.Collections.Generic;
@@ -98,6 +97,7 @@ namespace sBlog.Net.Domain.Concrete
                 post.Categories = _categoryRepository.GetCategoriesByPostID(post.PostID);
                 post.Tags = _tagRepository.GetTagsByPostID(post.PostID);
                 post.OwnerUserName = user.UserDisplayName;
+                post.UserName = user.UserName;
             }
             return post;
         }
@@ -319,13 +319,16 @@ namespace sBlog.Net.Domain.Concrete
 
         private List<PostEntity> PostProcessEntities(List<PostEntity> postEntities)
         {
-            var users = _userRepository.GetAllUsers();
+            var users = _userRepository.GetAllUsers().ToList();
             postEntities.ForEach(p =>
             {
                 p.Comments = _commentRepository.GetCommentsByPostID(p.PostID);
                 p.Categories = _categoryRepository.GetCategoriesByPostID(p.PostID);
                 p.Tags = _tagRepository.GetTagsByPostID(p.PostID);
-                p.OwnerUserName = users.Single(u => u.UserID == p.OwnerUserID).UserDisplayName;
+
+                var user = users.Single(u => u.UserID == p.OwnerUserID);
+                p.OwnerUserName = user.UserDisplayName;
+                p.UserName = user.UserName;
             });
             return postEntities;
         }

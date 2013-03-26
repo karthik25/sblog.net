@@ -7,7 +7,7 @@
     <h2 class="title"><a href="@url">@Model.Post.PostTitle</a></h2>
     <p class="meta">
         <span class="date">@Model.Post.PostAddedDate.ToLongDateString()</span>
-        <span class="posted" style="float: right;">Posted by <b>@Model.Post.OwnerUserName</b> under @Html.Partial("PostCategories", Model.Post.Categories)</span>
+        <span class="posted" style="float: right;">Posted by <b>@Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { })</b> under @Html.Partial("PostCategories", Model.Post.Categories)</span>
     </p>
     <div class="entry">
 	    <p>

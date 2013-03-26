@@ -98,8 +98,12 @@ namespace sBlog.Net.Tests.MockObjects
         {
             return new List<UserEntity>
                        {
-                           new UserEntity { UserID = 1, UserName = "admin", UserDisplayName = "Admin" },
-                           new UserEntity { UserID = 2, UserName = "karthik", UserDisplayName = "Karthik" }
+                           new UserEntity { UserID = 1, UserName = "admin", UserDisplayName = "Admin", UserActiveStatus = 1 },
+                           new UserEntity { UserID = 2, UserName = "karthik", UserDisplayName = "Karthik", UserActiveStatus = 1  },
+                           new UserEntity { UserID = 3, UserName = "testuser01", UserDisplayName = "Test User 01", UserActiveStatus = 1  },
+                           new UserEntity { UserID = 4, UserName = "testuser02", UserDisplayName = "Test User 02", UserActiveStatus = 1  },
+                           new UserEntity { UserID = 5, UserName = "testuser03", UserDisplayName = "Test User 03", UserActiveStatus = 1  },
+                           new UserEntity { UserID = 6, UserName = "testuser04", UserDisplayName = "Test User 04", UserActiveStatus = 1  }
                        };
         }
 

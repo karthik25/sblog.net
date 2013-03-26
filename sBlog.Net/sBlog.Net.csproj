@@ -85,6 +85,7 @@
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAuthorsViewModel.cs" />
     <Compile Include="Areas\Setup\Services\UploadFolderVerifier.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="CustomExceptions\InvalidMonthException.cs" />
     <Compile Include="CustomExceptions\InvalidThemeException.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="Areas\Admin\Models\AdminPostOrPageViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AdminSettingsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AdminTagsViewModel.cs" />
+    <Compile Include="Models\AuthorListingViewModel.cs" />
+    <Compile Include="Models\AuthorModel.cs" />
     <Compile Include="Models\BlogErrorViewModel.cs" />
     <Compile Include="Models\BlogMenuViewModel.cs" />
     <Compile Include="Models\BlogPostPageViewModel.cs" />
@@ -183,6 +186,7 @@
     <Compile Include="Models\Comments\RecentComment.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\LogoViewModel.cs" />
+    <Compile Include="Models\PagedModel.cs" />
     <Compile Include="Models\PagingInformation.cs" />
     <Compile Include="Areas\Admin\Models\PostViewModel.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -866,6 +870,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\DisqusCounts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Author\AuthorListing.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Author\PostsByAuthor.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

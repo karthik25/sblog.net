@@ -9,18 +9,28 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
     {
         private readonly HttpContextBase _httpContextBase;
         private readonly bool _isAuthenticated;
+        private readonly string _requestUrl;
 
-        public MockHttpRequest(HttpContextBase httpContextBase, bool isAuthenticated)
+        public MockHttpRequest(HttpContextBase httpContextBase, bool isAuthenticated, string requestUrl = null)
         {
             _httpContextBase = httpContextBase;
             _isAuthenticated = isAuthenticated;
+            _requestUrl = requestUrl ?? "http://localhost/pages/a-test-url-36";
         }
 
         public override Uri Url
         {
             get
             {
-                return new Uri("http://localhost/pages/a-test-url-36");
+                return new Uri(_requestUrl);
+            }
+        }
+
+        public override string AppRelativeCurrentExecutionFilePath
+        {
+            get
+            {
+                return _requestUrl;
             }
         }
 
@@ -43,6 +53,14 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
         public override string ApplicationPath
         {
             get { return @"/"; }
+        }
+
+        public override string PathInfo
+        {
+            get
+            {
+                return string.Empty;
+            }
         }
 
         public override NameValueCollection ServerVariables

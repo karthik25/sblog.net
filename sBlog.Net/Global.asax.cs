@@ -54,6 +54,21 @@ namespace sBlog.Net
             routes.MapRoute("Credits", "credits",
                             new { controller = "ViewPage", action = "Credits" });
 
+            routes.MapRoute("AuthorsPaged", "authors/page/{pageNumber}",
+                            new { controller = "Author", action = "AuthorListing" },
+                            new { pageNumber = @"\d+" });
+
+            routes.MapRoute("Authors", "authors",
+                            new { controller = "Author", action = "AuthorListing" });
+
+            routes.MapRoute("AuthorPostsPaged", "authors/{authorName}/page/{pageNumber}",
+                            new { controller = "Author", action = "PostsByAuthor" },
+                            new { authorName = @"\S+", pageNumber = @"\d+" });
+
+            routes.MapRoute("AuthorPosts", "authors/{authorName}",
+                            new { controller = "Author", action = "PostsByAuthor" },
+                            new { authorName = @"\S+" });
+
             routes.MapRoute("Pages", "pages/{pageUrl}/{status}",
                             new { controller = "ViewPage", action = "Index", status = UrlParameter.Optional },
                             new { pageUrl = @"\S+", status = @"[a-z\-]*" });

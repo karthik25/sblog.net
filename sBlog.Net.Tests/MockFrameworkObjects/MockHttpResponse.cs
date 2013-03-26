@@ -6,7 +6,7 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
     {
         public override string ApplyAppPathModifier(string virtualPath)
         {
-            return "/";
+            return virtualPath;
         }
     }
 }

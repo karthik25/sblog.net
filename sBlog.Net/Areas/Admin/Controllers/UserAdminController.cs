@@ -132,10 +132,15 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
         public ActionResult ManagePublicPosts([DefaultValue(1)] int page)
         {
-            var allUsers = _userRepository.GetAllUsers();
+            var allUsers = _userRepository.GetAllUsers().ToList();
             var allPosts = _postRepository.GetPosts(1, 1);
             var filteredPosts = allPosts.Skip((page - 1)*5).Take(5).ToList();
-            filteredPosts.ForEach(post => post.OwnerUserName = allUsers.Single(u => u.UserID == post.OwnerUserID).UserDisplayName);
+            filteredPosts.ForEach(post =>
+                {
+                    var user = allUsers.Single(u => u.UserID == post.OwnerUserID);
+                    post.OwnerUserName = user.UserDisplayName;
+                    post.UserName = user.UserName;
+                });
             var postModel = new AdminPostOrPageViewModel
             {
                 Posts = allPosts.Skip((page - 1) * 5).Take(5).ToList(),

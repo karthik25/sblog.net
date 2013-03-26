@@ -11,18 +11,20 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
 
         private readonly int _userId = 1;
         private readonly bool _isAuthenticated;
+        private readonly string _url;
 
-        public MockHttpContext(int userId, bool isAuthenticated)
+        public MockHttpContext(int userId, bool isAuthenticated, string url = null)
         {
             _userId = userId;
             _isAuthenticated = isAuthenticated;
+            _url = url;
         }
 
         public override HttpRequestBase Request
         {
             get
             {
-                HttpRequest = new MockHttpRequest(this, _isAuthenticated);
+                HttpRequest = new MockHttpRequest(this, _isAuthenticated, _url);
                 return HttpRequest;
             }
         }

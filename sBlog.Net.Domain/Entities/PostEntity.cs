@@ -62,8 +62,11 @@ namespace sBlog.Net.Domain.Entities
          * In future, I will also try to free this class of this responsibility,
          * if required.
          * 
+         * Appropriate file would be PostModel.cs
+         * 
          */
         public string OwnerUserName { get; set; }
+        public string UserName { get; set; }
         public List<CategoryEntity> Categories { get; set; }
         public List<TagEntity> Tags { get; set; }
         public List<CommentEntity> Comments { get; set; }

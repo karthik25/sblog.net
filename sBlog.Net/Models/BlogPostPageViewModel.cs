@@ -20,18 +20,16 @@ using sBlog.Net.Domain.Entities;
 
 namespace sBlog.Net.Models
 {
-    public class BlogPostPageViewModel
+    public class BlogPostPageViewModel : PagedModel
     {
-        public bool NextPageValid { get; set; }
-        public int NextPageNumber { get; set; }
-        public bool PreviousPageValid { get; set; }
-        public int PreviousPageNumber { get; set; }
-        public int CurrentPageNumber { get; set; }
         public List<PostModel> Posts { get; set; }
         public CategoryEntity Category { get; set; }
         public TagEntity Tag { get; set; }
         public string Year { get; set; }
         public string Month { get; set; }
+        public string AuthorName { get; set; }
+        public string AuthorDisplayName { get; set; }
+        
         public string BlogName { get; set; }
         public string BlogCaption { get; set; }
 

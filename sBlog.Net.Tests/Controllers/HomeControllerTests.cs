@@ -376,7 +376,7 @@ namespace sBlog.Net.Tests.Controllers
             Assert.AreEqual("[Private] Post Title 11", post.PostTitle);
             Assert.AreEqual(2012, post.PostAddedDate.Year);
             Assert.AreEqual(4, post.PostAddedDate.Month);
-        }
+        }        
 
         [TestMethod]
         [ExpectedException(typeof(UrlNotFoundException), "Unable to find a post w/ the url a-test-url-25 for the month 01 and year 2012")]
@@ -403,9 +403,9 @@ namespace sBlog.Net.Tests.Controllers
             Assert.IsNotNull(model);
             var post = model.Post;
         }
-
+        
         private static HomeController GetHomeControllerInstance(HttpContextBase httpContext)
-        {            
+        {
             var postRepository = MockObjectFactory.CreatePostRepository();
             var userRepository = MockObjectFactory.CreateUserRepository();
             var categoryRepository = MockObjectFactory.CreateCategoryRepository();

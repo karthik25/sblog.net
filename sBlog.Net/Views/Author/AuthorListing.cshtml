@@ -1,0 +1,43 @@
+﻿@model sBlog.Net.Models.AuthorListingViewModel
+
+@{
+    ViewBag.Title = string.Format("{0} || Authors || page {1}", Model.BlogName.ToLower(), Model.CurrentPageNumber);
+}
+
+@foreach (var author in Model.Authors)
+{
+    <div>
+        <div style="float: left">@Html.ActionLink(@author.UserDisplayName, "PostsByAuthor", new { authorName = author.UserName })</div>
+        <div style="float: right"><span style="font-weight: bold">Number of posts:</span> @author.Posts.Count</div>
+    </div>
+    <br/><br/>
+    if (author.Posts.Any())
+    {
+        <div>Recent Posts:</div><br />
+        <ul>
+            @foreach (var post in author.Posts.Take(5))
+            {
+                var url = Url.RouteUrl("IndividualPost", new {year = post.PostYear, month = post.PostMonth, url = post.PostUrl});
+                <li><a href="@url">@post.PostTitle</a></li>
+            }
+        </ul>
+        <div style="background-color: #E6E6E6; padding: 10px; width: 90px">
+            @Html.ActionLink("view all posts", "PostsByAuthor", new { authorName = author.UserName }, new { @class = "view-all" })
+        </div>
+    }
+    <hr style="border:dashed gray; border-width:1px 0 0; height:0;"/>
+}
+
+@if (Model.PreviousPageValid)
+{
+    <div style="float: left">
+        @Html.RouteLink("<< Previous Page", "AuthorsPaged", new { pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
+    </div>
+}
+
+@if (Model.NextPageValid)
+{
+    <div style="float: right">
+        @Html.RouteLink("Next Page >>", "AuthorsPaged", new { pageNumber = Model.NextPageNumber }, new { @class = "link" })
+    </div>
+}

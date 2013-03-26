@@ -29,8 +29,6 @@ namespace sBlog.Net.Controllers
 {
     public class HomeController : BlogController
     {
-        private readonly int _postsPerPage;
-
         private readonly IPost _postRepository;
         private readonly IUser _userRepository;
         private readonly ICategory _categoryRepository;
@@ -44,7 +42,6 @@ namespace sBlog.Net.Controllers
             _userRepository = userRepository;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
-            _postsPerPage = settingsRepository.BlogPostsPerPage;
             _cacheService = cacheService;
         }
 
@@ -54,7 +51,7 @@ namespace sBlog.Net.Controllers
         public ActionResult Index(int? pageNumber)
         {
             var posts = GetPostsInternal();
-            var blogPostModel = GetBlogPostPageViewModel(posts, pageNumber);
+            var blogPostModel = posts.GetBlogPostPageViewModel(pageNumber, SettingsRepository, GetRootUrl());
             return View(blogPostModel);
         }
 
@@ -65,7 +62,7 @@ namespace sBlog.Net.Controllers
         {
             var posts = GetPostsInternal().Where(p => p.PostAddedDate.Month == Int32.Parse(month) && p.PostAddedDate.Year == Int32.Parse(year))
                                           .ToList();
-            var blogPostModel = GetBlogPostPageViewModel(posts, pageNumber);
+            var blogPostModel = posts.GetBlogPostPageViewModel(pageNumber, SettingsRepository, GetRootUrl());
             blogPostModel.Year = year;
             blogPostModel.Month = month;
             return View(blogPostModel);
@@ -78,7 +75,7 @@ namespace sBlog.Net.Controllers
         {
             var posts = GetPostsInternal().Where(p => p.Tags.Any(t => t.TagSlug == tagName.ToLower()))
                                           .ToList();
-            var blogPostModel = GetBlogPostPageViewModel(posts, pageNumber);
+            var blogPostModel = posts.GetBlogPostPageViewModel(pageNumber, SettingsRepository, GetRootUrl());
             blogPostModel.Tag = GetTagEntity(tagName);
             return View(blogPostModel);
         }
@@ -90,7 +87,7 @@ namespace sBlog.Net.Controllers
         {
             var posts = GetPostsInternal().Where(p => p.Categories.Any(c => c.CategorySlug == categoryName.ToLower()))
                                           .ToList();
-            var blogPostModel = GetBlogPostPageViewModel(posts, pageNumber);
+            var blogPostModel = posts.GetBlogPostPageViewModel(pageNumber, SettingsRepository, GetRootUrl());
             blogPostModel.Category = GetCategoryEntity(categoryName);
             return View(blogPostModel);
         }
@@ -178,48 +175,6 @@ namespace sBlog.Net.Controllers
             return postList;
         }
 
-        private BlogPostPageViewModel GetBlogPostPageViewModel(ICollection<PostEntity> posts, int? pageNumber)
-        {
-            var pgNumber = pageNumber ?? 1;
-            var totalItems = GetPageCount(posts.Count);
-            var blogPostModel = GetBlogPostPageModel(pgNumber, totalItems);
-            var postList = posts.Skip((pgNumber - 1) * _postsPerPage)
-                                       .Take(_postsPerPage)
-                                       .ToList();
-            blogPostModel.Posts = GetPostList(postList);
-            blogPostModel.BlogName = SettingsRepository.BlogName;
-            blogPostModel.BlogCaption = SettingsRepository.BlogCaption;
-            blogPostModel.CurrentPageNumber = pageNumber.HasValue ? pageNumber.Value : 1;
-
-            blogPostModel.DisqusEnabled = SettingsRepository.DisqusEnabled;
-            blogPostModel.ShortName = SettingsRepository.BlogDisqusShortName;
-            blogPostModel.DisqusDevMode = System.Web.HttpContext.Current.IsDebuggingEnabled;
-
-            return blogPostModel;
-        }
-
-        private List<PostModel> GetPostList(List<PostEntity> postList)
-        {
-            var disqusEnabled = SettingsRepository.DisqusEnabled;
-            var rootUrl = GetRootUrl().TrimEnd('/');
-
-            var postModeList = new List<PostModel>();
-
-            postList.ForEach(post =>
-                {
-                    var postModel = new PostModel { Post = post, RootUrl = rootUrl, DisqusEnabled = disqusEnabled };
-                    postModeList.Add(postModel);
-                });
-
-            return postModeList;
-        }
-
-        private int GetPageCount(int totalItems)
-        {
-            var totalPages = (int)Math.Ceiling((decimal)totalItems / _postsPerPage);
-            return totalPages;
-        }
-
         private TagEntity GetTagEntity(string tagName)
         {
             var tagEntity = _tagRepository.GetAllTags().SingleOrDefault(t => t.TagSlug == tagName.ToLower()) ??
@@ -232,17 +187,6 @@ namespace sBlog.Net.Controllers
             var categoryEntity = _categoryRepository.GetCategories().SingleOrDefault(c => c.CategorySlug == categoryName.ToLower()) ??
                                  new CategoryEntity {CategoryName = categoryName};
             return categoryEntity;
-        }
-
-        private static BlogPostPageViewModel GetBlogPostPageModel(int currentPage, int totalPages)
-        {
-            return new BlogPostPageViewModel
-            {
-                NextPageValid = currentPage != 1 && totalPages > 1,
-                NextPageNumber = currentPage - 1,
-                PreviousPageValid = currentPage < totalPages && currentPage != totalPages,
-                PreviousPageNumber = currentPage + 1
-            };
         }
 
         private CommentEntity GetCommentEntityByAuth()
