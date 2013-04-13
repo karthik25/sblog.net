@@ -25,30 +25,30 @@
  * the Dispose() method yourself
  * 
  * */
-
+using System.Data.Entity;
 using System.Linq;
-using System.Data.Linq;
 using System.Collections.Generic;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Post : DefaultDisposable, IPost
+    public class Post : System.Data.Entity.DbContext, IPost
     {
-        private readonly Table<PostEntity> _postsTable;
+        private readonly IUser _userRepository;
         private readonly IComment _commentRepository;
         private readonly ITag _tagRepository;
         private readonly ICategory _categoryRepository;
-        private readonly IUser _userRepository;
+
+        public IDbSet<PostEntity> Posts { get; set; }
 
         public Post(IUser userRepository, ICategory categoryRepository, ITag tagRepository, IComment commentRepository)
+            : base("AppDb")
         {
-            _postsTable = context.GetTable<PostEntity>();
+            _userRepository = userRepository;
             _commentRepository = commentRepository;
             _tagRepository = tagRepository;
             _categoryRepository = categoryRepository;
-            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -58,7 +58,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPostsByUserID(int userID)
         {
-            var postEntities = _postsTable.Where(p => p.OwnerUserID == userID)
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => p.OwnerUserID == userID)
                                                       .OrderByDescending(p => p.PostEditedDate)
                                                       .ToList();
             return PostProcessEntities(postEntities);
@@ -76,7 +77,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPostsByUserID(int userID, byte entryType)
         {
-            var postEntities = _postsTable.Where(p => p.OwnerUserID == userID && p.EntryType == entryType)
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => p.OwnerUserID == userID && p.EntryType == entryType)
                                                       .OrderByDescending(p => p.PostEditedDate)
                                                       .ToList();
             return PostProcessEntities(postEntities);
@@ -89,7 +91,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>A single PostEntity</returns>
         public PostEntity GetPostByID(int postID)
         {
-            var post = _postsTable.SingleOrDefault(p => p.PostID == postID);
+            var posts = Posts.ToList();
+            var post = posts.SingleOrDefault(p => p.PostID == postID);
             if (post != null)
             {
                 var user = _userRepository.GetAllUsers().Single(u => u.UserID == post.OwnerUserID);
@@ -110,7 +113,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>A single PostEntity</returns>
         public PostEntity GetPostByUrl(string url, byte entryType)
         {
-            var post = _postsTable.SingleOrDefault(p => p.PostUrl == url && p.EntryType == entryType);
+            var posts = Posts.ToList();
+            var post = posts.SingleOrDefault(p => p.PostUrl == url && p.EntryType == entryType);
             return post != null ? GetPostByID(post.PostID) : null;
         }
 
@@ -122,7 +126,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPosts()
         {
-            var postEntities = _postsTable.Where(p => !p.IsPrivate && p.EntryType == 1)
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => !p.IsPrivate && p.EntryType == 1)
                              .OrderByDescending(p => p.PostEditedDate)
                              .ToList();
             return PostProcessEntities(postEntities);
@@ -137,7 +142,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPosts(int userID)
         {
-            var postEntities = _postsTable.Where(p => (!p.IsPrivate && p.EntryType == 1) || (p.IsPrivate && p.EntryType == 1 && p.OwnerUserID == userID))
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => (!p.IsPrivate && p.EntryType == 1) || (p.IsPrivate && p.EntryType == 1 && p.OwnerUserID == userID))
                              .OrderByDescending(p => p.PostEditedDate)
                              .ToList();
             return PostProcessEntities(postEntities);
@@ -155,7 +161,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPosts(int excludeUserID, byte entryType)
         {
-            var postEntities = _postsTable.Where(p => p.EntryType == entryType && p.OwnerUserID != excludeUserID && !p.IsPrivate)
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => p.EntryType == entryType && p.OwnerUserID != excludeUserID && !p.IsPrivate)
                                                       .ToList();
             return PostProcessEntities(postEntities);
         }
@@ -168,7 +175,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPages()
         {
-            var postEntities = _postsTable.Where(p => !p.IsPrivate && p.EntryType == 2)
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => !p.IsPrivate && p.EntryType == 2)
                                .ToList();
             return PostProcessEntities(postEntities);
         }
@@ -182,7 +190,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetPages(int userID)
         {
-            var postEntities = _postsTable.Where(p => (!p.IsPrivate && p.EntryType == 2) || (p.IsPrivate && p.EntryType == 2 && p.OwnerUserID == userID))
+            var posts = Posts.ToList();
+            var postEntities = posts.Where(p => (!p.IsPrivate && p.EntryType == 2) || (p.IsPrivate && p.EntryType == 2 && p.OwnerUserID == userID))
                                .ToList();
             return PostProcessEntities(postEntities);
         }
@@ -195,7 +204,8 @@ namespace sBlog.Net.Domain.Concrete
         /// <returns>a list of PostEntity objects</returns>
         public List<PostEntity> GetAllPostsOrPages(bool includeAll)
         {
-            var postEntities = _postsTable.ToList();
+            var posts = Posts.ToList();
+            var postEntities = posts.ToList();
             return !includeAll ? postEntities : PostProcessEntities(postEntities);
         }
 
@@ -205,15 +215,16 @@ namespace sBlog.Net.Domain.Concrete
         /// <param name="postID">The post ID.</param>
         public void DeletePost(int postID)
         {
-            var post = _postsTable.SingleOrDefault(p => p.PostID == postID);
+            var posts = Posts.ToList();
+            var post = posts.SingleOrDefault(p => p.PostID == postID);
 
             if (post != null)
             {
                 _commentRepository.DeleteCommentsByPostID(postID);
                 _tagRepository.DeleteTagsForPost(postID);
                 _categoryRepository.DeletePostCategoryMapping(postID);
-                _postsTable.DeleteOnSubmit(post);
-                context.SubmitChanges();
+                Posts.Remove(post);
+                SaveChanges();
             }
         }
 
@@ -244,11 +255,14 @@ namespace sBlog.Net.Domain.Concrete
         /// <param name="userID">The user ID.</param>
         public void DeletePostsByUserID(int userID)
         {
-            var posts = _postsTable.Where(p => p.OwnerUserID == userID);
+            var posts = Posts.ToList().Where(p => p.OwnerUserID == userID);
             if (posts.Any())
             {
-                _postsTable.DeleteAllOnSubmit(posts);
-                context.SubmitChanges();
+                foreach (var postEntity in posts)
+                {
+                    Posts.Remove(postEntity);
+                }
+                SaveChanges();
             }
         }
 
@@ -293,14 +307,15 @@ namespace sBlog.Net.Domain.Concrete
 
         private int AddPostInternal(PostEntity postEntity)
         {
-            _postsTable.InsertOnSubmit(postEntity);
-            context.SubmitChanges();
+            Posts.Add(postEntity);
+            SaveChanges();
             return postEntity.PostID;
         }
 
         private void UpdatePostInternal(PostEntity postEntity)
         {
-            var post = _postsTable.SingleOrDefault(p => p.PostID == postEntity.PostID);
+            var posts = Posts.ToList();
+            var post = posts.SingleOrDefault(p => p.PostID == postEntity.PostID);
             if (post != null)
             {
                 post.PostTitle = postEntity.PostTitle;
@@ -313,7 +328,7 @@ namespace sBlog.Net.Domain.Concrete
                 post.EntryType = postEntity.EntryType;
                 post.Order = postEntity.Order.HasValue ? postEntity.Order.Value : (int?)null;
 
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
@@ -331,11 +346,6 @@ namespace sBlog.Net.Domain.Concrete
                 p.UserName = user.UserName;
             });
             return postEntities;
-        }
-
-        ~Post()
-        {
-            Dispose(false);
         }
     }
 }

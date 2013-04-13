@@ -25,35 +25,36 @@
  * the Dispose() method yourself
  * 
  * */
+using System;
+using System.Data.Entity;
 using System.Linq;
-using System.Data.Linq;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
 using System.Collections.Generic;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Tag : DefaultDisposable, ITag
+    public class Tag : System.Data.Entity.DbContext, ITag
     {
-        private readonly Table<TagEntity> _tagsTable;
-        private readonly Table<TagMapping> _postTagMapping;
+        public IDbSet<TagEntity> Tags { get; set; }
+        public IDbSet<TagMapping> TagMappings { get; set; }
 
         public Tag()
+            :base("AppDb")
         {
-            _tagsTable = context.GetTable<TagEntity>();
-            _postTagMapping = context.GetTable<TagMapping>();
+            
         }
 
         public List<TagEntity> GetAllTags()
         {
-            return _tagsTable.ToList();
+            return Tags.ToList();
         }
 
         public List<TagEntity> GetTagsByPostID(int postID)
         {            
             var tagEntities = new List<TagEntity>();
             var allTags = GetAllTags();
-            var tagsForPost = _postTagMapping.Where(t => t.PostID == postID).ToList();
+            var tagsForPost = TagMappings.Where(t => t.PostID == postID).ToList();
 
             tagsForPost.ForEach(mapping =>
             {
@@ -69,25 +70,31 @@ namespace sBlog.Net.Domain.Concrete
         {            
             if (tags.Any())
             {
-                _tagsTable.InsertAllOnSubmit(tags);
-                context.SubmitChanges();
+                foreach (var tagEntity in tags)
+                {
+                    Tags.Add(tagEntity);
+                }
+                SaveChanges();
             }
         }
 
         public void DeleteTag(int tagID)
         {
-            IEnumerable<TagMapping> currentMappings = _postTagMapping.Where(t => t.TagID == tagID);
+            IEnumerable<TagMapping> currentMappings = TagMappings.Where(t => t.TagID == tagID);
             if (currentMappings.Any())
             {
-                _postTagMapping.DeleteAllOnSubmit(currentMappings);
-                context.SubmitChanges();
+                foreach (var currentMapping in currentMappings)
+                {
+                    TagMappings.Remove(currentMapping);
+                }
+                SaveChanges();
             }
 
-            var tagEntity = _tagsTable.SingleOrDefault(t => t.TagID == tagID);
+            var tagEntity = Tags.SingleOrDefault(t => t.TagID == tagID);
             if (tagEntity != null)
             {
-                _tagsTable.DeleteOnSubmit(tagEntity);
-                context.SubmitChanges();
+                Tags.Remove(tagEntity);
+                SaveChanges();
             }
         }
 
@@ -95,43 +102,53 @@ namespace sBlog.Net.Domain.Concrete
         {
             var tagMappings = new List<TagMapping>();
             tags.ForEach(t => tagMappings.Add(new TagMapping { TagID = t.TagID, PostID = postID }));
-            _postTagMapping.InsertAllOnSubmit(tagMappings);
-            context.SubmitChanges();
+            foreach (var tagMapping in tagMappings)
+            {
+                TagMappings.Add(tagMapping);
+            }
+            SaveChanges();
         }
 
         public void UpdateTagsForPost(List<TagEntity> tags, int postID)
         {
             var tagMappings = new List<TagMapping>();
-            var postTags = _postTagMapping.Where(p => p.PostID == postID).ToList();
+            var postTags = TagMappings.Where(p => p.PostID == postID).ToList();
             tags.ForEach(t => tagMappings.Add(new TagMapping { TagID = t.TagID, PostID = postID }));
-            _postTagMapping.DeleteAllOnSubmit(postTags);
-            _postTagMapping.InsertAllOnSubmit(tagMappings);
-            context.SubmitChanges();
+            foreach (var tagMapping in postTags)
+            {
+                TagMappings.Remove(tagMapping);
+            }            
+            foreach (var tagMapping in tagMappings)
+            {
+                TagMappings.Add(tagMapping);
+            }
+            SaveChanges();
         }
 
         public void DeleteTagsForPost(int postID)
         {
-            var tagMappings = _postTagMapping.Where(t => t.PostID == postID).ToList();
+            var tagMappings = TagMappings.Where(t => t.PostID == postID).ToList();
             if (tagMappings.Count > 0)
             {
-                _postTagMapping.DeleteAllOnSubmit(tagMappings);
-                context.SubmitChanges();
+                foreach (var tagMapping in tagMappings)
+                {
+                    TagMappings.Remove(tagMapping);
+                }
+                SaveChanges();
             }
         }
 
         public void DeleteTagsForsPosts(IEnumerable<int> postList)
         {
-            var tagMappings = _postTagMapping.Where(t => postList.Contains(t.PostID));
+            var tagMappings = TagMappings.Where(t => postList.Contains(t.PostID));
             if (tagMappings.Any())
             {
-                _postTagMapping.DeleteAllOnSubmit(tagMappings);
-                context.SubmitChanges();
+                foreach (var tagMapping in tagMappings)
+                {
+                    TagMappings.Remove(tagMapping);
+                }
+                SaveChanges();
             }
-        }
-
-        ~Tag()
-        {
-            Dispose(false);
         }
     }
 }

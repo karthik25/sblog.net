@@ -15,16 +15,16 @@
 /* *********************************************** */
 
 #endregion
-using System.Data.Linq.Mapping;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name = "sBlog_Settings")]
+    [Table("sblog_settings")]
     public class SettingsEntity
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = false)]
+        [Key]
         public string KeyName { get; set; }
-        [Column]
         public string KeyValue { get; set; }
     }
 }

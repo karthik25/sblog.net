@@ -18,41 +18,35 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Linq.Mapping;
 using System.ComponentModel;
 using sBlog.Net.MetaData.MetaData;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name = "Posts")]
+    [Table("posts")]
     [MetadataType(typeof(PostEntityMetaData))]
     public class PostEntity
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        [Key]
         public int PostID { get; set; }
-        [Column]
         public string PostTitle { get; set; }
-        [Column] public string PostUrl { get; set; }
-        [Column] public string PostContent { get; set; }
-        [Column] public DateTime PostAddedDate { get; set; }
-        [Column] public DateTime? PostEditedDate { get; set; }
-        [Column] public int OwnerUserID { get; set; }
+        public string PostUrl { get; set; }
+        public string PostContent { get; set; }
+        public DateTime PostAddedDate { get; set; }
+        public DateTime? PostEditedDate { get; set; }
+        public int OwnerUserID { get; set; }
         
-        [Column]
         [DisplayName("user can add comments?")]
         public bool UserCanAddComments { get; set; }
 
-        [Column] 
         [DisplayName("provide sharing options")]
         public bool CanBeShared { get; set; }
 
-        [Column]
         [DisplayName("mark as private")]
         public bool IsPrivate { get; set; }
 
-        [Column] public byte EntryType { get; set; } /* 1 - Post, 2 - Page */
+        public byte EntryType { get; set; } /* 1 - Post, 2 - Page */
 
-        [Column]
         public int? Order { get; set; }
 
         #region Additional Properties
@@ -65,18 +59,25 @@ namespace sBlog.Net.Domain.Entities
          * Appropriate file would be PostModel.cs
          * 
          */
+        [NotMapped]
         public string OwnerUserName { get; set; }
+        [NotMapped]
         public string UserName { get; set; }
+        [NotMapped]
         public List<CategoryEntity> Categories { get; set; }
+        [NotMapped]
         public List<TagEntity> Tags { get; set; }
+        [NotMapped]
         public List<CommentEntity> Comments { get; set; }
 
         /* Properties that are independent of the database content */
+        [NotMapped]
         public string ItemType
         {
             get { return EntryType == 1 ? "post" : "page"; }
         }
 
+        [NotMapped]
         public string PostYear
         {
             get
@@ -85,6 +86,7 @@ namespace sBlog.Net.Domain.Entities
             }
         }
 
+        [NotMapped]
         public string PostMonth
         {
             get

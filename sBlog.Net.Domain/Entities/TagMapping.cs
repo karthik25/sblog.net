@@ -15,16 +15,17 @@
 /* *********************************************** */
 
 #endregion
-using System.Data.Linq.Mapping;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name = "TagMapping")]
+    [Table("tagmapping")]
     public class TagMapping
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        [Key]
         public int PostTagMappingID { get; set; }
-        [Column] public int TagID { get; set; }
-        [Column] public int PostID { get; set; }
+        public int TagID { get; set; }
+        public int PostID { get; set; }
     }
 }

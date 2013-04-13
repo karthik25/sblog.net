@@ -16,25 +16,24 @@
 
 #endregion
 using System;
-using System.Data.Linq.Mapping;
 using System.ComponentModel.DataAnnotations;
 using sBlog.Net.MetaData.MetaData;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name = "Comments")]
+    [Table("comments")]
     [MetadataType(typeof(CommentEntityMetaData))]
     public class CommentEntity
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        [Key]
         public int CommentID { get; set; }
-        [Column] public int PostID { get; set; }
-        [Column] public string CommentUserFullName { get; set; }
-        [Column] public string CommenterEmail { get; set; }
-        [Column] public string CommenterSite { get; set; }
-        [Column] public string CommentContent { get; set; }
-        [Column] public DateTime CommentPostedDate { get; set; }
-        [Column] public int CommentStatus { get; set; } /* 0 - approved, 1 - pending, 2 - spam, -1 - trash */
-        [Column] public int? UserID { get; set; }
+        public int PostID { get; set; }
+        public string CommentUserFullName { get; set; }
+        public string CommenterEmail { get; set; }
+        public string CommenterSite { get; set; }
+        public string CommentContent { get; set; }
+        public DateTime CommentPostedDate { get; set; }
+        public int CommentStatus { get; set; } /* 0 - approved, 1 - pending, 2 - spam, -1 - trash */
+        public int? UserID { get; set; }
     }
 }

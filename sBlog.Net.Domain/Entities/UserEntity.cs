@@ -16,28 +16,29 @@
 
 #endregion
 using System;
-using System.Data.Linq.Mapping;
+using System.ComponentModel.DataAnnotations;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name="Users")]
+    [Table("users")]
     public class UserEntity
     {
-        [Column(IsPrimaryKey=true, IsDbGenerated = true, AutoSync=AutoSync.OnInsert)]
+        [Key]
         public int UserID { get; set; }
-        [Column] public string UserName { get; set; }
-        [Column] public string Password { get; set; }
-        [Column] public string UserEmailAddress { get; set; }
-        [Column] public string UserDisplayName { get; set; }
-        [Column] public int? UserActiveStatus { get; set; }
-        [Column] public string ActivationKey { get; set; }
-        [Column] public string OneTimeToken { get; set; }
-        [Column] public string UserCode { get; set; }
-        [Column] public string UserSite { get; set; }
-        [Column] public DateTime? LastLoginDate { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string UserEmailAddress { get; set; }
+        public string UserDisplayName { get; set; }
+        public int? UserActiveStatus { get; set; }
+        public string ActivationKey { get; set; }
+        public string OneTimeToken { get; set; }
+        public string UserCode { get; set; }
+        public string UserSite { get; set; }
+        public DateTime? LastLoginDate { get; set; }
 
         #region Additional Properties
         /* Properties that are independent of the database content */
+        [NotMapped]
         public string UserActiveStatusString
         {
             get
@@ -64,6 +65,7 @@ namespace sBlog.Net.Domain.Entities
          * if required.
          * 
          */
+        [NotMapped]
         public int PostsCount { get; set; }
         #endregion
     }

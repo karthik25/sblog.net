@@ -16,24 +16,21 @@
 
 #endregion
 using System;
+using System.Data.Entity;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Extensions;
-using System.Data.Linq;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Error : IError
+    public class Error : System.Data.Entity.DbContext, IError
     {
-        private readonly Table<ApplicationErrorEntity> _errorsTable;
-        private readonly DataContext _context;
-        private readonly string _connectionString;
+        public IDbSet<ApplicationErrorEntity> Errors { get; set; }
 
         public Error()
+            : base("AppDb")
         {
-            _connectionString = ApplicationDomainConfiguration.ConnectionString;
-            _context = new DataContext(_connectionString);
-            _errorsTable = _context.GetTable<ApplicationErrorEntity>();
+            
         }
 
         public void InsertException(Exception exception)
@@ -41,8 +38,8 @@ namespace sBlog.Net.Domain.Concrete
             try
             {
                 var errorEntity = exception.ToApplicationErrorEntity();
-                _errorsTable.InsertOnSubmit(errorEntity);
-                _context.SubmitChanges();
+                Errors.Add(errorEntity);
+                SaveChanges();
             }
             catch
             {

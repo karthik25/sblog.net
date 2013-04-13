@@ -16,10 +16,8 @@
 
 #endregion
 using System;
-using System.Linq;
-using System.Data.Linq;
-using sBlog.Net.Domain.Entities;
 using System.Data.SqlClient;
+using sBlog.Net.Domain.Interfaces;
 
 namespace sBlog.Net.Domain.Concrete
 {
@@ -69,10 +67,8 @@ namespace sBlog.Net.Domain.Concrete
 
         public bool IsInstallationComplete()
         {
-            var dataContext = new DataContext(ApplicationDomainConfiguration.ConnectionString);
-            var settings = dataContext.GetTable<SettingsEntity>();
-            var singleOrDefault = settings.SingleOrDefault(k => k.KeyName == "InstallationComplete");
-            return singleOrDefault != null && bool.Parse(singleOrDefault.KeyValue);
+            ISettings settings = new Settings();
+            return settings.InstallationComplete;
         }
     }
 

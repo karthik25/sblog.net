@@ -27,56 +27,57 @@
  * */
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Data.Linq;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Utilities;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class User : DefaultDisposable, IUser
+    public class User : System.Data.Entity.DbContext, IUser
     {
-        private readonly Table<UserEntity> _usersTable;
+        public IDbSet<UserEntity> Users { get; set; }
 
         public User()
+            :base("AppDb")
         {
-            _usersTable = context.GetTable<UserEntity>();
+            
         }
 
         public UserEntity GetUserObjByUserID(int userID)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userID);
+            var user = Users.SingleOrDefault(u => u.UserID == userID);
             return user;
         }
 
         public UserEntity GetUserObjByUserName(string userName, string passWord)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserName == userName && u.Password == passWord);
+            var user = Users.SingleOrDefault(u => u.UserName == userName && u.Password == passWord);
             return user;
         }
 
         public UserEntity GetUserNameByEmail(string emailAddress)
         {
-            var userObj = _usersTable.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
+            var userObj = Users.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
             return userObj;
         }
 
         public UserEntity GetUserObjByUserName(string userName)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserName == userName);
+            var user = Users.SingleOrDefault(u => u.UserName == userName);
             return user;
         }
 
         public IEnumerable<UserEntity> GetAllUsers()
         {
-            return _usersTable.AsEnumerable();
+            return Users.AsEnumerable();
         }
 
         public bool AddUser(string emailAddress, string displayName, string userActivationTicket)
         {
             var status = false;
-            var item = _usersTable.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
+            var item = Users.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
 
             if (item == null)
             {
@@ -91,8 +92,8 @@ namespace sBlog.Net.Domain.Concrete
                         ActivationKey = userActivationTicket
                     };
 
-                _usersTable.InsertOnSubmit(user);
-                context.SubmitChanges();
+                Users.Add(user);
+                SaveChanges();
                 status = true;
             }
             else
@@ -101,7 +102,7 @@ namespace sBlog.Net.Domain.Concrete
                 {
                     item.UserDisplayName = displayName;
                     item.ActivationKey = userActivationTicket;
-                    context.SubmitChanges();
+                    SaveChanges();
                     status = true;
                 }
             }
@@ -121,42 +122,42 @@ namespace sBlog.Net.Domain.Concrete
                                UserActiveStatus = 1
                            };
 
-            _usersTable.InsertOnSubmit(user);
-            context.SubmitChanges();
+            Users.Add(user);
+            SaveChanges();
 
             return user.UserID;
         }
 
         public string GetOneTimeToken(int userId)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userId);
+            var user = Users.SingleOrDefault(u => u.UserID == userId);
             return user != null ? user.OneTimeToken : null;
         }
 
         public void SetOneTimeToken(int userId, string oneTimeToken)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userId);
+            var user = Users.SingleOrDefault(u => u.UserID == userId);
             if (user != null)
             {
                 user.OneTimeToken = oneTimeToken;
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
         public void UpdateUser(UserEntity userEntity)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userEntity.UserID);
+            var user = Users.SingleOrDefault(u => u.UserID == userEntity.UserID);
             if (user != null)
             {
                 user.Password = userEntity.Password;
                 user.UserCode = userEntity.UserCode;
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
         public bool UpdateProfile(UserEntity userEntity)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userEntity.UserID);
+            var user = Users.SingleOrDefault(u => u.UserID == userEntity.UserID);
             if (user != null)
             {
                 if (string.IsNullOrEmpty(user.UserName))
@@ -178,7 +179,7 @@ namespace sBlog.Net.Domain.Concrete
 
                 user.UserSite = userEntity.UserSite;
 
-                context.SubmitChanges();
+                SaveChanges();
                 return true;
             }
             return false;
@@ -186,13 +187,13 @@ namespace sBlog.Net.Domain.Concrete
 
         public string ForgotPassword(string emailAddress)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
+            var user = Users.SingleOrDefault(u => u.UserEmailAddress == emailAddress);
             if (user != null)
             {
                 var userString = string.Format("{0}-{1}-{2}-{3}", user.UserName, user.Password, user.UserEmailAddress, DateTime.Now.ToString());
                 var verificationCode = HashExtensions.GetMD5Hash(userString);
                 user.ActivationKey = verificationCode;
-                context.SubmitChanges();
+                SaveChanges();
                 return verificationCode;
             }
             return string.Empty;
@@ -200,13 +201,13 @@ namespace sBlog.Net.Domain.Concrete
 
         public bool ResetPassword(string emailAddress, string verificationCode, string newPassword, string userCode)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserEmailAddress == emailAddress && u.ActivationKey == verificationCode);
+            var user = Users.SingleOrDefault(u => u.UserEmailAddress == emailAddress && u.ActivationKey == verificationCode);
             if (user != null)
             {
                 user.ActivationKey = string.Empty;
                 user.Password = newPassword;
                 user.UserCode = userCode;
-                context.SubmitChanges();
+                SaveChanges();
                 return true;
             }
             return false;
@@ -214,32 +215,32 @@ namespace sBlog.Net.Domain.Concrete
 
         public void UpdateLastLoginDate(int userID)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userID);
+            var user = Users.SingleOrDefault(u => u.UserID == userID);
             if (user != null)
             {
                 user.LastLoginDate = DateTime.Now;
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
         public void DeleteUser(int userID)
         {
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userID);
+            var user = Users.SingleOrDefault(u => u.UserID == userID);
             if (user != null)
             {
-                _usersTable.DeleteOnSubmit(user);
-                context.SubmitChanges();
+                Users.Remove(user);
+                SaveChanges();
             }
         }
 
         public bool ToggleUserActiveStatus(int userId, bool activate)
         {
             var status = activate ? 1 : 0;
-            var user = _usersTable.SingleOrDefault(u => u.UserID == userId);
+            var user = Users.SingleOrDefault(u => u.UserID == userId);
             if (user != null)
             {
-                user.UserActiveStatus = status;                
-                context.SubmitChanges();
+                user.UserActiveStatus = status;
+                SaveChanges();
                 return true;
             }
             return false;

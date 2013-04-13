@@ -16,17 +16,17 @@
 
 #endregion
 using System;
-using System.Data.Linq.Mapping;
+using System.ComponentModel.DataAnnotations;
 
 namespace sBlog.Net.Domain.Entities
 {
-    [Table(Name = "Errors")]
+    [Table("errors")]
     public class ApplicationErrorEntity
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.OnInsert)]
+        [Key]
         public int ErrorID { get; set; }
-        [Column] public DateTime ErrorDateTime { get; set; }
-        [Column] public string ErrorMessage { get; set; }
-        [Column] public string ErrorDescription { get; set; }
+        public DateTime ErrorDateTime { get; set; }
+        public string ErrorMessage { get; set; }
+        public string ErrorDescription { get; set; }
     }
 }

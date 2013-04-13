@@ -16,24 +16,21 @@
 
 #endregion
 using System;
+using System.Data.Entity;
 using System.Linq;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
-using System.Data.Linq;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Settings : ISettings
+    public class Settings : System.Data.Entity.DbContext, ISettings
     {
-        private Table<SettingsEntity> BlogSettings { get; set; }
-        private readonly DataContext _context;
-        private readonly string _connectionString;
+        public IDbSet<SettingsEntity> BlogSettings { get; set; }
 
         public Settings()
+            : base("AppDb")
         {
-            _connectionString = ApplicationDomainConfiguration.ConnectionString;
-            _context = new DataContext(_connectionString);
-            LoadSettings();
+
         }
 
         public string BlogName
@@ -376,15 +373,10 @@ namespace sBlog.Net.Domain.Concrete
             if (setting != null)
             {
                 setting.KeyValue = value;
-                _context.SubmitChanges();
+                SaveChanges();
                 return true;
             }
             return false;
-        }
-
-        private void LoadSettings()
-        {
-            BlogSettings = _context.GetTable<SettingsEntity>();
         }
 
         private static string GetValueInternal(string value)

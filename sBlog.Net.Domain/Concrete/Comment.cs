@@ -27,87 +27,89 @@
  * */
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
-using System.Data.Linq;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Comment : DefaultDisposable, IComment
+    public class Comment : System.Data.Entity.DbContext, IComment
     {
-        private readonly Table<CommentEntity> _commentsTable;
+        public IDbSet<CommentEntity> Comments { get; set; }
 
         public Comment()
+            : base("AppDb")
         {
-            _commentsTable = context.GetTable<CommentEntity>();
+            
         }
         
         public List<CommentEntity> GetAllComments()
         {
-            return _commentsTable.OrderByDescending(c => c.CommentPostedDate).ToList();
+            return Comments.OrderByDescending(c => c.CommentPostedDate).ToList();
         }
 
         public List<CommentEntity> GetAllComments(int status)
         {
-            return _commentsTable.Where(c => c.CommentStatus == status).OrderByDescending(c => c.CommentPostedDate).ToList();
+            return Comments.Where(c => c.CommentStatus == status).OrderByDescending(c => c.CommentPostedDate).ToList();
         }
 
         public List<CommentEntity> GetCommentsByPostID(int postID)
         {
-            return _commentsTable.Where(c => c.PostID == postID && (c.CommentStatus == 0 || c.CommentStatus == 1)).OrderByDescending(c => c.CommentPostedDate).ToList();
+            return Comments.Where(c => c.PostID == postID && (c.CommentStatus == 0 || c.CommentStatus == 1)).OrderByDescending(c => c.CommentPostedDate).ToList();
         }
 
         public void DeleteCommentByCommentID(int commentID)
         {
-            var commentEntity = _commentsTable.SingleOrDefault(c => c.CommentID == commentID);
+            var commentEntity = Comments.SingleOrDefault(c => c.CommentID == commentID);
             if (commentEntity != null)
             {
-                _commentsTable.DeleteOnSubmit(commentEntity);
-                context.SubmitChanges();
+                Comments.Remove(commentEntity);
+                SaveChanges();
             }
         }
 
         public void AddComment(CommentEntity commentEntity)
         {
             commentEntity.CommentPostedDate = DateTime.Now;
-            _commentsTable.InsertOnSubmit(commentEntity);
-            context.SubmitChanges();
+            Comments.Add(commentEntity);
+            SaveChanges();
         }
 
         public void DeleteCommentsByPostID(int postID)
         {
-            var comments = _commentsTable.Where(c => c.PostID == postID);
+            var comments = Comments.Where(c => c.PostID == postID);
             if (comments.Any())
             {
-                _commentsTable.DeleteAllOnSubmit(comments);
-                context.SubmitChanges();
+                foreach (var commentEntity in comments)
+                {
+                    Comments.Remove(commentEntity);
+                }
+                SaveChanges();
             }
         }
 
         public void UpdateCommentStatus(int commentID, int status)
         {
-            var commentEntity = _commentsTable.SingleOrDefault(c => c.CommentID == commentID);
+            var commentEntity = Comments.SingleOrDefault(c => c.CommentID == commentID);
             if (commentEntity != null)
             {
                 commentEntity.CommentStatus = status;
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
         public void DeleteCommentsByPostID(IEnumerable<int> postList)
         {
-            var comments = _commentsTable.Where(c => postList.Contains(c.PostID));
+            var comments = Comments.Where(c => postList.Contains(c.PostID));
             if (comments.Any())
             {
-                _commentsTable.DeleteAllOnSubmit(comments);
-                context.SubmitChanges();
+                foreach (var commentEntity in comments)
+                {
+                    Comments.Remove(commentEntity);
+                }
+                SaveChanges();
             }
-        }
-
-        ~Comment()
-        {
-            Dispose(false);
         }
     }
 }

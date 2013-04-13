@@ -26,34 +26,34 @@
  * 
  * */
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Domain.Entities;
-using System.Data.Linq;
 
 namespace sBlog.Net.Domain.Concrete
 {
-    public class Category : DefaultDisposable, ICategory
+    public class Category : System.Data.Entity.DbContext, ICategory
     {
-        private readonly Table<CategoryEntity> _categoriesTable;
-        private readonly Table<CategoryMapping> _postCategoryMapping;
+        public IDbSet<CategoryEntity> Categories { get; set; }
+        public IDbSet<CategoryMapping> CategoryMappings { get; set; }
 
         public Category()
+            : base("AppDb")
         {
-            _categoriesTable = context.GetTable<CategoryEntity>();
-            _postCategoryMapping = context.GetTable<CategoryMapping>();
+
         }
 
         public List<CategoryEntity> GetCategories()
         {
-            return _categoriesTable.OrderBy(c => c.CategoryID).ToList();
+            return Categories.OrderBy(c => c.CategoryID).ToList();
         }
 
         public List<CategoryEntity> GetCategoriesByPostID(int postID)
         {            
             var categoriesEntities = new List<CategoryEntity>();
             var allCategories = GetCategories();
-            var postCategoryMappings = _postCategoryMapping.Where(m => m.PostID == postID).ToList();
+            var postCategoryMappings = CategoryMappings.Where(m => m.PostID == postID).ToList();
 
             postCategoryMappings.ForEach(mapping =>
             {
@@ -67,24 +67,27 @@ namespace sBlog.Net.Domain.Concrete
 
         public void DeleteCategory(int categoryID)
         {
-            IEnumerable<CategoryMapping> currentMappings = _postCategoryMapping.Where(c => c.CategoryID == categoryID);
+            IEnumerable<CategoryMapping> currentMappings = CategoryMappings.Where(c => c.CategoryID == categoryID);
             if (currentMappings.Any())
             {
-                _postCategoryMapping.DeleteAllOnSubmit(currentMappings);
-                context.SubmitChanges();
+                foreach (var categoryMapping in currentMappings)
+                {
+                    CategoryMappings.Remove(categoryMapping);
+                }
+                SaveChanges();
             }
 
-            var entity = _categoriesTable.SingleOrDefault(c => c.CategoryID == categoryID);
+            var entity = Categories.SingleOrDefault(c => c.CategoryID == categoryID);
             if (entity != null)
             {
-                _categoriesTable.DeleteOnSubmit(entity);
-                context.SubmitChanges();
+                Categories.Remove(entity);
+                SaveChanges();
             }
         }
 
         public void DeleteCategory(string category)
         {
-            var categoryEntity = _categoriesTable.SingleOrDefault(c => c.CategoryName == category);
+            var categoryEntity = Categories.SingleOrDefault(c => c.CategoryName == category);
             
             if (categoryEntity != null)
             {
@@ -94,11 +97,11 @@ namespace sBlog.Net.Domain.Concrete
 
         public void UpdateCategoryByID(int id, string newName)
         {
-            var categoryEntity = _categoriesTable.SingleOrDefault(c => c.CategoryID == id);
+            var categoryEntity = Categories.SingleOrDefault(c => c.CategoryID == id);
             if (categoryEntity != null)
             {
                 categoryEntity.CategoryName = newName;
-                context.SubmitChanges();
+                SaveChanges();
             }
         }
 
@@ -106,8 +109,8 @@ namespace sBlog.Net.Domain.Concrete
         {
             if (entity != null)
             {
-                _categoriesTable.InsertOnSubmit(entity);
-                context.SubmitChanges();
+                Categories.Add(entity);
+                SaveChanges();
                 return entity.CategoryID;
             }
             return -1;
@@ -122,44 +125,58 @@ namespace sBlog.Net.Domain.Concrete
                                                                          CategoryID = c.CategoryID,
                                                                          PostID = postID
                                                                      }));
+            
+            foreach (var postCategoryMapping in postCategoryMappings)
+            {
+                CategoryMappings.Add(postCategoryMapping);
+            }
 
-            _postCategoryMapping.InsertAllOnSubmit(postCategoryMappings);
-            context.SubmitChanges();
+            SaveChanges();
         }
 
         public void UpdatePostCategoryMapping(List<CategoryEntity> categoryEntity, int postID)
         {
             var postCategoryMappings = new List<CategoryMapping>();
-            var postMappings = _postCategoryMapping.Where(p => p.PostID == postID).ToList();
+            var postMappings = CategoryMappings.Where(p => p.PostID == postID).ToList();
             categoryEntity.ForEach(c => postCategoryMappings.Add(new CategoryMapping { CategoryID = c.CategoryID, PostID = postID }));
-            _postCategoryMapping.DeleteAllOnSubmit(postMappings);
-            _postCategoryMapping.InsertAllOnSubmit(postCategoryMappings);
-            context.SubmitChanges();
+
+            foreach (var postMapping in postMappings)
+            {
+                CategoryMappings.Remove(postMapping);
+            }
+
+            foreach (var postCategoryMapping in postCategoryMappings)
+            {
+                CategoryMappings.Add(postCategoryMapping);
+            }
+
+            SaveChanges();
         }
 
         public void DeletePostCategoryMapping(int postID)
         {
-            var mappings = _postCategoryMapping.Where(m => m.PostID == postID).ToList();
+            var mappings = CategoryMappings.Where(m => m.PostID == postID).ToList();
             if (mappings.Count > 0)
             {
-                _postCategoryMapping.DeleteAllOnSubmit(mappings);
-                context.SubmitChanges();
+                foreach (var categoryMapping in mappings)
+                {
+                    CategoryMappings.Remove(categoryMapping);
+                }
+                SaveChanges();
             }
         }
 
         public void DeletePostCategoryMapping(IEnumerable<int> postList)
         {
-            var mappings = _postCategoryMapping.Where(c => postList.Contains(c.PostID));
+            var mappings = CategoryMappings.Where(c => postList.Contains(c.PostID));
             if (mappings.Any())
             {
-                _postCategoryMapping.DeleteAllOnSubmit(mappings);
-                context.SubmitChanges();
+                foreach (var categoryMapping in mappings)
+                {
+                    CategoryMappings.Remove(categoryMapping);
+                }
+                SaveChanges();
             }
-        }
-
-        ~Category()
-        {
-            Dispose(false);
         }
     }
 }
