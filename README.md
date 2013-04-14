@@ -4,13 +4,21 @@ In a very few words, sBlog.Net is a minimalistic blog engine. This project was h
 come in the following days! You will be able to do all of the normal activities that you could do in a blog like adding a post or page, 
 adding categories or tags, adding additional authors and many more. If I have to describe sBlog.Net in a single sentence, I would say,
 
-“For the love of asp.net mvc and wordpress”!
+"For the love of asp.net mvc and wordpress"!
 
 To get started, refer to this short article! You just need an instance of Visual Studio 2010 with ASP.Net MVC 3, MS SQL server (express 
 should also be fine) and optionally IIS.
 
 Thanks for trying out sBlog.Net!
 http://sblogproject.net
+
+## Notes for the sBlog.Net branch for MySQL
+
+This branch can connect to MySQL instead of MS SQL. The assemblies required for connecting to MySQL is already 
+present in the packages folder. This is not from nuget. In order to use this branch, get the zip file and extract it.
+Now, connect to your instance of MySQL, I recommend phpMyAdmin. Then create a database, go to the "Import" tab, select
+the Init.sql file within the sBlog.Net.DB\v1.0\Install folder and hit the "Go" button. Now, update the connection string
+within the web.config file, you are ready to go! No other changes are required within the application!
 
 ## Notes for sBlog.Net v2.0
 
