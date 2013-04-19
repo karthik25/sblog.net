@@ -15,16 +15,6 @@
 /* *********************************************** */
 
 #endregion
-/* Post.cs 
- * 
- * This class extends the DefaultDisposable class,
- * Which implements the IDisposable interface for this class.
- * 
- * If you modify the class to add more disposable managed
- * resources, you can remove DefaultDisposable and implement
- * the Dispose() method yourself
- * 
- * */
 using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
