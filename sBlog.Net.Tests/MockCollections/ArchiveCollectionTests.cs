@@ -26,8 +26,8 @@ namespace sBlog.Net.Tests.MockCollections
         {
             var archives = new List<Archive>
                                {
-                                   new Archive {Year = "2012", Month = "04", MonthYear = "April 2012"},
-                                   new Archive {Year = "2012", Month = "01", MonthYear = "January 2012"}
+                                   new Archive {Year = "2012", Month = "04", MonthYear = "April 2012 (7)"},
+                                   new Archive {Year = "2012", Month = "01", MonthYear = "January 2012 (7)"}
                                };
 
             return archives;

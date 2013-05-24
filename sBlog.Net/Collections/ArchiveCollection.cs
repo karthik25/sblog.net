@@ -64,40 +64,17 @@ namespace sBlog.Net.Collections
 
         private void AddArchives()
         {
-            var dateTime = GetDateTime();
-            var currentYear = dateTime.Year;
-            var currentMonth = dateTime.Month;
             var dateTimeFormatInfo = new DateTimeFormatInfo();
-
-            var post = _postsList.OrderByDescending(p => p.PostEditedDate).LastOrDefault();
-
-            if (post != null)
-            {
-                var endYear = post.PostAddedDate.Year;
-
-                while (currentYear >= endYear)
-                {
-                    if (_postsList.Any(p => p.PostAddedDate.Year == currentYear && p.PostAddedDate.Month == currentMonth))
-                    {
-                        Archives.Add(new Archive
-                        {
-                            Year = currentYear.ToString(),
-                            Month = currentMonth.ToString("00"),
-                            MonthYear = string.Format("{0} {1}", dateTimeFormatInfo.GetMonthName(currentMonth), currentYear)
-                        });
-                    }
-
-                    if (currentMonth - 1 < 1)
-                    {
-                        currentMonth = 12;
-                        currentYear--;
-                    }
-                    else
-                    {
-                        currentMonth--;
-                    }
-                }
-            }
+            var group = _postsList.GroupBy(p => new { p.PostAddedDate.Year, p.PostAddedDate.Month })
+                                  .OrderByDescending(g => g.Key.Year)
+                                  .ThenByDescending(g => g.Key.Month);
+            var archives = @group.Select(g => new Archive
+                           {
+                               MonthYear = string.Format("{0} {1} ({2})", dateTimeFormatInfo.GetMonthName(g.Key.Month), g.Key.Year, g.Count()),
+                               Year = g.Key.Year.ToString(CultureInfo.InvariantCulture),
+                               Month = g.Key.Month.ToString("00")
+                           }).ToList();
+            Archives.AddRange(archives);
         }
     }
 }
