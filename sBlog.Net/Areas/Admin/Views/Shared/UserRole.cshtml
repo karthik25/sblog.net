@@ -1,0 +1,9 @@
+﻿@using sBlog.Net.Providers
+@model sBlog.Net.Domain.Entities.UserEntity
+
+@using (Ajax.BeginForm("UpdateUserRole","UserAdmin", new { Area = "Admin" }, new AjaxOptions{ InsertionMode = InsertionMode.Replace, LoadingElementId = "imgLoading"}))
+{
+    @Html.Hidden("userId", Model.UserID)
+    @Html.DropDownList("roleId", RolePossibilitiesProviderModel.AvailableRoles, new { @id = string.Format("roleId{0}", Model.UserID), @name = string.Format("roleId{0}", Model.UserID), @class = "role-list" })
+    <input type="submit" value="set"/>
+}

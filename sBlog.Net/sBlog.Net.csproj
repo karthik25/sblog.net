@@ -99,6 +99,7 @@
     <Compile Include="FluentExtensions\StringUrlExtensions.cs" />
     <Compile Include="CustomExceptions\UrlNotFoundException.cs" />
     <Compile Include="FluentExtensions\TagExtensions.cs" />
+    <Compile Include="Infrastructure\CustomRoleProvider.cs" />
     <Compile Include="Infrastructure\ErrorLogger.cs" />
     <Compile Include="Infrastructure\PasswordHelper.cs" />
     <Compile Include="Infrastructure\UniqueUrlHelper.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\ViewPostOrPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\RolePossibilitiesProviderModel.cs" />
     <Compile Include="Providers\SyntaxHighlighterBrushesModel.cs" />
     <Compile Include="Rss\RssFeedGenerator.cs" />
     <Compile Include="Services\AccountMembershipService.cs" />
@@ -415,6 +417,7 @@
     <Content Include="Content\codeHighlighter\styles\shThemeRDark.css" />
     <Content Include="Content\Images\404_black.png" />
     <Content Include="Content\Images\404_brown.png" />
+    <Content Include="Content\Images\loader-transparent.gif" />
     <Content Include="Content\Images\new_window_icon.png" />
     <Content Include="Content\Images\preview.png" />
     <Content Include="Content\Images\profile.png" />
@@ -876,6 +879,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Author\PostsByAuthor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\UserRole.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

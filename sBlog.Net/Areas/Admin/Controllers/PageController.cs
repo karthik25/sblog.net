@@ -30,7 +30,7 @@ using sBlog.Net.Areas.Admin.Models;
 
 namespace sBlog.Net.Areas.Admin.Controllers
 {
-    [Authorize(Users="admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class PageController : BlogController
     {
         private readonly IPost _postRepository;
@@ -41,7 +41,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private const byte ItemEntryType = 2;
 
         public PageController(IPost postRepository, ITag tagRepository, ISettings settingsRepository)
-            : base (settingsRepository)
+            : base(settingsRepository)
         {
             _postRepository = postRepository;
             _tagRepository = tagRepository;
@@ -57,11 +57,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
             ValidateActionRequest("Unauthorized attempt to add a post");
 
             var postModel = new PostViewModel
-                                {
-                                    Post = new PostEntity {EntryType = ItemEntryType, UserCanAddComments = true, CanBeShared = true},
-                                    Title = SettingsRepository.BlogName,
-                                    SharingEnabled = SettingsRepository.BlogSocialSharing
-                                };
+            {
+                Post = new PostEntity { EntryType = ItemEntryType, UserCanAddComments = true, CanBeShared = true },
+                Title = SettingsRepository.BlogName,
+                SharingEnabled = SettingsRepository.BlogSocialSharing
+            };
 
             return View(postModel);
         }
@@ -86,7 +86,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
                 if (pageID > 0)
                 {
-                    return RedirectToAction("Edit", new {postID = pageID, newlyAdded = true});
+                    return RedirectToAction("Edit", new { postID = pageID, newlyAdded = true });
                 }
             }
             postModel.Title = SettingsRepository.BlogName;
@@ -101,11 +101,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
             var post = _postRepository.GetPostByID(postID);
 
             var postModel = new PostViewModel
-                                {
-                                    Post = post,
-                                    Title = SettingsRepository.BlogName,
-                                    SharingEnabled = SettingsRepository.BlogSocialSharing
-                                };
+            {
+                Post = post,
+                Title = SettingsRepository.BlogName,
+                SharingEnabled = SettingsRepository.BlogSocialSharing
+            };
 
             if (newlyAdded)
             {

@@ -13,6 +13,10 @@
     </td>
     <td>
         @Model.UserActiveStatusString
+        @if (User.IsInRole("SuperAdmin"))
+        {
+            @Html.Partial("UserRole", Model)
+        }
     </td>
     <td>
         @Model.LastLoginDate

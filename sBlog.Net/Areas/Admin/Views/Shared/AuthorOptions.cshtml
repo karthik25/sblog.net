@@ -1,6 +1,13 @@
 ﻿@model sBlog.Net.Domain.Entities.UserEntity
 
-@Html.ActionLink("delete author", "DeleteAuthor", "UserAdmin", new { @userID = Model.UserID }, new { @class = "deleteAuthor subLink" })
+@if (User.IsInRole("SuperAdmin"))
+{
+    @Html.ActionLink("delete author", "DeleteAuthor", "UserAdmin", new {@userID = Model.UserID}, new {@class = "deleteAuthor subLink"})
+}
+else
+{
+    <span title="Pls. contact the admin to delete this author">delete author</span>
+}
 
 @{
     var typeOfActivation = string.Empty;

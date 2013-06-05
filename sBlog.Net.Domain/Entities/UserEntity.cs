@@ -65,6 +65,7 @@ namespace sBlog.Net.Domain.Entities
          * 
          */
         public int PostsCount { get; set; }
+        public short RoleId { get; set; }
         #endregion
     }
 }

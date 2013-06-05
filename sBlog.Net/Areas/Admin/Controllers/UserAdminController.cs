@@ -28,7 +28,6 @@ using sBlog.Net.FluentExtensions;
 
 namespace sBlog.Net.Areas.Admin.Controllers
 {
-    [Authorize(Users = "admin")]
     public class UserAdminController : BlogController
     {
         private readonly IPost _postRepository;
@@ -36,10 +35,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private readonly ICategory _categoryRepository;
         private readonly ITag _tagRepository;
         private readonly IUser _userRepository;
+        private readonly IRole _roleRepository;
 
         private readonly int _itemsPerPage;
 
-        public UserAdminController(IPost postRepository, IComment commentRepository, ICategory categoryRepository, ITag tagRepository, IUser userRepository, ISettings settingsRepository)
+        public UserAdminController(IPost postRepository, IComment commentRepository, ICategory categoryRepository, ITag tagRepository, IUser userRepository, ISettings settingsRepository, IRole roleRepository)
             : base(settingsRepository)
         {
             _postRepository = postRepository;
@@ -47,6 +47,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
             ExpectedMasterName = string.Empty;
 
             _itemsPerPage = settingsRepository.ManageItemsPerPage;
@@ -56,12 +57,19 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
         public ActionResult UserManagement([DefaultValue(1)] int page)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var allUsers = _userRepository.GetAllUsers().Where(u => u.UserID != 1).ToList();
             var filteredList = allUsers.Skip((page - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
 
             filteredList.ForEach(author =>
             {
                 author.PostsCount = _postRepository.GetPostsByUserID(author.UserID, 1).Count(p => !p.IsPrivate);
+                var roleForUser = _roleRepository.GetRoleForUser(author.UserID);
+                author.RoleId = (short) (roleForUser == -1 ? 2 : roleForUser);
             });
 
             var usersModel = new AdminAuthorsViewModel
@@ -93,6 +101,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         /// <param name="token">The one time token to check if this is a valid ajax request</param>
         /// <exception cref="NotSupportedException">If the user id is that of an admin</exception>
         /// <returns></returns>
+        [Authorize(Roles = "SuperAdmin")]
         public JsonResult DeleteAuthor(int userID, string token)
         {
             if (userID == 1 || !CheckToken(token))
@@ -108,6 +117,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 _tagRepository.DeleteTagsForsPosts(posts);
                 _commentRepository.DeleteCommentsByPostID(posts);
                 _postRepository.DeletePostsByUserID(userID);
+                _roleRepository.DeleteRolesForUser(userID);
                 _userRepository.DeleteUser(userID);
             }
             catch
@@ -117,7 +127,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public JsonResult ActivateDeactivateAuthor(int authorId, int currentStatus, string token)
         {
             if (authorId == 1 || !CheckToken(token))
@@ -130,17 +140,36 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return Json(status, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
+        public ActionResult UpdateUserRole(int userId, short roleId)
+        {
+            if (userId == 1)
+            {
+                throw new UnauthorizedAccessException("Cannot modify the role of the admin user");
+            }
+
+            _roleRepository.AddRoleForUser(userId, roleId);
+            var userEntity = _userRepository.GetUserObjByUserID(userId);
+            userEntity.RoleId = roleId;
+            return PartialView("UserRole", userEntity);
+        }
+
         public ActionResult ManagePublicPosts([DefaultValue(1)] int page)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var allUsers = _userRepository.GetAllUsers().ToList();
             var allPosts = _postRepository.GetPosts(1, 1);
-            var filteredPosts = allPosts.Skip((page - 1)*5).Take(5).ToList();
+            var filteredPosts = allPosts.Skip((page - 1) * 5).Take(5).ToList();
             filteredPosts.ForEach(post =>
-                {
-                    var user = allUsers.Single(u => u.UserID == post.OwnerUserID);
-                    post.OwnerUserName = user.UserDisplayName;
-                    post.UserName = user.UserName;
-                });
+            {
+                var user = allUsers.Single(u => u.UserID == post.OwnerUserID);
+                post.OwnerUserName = user.UserDisplayName;
+                post.UserName = user.UserName;
+            });
             var postModel = new AdminPostOrPageViewModel
             {
                 Posts = allPosts.Skip((page - 1) * 5).Take(5).ToList(),
@@ -158,6 +187,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
         public ActionResult ManagePublicComments([DefaultValue(1)] int page, string type)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var status = type != null ? (int)Enum.Parse(typeof(CommentStatus), type, true) : int.MaxValue;
             var posts = _postRepository.GetPosts().Where(p => p.OwnerUserID != 1).ToList();
             var filteredComments = _commentRepository.GetAllComments()

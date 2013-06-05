@@ -220,7 +220,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             }
             else
             {
-                if (postEntity.OwnerUserID != GetUserId() && GetUserId() != 1)
+                if (postEntity.OwnerUserID != GetUserId() && !User.IsInRole("SuperAdmin"))
                 {
                     throw new UnauthorizedAccessException("Unauthorized attempt to edit the post");
                 }

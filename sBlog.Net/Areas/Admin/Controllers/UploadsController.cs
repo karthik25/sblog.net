@@ -38,7 +38,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private readonly int _itemsPerPage;
 
         public UploadsController(IPathMapper pathMapper, ISettings settingsRepository)
-            : base (settingsRepository)
+            : base(settingsRepository)
         {
             _pathMapper = pathMapper;
             ExpectedMasterName = string.Empty;
@@ -48,7 +48,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             IsAdminController = true;
         }
 
-        [Authorize(Users="admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult ManageUploads([DefaultValue(1)] int page)
         {
             var basePath = _pathMapper.MapPath(UploadsBasePath);
@@ -86,8 +86,8 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
             var model = new AdminUploadsViewModel
             {
-                 FileEntries = fileInfoList.OrderBy(f => f.FileName).ToList(),
-                 CKEditorFuncNum = CKEditorFuncNum
+                FileEntries = fileInfoList.OrderBy(f => f.FileName).ToList(),
+                CKEditorFuncNum = CKEditorFuncNum
             };
 
             return View(model);
@@ -110,7 +110,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View("UploadFile", (object)uploadStatus);
         }
 
-        [Authorize(Users="admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult UploadFileWithRefresh(HttpPostedFileBase file)
         {
             try
@@ -125,7 +125,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return RedirectToRoute("AdminUploads");
         }
 
-        [Authorize(Users="admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpGet]
         public JsonResult DeleteUploadedFile(string fileName, string token)
         {
@@ -159,11 +159,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
             var fileName = Path.GetFileName(file);
             var urlHelper = new UrlHelper(HttpContext.Request.RequestContext);
             return new FileEntry
-                   {
-                       FileName = fileName,
-                       FileIconName = GetFileInfoByExt(Path.GetExtension(file)),
-                       FileUrl = urlHelper.Content(UploadsBasePath + "/" + fileName)
-                   };
+            {
+                FileName = fileName,
+                FileIconName = GetFileInfoByExt(Path.GetExtension(file)),
+                FileUrl = urlHelper.Content(UploadsBasePath + "/" + fileName)
+            };
         }
 
         private static string GetSafeFileName(string currentName)

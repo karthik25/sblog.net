@@ -28,8 +28,7 @@ using sBlog.Net.Controllers;
 using sBlog.Net.FluentExtensions;
 
 namespace sBlog.Net.Areas.Admin.Controllers
-{
-    [Authorize(Users = "admin")]
+{    
     public class TagAdminController : BlogController
     {
         private readonly ITag _tagRepository;
@@ -41,7 +40,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             _tagRepository = tagRepository;
             ExpectedMasterName = string.Empty;
-            
+
             _itemsPerPage = settingsRepository.ManageItemsPerPage;
 
             IsAdminController = true;
@@ -49,6 +48,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
         public ActionResult ManageTags([DefaultValue(1)] int page)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var allTags = _tagRepository.GetAllTags();
             var tagModel = new AdminTagsViewModel
             {
@@ -67,13 +71,18 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
         public ActionResult AddTagPartial(string tagName, string token)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             if (Request.IsAjaxRequest() && CheckToken(token))
             {
                 TagEntity tagEntity = null;
-                var newTag = _tagRepository.GetTagEntities(new List<string> {tagName}).FirstOrDefault();
+                var newTag = _tagRepository.GetTagEntities(new List<string> { tagName }).FirstOrDefault();
                 if (newTag != null)
                 {
-                    _tagRepository.AddTags(new List<TagEntity> {newTag});
+                    _tagRepository.AddTags(new List<TagEntity> { newTag });
                     tagEntity = _tagRepository.GetAllTags().Single(t => t.TagName.ToLower() == tagName.ToLower());
                 }
                 return PartialView("Tag", tagEntity);
@@ -84,6 +93,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
         [HttpGet]
         public JsonResult DeleteTag(int tagId, string token)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                throw new Exception("Possible unauthorized access");
+            }
+
             if (!CheckToken(token))
             {
                 throw new Exception("Possible unauthorized access");

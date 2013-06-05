@@ -83,6 +83,7 @@ namespace sBlog.Net.DependencyManagement
                 Bind<IPathMapper>().To<PathMapper>();
                 Bind<IError>().To<Error>();
                 Bind<ICacheService>().To<CacheService>();
+                Bind<IRole>().To<Role>();
             }
         }
     }

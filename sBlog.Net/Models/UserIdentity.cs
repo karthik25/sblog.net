@@ -26,7 +26,7 @@ using System.Web.Security;
 namespace sBlog.Net.Models
 {
     [Serializable]
-    public class UserIdentity : IIdentity, IUserInfo, ISerializable
+    public class UserIdentity : IIdentity, IUserInfo, ISerializable, IPrincipal
     {
         private readonly FormsAuthenticationTicket _ticket;
 
@@ -67,7 +67,7 @@ namespace sBlog.Net.Models
             {
                 throw new InvalidOperationException("Serialization not supported");
             }
-            
+
             var gIdent = new GenericIdentity(Name, AuthenticationType);
             info.SetType(gIdent.GetType());
 
@@ -78,6 +78,16 @@ namespace sBlog.Net.Models
             {
                 info.AddValue(serializableMembers[i].Name, serializableValues[i]);
             }
+        }
+
+        public bool IsInRole(string role)
+        {
+            return Roles.IsUserInRole(Name);
+        }
+
+        public IIdentity Identity
+        {
+            get { return this; }
         }
     }
 }

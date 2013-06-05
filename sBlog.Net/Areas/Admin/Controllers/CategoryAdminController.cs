@@ -48,9 +48,14 @@ namespace sBlog.Net.Areas.Admin.Controllers
             IsAdminController = true;
         }
 
-        [Authorize(Users="admin")]
+        [Authorize]
         public ActionResult ManageCategories([DefaultValue(1)] int page)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var allCategories = _categoryRepository.GetCategories();
             var categoryModel = new AdminCategoriesViewModel
             {
@@ -78,10 +83,15 @@ namespace sBlog.Net.Areas.Admin.Controllers
             throw new NotSupportedException("Request is not an ajax request");
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize]
         [HttpGet]
         public ActionResult AddCategoryPartial(string categoryName, string token)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             if (Request.IsAjaxRequest() && CheckToken(token))
             {
                 var entity = AddCategoryInternal(categoryName);
@@ -90,10 +100,15 @@ namespace sBlog.Net.Areas.Admin.Controllers
             throw new NotSupportedException("Request is not an ajax request/Possible unauthorized access");
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize]
         [HttpGet]
         public JsonResult DeleteCategory(int categoryId, string token)
-        {            
+        {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                throw new Exception("Possible unauthorized access");
+            }
+
             if (!CheckToken(token))
             {
                 throw new Exception("Possible unauthorized access");
@@ -112,14 +127,14 @@ namespace sBlog.Net.Areas.Admin.Controllers
                                                          .Select(p => p.PostID)
                                                          .ToList();
                 postsWithNoCategory.ForEach(post =>
+                {
+                    var defaultCategory = _categoryRepository.GetCategories().SingleOrDefault(c => c.CategoryID == 1);
+                    if (defaultCategory != null)
                     {
-                        var defaultCategory = _categoryRepository.GetCategories().SingleOrDefault(c => c.CategoryID == 1);
-                        if (defaultCategory != null)
-                        {
-                            var categoryList = new List<CategoryEntity> { defaultCategory };
-                            _categoryRepository.UpdatePostCategoryMapping(categoryList, post);
-                        }
-                    });
+                        var categoryList = new List<CategoryEntity> { defaultCategory };
+                        _categoryRepository.UpdatePostCategoryMapping(categoryList, post);
+                    }
+                });
             }
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -134,7 +149,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             {
                 var categories = allCategories.Select(c => c.CategorySlug).ToList();
                 var categorySlug = finalCategoryName.GetUniqueSlug(categories);
-                var entity = new CategoryEntity {CategoryName = finalCategoryName, CategorySlug = categorySlug};
+                var entity = new CategoryEntity { CategoryName = finalCategoryName, CategorySlug = categorySlug };
                 entity.CategoryID = _categoryRepository.AddCategory(entity);
                 return entity;
             }

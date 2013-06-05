@@ -35,6 +35,9 @@ namespace sBlog.Net.MetaData.MetaData
         [StringLength(50, ErrorMessage = "Email cannot be more than 50 characters")]
         public object UserEmailAddress { get; set; }
 
+        [DisplayName("Role")]
+        public object RoleId { get; set; }
+
         public object Title { get; set; }
     }
 }

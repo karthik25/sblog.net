@@ -16,6 +16,7 @@
 
 #endregion
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,11 +37,13 @@ namespace sBlog.Net.Controllers
     public class AccountController : BlogController
     {
         private readonly IUser _userRepository;
+        private readonly IRole _roleRepository;
 
-        public AccountController(IUser userRepository, ISettings settingsRepository)
+        public AccountController(IUser userRepository, ISettings settingsRepository, IRole roleRepository)
             : base(settingsRepository)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
             ExpectedMasterName = string.Empty;
         }
 
@@ -116,18 +119,18 @@ namespace sBlog.Net.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // **************************************
-        // URL: /Account/AddNewUser
-        // **************************************
-
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Add()
         {
-            var newUserModel = new NewUserModel {Title = SettingsRepository.BlogName};
+            var newUserModel = new NewUserModel
+                {
+                    Title = SettingsRepository.BlogName,
+                    RoleId = 2
+                };
             return View(newUserModel);
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public ActionResult Add(NewUserModel newUserModel)
         {
@@ -136,11 +139,14 @@ namespace sBlog.Net.Controllers
 
             if (ModelState.IsValid)
             {
-                var userActivationKey = HashExtensions.GetMD5Hash(string.Format("{0}-{1}-{2}",newUserModel.UserDisplayName,newUserModel.UserEmailAddress, DateTime.Now));
+                var userActivationKey = HashExtensions.GetMD5Hash(string.Format("{0}-{1}-{2}", newUserModel.UserDisplayName, newUserModel.UserEmailAddress, DateTime.Now));
                 createStatus = _userRepository.AddUser(newUserModel.UserEmailAddress, newUserModel.UserDisplayName, userActivationKey);
 
                 if (createStatus)
                 {
+                    var newUser = _userRepository.GetUserNameByEmail(newUserModel.UserEmailAddress);
+                    _roleRepository.AddRoleForUser(newUser.UserID, newUserModel.RoleId);
+
                     urlFormat = string.Format("{0}account/register?newUserTicket={1}", GetRootUrl(), userActivationKey);
                     var status = Emailer.SendMessage(SettingsRepository.BlogAdminEmailAddress, newUserModel.UserEmailAddress,
                                                      string.Format("Join {0}", SettingsRepository.BlogName),
@@ -160,7 +166,7 @@ namespace sBlog.Net.Controllers
                             ? "Unable to send an email because the emailing service failed. Please send the following url to the user " +
                               urlFormat
                             : "Creation/update of new user failed. Check the email address entered.";
-            ModelState.AddModelError("",errorMessage);
+            ModelState.AddModelError("", errorMessage);
             return View(newUserModel);
         }
 
@@ -176,15 +182,18 @@ namespace sBlog.Net.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var registerModel = new RegisterModel { Title = SettingsRepository.BlogName, 
-                                                    NewUserTicket = newUserTicket, 
-                                                    UserID = userEntity.UserID, 
-                                                    UserDisplayName = userEntity.UserDisplayName};
+            var registerModel = new RegisterModel
+            {
+                Title = SettingsRepository.BlogName,
+                NewUserTicket = newUserTicket,
+                UserID = userEntity.UserID,
+                UserDisplayName = userEntity.UserDisplayName
+            };
             return View(registerModel);
         }
 
         private UserEntity GetNewUserIDByTicket(string newUserTicket)
-        {            
+        {
             if (string.IsNullOrEmpty(newUserTicket))
                 return null;
 
@@ -226,7 +235,7 @@ namespace sBlog.Net.Controllers
                     return true;
             }
 
-            ModelState.AddModelError("","Unable to validate the information you entered");
+            ModelState.AddModelError("", "Unable to validate the information you entered");
             return false;
         }
 
@@ -239,7 +248,7 @@ namespace sBlog.Net.Controllers
             if (!string.IsNullOrEmpty(verificationCode))
             {
                 urlFormat = string.Format(urlFormat, GetRootUrl(), verificationCode);
-                var status = Emailer.SendMessage(SettingsRepository.BlogAdminEmailAddress, emailAddress, 
+                var status = Emailer.SendMessage(SettingsRepository.BlogAdminEmailAddress, emailAddress,
                                                  string.Format("Request to reset your password :: {0}", SettingsRepository.BlogName),
                                                  string.Format(EmailMeassage, urlFormat, SettingsRepository.BlogName));
                 return !status ? "unable to process your request. please try again later..." : "successfully reset your password. please check your email in a few minutes...";
@@ -291,9 +300,9 @@ namespace sBlog.Net.Controllers
                 var message = string.Format(emailMessage, requestAccountModel.AuthorName,
                                             requestAccountModel.AuthorEmail, requestAccountModel.AuthorMessage);
 
-                var status = Emailer.SendMessage(SettingsRepository.BlogAdminEmailAddress, SettingsRepository.BlogAdminEmailAddress, 
+                var status = Emailer.SendMessage(SettingsRepository.BlogAdminEmailAddress, SettingsRepository.BlogAdminEmailAddress,
                                                  "Request for an account", message);
-                return status ? "request for being an author sent. please check your email address if it has been approved." 
+                return status ? "request for being an author sent. please check your email address if it has been approved."
                               : "unable to process your request. please try again later.";
             }
 
@@ -306,7 +315,7 @@ namespace sBlog.Net.Controllers
             var userId = userEntity.UserID;
             var token = RandomStringGenerator.RandomString(8);
             _userRepository.SetOneTimeToken(userId, token);
-            var userData = string.Format("{0}:{1}", userId.ToString(),
+            var userData = string.Format("{0}:{1}", userId.ToString(CultureInfo.InvariantCulture),
                                                        token);
             var authTicket = new FormsAuthenticationTicket(1, //version
                                                         userName, // user name

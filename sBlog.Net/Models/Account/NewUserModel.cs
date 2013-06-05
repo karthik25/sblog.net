@@ -15,6 +15,7 @@
 /* *********************************************** */
 
 #endregion
+
 using System.ComponentModel.DataAnnotations;
 using sBlog.Net.MetaData.MetaData;
 
@@ -26,5 +27,6 @@ namespace sBlog.Net.Models.Account
         public string UserDisplayName { get; set; }
         public string UserEmailAddress { get; set; }
         public string Title { get; set; }
+        public short RoleId { get; set; }
     }
 }

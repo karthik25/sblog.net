@@ -45,7 +45,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private readonly IUser _userRepository;
 
         public AdminController(IPost postRepository, IComment commentRepository, ICategory categoryRepository, ITag tagRepository, ISettings settingsRepository, IPathMapper pathMapper, IUser userRepository)
-            : base (settingsRepository)
+            : base(settingsRepository)
         {
             _postRepository = postRepository;
             _commentRepository = commentRepository;
@@ -85,7 +85,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View(model);
         }
 
-        [Authorize(Users="admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Settings()
         {
             var akismetUrl = string.IsNullOrEmpty(SettingsRepository.BlogAkismetUrl)
@@ -107,7 +107,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 AdminEmailAddress = SettingsRepository.BlogAdminEmailAddress,
                 BlogSmtpAddress = SettingsRepository.BlogSmtpAddress,
                 ManageItemsPerPage = SettingsRepository.ManageItemsPerPage,
-                BlogErrorAction =  SettingsRepository.BlogSiteErrorEmailAction,
+                BlogErrorAction = SettingsRepository.BlogSiteErrorEmailAction,
                 Title = SettingsRepository.BlogName,
                 DisqusEnabled = SettingsRepository.DisqusEnabled,
                 DisqusShortName = SettingsRepository.BlogDisqusShortName
@@ -115,7 +115,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View(adminSettings);
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public ActionResult Settings(AdminSettingsViewModel adminSettingsViewModel)
         {
@@ -135,7 +135,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 SettingsRepository.BlogAkismetUrl = adminSettingsViewModel.AkismetUrl;
                 SettingsRepository.BlogAdminEmailAddress = adminSettingsViewModel.AdminEmailAddress;
                 SettingsRepository.BlogSmtpAddress = adminSettingsViewModel.BlogSmtpAddress;
-                
+
                 if (!string.IsNullOrEmpty(adminSettingsViewModel.BlogSmtpPassword))
                 {
                     SettingsRepository.BlogSmtpPassword = TripleDES.EncryptString(adminSettingsViewModel.BlogSmtpPassword);
@@ -161,7 +161,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             Uri url;
             if (string.IsNullOrEmpty(adminSettingsViewModel.AkismetUrl) || !Uri.TryCreate(adminSettingsViewModel.AkismetUrl, UriKind.Absolute, out url))
             {
-                ModelState.AddModelError("Akismet_Url","Akismet url entered is invalid");
+                ModelState.AddModelError("Akismet_Url", "Akismet url entered is invalid");
                 return false;
             }
 
@@ -174,7 +174,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return true;
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult EnableSocialSharing(bool enableSocialSharing)
         {
             if (enableSocialSharing)
@@ -182,7 +182,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return RedirectToRoute("AdminSocialSharingOptions");
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult SocialSharingOptions()
         {
             var selectedSharing = SettingsRepository.BlogSocialSharingChoice;
@@ -192,7 +192,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View(adminSocialSharingOptions);
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public ActionResult SocialSharingOptions(int selectedSharingOption)
         {
@@ -203,7 +203,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View(adminSocialSharingOptions);
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult EnableSyntaxHighlighter(bool enableSyntaxHighlighter)
         {
             if (enableSyntaxHighlighter)
@@ -214,17 +214,22 @@ namespace sBlog.Net.Areas.Admin.Controllers
         [Authorize]
         public ActionResult SyntaxHighlighterOptions()
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin", new { Area = "Admin" });
+            }
+
             var currentTheme = SettingsRepository.BlogSyntaxTheme;
             var selectedItems = SettingsRepository.BlogSyntaxScripts;
             var model = new SyntaxHighlighterViewModel
-                            {
-                                Brushes = GetBrushesModel(selectedItems),
-                                AvailableThemes = GetAvailableSyntaxThemes(currentTheme),
-                                EditThemeAttributes = GetAttributes(GetUserId()),
-                                Title = SettingsRepository.BlogName,
-                                IsEnabled = SettingsRepository.BlogSyntaxHighlighting,
-                                CanEnable = GetUserId() == 1
-                            };
+            {
+                Brushes = GetBrushesModel(selectedItems),
+                AvailableThemes = GetAvailableSyntaxThemes(currentTheme),
+                EditThemeAttributes = GetAttributes(GetUserId()),
+                Title = SettingsRepository.BlogName,
+                IsEnabled = SettingsRepository.BlogSyntaxHighlighting,
+                CanEnable = GetUserId() == 1
+            };
 
             return View(model);
         }
@@ -233,28 +238,33 @@ namespace sBlog.Net.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SyntaxHighlighterOptions(string Theme, CheckBoxListViewModel selectedBrushes)
         {
+            if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { Area = "" });
+            }
+
             var userId = GetUserId();
             var updatedTheme = userId == 1 ? Theme : SettingsRepository.BlogSyntaxTheme;
             SettingsRepository.BlogSyntaxScripts = string.Join("~", selectedBrushes.GetSelectedItems());
             SettingsRepository.BlogSyntaxTheme = updatedTheme;
 
             var model = new SyntaxHighlighterViewModel
-                            {
-                                Brushes = selectedBrushes,
-                                AvailableThemes = GetAvailableSyntaxThemes(updatedTheme),
-                                EditThemeAttributes = GetAttributes(userId),
-                                Title = SettingsRepository.BlogName,
-                                IsEnabled = SettingsRepository.BlogSyntaxHighlighting,
-                                UpdateStatus = true,
-                                CanEnable = GetUserId() == 1
-                            };
+            {
+                Brushes = selectedBrushes,
+                AvailableThemes = GetAvailableSyntaxThemes(updatedTheme),
+                EditThemeAttributes = GetAttributes(userId),
+                Title = SettingsRepository.BlogName,
+                IsEnabled = SettingsRepository.BlogSyntaxHighlighting,
+                UpdateStatus = true,
+                CanEnable = GetUserId() == 1
+            };
 
             return View(model);
         }
 
         private static IDictionary<string, object> GetAttributes(int userId)
         {
-            IDictionary<string, object> editAttributes = new Dictionary<string, object> {{"class", "dropDownBox"}};
+            IDictionary<string, object> editAttributes = new Dictionary<string, object> { { "class", "dropDownBox" } };
             if (userId != 1)
             {
                 editAttributes.Add("disabled", "disabled");
@@ -307,12 +317,12 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private UserEntity GetUserEntity(UpdateProfileModel model)
         {
             var userEntity = new UserEntity
-                                 {
-                                     UserID = GetUserId(),
-                                     UserDisplayName = model.UserDisplayName,
-                                     UserEmailAddress = model.UserEmailAddress,
-                                     UserSite = model.UserSite
-                                 };
+            {
+                UserID = GetUserId(),
+                UserDisplayName = model.UserDisplayName,
+                UserEmailAddress = model.UserEmailAddress,
+                UserSite = model.UserSite
+            };
 
             if (!string.IsNullOrEmpty(model.NewPassword) && !string.IsNullOrEmpty(model.ConfirmPassword))
             {
@@ -328,10 +338,10 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             var selectedBrushes = SettingsRepository.BlogSyntaxScripts;
             var syntaxPossibilitiesViewModel = new SyntaxPossibilitiesViewModel
-                                               {
-                                                   SyntaxPossibilities = new SyntaxPossibilities(_pathMapper, selectedBrushes),
-                                                   IsEnabled = SettingsRepository.BlogSyntaxHighlighting
-                                               };
+            {
+                SyntaxPossibilities = new SyntaxPossibilities(_pathMapper, selectedBrushes),
+                IsEnabled = SettingsRepository.BlogSyntaxHighlighting
+            };
             return PartialView(syntaxPossibilitiesViewModel);
         }
 
@@ -382,7 +392,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             var baseDirectory = _pathMapper.MapPath("~/Themes");
             var directories = Directory.GetDirectories(baseDirectory);
-            return directories.Select(directory => directory.Split('\\')).Select(split => new SelectListItem {Text = Regex.Replace(split.Last(), "(\\B[A-Z])", " $1"), Value = split.Last(), Selected = split.Last() == selectedTheme}).ToList();
+            return directories.Select(directory => directory.Split('\\')).Select(split => new SelectListItem { Text = Regex.Replace(split.Last(), "(\\B[A-Z])", " $1"), Value = split.Last(), Selected = split.Last() == selectedTheme }).ToList();
         }
     }
 }

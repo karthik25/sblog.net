@@ -36,5 +36,10 @@ namespace sBlog.Net.DependencyManagement
         {
             return DependencyResolver.Current.GetService<IError>();
         }
+
+        public static IRole CreateRoleInstance()
+        {
+            return DependencyResolver.Current.GetService<IRole>();
+        }
     }
 }

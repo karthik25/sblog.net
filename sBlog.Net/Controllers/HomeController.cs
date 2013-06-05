@@ -120,7 +120,7 @@ namespace sBlog.Net.Controllers
                 SharingType = SettingsRepository.BlogSocialSharingChoice,
                 PreviousPost = index == 0 || index < 0 ? null : allPosts[index - 1],
                 NextPost = index == (allPosts.Count - 1) || index < 0 ? null : allPosts[index + 1],
-                UserCanEdit = Request.IsAuthenticated && (currentPost.OwnerUserID == GetUserId() || GetUserId() == 1),
+                UserCanEdit = Request.IsAuthenticated && (currentPost.OwnerUserID == GetUserId() || User.IsInRole("SuperAdmin")),
                 BlogName = SettingsRepository.BlogName,
                 BlogCaption = SettingsRepository.BlogCaption,
                 CommentEntity = GetCommentEntityByAuth(),

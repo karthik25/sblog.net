@@ -229,7 +229,8 @@ namespace sBlog.Net
                 {
                     var ticket = FormsAuthentication.Decrypt(encTicket);
                     var id = new UserIdentity(ticket);
-                    var prin = new GenericPrincipal(id, null);
+                    var userRoles = Roles.GetRolesForUser(id.Name);
+                    var prin = new GenericPrincipal(id, userRoles);
                     HttpContext.Current.User = prin;
                 }
             }
