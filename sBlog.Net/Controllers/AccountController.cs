@@ -47,12 +47,10 @@ namespace sBlog.Net.Controllers
             ExpectedMasterName = string.Empty;
         }
 
-        public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 
         protected override void Initialize(RequestContext requestContext)
         {
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
             if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
 
             base.Initialize(requestContext);
@@ -80,8 +78,6 @@ namespace sBlog.Net.Controllers
             {
                 if (MembershipService.ValidateUser(model.UserName, model.Password))
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
-
                     var userEntity = SetupFormsAuthTicket(model.UserName, model.RememberMe);
 
                     if (userEntity.LastLoginDate == null)
@@ -113,7 +109,7 @@ namespace sBlog.Net.Controllers
                 var userIdentity = GetUserId();
                 _userRepository.SetOneTimeToken(userIdentity, null);
                 _userRepository.UpdateLastLoginDate(userIdentity);
-                FormsService.SignOut();
+                FormsAuthentication.SignOut();
             }
 
             return RedirectToAction("Index", "Home");

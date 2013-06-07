@@ -46,6 +46,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             IsAdminController = true;
         }
 
+        [Authorize]
         public ActionResult ManageTags([DefaultValue(1)] int page)
         {
             if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
@@ -69,6 +70,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return View(tagModel);
         }
 
+        [Authorize]
         public ActionResult AddTagPartial(string tagName, string token)
         {
             if (!User.IsInRole("SuperAdmin") && !User.IsInRole("Admin"))
@@ -90,6 +92,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             throw new NotSupportedException("Request is not an ajax request/Possible unauthorized access");
         }
 
+        [Authorize]
         [HttpGet]
         public JsonResult DeleteTag(int tagId, string token)
         {

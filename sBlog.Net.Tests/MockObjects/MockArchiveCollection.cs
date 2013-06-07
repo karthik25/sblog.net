@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using sBlog.Net.Collections;
 using sBlog.Net.Domain.Entities;
 using System.Collections.Generic;
@@ -19,11 +18,6 @@ namespace sBlog.Net.Tests.MockObjects
             return Archives.SingleOrDefault(a => a.Month == archive.Month && 
                                                  a.Year == archive.Year && 
                                                  a.MonthYear == archive.MonthYear);
-        }
-
-        protected override DateTime GetDateTime()
-        {
-            return DateTime.Parse("4/1/2012");
         }
     }
 }

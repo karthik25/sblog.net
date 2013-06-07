@@ -75,7 +75,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IFormsAuthenticationService.cs" />
     <Compile Include="Abstract\IMembershipService.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="Rss\RssFeedGenerator.cs" />
     <Compile Include="Services\AccountMembershipService.cs" />
     <Compile Include="Services\CacheService.cs" />
-    <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="ShortCodeManager\Entities\SyntaxPossibility.cs" />
     <Compile Include="ShortCodeManager\SyntaxPossibilities.cs" />
     <Compile Include="ShortCodeManager\SyntaxPossibilitiesViewModel.cs" />

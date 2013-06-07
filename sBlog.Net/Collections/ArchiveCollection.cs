@@ -15,7 +15,6 @@
 /* *********************************************** */
 
 #endregion
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
@@ -56,11 +55,6 @@ namespace sBlog.Net.Collections
         {
             return Archives.GetEnumerator();
         }
-
-        protected virtual DateTime GetDateTime()
-        {
-            return DateTime.Now;
-        }      
 
         private void AddArchives()
         {
