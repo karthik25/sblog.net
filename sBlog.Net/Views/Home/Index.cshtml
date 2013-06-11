@@ -8,7 +8,7 @@
 
 @if (!Model.Any)
 {
-    <div>there are no posts in the page entered.</div>
+    <div>@sBlog.Net.Resources.Views.Shared.GenericResources.NoPostsMessage</div>
 }
 
 @foreach (var post in Model.Posts)
@@ -20,13 +20,13 @@
 @if (Model.Any && Model.PreviousPageValid)
 {
     <div style="float: left">
-        @Html.RouteLink("<< Previous Page", "Page", new { pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
+        @Html.RouteLink(sBlog.Net.Resources.Views.Shared.GenericResources.PreviousPageLink, "Page", new { pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
     </div>
 }
 
 @if (Model.Any && Model.NextPageValid)
 {
     <div style="float: right">
-        @Html.RouteLink("Next Page >>", "Page", new { pageNumber = Model.NextPageNumber }, new { @class = "link" })
+        @Html.RouteLink(sBlog.Net.Resources.Views.Shared.GenericResources.NextPageLink, "Page", new { pageNumber = Model.NextPageNumber }, new { @class = "link" })
     </div>
 }

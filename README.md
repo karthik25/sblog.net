@@ -15,7 +15,8 @@ http://sblogproject.net
 ## Notes for sBlog.Net v2.0
 
 ```text
-Notice: This version is currently under development and so is not fully tested.
+Notice: This branch is intended to be a play-ground for globalization/localization. So you might notice some unexpected results. 
+If you want a more stable branch, try the "master" branch
 ```
 
 Follow these steps to start experimenting with v2.0. This repository is for the development version of sBlog.Net.
