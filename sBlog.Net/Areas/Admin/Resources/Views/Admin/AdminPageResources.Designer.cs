@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace sBlog.Net.Resources.Views.Shared {
+namespace sBlog.Net.Areas.Admin.Resources.Views.Admin {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace sBlog.Net.Resources.Views.Shared {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GenericResources {
+    public class AdminPageResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GenericResources() {
+        internal AdminPageResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace sBlog.Net.Resources.Views.Shared {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("sBlog.Net.Resources.Views.Shared.GenericResources", typeof(GenericResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("sBlog.Net.Areas.Admin.Resources.Views.Admin.AdminPageResources", typeof(AdminPageResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,11 @@ namespace sBlog.Net.Resources.Views.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next Page &gt;&gt;.
+        ///   Looks up a localized string similar to Posts.
         /// </summary>
-        public static string NextPageLink {
+        public static string PostsTitle {
             get {
-                return ResourceManager.GetString("NextPageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to there are no posts in the page entered..
-        /// </summary>
-        public static string NoPostsMessage {
-            get {
-                return ResourceManager.GetString("NoPostsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;&lt; Previous Page.
-        /// </summary>
-        public static string PreviousPageLink {
-            get {
-                return ResourceManager.GetString("PreviousPageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to request an account.
-        /// </summary>
-        public static string RequestAcctLink {
-            get {
-                return ResourceManager.GetString("RequestAcctLink", resourceCulture);
+                return ResourceManager.GetString("PostsTitle", resourceCulture);
             }
         }
     }

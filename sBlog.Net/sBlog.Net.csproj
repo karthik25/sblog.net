@@ -83,6 +83,66 @@
     <Compile Include="Areas\Admin\Controllers\UploadsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAuthorsViewModel.cs" />
+    <Compile Include="Areas\Admin\Resources\Views\Admin\AdminPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\CategoryAdmin\CategoryAdminPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CategoryAdminPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\CommentAdmin\CommentAdminPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommentAdminPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\Page\PageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\Post\PostResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\Shared\GenericResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\TagAdmin\TagAdminPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagAdminPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\Uploads\UploadsPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UploadsPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\UserAdmin\UserAdminPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserAdminPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Setup\Resources\Views\Init\InitPageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitPageResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Setup\Resources\Views\Page2\Page2Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Page2Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Setup\Resources\Views\Shared\GenericResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Setup\Services\UploadFolderVerifier.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
@@ -887,6 +947,54 @@
     <Content Include="Areas\Admin\Views\Shared\UserRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Admin\AdminPageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdminPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\CategoryAdmin\CategoryAdminPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CategoryAdminPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\CommentAdmin\CommentAdminPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommentAdminPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Page\PageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Post\PostResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PostResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Shared\GenericResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\TagAdmin\TagAdminPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TagAdminPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Uploads\UploadsPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UploadsPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\UserAdmin\UserAdminPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserAdminPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Setup\Resources\Views\Init\InitPageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InitPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Setup\Resources\Views\Page2\Page2Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Page2Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Setup\Resources\Views\Shared\GenericResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Shared\GenericResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GenericResources.Designer.cs</LastGenOutput>

@@ -117,16 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NextPageLink" xml:space="preserve">
-    <value>Next Page &gt;&gt;</value>
-  </data>
-  <data name="NoPostsMessage" xml:space="preserve">
-    <value>there are no posts in the page entered.</value>
-  </data>
-  <data name="PreviousPageLink" xml:space="preserve">
-    <value>&lt;&lt; Previous Page</value>
-  </data>
-  <data name="RequestAcctLink" xml:space="preserve">
-    <value>request an account</value>
+  <data name="PostsTitle" xml:space="preserve">
+    <value>Posts</value>
   </data>
 </root>

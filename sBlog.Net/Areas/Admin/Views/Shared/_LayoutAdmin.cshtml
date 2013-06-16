@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Resource = sBlog.Net.Areas.Admin.Resources.Views.Shared.GenericResources
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -20,29 +22,29 @@
             @if (Request.IsAuthenticated)
             {
                 <ul id="sub-nav">
-                    @Html.AdminLink("Dashboard", "AdminIndex", "Index", "Admin", "~/Content/Images/dashboard.png")
-                    @Html.AdminLinkWithSubmenu("Posts", "AdminPosts", "ManagePosts", "Post", "~/Content/Images/manageposts.png", "~/Content/Images/manageposts.png", "~/Content/Images/post.png")
+                    @Html.AdminLink(Resource.DashboardMnuItem, "AdminIndex", "Index", "Admin", "~/Content/Images/dashboard.png")
+                    @Html.AdminLinkWithSubmenu(Resource.PostMnuItem, "AdminPosts", "ManagePosts", "Post", "~/Content/Images/manageposts.png", "~/Content/Images/manageposts.png", "~/Content/Images/post.png")
 
                     @if (User.IsInRole("SuperAdmin"))
                     {
-                        @Html.AdminLinkWithSubmenu("Pages", "AdminPages", "ManagePages", "Page", "~/Content/Images/managepages.png", "~/Content/Images/managepages.png", "~/Content/Images/page.png")
+                        @Html.AdminLinkWithSubmenu(Resource.PageMnuItem, "AdminPages", "ManagePages", "Page", "~/Content/Images/managepages.png", "~/Content/Images/managepages.png", "~/Content/Images/page.png")
                     }
                     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     {
-                        @Html.AdminLink("Categories", "AdminCategories", "ManageCategories", "CategoryAdmin", "~/Content/Images/categories.png")
-                        @Html.AdminLink("Tags", "AdminTags", "ManageTags", "TagAdmin", "~/Content/Images/tags.png")
-                        @Html.AdminLink("User Content Mgmt.", "AdminUserManagement", "UserManagement", "UserAdmin", "~/Content/Images/user_management.png", "User Content Management")
+                        @Html.AdminLink(Resource.CategoryMnuItem, "AdminCategories", "ManageCategories", "CategoryAdmin", "~/Content/Images/categories.png")
+                        @Html.AdminLink(Resource.TagMnuItem, "AdminTags", "ManageTags", "TagAdmin", "~/Content/Images/tags.png")
+                        @Html.AdminLink(Resource.UserMgmtMnuItem, "AdminUserManagement", "UserManagement", "UserAdmin", "~/Content/Images/user_management.png", "User Content Management")
                     }
                     @if (User.IsInRole("SuperAdmin"))
                     {
-                        @Html.AdminLink("Uploads", "AdminUploads", "ManageUploads", "Uploads", "~/Content/Images/uploads.png")
-                        @Html.AdminLink("Settings", "AdminSettings", "Settings", "Admin", "~/Content/Images/settings.png")
-                        @Html.AdminLink("Social Sharing", "AdminSocialSharingOptions", "SocialSharingOptions", "Admin", "~/Content/Images/sharing.png")
+                        @Html.AdminLink(Resource.UploadMnuItem, "AdminUploads", "ManageUploads", "Uploads", "~/Content/Images/uploads.png")
+                        @Html.AdminLink(Resource.SettingMnuItem, "AdminSettings", "Settings", "Admin", "~/Content/Images/settings.png")
+                        @Html.AdminLink(Resource.SocialSharingMnuItem, "AdminSocialSharingOptions", "SocialSharingOptions", "Admin", "~/Content/Images/sharing.png")
                     }
                     
-                    @Html.AdminLink("Syn. Highlighter", "AdminSyntaxHighlighterOptions", "SyntaxHighlighterOptions", "Admin", "~/Content/Images/highlighter.png", "Syntax Highlighter")
-                    @Html.AdminLink("Comments", "AdminComments", "ManageComments", "CommentAdmin", "~/Content/Images/comments.png")
-                    @Html.AdminLink("My Profile", "AdminUpdateProfile", "UpdateProfile", "Admin", "~/Content/Images/profile.png")
+                    @Html.AdminLink(Resource.SyntaxHighlighterMnuItem, "AdminSyntaxHighlighterOptions", "SyntaxHighlighterOptions", "Admin", "~/Content/Images/highlighter.png", "Syntax Highlighter")
+                    @Html.AdminLink(Resource.CommentMnuItem, "AdminComments", "ManageComments", "CommentAdmin", "~/Content/Images/comments.png")
+                    @Html.AdminLink(Resource.ProfileMnuItem, "AdminUpdateProfile", "UpdateProfile", "Admin", "~/Content/Images/profile.png")
                     <li class="collapse">&nbsp;&nbsp;&nbsp;
                         <a href="#">
                             <div>

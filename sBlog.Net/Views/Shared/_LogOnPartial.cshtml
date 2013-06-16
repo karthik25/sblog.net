@@ -1,2 +1,4 @@
-﻿@(Request.IsAuthenticated ? Html.RouteLink("log off", "Logoff", new {}, new {@class = "log-off"}) 
-      : Html.RouteLink("log in", "Logon", new {}, new {@class = "log-off"}))
+﻿@using Resource = sBlog.Net.Areas.Admin.Resources.Views.Shared.GenericResources
+
+@(Request.IsAuthenticated ? Html.RouteLink(Resource.LogOffMnuItem, "Logoff", new {}, new {@class = "log-off"}) 
+      : Html.RouteLink(Resource.LogInMnuItem, "Logon", new {}, new {@class = "log-off"}))

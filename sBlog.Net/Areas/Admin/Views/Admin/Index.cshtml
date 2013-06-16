@@ -1,4 +1,6 @@
-﻿@model sBlog.Net.Areas.Admin.Models.AdminDashboardViewModel
+﻿@using Resource = sBlog.Net.Areas.Admin.Resources.Views.Admin.AdminPageResources
+
+@model sBlog.Net.Areas.Admin.Models.AdminDashboardViewModel
 
 @{
     ViewBag.Title = string.Format("Dashboard || {0}", Model.BlogName);
@@ -8,7 +10,7 @@
     <tr>
         <td style="width:45%; vertical-align: top">
             <div class="cpHeader">
-                <b>Posts</b>
+                <b>@Resource.PostsTitle</b>
             </div>
             <div class="cpContent">
                 <div style="padding: 25px;">

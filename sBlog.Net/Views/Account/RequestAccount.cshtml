@@ -1,4 +1,6 @@
-﻿@model sBlog.Net.Models.Account.RequestAccountModel
+﻿@using Resource = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model sBlog.Net.Models.Account.RequestAccountModel
 
 <div id="request-account">
     <a href="javascript:void(0)" id="requestAccount"><img src="@Url.Content("~/Content/Images/request_account.png")" alt="request an account" title="request an account"/>&nbsp;request an account</a>
@@ -6,7 +8,7 @@
 
 <div class="request-form">
     <div class="request-form-title">
-        request an account
+        @Resource.RequestAcctLink
         <img class="closeWindow" src="@Url.Content("~/Content/Images/close_delete.png")" alt="" title="close request account popup" />
     </div>
     

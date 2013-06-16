@@ -1,19 +1,21 @@
-﻿<div class="qLinksContent">
+﻿@using Resource = sBlog.Net.Areas.Admin.Resources.Views.Shared.GenericResources
+
+<div class="qLinksContent">
     <div style="float: left">
-        @Html.ActionLink("visit blog", "Index", "Home", new { Area = "" }, new { @class = "admin-quick-links" })
+        @Html.ActionLink(Resource.VisitBlogMnuItem, "Index", "Home", new { Area = "" }, new { @class = "admin-quick-links" })
         @if (Request.IsAuthenticated)
         {
             var userId = ((sBlog.Net.Domain.Interfaces.IUserInfo)User.Identity).UserId;
 
             <span style="color: #D8D8D8">&nbsp;//&nbsp;</span>
-            @Html.RouteLink("new post", "AdminPostsAdd", new { }, new { @class = "admin-quick-links" })
+            @Html.RouteLink(Resource.NewPostMnuItem, "AdminPostsAdd", new { }, new { @class = "admin-quick-links" })
             if (userId == "1")
             {
                 <span style="color: #D8D8D8">&nbsp;//&nbsp;</span>
-                @Html.RouteLink("new page", "AdminPagesAdd", new { }, new { @class = "admin-quick-links" })
+                @Html.RouteLink(Resource.NewPageMnuItem, "AdminPagesAdd", new { }, new { @class = "admin-quick-links" })
             }
             <span style="color: #D8D8D8">&nbsp;//&nbsp;</span>
-            @Html.ActionLink("manage comments", "ManageComments", "CommentAdmin", new { Area = "Admin", type = "pending" }, new { @class = "admin-quick-links" })
+            @Html.ActionLink(Resource.ManageCommentsMnuItem, "ManageComments", "CommentAdmin", new { Area = "Admin", type = "pending" }, new { @class = "admin-quick-links" })
         }
         <span style="color: #FF0040">&nbsp;\\&nbsp;</span> @Html.RouteLink("sBlog.Net credits", "Credits", new { }, new { @class = "admin-quick-links" })
     </div>

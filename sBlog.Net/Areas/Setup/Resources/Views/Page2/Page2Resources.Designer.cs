@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace sBlog.Net.Resources.Views.Shared {
+namespace sBlog.Net.Areas.Setup.Resources.Views.Page2 {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace sBlog.Net.Resources.Views.Shared {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GenericResources {
+    internal class Page2Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GenericResources() {
+        internal Page2Resources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("sBlog.Net.Resources.Views.Shared.GenericResources", typeof(GenericResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("sBlog.Net.Areas.Setup.Resources.Views.Page2.Page2Resources", typeof(Page2Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,48 +51,12 @@ namespace sBlog.Net.Resources.Views.Shared {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Next Page &gt;&gt;.
-        /// </summary>
-        public static string NextPageLink {
-            get {
-                return ResourceManager.GetString("NextPageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to there are no posts in the page entered..
-        /// </summary>
-        public static string NoPostsMessage {
-            get {
-                return ResourceManager.GetString("NoPostsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;&lt; Previous Page.
-        /// </summary>
-        public static string PreviousPageLink {
-            get {
-                return ResourceManager.GetString("PreviousPageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to request an account.
-        /// </summary>
-        public static string RequestAcctLink {
-            get {
-                return ResourceManager.GetString("RequestAcctLink", resourceCulture);
             }
         }
     }
