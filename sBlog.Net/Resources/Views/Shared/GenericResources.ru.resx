@@ -117,64 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BlogCreditsText" xml:space="preserve">
-    <value>sBlog.Net credits</value>
+  <data name="NextPageLink" xml:space="preserve">
+    <value>Следующая страница &gt;&gt;</value>
   </data>
-  <data name="CategoryMnuItem" xml:space="preserve">
-    <value>Categories</value>
+  <data name="NoPostsMessage" xml:space="preserve">
+    <value>нет сообщений на странице введен.</value>
   </data>
-  <data name="CommentMnuItem" xml:space="preserve">
-    <value>Comments</value>
+  <data name="PostNameCategoryInfo" xml:space="preserve">
+    <value>Сообщение от &lt;b&gt;{0}&lt;/b&gt; под {1}</value>
   </data>
-  <data name="DashboardMnuItem" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="PostTagInfo" xml:space="preserve">
+    <value>меткой {0}</value>
   </data>
-  <data name="LogInMnuItem" xml:space="preserve">
-    <value>log in</value>
+  <data name="PreviousPageLink" xml:space="preserve">
+    <value>&lt;&lt; Предыдущая страница</value>
   </data>
-  <data name="LogOffMnuItem" xml:space="preserve">
-    <value>log off</value>
+  <data name="RequestAcctLink" xml:space="preserve">
+    <value>запросить счет</value>
   </data>
-  <data name="ManageCommentsMnuItem" xml:space="preserve">
-    <value>Manage Comments</value>
+  <data name="SideBarArchives" xml:space="preserve">
+    <value>архив</value>
   </data>
-  <data name="NewPageMnuItem" xml:space="preserve">
-    <value>new page</value>
+  <data name="SideBarCategories" xml:space="preserve">
+    <value>Категории</value>
   </data>
-  <data name="NewPostMnuItem" xml:space="preserve">
-    <value>new post</value>
+  <data name="SideBarRecentComments" xml:space="preserve">
+    <value>Последние комментарии</value>
   </data>
-  <data name="PageMnuItem" xml:space="preserve">
-    <value>Pages</value>
+  <data name="SideBarRecentPosts" xml:space="preserve">
+    <value>Последние сообщения</value>
   </data>
-  <data name="PostMnuItem" xml:space="preserve">
-    <value>Posts</value>
-  </data>
-  <data name="ProfileMnuItem" xml:space="preserve">
-    <value>My Profile</value>
-  </data>
-  <data name="SettingMnuItem" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>shortcuts</value>
-  </data>
-  <data name="SocialSharingMnuItem" xml:space="preserve">
-    <value>Social Sharing</value>
-  </data>
-  <data name="SyntaxHighlighterMnuItem" xml:space="preserve">
-    <value>Syn. Highlighter</value>
-  </data>
-  <data name="TagMnuItem" xml:space="preserve">
-    <value>Tags</value>
-  </data>
-  <data name="UploadMnuItem" xml:space="preserve">
-    <value>Uploads</value>
-  </data>
-  <data name="UserMgmtMnuItem" xml:space="preserve">
-    <value>User Content Mgmt.</value>
-  </data>
-  <data name="VisitBlogMnuItem" xml:space="preserve">
-    <value>visit blog</value>
+  <data name="SideBarSiteOptions" xml:space="preserve">
+    <value>сайт Опции</value>
   </data>
 </root>

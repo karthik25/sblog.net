@@ -1,4 +1,6 @@
-﻿@model sBlog.Net.Models.BlogPostPageViewModel
+﻿@using Resource = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model sBlog.Net.Models.BlogPostPageViewModel
 
 @{
     ViewBag.Title = string.Format("Posts by {0} || {1} || page {2}", Model.AuthorDisplayName, Model.BlogName.ToLower(), Model.CurrentPageNumber);
@@ -8,7 +10,7 @@
 
 @if (!Model.Any)
 {
-    <div>there are no posts for the selected category.</div>
+    <div>@Resource.NoPostsMessage</div>
 }
 
 @foreach (var post in Model.Posts)
@@ -20,13 +22,13 @@
 @if (Model.Any && Model.PreviousPageValid)
 {
     <div style="float: left">
-        @Html.RouteLink("<< Previous Page", "AuthorPostsPaged", new { authorName = Model.AuthorName, pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
+        @Html.RouteLink(Resource.PreviousPageLink, "AuthorPostsPaged", new { authorName = Model.AuthorName, pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
     </div>
 }
 
 @if (Model.Any && Model.NextPageValid)
 {
     <div style="float: right">
-        @Html.RouteLink("Next Page >>", "AuthorPostsPaged", new { authorName = Model.AuthorName, pageNumber = Model.NextPageNumber }, new { @class = "link" })
+        @Html.RouteLink(Resource.NextPageLink, "AuthorPostsPaged", new { authorName = Model.AuthorName, pageNumber = Model.NextPageNumber }, new { @class = "link" })
     </div>
 }

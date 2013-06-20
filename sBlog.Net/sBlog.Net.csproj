@@ -113,6 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenericResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Resources\Views\Shared\GenericResources.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericResources.ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Admin\Resources\Views\TagAdmin\TagAdminPageResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +150,7 @@
     </Compile>
     <Compile Include="Areas\Setup\Services\UploadFolderVerifier.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\GlobalizeController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="CustomExceptions\InvalidMonthException.cs" />
     <Compile Include="CustomExceptions\InvalidThemeException.cs" />
@@ -262,6 +268,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenericResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Shared\GenericResources.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericResources.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Rss\RssFeedGenerator.cs" />
     <Compile Include="Services\AccountMembershipService.cs" />
@@ -971,6 +982,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GenericResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\Views\Shared\GenericResources.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericResources.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Areas\Admin\Resources\Views\TagAdmin\TagAdminPageResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TagAdminPageResources.Designer.cs</LastGenOutput>
@@ -998,6 +1013,10 @@
     <EmbeddedResource Include="Resources\Views\Shared\GenericResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GenericResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Shared\GenericResources.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GenericResources.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

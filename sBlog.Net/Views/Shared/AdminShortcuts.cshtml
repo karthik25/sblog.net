@@ -17,12 +17,12 @@
             <span style="color: #D8D8D8">&nbsp;//&nbsp;</span>
             @Html.ActionLink(Resource.ManageCommentsMnuItem, "ManageComments", "CommentAdmin", new { Area = "Admin", type = "pending" }, new { @class = "admin-quick-links" })
         }
-        <span style="color: #FF0040">&nbsp;\\&nbsp;</span> @Html.RouteLink("sBlog.Net credits", "Credits", new { }, new { @class = "admin-quick-links" })
+        <span style="color: #FF0040">&nbsp;\\&nbsp;</span> @Html.RouteLink(Resource.BlogCreditsText, "Credits", new { }, new { @class = "admin-quick-links" })
     </div>
     <div style="float: right">
         @Html.Partial("_LogOnPartial")
     </div>
 </div>
 <div class="qLinks">
-    shortcuts
+    @Resource.ShortcutsTitle
 </div>

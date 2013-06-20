@@ -1,7 +1,9 @@
-﻿@model List<sBlog.Net.Domain.Entities.CategoryEntity>
+﻿@using Resources = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model List<sBlog.Net.Domain.Entities.CategoryEntity>
 
 <div id="section3" class="menu">
-	<h2>categories</h2>
+	<h2>@Resources.SideBarCategories</h2>
 	<ul style="list-style-type:none;">
 	    @foreach(var category in Model)
         {

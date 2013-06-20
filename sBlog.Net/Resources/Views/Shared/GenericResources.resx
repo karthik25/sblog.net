@@ -123,10 +123,31 @@
   <data name="NoPostsMessage" xml:space="preserve">
     <value>there are no posts in the page entered.</value>
   </data>
+  <data name="PostNameCategoryInfo" xml:space="preserve">
+    <value>Posted by &lt;b&gt;{0}&lt;/b&gt; under {1}</value>
+  </data>
+  <data name="PostTagInfo" xml:space="preserve">
+    <value>Tagged {0}</value>
+  </data>
   <data name="PreviousPageLink" xml:space="preserve">
     <value>&lt;&lt; Previous Page</value>
   </data>
   <data name="RequestAcctLink" xml:space="preserve">
     <value>request an account</value>
+  </data>
+  <data name="SideBarArchives" xml:space="preserve">
+    <value>Archives</value>
+  </data>
+  <data name="SideBarCategories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="SideBarRecentComments" xml:space="preserve">
+    <value>Recent Comments</value>
+  </data>
+  <data name="SideBarRecentPosts" xml:space="preserve">
+    <value>Recent Posts</value>
+  </data>
+  <data name="SideBarSiteOptions" xml:space="preserve">
+    <value>Site Options</value>
   </data>
 </root>

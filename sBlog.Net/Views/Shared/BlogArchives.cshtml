@@ -1,7 +1,9 @@
-﻿@model ArchiveCollection
+﻿@using Resources = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model ArchiveCollection
 
 <div id="section1" class="menu">
-	<h2>archives</h2>
+	<h2>@Resources.SideBarArchives</h2>
 	<ul style="list-style-type:none;">
 	    @foreach (Archive archive in Model)
         {

@@ -1,7 +1,9 @@
-﻿@model List<sBlog.Net.Models.Comments.RecentComment>
+﻿@using Resources = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model List<sBlog.Net.Models.Comments.RecentComment>
 
 <div id="section2" class="menu">
-	<h2>recent comments</h2>
+	<h2>@Resources.SideBarRecentComments</h2>
 	<ul style="list-style-type:none;">
         @foreach (var comment in Model)
         {

@@ -1,9 +1,22 @@
-﻿<div id="section3" class="menu">
-	<h2>site options</h2>
+﻿@using Resources = sBlog.Net.Resources.Views.Shared.GenericResources
+
+<div id="section3" class="menu">
+	<h2>@Resources.SideBarSiteOptions</h2>
 	<ul style="list-style-type:none;">
 		<li>@Html.Partial("_LogOnPartial")</li>
 	    <li>@Html.ActionLink("dashboard", "Index", "Admin", new { Area = "Admin" }, new { })</li>
         <li>@Html.ActionLink("blog authors", "AuthorListing", "Author")</li>
-		<li>@Html.ActionLink("post rss","Index", "RssFeed")</li>
+	    <li>@Html.ActionLink("post rss","Index", "RssFeed")</li>
+	    <li>
+	        view the blog in
+	        <ul>
+	            <li>
+	                @Html.ActionLink("english", "ChangeCulture", "Globalize", new { @lang = "en" }, new { })	        	        
+	            </li>
+	            <li>
+	                @Html.ActionLink("русский", "ChangeCulture", "Globalize", new { @lang = "ru" }, new { })
+	            </li>
+	        </ul>
+	    </li>
 	</ul>
 </div>

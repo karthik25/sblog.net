@@ -17,6 +17,8 @@
 #endregion
 using System;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -172,7 +174,35 @@ namespace sBlog.Net
         public override void Init()
         {
             PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+            AcquireRequestState += MvcApplication_OnAcquireRequestState;
             base.Init();
+        }
+
+        protected void MvcApplication_OnAcquireRequestState(object sender, EventArgs e)
+        {
+            //It's important to check whether session object is ready
+            if (HttpContext.Current.Session != null)
+            {
+                var ci = (CultureInfo)Session["Culture"];
+                //Checking first if there is no value in session and set default language
+                //this can happen for first user's request
+                if (ci == null)
+                {
+                    var langName = "en";
+
+                    //Try to get values from Accept lang HTTP header
+                    if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0)
+                    {
+                        //Gets accepted list 
+                        langName = HttpContext.Current.Request.UserLanguages[0].Substring(0, 2);
+                    }
+                    ci = new CultureInfo(langName);
+                    Session["Culture"] = ci;
+                }
+
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
+            }
         }
 
         private void SetupDependencyManagement()

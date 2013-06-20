@@ -118,63 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BlogCreditsText" xml:space="preserve">
-    <value>sBlog.Net credits</value>
+    <value>sBlog.Net кредитов</value>
   </data>
   <data name="CategoryMnuItem" xml:space="preserve">
-    <value>Categories</value>
+    <value>Категории</value>
   </data>
   <data name="CommentMnuItem" xml:space="preserve">
-    <value>Comments</value>
+    <value>Комментарии</value>
   </data>
   <data name="DashboardMnuItem" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>приборная панель</value>
   </data>
   <data name="LogInMnuItem" xml:space="preserve">
-    <value>log in</value>
+    <value>войти</value>
   </data>
   <data name="LogOffMnuItem" xml:space="preserve">
-    <value>log off</value>
+    <value>выйти</value>
   </data>
   <data name="ManageCommentsMnuItem" xml:space="preserve">
-    <value>Manage Comments</value>
+    <value>Управление Комментарии</value>
   </data>
   <data name="NewPageMnuItem" xml:space="preserve">
-    <value>new page</value>
+    <value>новая страница</value>
   </data>
   <data name="NewPostMnuItem" xml:space="preserve">
-    <value>new post</value>
+    <value>новое сообщение</value>
   </data>
   <data name="PageMnuItem" xml:space="preserve">
-    <value>Pages</value>
+    <value>Страницы</value>
   </data>
   <data name="PostMnuItem" xml:space="preserve">
-    <value>Posts</value>
+    <value>Сообщений</value>
   </data>
   <data name="ProfileMnuItem" xml:space="preserve">
-    <value>My Profile</value>
+    <value>Мой профиль</value>
   </data>
   <data name="SettingMnuItem" xml:space="preserve">
-    <value>Settings</value>
+    <value>настройки</value>
   </data>
   <data name="ShortcutsTitle" xml:space="preserve">
-    <value>shortcuts</value>
+    <value>ярлыки</value>
   </data>
   <data name="SocialSharingMnuItem" xml:space="preserve">
-    <value>Social Sharing</value>
+    <value>в соцсети</value>
   </data>
   <data name="SyntaxHighlighterMnuItem" xml:space="preserve">
-    <value>Syn. Highlighter</value>
+    <value>Синтаксис Маркер</value>
   </data>
   <data name="TagMnuItem" xml:space="preserve">
-    <value>Tags</value>
+    <value>Тэги</value>
   </data>
   <data name="UploadMnuItem" xml:space="preserve">
-    <value>Uploads</value>
+    <value>загрузки</value>
   </data>
   <data name="UserMgmtMnuItem" xml:space="preserve">
-    <value>User Content Mgmt.</value>
+    <value>Пользователь Упр.</value>
   </data>
   <data name="VisitBlogMnuItem" xml:space="preserve">
-    <value>visit blog</value>
+    <value>посетите блог</value>
   </data>
 </root>

@@ -1,7 +1,9 @@
-﻿@model IEnumerable<sBlog.Net.Domain.Entities.PostEntity>
+﻿@using Resources = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model IEnumerable<sBlog.Net.Domain.Entities.PostEntity>
 
 <div id="section1" class="menu">
-	<h2>recent posts</h2>
+	<h2>@Resources.SideBarRecentPosts</h2>
 	<ul style="list-style-type:none;">
 	    @foreach(var post in Model)
         {

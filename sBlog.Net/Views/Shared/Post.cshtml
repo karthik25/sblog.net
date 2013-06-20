@@ -1,4 +1,6 @@
-﻿@model sBlog.Net.Models.PostModel
+﻿@using Resource = sBlog.Net.Resources.Views.Shared.GenericResources
+
+@model sBlog.Net.Models.PostModel
 
 <div class="post">
     @{
@@ -7,7 +9,7 @@
     <h2 class="title"><a href="@url">@Model.Post.PostTitle</a></h2>
     <p class="meta">
         <span class="date">@Model.Post.PostAddedDate.ToLongDateString()</span>
-        <span class="posted" style="float: right;">Posted by <b>@Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { })</b> under @Html.Partial("PostCategories", Model.Post.Categories)</span>
+        <span class="posted" style="float: right;">@Html.Raw(string.Format(Resource.PostNameCategoryInfo,Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { }),Html.Partial("PostCategories", Model.Post.Categories)))</span>
     </p>
     <div class="entry">
 	    <p>
@@ -19,8 +21,9 @@
         }
 
 	    <p class="meta">
-            Tagged @Html.Partial("PostTags", Model.Post.Tags)
-            @* ReSharper disable AssignNullToNotNullAttribute *@
+            @Html.Raw(string.Format(Resource.PostTagInfo, Html.Partial("PostTags", Model.Post.Tags)))
+
+	        @* ReSharper disable AssignNullToNotNullAttribute *@
             @if (!Model.DisqusEnabled)
             {
                 <span class="posted">@count <a href="@(url + "#user-comments")">Comments</a></span>

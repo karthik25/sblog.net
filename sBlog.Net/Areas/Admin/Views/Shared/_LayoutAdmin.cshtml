@@ -23,11 +23,11 @@
             {
                 <ul id="sub-nav">
                     @Html.AdminLink(Resource.DashboardMnuItem, "AdminIndex", "Index", "Admin", "~/Content/Images/dashboard.png")
-                    @Html.AdminLinkWithSubmenu(Resource.PostMnuItem, "AdminPosts", "ManagePosts", "Post", "~/Content/Images/manageposts.png", "~/Content/Images/manageposts.png", "~/Content/Images/post.png")
+                    @Html.AdminLinkWithSubmenu("Posts", "AdminPosts", "ManagePosts", "Post", "~/Content/Images/manageposts.png", "~/Content/Images/manageposts.png", "~/Content/Images/post.png")
 
                     @if (User.IsInRole("SuperAdmin"))
                     {
-                        @Html.AdminLinkWithSubmenu(Resource.PageMnuItem, "AdminPages", "ManagePages", "Page", "~/Content/Images/managepages.png", "~/Content/Images/managepages.png", "~/Content/Images/page.png")
+                        @Html.AdminLinkWithSubmenu("Pages", "AdminPages", "ManagePages", "Page", "~/Content/Images/managepages.png", "~/Content/Images/managepages.png", "~/Content/Images/page.png")
                     }
                     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     {
