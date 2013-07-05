@@ -121,22 +121,22 @@
     <value>Следующая страница &gt;&gt;</value>
   </data>
   <data name="NoPostsMessage" xml:space="preserve">
-    <value>нет сообщений на странице введен.</value>
+    <value>На странице нет публикаций</value>
   </data>
   <data name="PostNameCategoryInfo" xml:space="preserve">
-    <value>Сообщение от &lt;b&gt;{0}&lt;/b&gt; под {1}</value>
+    <value>Опубликовано &lt;b&gt;{0}&lt;/b&gt; в категории {1}</value>
   </data>
   <data name="PostTagInfo" xml:space="preserve">
-    <value>меткой {0}</value>
+    <value>Тег {0}</value>
   </data>
   <data name="PreviousPageLink" xml:space="preserve">
     <value>&lt;&lt; Предыдущая страница</value>
   </data>
   <data name="RequestAcctLink" xml:space="preserve">
-    <value>запросить счет</value>
+    <value>Запросить учетную запись</value>
   </data>
   <data name="SideBarArchives" xml:space="preserve">
-    <value>архив</value>
+    <value>Архив</value>
   </data>
   <data name="SideBarCategories" xml:space="preserve">
     <value>Категории</value>
@@ -148,6 +148,6 @@
     <value>Последние сообщения</value>
   </data>
   <data name="SideBarSiteOptions" xml:space="preserve">
-    <value>сайт Опции</value>
+    <value>Настройки сайта</value>
   </data>
 </root>
