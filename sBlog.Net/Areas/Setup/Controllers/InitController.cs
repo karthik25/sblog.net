@@ -37,6 +37,12 @@ namespace sBlog.Net.Areas.Setup.Controllers
         public ActionResult Index()
         {
             var setupStatusViewModel = GetSetupStatusViewModel();
+
+            if (setupStatusViewModel == null)
+            {
+                return RedirectToRoute("InitializeDatabase");
+            }
+
             if (setupStatusViewModel.InstallationComplete)
             {
                 return RedirectToAction("Index", "Home", new { area = "" });
@@ -60,20 +66,28 @@ namespace sBlog.Net.Areas.Setup.Controllers
 
         private SetupStatusViewModel GetSetupStatusViewModel()
         {
-            var status = _dbContext.IsConnectionStringValid();
-            var uploadStatus = UploadFolderVerifier.CanSaveOrDeleteFiles(_pathMapper);
-            var model = new SetupStatusViewModel
-                            {
-                                IsConnectionStringValid = status.SetupValid,
-                                ConnectionStatusClass = status.CssClass,
-                                Message = status.Message,
-                                IsUploadsFolderValid = uploadStatus,
-                                UploadsFolderStatusClass = uploadStatus ? "confirm" : "error",
-                                InstallationComplete = _dbContext.IsInstallationComplete(),
-                                UploadsMessage = uploadStatus
-                                                     ? "The uploads directory is writeable."
-                                                     : "The uploads directory is not writeable."
-                            };
+            SetupStatusViewModel model = null;
+            try
+            {
+                var status = _dbContext.IsConnectionStringValid();
+                var uploadStatus = UploadFolderVerifier.CanSaveOrDeleteFiles(_pathMapper);
+                model = new SetupStatusViewModel
+                    {
+                        IsConnectionStringValid = status.SetupValid,
+                        ConnectionStatusClass = status.CssClass,
+                        Message = status.Message,
+                        IsUploadsFolderValid = uploadStatus,
+                        UploadsFolderStatusClass = uploadStatus ? "confirm" : "error",
+                        InstallationComplete = _dbContext.IsInstallationComplete(),
+                        UploadsMessage = uploadStatus
+                                             ? "The uploads directory is writeable."
+                                             : "The uploads directory is not writeable."
+                    };
+            }
+            catch
+            {
+                
+            }
             return model;
         }
     }

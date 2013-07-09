@@ -41,5 +41,15 @@ namespace sBlog.Net.DependencyManagement
         {
             return DependencyResolver.Current.GetService<IRole>();
         }
+
+        public static ISchema CreateSchemaInstance()
+        {
+            return DependencyResolver.Current.GetService<ISchema>();
+        }
+
+        public static IPathMapper CreatePathMapperInstance()
+        {
+            return DependencyResolver.Current.GetService<IPathMapper>();
+        }
     }
 }

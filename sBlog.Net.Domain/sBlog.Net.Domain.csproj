@@ -51,6 +51,7 @@
     <Compile Include="Concrete\Error.cs" />
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Role.cs" />
+    <Compile Include="Concrete\Schema.cs" />
     <Compile Include="Concrete\Settings.cs" />
     <Compile Include="Concrete\Tag.cs" />
     <Compile Include="Concrete\User.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Entities\CommentEntity.cs" />
     <Compile Include="Entities\PostEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="Entities\SchemaEntity.cs" />
     <Compile Include="Entities\SettingsEntity.cs" />
     <Compile Include="Entities\TagEntity.cs" />
     <Compile Include="Entities\TagMapping.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Interfaces\IPathMapper.cs" />
     <Compile Include="Interfaces\IPost.cs" />
     <Compile Include="Interfaces\IRole.cs" />
+    <Compile Include="Interfaces\ISchema.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ITag.cs" />
     <Compile Include="Interfaces\IUser.cs" />

@@ -84,6 +84,7 @@ namespace sBlog.Net.DependencyManagement
                 Bind<IError>().To<Error>();
                 Bind<ICacheService>().To<CacheService>();
                 Bind<IRole>().To<Role>();
+                Bind<ISchema>().To<Schema>();
             }
         }
     }

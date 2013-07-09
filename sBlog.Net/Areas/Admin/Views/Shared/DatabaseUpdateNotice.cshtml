@@ -1,0 +1,9 @@
+﻿@model bool
+
+@if (Model)
+{
+    <div class="notice">
+        Looks like you've got some updates to your database. Click <a href="@Url.RouteUrl("UpdateDatabase")">here</a>
+        to finish it! You don't want to look sorry in front of your blog readers, right ? :-)
+    </div>
+}
