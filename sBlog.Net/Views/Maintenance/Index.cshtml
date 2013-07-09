@@ -8,15 +8,7 @@
 <head>
     <title>Under Construction :: sBlog.Net</title>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")"></script>
-    <style type="text/css">
-        #ms-sql-perm {
-            border-radius: 10px;
-            padding: 5px; 
-            border: 2px solid #E6E6E6;
-            background-color: #E6E6E6;
-            display: none;
-        }
-        
+    <style type="text/css">        
         #how-to {
             text-decoration: none;
             color: navy;
@@ -71,12 +63,38 @@
             width: 200px; 
             height: 200px
         }
+                
+        .notice {
+            background-color: #fff8dc;
+            border: 3px solid #ffeb8e;
+            position: absolute;
+            padding: 10px; 
+            top: 100px;
+            left: 25%; 
+            color: black; 
+            vertical-align: middle;
+            z-index: 9999;
+        }
+        
+        #ms-sql-perm {
+            display: none
+        }
+        
+        .close-img {
+            height: 40px; 
+            width: 40px; 
+            float: right
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#how-to').click(function (e) {
                 e.preventDefault();
                 $('#ms-sql-perm').toggle('fast');
+            });
+
+            $('.close-img').click(function() {
+                $('#ms-sql-perm').hide('fast');
             });
         });
     </script>
@@ -96,8 +114,7 @@
                 <ul>
                     <li>The entire connection string in the <i>web.config</i> file is incorrect</li>
                     <li>The <i>database</i> name specified in the connection string is incorrect</li>
-                    <li>The database exists, but the <b>Init.sql</b> script has never been run on the database in the connection string</li>
-                    <li>The database exists, you have run <b>Init.sql</b>, but the user name used in the <i>web.config</i>'s connections string does 
+                    <li>The database exists, but the user name used in the <i>web.config</i>'s connections string does 
                         not have <span title="User should have the db_owner role">access</span> to this database [<a href="javascript:void(0)" id="how-to">?</a>]
                     </li>
                 </ul>
@@ -108,14 +125,15 @@
     
         <div class="main-note">
             <br/>
-            <span class="bold-text">Note</span>: If you <span class="bold-text">had</span> to do any of the steps mentioned above, even if it didn't require you to
-            modify/save the <i>web.config</i>, you <span class="bold-text">may still have</span> to do that, so that the application
-            restarts.
+            <span class="bold-text">Note</span>: If you <span class="bold-text">had</span> to do any of the steps mentioned above, you 
+            <span class="bold-text">may have</span> to save the web.config file, so that the application restarts (if the link to retry 
+            doesn't seem to fix the issue).
             <br/>
         </div>
 
-        <div id="ms-sql-perm">
-            <span class="section-title">Steps:</span>
+        <div id="ms-sql-perm" class="notice">
+            <img src="@Url.Content("~/Content/Images/close_icon.png")" alt="close" title="close" class="close-img"/>
+            <span class="section-title">Steps to provide db_owner access to a user:</span>
             <ul>
                 <li>Connect to the ms sql server instance that has your database</li>
                 <li>Expand the <b>Security</b> node</li>

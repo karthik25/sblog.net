@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="MetaData\AdminSettingsViewModelMetaData.cs" />
     <Compile Include="MetaData\CommentEntityMetaData.cs" />
+    <Compile Include="MetaData\DatabaseSetupModelMetaData.cs" />
     <Compile Include="MetaData\LogOnModelMetaData.cs" />
     <Compile Include="MetaData\NewUserModelMetaData.cs" />
     <Compile Include="MetaData\PostEntityMetaData.cs" />

@@ -1,0 +1,75 @@
+﻿@model sBlog.Net.Areas.Prepare.Models.DatabaseSetupModel
+
+@{
+    ViewBag.Title = "sBlog.Net Database Update";
+}
+<div style="text-align: center">
+    <h2>sBlog.Net database update</h2>
+</div>
+
+<br/>
+
+<div>
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="message @Model.MessageCss">
+            @Model.Message
+        </div>
+        
+        <br/>           
+    }
+</div>
+
+<div>
+    Looks like you've decided to update your database! Good idea :) Let's proceed!
+    For completing this step, you just have to enter the connection string from your web.config 
+    in order to authenticate yourself as the owner of this blog. Then clicking on the "Update Now &raquo;"
+    button would finish the database installation of sBlog.Net!
+</div>
+
+<br />
+
+<div>
+    The following scripts have to be run:
+            
+    <ul>
+        @foreach (var script in Model.Scripts)
+        {
+            <li>@script</li>
+        }
+    </ul>
+</div>
+
+<div style="text-align: center;">
+    @using (Html.BeginForm())
+    {
+        <br />
+        <span class="left-align">@Html.LabelFor(model => model.ConnectionString)</span> 
+        <span>[<span style="color: red; cursor: pointer" title="A case-sensitive validation is performed. So make sure you maintain case when you enter the connection string.">?</span>]</span><br />
+        @Html.TextBoxFor(model => model.ConnectionString, new { @class = "inputBoxBigConnStr", autocomplete = "off" })<br />
+        @Html.ValidationMessageFor(model => model.ConnectionString)
+        
+        <br />
+        
+        <button type="submit" class="important">Update Now &raquo;</button>        
+    }
+</div>
+
+<br/><br/>
+
+<div>
+    @if (!string.IsNullOrEmpty(Model.CompleteException))
+    {
+        <div style="border: 1px dashed black; background-color: #FE2E64; padding: 5px">
+            <h3 style="text-align: center; font-weight: bold;">failed in an astronomical fashion :(</h3>
+            <br />
+            here is the complete <strong>stack trace</strong>. if you need some help, go to 
+            <a href="http://sblogproject.net/" target="_blank" style="color: blue; text-decoration: none">sBlog.Net's homepage</a> 
+            and use the <span style="color: blue; border-bottom: 1px dashed black">contact</span> form available...
+            <br /><br />
+
+            @Model.CompleteException
+        </div>
+    }
+
+</div>

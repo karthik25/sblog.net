@@ -20,6 +20,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using sBlog.Net.DB.Enumerations;
+using sBlog.Net.DB.Helpers;
 using sBlog.Net.Models;
 using sBlog.Net.Providers;
 using sBlog.Net.Controllers;
@@ -43,8 +45,9 @@ namespace sBlog.Net.Areas.Admin.Controllers
         private readonly ITag _tagRepository;
         private readonly IPathMapper _pathMapper;
         private readonly IUser _userRepository;
+        private readonly ISchema _schemaRepository;
 
-        public AdminController(IPost postRepository, IComment commentRepository, ICategory categoryRepository, ITag tagRepository, ISettings settingsRepository, IPathMapper pathMapper, IUser userRepository)
+        public AdminController(IPost postRepository, IComment commentRepository, ICategory categoryRepository, ITag tagRepository, ISettings settingsRepository, IPathMapper pathMapper, IUser userRepository, ISchema schemaRepository)
             : base(settingsRepository)
         {
             _postRepository = postRepository;
@@ -53,6 +56,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             _tagRepository = tagRepository;
             _pathMapper = pathMapper;
             _userRepository = userRepository;
+            _schemaRepository = schemaRepository;
             ExpectedMasterName = string.Empty;
 
             IsAdminController = true;
@@ -314,6 +318,12 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return PartialView("AdminShortcuts");
         }
 
+        public ActionResult DatabaseUpdateNotice()
+        {
+            var status = GetDatabaseUpdateStatus();
+            return PartialView("DatabaseUpdateNotice", status);
+        }
+
         private UserEntity GetUserEntity(UpdateProfileModel model)
         {
             var userEntity = new UserEntity
@@ -393,6 +403,13 @@ namespace sBlog.Net.Areas.Admin.Controllers
             var baseDirectory = _pathMapper.MapPath("~/Themes");
             var directories = Directory.GetDirectories(baseDirectory);
             return directories.Select(directory => directory.Split('\\')).Select(split => new SelectListItem { Text = Regex.Replace(split.Last(), "(\\B[A-Z])", " $1"), Value = split.Last(), Selected = split.Last() == selectedTheme }).ToList();
+        }
+
+        private bool GetDatabaseUpdateStatus()
+        {
+            var databaseStatusGenerator = new SetupStatusGenerator(_schemaRepository, _pathMapper);
+            var databaseStatus = databaseStatusGenerator.GetSetupStatus();
+            return Request.IsAuthenticated && databaseStatus.StatusCode == SetupStatusCode.HasUpdates;
         }
     }
 }

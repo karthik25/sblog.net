@@ -24,8 +24,12 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
+using sBlog.Net.DB.Enumerations;
+using sBlog.Net.DB.Helpers;
+using sBlog.Net.DB.Services;
 using sBlog.Net.DependencyManagement;
 using sBlog.Net.Infrastructure;
+using sBlog.Net.Mappers;
 using sBlog.Net.Models;
 using sBlog.Net.Binders;
 using System.Web.Security;
@@ -157,17 +161,29 @@ namespace sBlog.Net
 
         protected void Session_Start()
         {
-            var installationStatus = Application["Installation_Status"];
+            var databaseStatus = (SetupStatus)Application["Installation_Status"];
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
 
-            if (installationStatus != null && installationStatus.ToString() == "false")
+            if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.NoUpdates)
             {
-                Response.Redirect(urlHelper.RouteUrl("SetupIndex"), true);
-            }
+                var installationStatus = GetInstallationStatus();
 
-            if (installationStatus != null && installationStatus.ToString() == "ERROR")
+                if (installationStatus == false)
+                {
+                    Response.Redirect(urlHelper.RouteUrl("SetupIndex"), true);
+                }
+            }
+            else
             {
-                Response.Redirect(urlHelper.RouteUrl("SetupError"), true);
+                if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseError)
+                {
+                    Response.Redirect(urlHelper.RouteUrl("SetupError"), true);
+                }
+
+                if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseNotSetup)
+                {
+                    Response.Redirect(urlHelper.RouteUrl("InitializeDatabase"));
+                }
             }
         }
 
@@ -231,16 +247,17 @@ namespace sBlog.Net
 
         private void VerifyInstallation()
         {
-            try
-            {
-                var settingsRepository = InstanceFactory.CreateSettingsInstance();
-                var installationStatus = settingsRepository.InstallationComplete;
-                Application["Installation_Status"] = installationStatus.ToString().ToLower();
-            }
-            catch
-            {
-                Application["Installation_Status"] = "ERROR";
-            }
+            var schemaInstance = InstanceFactory.CreateSchemaInstance();
+            var pathMapper = InstanceFactory.CreatePathMapperInstance();
+            var dbStatusGenerator = new SetupStatusGenerator(schemaInstance, pathMapper);
+            Application["Installation_Status"] = dbStatusGenerator.GetSetupStatus();
+        }
+
+        private bool GetInstallationStatus()
+        {
+            var settingsRepository = InstanceFactory.CreateSettingsInstance();
+            var installationStatus = settingsRepository.InstallationComplete;
+            return installationStatus;
         }
 
         private void Log(Exception exception)
