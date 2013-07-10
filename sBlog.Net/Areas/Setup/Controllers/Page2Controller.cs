@@ -63,7 +63,7 @@ namespace sBlog.Net.Areas.Setup.Controllers
                     UpdateSettings(setupDefaultParametersViewModel);
 
                     // Installation is complete. Update the application variable
-                    HttpContext.Application["Installation_Status"] = "true";
+                    HttpContext.Application["Installation_Status"] = null;
 
                     return RedirectToAction("Index", "Home", new { Area = "" });
                 }
