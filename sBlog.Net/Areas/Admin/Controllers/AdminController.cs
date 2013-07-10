@@ -409,7 +409,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             var databaseStatusGenerator = new SetupStatusGenerator(_schemaRepository, _pathMapper);
             var databaseStatus = databaseStatusGenerator.GetSetupStatus();
-            return Request.IsAuthenticated && databaseStatus.StatusCode == SetupStatusCode.HasUpdates;
+            return GetUserId() == 1 && databaseStatus.StatusCode == SetupStatusCode.HasUpdates;
         }
     }
 }
