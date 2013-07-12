@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BlogCreditsText" xml:space="preserve">
-    <value>sBlog.Net кредитов</value>
+    <value>О проекте sBlog.Net</value>
   </data>
   <data name="CategoryMnuItem" xml:space="preserve">
     <value>Категории</value>
@@ -127,54 +127,54 @@
     <value>Комментарии</value>
   </data>
   <data name="DashboardMnuItem" xml:space="preserve">
-    <value>приборная панель</value>
+    <value>Панель управления</value>
   </data>
   <data name="LogInMnuItem" xml:space="preserve">
-    <value>войти</value>
+    <value>Войти</value>
   </data>
   <data name="LogOffMnuItem" xml:space="preserve">
-    <value>выйти</value>
+    <value>Выйти</value>
   </data>
   <data name="ManageCommentsMnuItem" xml:space="preserve">
-    <value>Управление Комментарии</value>
+    <value>Управление комментарии</value>
   </data>
   <data name="NewPageMnuItem" xml:space="preserve">
-    <value>новая страница</value>
+    <value>Новая страница</value>
   </data>
   <data name="NewPostMnuItem" xml:space="preserve">
-    <value>новое сообщение</value>
+    <value>Новая публикация</value>
   </data>
   <data name="PageMnuItem" xml:space="preserve">
     <value>Страницы</value>
   </data>
   <data name="PostMnuItem" xml:space="preserve">
-    <value>Сообщений</value>
+    <value>Публикации</value>
   </data>
   <data name="ProfileMnuItem" xml:space="preserve">
     <value>Мой профиль</value>
   </data>
   <data name="SettingMnuItem" xml:space="preserve">
-    <value>настройки</value>
+    <value>Настройки</value>
   </data>
   <data name="ShortcutsTitle" xml:space="preserve">
-    <value>ярлыки</value>
+    <value>Ярлыки</value>
   </data>
   <data name="SocialSharingMnuItem" xml:space="preserve">
-    <value>в соцсети</value>
+    <value>Публикация в соц. сетях</value>
   </data>
   <data name="SyntaxHighlighterMnuItem" xml:space="preserve">
-    <value>Синтаксис Маркер</value>
+    <value>Подсветка синтаксиса</value>
   </data>
   <data name="TagMnuItem" xml:space="preserve">
     <value>Тэги</value>
   </data>
   <data name="UploadMnuItem" xml:space="preserve">
-    <value>загрузки</value>
+    <value>Загрузки</value>
   </data>
   <data name="UserMgmtMnuItem" xml:space="preserve">
-    <value>Пользователь Упр.</value>
+    <value>Управление пользователями</value>
   </data>
   <data name="VisitBlogMnuItem" xml:space="preserve">
-    <value>посетите блог</value>
+    <value>Показать блог</value>
   </data>
 </root>
