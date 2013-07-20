@@ -6,8 +6,10 @@
     <link type="text/css" href="@Url.Content("~/Areas/Setup/Content/Site.css")" rel="Stylesheet" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-
+        $(document).ready(function () {
+            $('.error-item').click(function () {
+                $(this).find('.setup-notice').toggle();
+            });
         });
     </script>
 </head>

@@ -1,0 +1,12 @@
+﻿@model sBlog.Net.Areas.Prepare.Models.DatabaseSetupModel
+
+<div>
+    The following scripts have to be run:
+            
+    <ul>
+        @foreach (var script in Model.Scripts)
+        {
+            <li>@script</li>
+        }
+    </ul>
+</div>

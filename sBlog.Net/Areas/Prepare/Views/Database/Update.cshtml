@@ -9,16 +9,7 @@
 
 <br/>
 
-<div>
-    @if (!string.IsNullOrEmpty(Model.Message))
-    {
-        <div class="message @Model.MessageCss">
-            @Model.Message
-        </div>
-        
-        <br/>           
-    }
-</div>
+@Html.Partial("PrepareErrors", Model)
 
 <div>
     Looks like you've decided to update your database! Good idea :) Let's proceed!
@@ -29,16 +20,7 @@
 
 <br />
 
-<div>
-    The following scripts have to be run:
-            
-    <ul>
-        @foreach (var script in Model.Scripts)
-        {
-            <li>@script</li>
-        }
-    </ul>
-</div>
+@Html.Partial("ScriptListing", Model)
 
 <div style="text-align: center;">
     @using (Html.BeginForm())
@@ -57,19 +39,4 @@
 
 <br/><br/>
 
-<div>
-    @if (!string.IsNullOrEmpty(Model.CompleteException))
-    {
-        <div style="border: 1px dashed black; background-color: #FE2E64; padding: 5px">
-            <h3 style="text-align: center; font-weight: bold;">failed in an astronomical fashion :(</h3>
-            <br />
-            here is the complete <strong>stack trace</strong>. if you need some help, go to 
-            <a href="http://sblogproject.net/" target="_blank" style="color: blue; text-decoration: none">sBlog.Net's homepage</a> 
-            and use the <span style="color: blue; border-bottom: 1px dashed black">contact</span> form available...
-            <br /><br />
-
-            @Model.CompleteException
-        </div>
-    }
-
-</div>
+@Html.Partial("FatalErrors", Model)

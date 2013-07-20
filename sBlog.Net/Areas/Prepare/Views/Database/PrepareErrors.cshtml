@@ -1,0 +1,31 @@
+﻿@model sBlog.Net.Areas.Prepare.Models.DatabaseSetupModel
+
+<div>
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="message @Model.MessageCss">
+            @Model.Message
+            @if (Model.Results != null && Model.Results.Any(m => !m.RunStatus))
+            {
+                <br/><br/>
+                <ul>
+   	            @foreach (var result in Model.Results.Where(m => !m.RunStatus))
+                {
+	                <li class="error-item" title="click for more information">
+	                    <b>@string.Format("{0}.sql", result)</b> <span>-</span> @result.ErrorMessage
+                        
+	                    <div class="setup-notice">
+	                        <h2>Full Stack Trace</h2>
+                            <br/>
+	                        @result.FullErrorMessage
+                            <br/><br/>
+	                        <img src="@Url.Content("~/Content/Images/close_icon.png")" alt="close" title="close" class="setup-close-img"/>
+	                    </div>
+	                </li>
+                }
+                </ul>
+                <br/>
+            }
+        </div>        
+    }
+</div>
