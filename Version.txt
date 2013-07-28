@@ -1,11 +1,9 @@
 Version
 -----------
 
-sBlog.Net v2.0 (Dev Branch)
-
-For the released version go to https://github.com/karthik25/sblog.net/tree/sblog.net-v1.0-release
+sBlog.Net v2.0
 
 A minimalistic blog engine using the ASP.Net MVC 3 framework
 
-Copyright (c) 2012, Karthik Ananthapadmanaban
+Copyright (c) 2013, Karthik Ananthapadmanaban
 All rights reserved.
