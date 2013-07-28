@@ -43,6 +43,7 @@ Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
 
     Add page (http://www.iconfinder.com/icondetails/3784/128/blank_document_file_page_paper_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
     Close/Delete/Remove (http://www.iconfinder.com/icondetails/3206/128/cancel_close_cross_delete_exit_no_remove_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+	Close/Delete/Remove II (http://www.iconfinder.com/icondetails/1959/128/button_close_delete_forward_remove_x_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://sa-ki.deviantart.com/
     Jpeg (http://www.iconfinder.com/icondetails/2385/128/jpeg_icon) | License: http://www.gnu.org/licenses/lgpl.html- LGPL | Author - http://sa-ki.deviantart.com/
     Manage pages (http://www.iconfinder.com/icondetails/1447/128/administrator_employee_male_man_manager_operator_personal_user_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.icon-king.com/
     Pdf (http://www.iconfinder.com/icondetails/3745/128/document_pdf_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/

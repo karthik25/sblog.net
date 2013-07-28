@@ -482,17 +482,17 @@ a.selected:link, a.selected:active, a.selected:visited
 }
 
 .setup-errors {
-    width: 70%; 
+    width: 80%;
     background-color: #F78181; 
     border: 1px solid #FE2E2E; 
     font-weight: bolder;
     text-align: left; 
     margin: 0 auto; 
-    padding: 20px; 
+    padding: 20px;
     color: Black
 }
 
-.setup-errors .notice 
+.setup-errors .notice-title
 {
     font-weight: bold;
     color: blue

@@ -8,7 +8,11 @@ namespace sBlog.Net.DB.Services
         public short MajorVersion { get; set; }
         public short MinorVersion { get; set; }
         public short ScriptVersion { get; set; }
-        public string ScriptPath { get; set; }        
+        public string ScriptPath { get; set; }
+
+        public bool RunStatus { get; set; }
+        public string ErrorMessage { get; set; }
+        public string FullErrorMessage { get; set; }
 
         public int CompareTo(SchemaVersion other)
         {

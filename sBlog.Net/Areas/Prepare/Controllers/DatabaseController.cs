@@ -9,7 +9,6 @@ using sBlog.Net.DB.Enumerations;
 using sBlog.Net.DB.Helpers;
 using sBlog.Net.DB.Services;
 using sBlog.Net.Domain.Concrete;
-using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Infrastructure;
 
@@ -52,7 +51,7 @@ namespace sBlog.Net.Areas.Prepare.Controllers
 
             if (databaseStatus.StatusCode == SetupStatusCode.NoUpdates && _settingsRepository.InstallationComplete)
             {
-                return RedirectToAction("Index", "Home", new {Area = ""});
+                return RedirectToAction("Index", "Home", new { Area = "" });
             }
 
             var databaseSetupModel = new DatabaseSetupModel { Scripts = _pathMapper.GetAvailableScripts().ToList().Select(s => Path.GetFileName(s.ScriptPath)).ToList() };
@@ -62,17 +61,18 @@ namespace sBlog.Net.Areas.Prepare.Controllers
         [HttpPost]
         public ActionResult Index(DatabaseSetupModel databaseSetupModel)
         {
+            List<SchemaVersion> results = null;
             var isCredentialsValid = _dbContext.IsCredentialsValid(databaseSetupModel.ConnectionString);
             if (ModelState.IsValid && isCredentialsValid)
             {
                 var files = _pathMapper.GetAvailableScripts().ToList();
                 try
                 {
-                    var runner = new SqlRunner(ApplicationConfiguration.ConnectionString);
-                    var results = runner.RunScripts(files);
-                    UpdateScriptsRan(results);
-
-                    return RedirectToRoute("SetupIndex");
+                    results = RunScripts(files);
+                    if (results.All(r => r.RunStatus))
+                    {
+                        return RedirectToRoute("SetupIndex");
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -83,12 +83,10 @@ namespace sBlog.Net.Areas.Prepare.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(databaseSetupModel.ConnectionString) && !isCredentialsValid)
-            {
-                databaseSetupModel.Message = "An invalid connection string was entered";
-                databaseSetupModel.MessageCss = "error";
-            }
-            databaseSetupModel.Scripts = _pathMapper.GetAvailableScripts().ToList().Select(s => Path.GetFileName(s.ScriptPath)).ToList();
+            UpdateModelByErrorType(databaseSetupModel, results, isCredentialsValid);
+            databaseSetupModel.Scripts = _pathMapper.GetAvailableScripts()
+                                                    .Select(s => Path.GetFileName(s.ScriptPath))
+                                                    .ToList();
             return View(databaseSetupModel);
         }
 
@@ -125,6 +123,7 @@ namespace sBlog.Net.Areas.Prepare.Controllers
         [HttpPost]
         public ActionResult Update(DatabaseSetupModel databaseSetupModel)
         {
+            List<SchemaVersion> results = null;
             var isCredentialsValid = _dbContext.IsCredentialsValid(databaseSetupModel.ConnectionString);
             var runnableScripts = GetRunnableScripts();
 
@@ -132,11 +131,11 @@ namespace sBlog.Net.Areas.Prepare.Controllers
             {
                 try
                 {
-                    var runner = new SqlRunner(ApplicationConfiguration.ConnectionString);
-                    var results = runner.RunScripts(runnableScripts);
-                    UpdateScriptsRan(results);
-
-                    return RedirectToRoute("SetupIndex");
+                    results = RunScripts(runnableScripts);
+                    if (results.All(r => r.RunStatus))
+                    {
+                        return RedirectToRoute("SetupIndex");
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -147,15 +146,17 @@ namespace sBlog.Net.Areas.Prepare.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(databaseSetupModel.ConnectionString) && !isCredentialsValid)
-            {
-                databaseSetupModel.Message = "An invalid connection string was entered";
-                databaseSetupModel.MessageCss = "error";
-            }
-
+            UpdateModelByErrorType(databaseSetupModel, results, isCredentialsValid);
             var scripts = runnableScripts.Select(r => Path.GetFileName(r.ScriptPath)).ToList();
             databaseSetupModel.Scripts = scripts;
             return View(databaseSetupModel);
+        }
+
+        private List<SchemaVersion> RunScripts(List<SchemaVersion> files)
+        {
+            var runner = new SqlRunner(ApplicationConfiguration.ConnectionString);
+            var results = runner.RunScripts(files);
+            return results;
         }
 
         private List<SchemaVersion> GetRunnableScripts()
@@ -165,13 +166,25 @@ namespace sBlog.Net.Areas.Prepare.Controllers
             return scriptsToBeRan;
         }
 
-        private void UpdateScriptsRan(List<SchemaVersion> results)
+        private static void UpdateModelByErrorType(DatabaseSetupModel databaseSetupModel, List<SchemaVersion> results, bool isCredentialsValid)
         {
-            results.ForEach(result =>
-                {
-                    var schemaEntity = new SchemaEntity { ScriptName = Path.GetFileName(result.ScriptPath), MajorVersion = result.MajorVersion, MinorVersion = result.MinorVersion, ScriptVersion = result.ScriptVersion, ScriptRunDateTime = DateTime.Now };
-                    _schemaRepository.AddSchemaEntity(schemaEntity);
-                });
+            if (string.IsNullOrEmpty(databaseSetupModel.ConnectionString))
+                return;
+
+            databaseSetupModel.MessageCss = "error";
+            databaseSetupModel.Results = results;
+            if (!string.IsNullOrEmpty(databaseSetupModel.ConnectionString) && !isCredentialsValid)
+            {
+                databaseSetupModel.Message = "An invalid connection string was entered";
+            }
+            else if (results != null && results.Any(r => !r.RunStatus))
+            {
+                databaseSetupModel.Message = "Unable to run the following scripts";
+            }
+            else
+            {
+                databaseSetupModel.Message = "I give up, cannot figure this out :( Scroll down for more information...";
+            }
         }
     }
 }

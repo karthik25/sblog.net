@@ -248,3 +248,28 @@ button.notimportant { padding:4px 8px; }
     border-bottom: 1px dashed Gray;
     text-decoration: none
 }
+
+.setup-notice {
+    background-color: #fff8dc;
+    border: 3px solid #ffeb8e;
+    position: absolute;
+    padding: 10px; 
+    top: 100px;
+    left: 25%; 
+    color: black; 
+    vertical-align: middle;
+    z-index: 9999;
+    width: 50%;
+    display: none
+}
+    
+.setup-close-img {
+    height: 40px; 
+    width: 40px;
+    vertical-align: text-bottom;
+    float: right
+    }
+     
+.error-item {
+    cursor: pointer
+}

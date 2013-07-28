@@ -18,7 +18,7 @@
 </head>
     <body>
         @Html.Partial("AdminShortcuts")
-        @Html.Action("DatabaseUpdateNotice", "Admin", new { Area = "Admin" })
+        @Html.Action("DatabaseNotice", "Admin", new { Area = "Admin" })
         <div id="menu">
             @if (Request.IsAuthenticated)
             {
