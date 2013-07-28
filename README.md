@@ -12,20 +12,14 @@ should also be fine) and optionally IIS.
 Thanks for trying out sBlog.Net!
 http://sblogproject.net
 
-## Notes for sBlog.Net v2.0
+## Notes for sBlog.Net v3.0
 
 ```text
 Notice: This version is currently under development and so is not fully tested.
 ```
 
-Follow these steps to start experimenting with v2.0. This repository is for the development version of sBlog.Net.
-For the released version go to https://github.com/karthik25/sblog.net/tree/sblog.net-v1.0-release.
+This repository is for the development version of sBlog.Net. For the released version go to 
+https://github.com/karthik25/sblog.net/tree/sblog.net-v2.0-release.
 
 To use this dev version, get the latest source from github and extract the source and run the application and follow 
-the instructions. Now, you are all set to use the new version of sBlog.Net! Following are the major enhancements in 
-this development version:
-
-* Web based data updater (See http://sblogproject.net/2013/07/web-based-database-updater)
-* Role based access - By default "1" user belongs to the "Super admin" role. All other users will be under the "Author" role.
-* Author listing page and posts by author
-* Disqus support - Go to the settings page to play with it
+the instructions. Now, you are all set to use the new version of sBlog.Net!
