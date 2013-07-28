@@ -22,6 +22,7 @@ using System.Linq;
 using System.Web.Mvc;
 using sBlog.Net.DB.Enumerations;
 using sBlog.Net.DB.Helpers;
+using sBlog.Net.DB.Services;
 using sBlog.Net.Models;
 using sBlog.Net.Providers;
 using sBlog.Net.Controllers;
@@ -318,10 +319,16 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return PartialView("AdminShortcuts");
         }
 
-        public ActionResult DatabaseUpdateNotice()
+        public ActionResult DatabaseNotice()
         {
             var status = GetDatabaseUpdateStatus();
-            return PartialView("DatabaseUpdateNotice", status);
+            var isVisible = (GetUserId() == 1 && (status.StatusCode == SetupStatusCode.DatabaseNotSetup || 
+                                                  status.StatusCode == SetupStatusCode.HasUpdates));
+
+            if (!isVisible)
+                return new EmptyResult();
+
+            return PartialView(status.StatusCode == SetupStatusCode.HasUpdates ? "DatabaseUpdateNotice" : "DatabaseInstallNotice");
         }
 
         private UserEntity GetUserEntity(UpdateProfileModel model)
@@ -405,11 +412,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
             return directories.Select(directory => directory.Split('\\')).Select(split => new SelectListItem { Text = Regex.Replace(split.Last(), "(\\B[A-Z])", " $1"), Value = split.Last(), Selected = split.Last() == selectedTheme }).ToList();
         }
 
-        private bool GetDatabaseUpdateStatus()
+        private SetupStatus GetDatabaseUpdateStatus()
         {
             var databaseStatusGenerator = new SetupStatusGenerator(_schemaRepository, _pathMapper);
             var databaseStatus = databaseStatusGenerator.GetSetupStatus();
-            return GetUserId() == 1 && databaseStatus.StatusCode == SetupStatusCode.HasUpdates;
+            return databaseStatus;
         }
     }
 }
