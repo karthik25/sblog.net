@@ -560,6 +560,13 @@
     <Content Include="Sql\sc020001.sql" />
     <Content Include="Sql\sc020002.sql" />
     <Content Include="Sql\sc020003.sql" />
+    <Content Include="Themes\GoBootstrapDark\css\bootstrap-responsive.min.css" />
+    <Content Include="Themes\GoBootstrapDark\css\bootstrap.min.css" />
+    <Content Include="Themes\GoBootstrapDark\css\styles.css" />
+    <Content Include="Themes\GoBootstrapDark\img\glyphicons-halflings-white.png" />
+    <Content Include="Themes\GoBootstrapDark\img\glyphicons-halflings.png" />
+    <Content Include="Themes\GoBootstrapDark\js\bootstrap.min.js" />
+    <Content Include="Themes\GoBootstrapDark\js\site.js" />
     <Content Include="Themes\GreenForest\css\style.css" />
     <Content Include="Themes\GreenForest\images\img01.gif" />
     <Content Include="Themes\GreenForest\images\img02.gif" />
@@ -983,6 +990,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\DatabaseInstallNotice.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\GoBootstrapDark\_Layout.cshtml" />
+    <Content Include="Themes\GoBootstrapDark\_LayoutPage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

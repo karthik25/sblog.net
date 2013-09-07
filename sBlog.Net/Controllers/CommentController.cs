@@ -15,6 +15,8 @@
 /* *********************************************** */
 
 #endregion
+
+using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
@@ -113,17 +115,26 @@ namespace sBlog.Net.Controllers
             }
             else
             {
-                var rssUrl = string.Format("http://{0}.disqus.com/latest.rss", SettingsRepository.BlogDisqusShortName);
-                var reader = XmlReader.Create(rssUrl);
-                var feed = SyndicationFeed.Load(reader);
-
-                if (feed != null)
+                try
                 {
-                    const string pattern = @"<(.|\n)*?>";
-                    recents.AddRange(feed.Items.Take(5).Select(syndicationItem => new RecentComment
-                        {
-                            PostUrl = syndicationItem.Links.First().Uri.ToString(), DisqusComment = true, CommentContent = Regex.Replace(syndicationItem.Summary.Text, pattern, string.Empty)
-                        }));
+                    var rssUrl = string.Format("http://{0}.disqus.com/latest.rss", SettingsRepository.BlogDisqusShortName);
+                    var reader = XmlReader.Create(rssUrl);                
+                    var feed = SyndicationFeed.Load(reader);
+
+                    if (feed != null)
+                    {
+                        const string pattern = @"<(.|\n)*?>";
+                        recents.AddRange(feed.Items.Take(5).Select(syndicationItem => new RecentComment
+                            {
+                                PostUrl = syndicationItem.Links.First().Uri.ToString(), 
+                                DisqusComment = true, 
+                                CommentContent = Regex.Replace(syndicationItem.Summary.Text, pattern, string.Empty)
+                            }));
+                    }
+                }
+                catch (Exception e)
+                {
+                    _errorLogger.InsertException(e);
                 }
             }
 
