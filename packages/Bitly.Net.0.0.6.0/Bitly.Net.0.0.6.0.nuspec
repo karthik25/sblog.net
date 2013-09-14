@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Bitly.Net</id>
+    <version>0.0.6.0</version>
+    <title>Bitly.Net API Wrapper</title>
+    <authors>sethwebster, Mike Gleason jr Couturier</authors>
+    <owners>sethwebster, Mike Gleason jr Couturier</owners>
+    <projectUrl>http://code.google.com/p/bitly-dot-net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Api written by Mike Gleason jr Couturier, packaged by Seth Webster</description>
+    <summary>Api written by Mike Gleason jr Couturier, packaged by Seth Webster</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <references>
+      <reference file="BitlyDotNET.dll" />
+    </references>
+  </metadata>
+</package>
