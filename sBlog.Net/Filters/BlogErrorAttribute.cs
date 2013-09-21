@@ -16,7 +16,7 @@
 
 #endregion
 using System;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.Mvc;
 using sBlog.Net.Controllers;
 using sBlog.Net.CustomExceptions;
@@ -71,6 +71,9 @@ namespace sBlog.Net.Filters
             
             if (exception is InvalidThemeException)
                 redirectTo = new RedirectToRouteResult("InvalidTheme", new RouteValueDictionary());
+
+            if (exception is SqlException)
+                redirectTo = new RedirectToRouteResult("InitializeDatabase", new RouteValueDictionary());
 
             return redirectTo;
         }

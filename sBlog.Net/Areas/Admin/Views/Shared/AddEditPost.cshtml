@@ -8,6 +8,8 @@
         <div id="left" style="float: left; width: 75%; padding: 15px;">
             @Html.HiddenFor(model => model.Post.PostID)
             @Html.HiddenFor(model => model.Post.PostAddedDate)
+            @Html.HiddenFor(model => model.Post.BitlyUrl)
+            @Html.HiddenFor(model => model.Post.BitlySourceUrl)
 
             @{
                 var display = "Post";

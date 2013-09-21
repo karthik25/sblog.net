@@ -4,6 +4,32 @@
     }, function () {
         $(this).addClass('comment').removeClass('comment-hover');
     });
+
+    $(document).on('focus', '#bitlyLink', function () {
+        $(this).one('mouseup', function (event) {
+            event.preventDefault();
+        }).select();
+    });
+
+    $(document).on('click', '.close-link', function () {
+        $('.short-link').hide('slow');
+    });
+
+    $('.short-url-link').click(function () {
+        var offset = $(this).offset();
+        var height = $(this).height();
+        var width = $(this).width();
+        var top = offset.top + height + 3 + "px";
+        var left = offset.left + width - 375 + "px";
+
+        var element = $(this).next().next();
+
+        $(element).css({
+            'position': 'absolute',
+            'left': left,
+            'top': top
+        }).toggle('slow');
+    });
 });
 
 // more pages

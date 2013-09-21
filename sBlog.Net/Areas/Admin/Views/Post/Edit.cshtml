@@ -4,4 +4,5 @@
     ViewBag.Title = string.Format("Edit || {0} || {1}", Model.Post.PostTitle, Model.Title);
 }
 
+@Html.Partial("BitlyUrlDisplay", Model)
 @Html.Partial("AddEditPost", Model)

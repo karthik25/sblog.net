@@ -90,6 +90,12 @@ $(document).ready(function () {
         $('#btnUpdate').hide();
         $('#btnCancel').hide();
     });
+
+    $(document).on('focus', '#bitlyLink', function () {
+        $(this).one('mouseup', function (event) {
+            event.preventDefault();
+        }).select();
+    });
 });
 
 function clearUrlFields() {

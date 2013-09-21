@@ -104,6 +104,7 @@
     <Compile Include="FluentExtensions\StringUrlExtensions.cs" />
     <Compile Include="CustomExceptions\UrlNotFoundException.cs" />
     <Compile Include="FluentExtensions\TagExtensions.cs" />
+    <Compile Include="Infrastructure\BitlyUrlService.cs" />
     <Compile Include="Infrastructure\CustomRoleProvider.cs" />
     <Compile Include="Infrastructure\ErrorLogger.cs" />
     <Compile Include="Infrastructure\PasswordHelper.cs" />
@@ -559,6 +560,7 @@
     <Content Include="Scripts\Required\debug\06-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
     <Content Include="Scripts\SyntaxHighlighter.js" />
+    <Content Include="Sql\sc020004.sql" />
     <Content Include="Sql\sc010001.sql" />
     <Content Include="Sql\sc020001.sql" />
     <Content Include="Sql\sc020002.sql" />
@@ -997,6 +999,12 @@
   <ItemGroup>
     <Content Include="Themes\GoBootstrapDark\_Layout.cshtml" />
     <Content Include="Themes\GoBootstrapDark\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\BitlyUrlDisplay.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\BitlyUrlDisplay.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

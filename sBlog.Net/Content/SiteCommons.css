@@ -208,3 +208,25 @@ fieldset
 .misc-field-lbl {font-weight: bold }
 
 .misc-field { }
+
+.short-link {
+    background-color: #deedff;
+    border: 3px solid #bbbbbb;
+    text-align: left;
+    position: absolute;
+    padding: 10px; 
+    width: 350px;
+    color: black; 
+    vertical-align: middle;
+    z-index: 9999;
+    float: right;
+    font-weight: bold;
+    display: none
+}
+
+.short-link .close-link {
+   float: right;
+   cursor: pointer
+}
+
+.short-url-link { float: right }

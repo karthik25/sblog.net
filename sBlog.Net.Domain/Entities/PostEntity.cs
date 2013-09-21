@@ -55,6 +55,12 @@ namespace sBlog.Net.Domain.Entities
         [Column]
         public int? Order { get; set; }
 
+        [Column]
+        public string BitlyUrl { get; set; }
+
+        [Column]
+        public string BitlySourceUrl { get; set; }
+
         #region Additional Properties
         /* 
          * Properties to help associate other things associated to a post/page 

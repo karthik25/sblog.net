@@ -42,7 +42,9 @@ namespace sBlog.Net.Binders
                                                 UserCanAddComments = bool.Parse(bindingContext.GetValue("Post.UserCanAddComments")),
                                                 CanBeShared = bool.Parse(bindingContext.GetValue("Post.CanBeShared")),
                                                 IsPrivate = bool.Parse(bindingContext.GetValue("Post.IsPrivate")),
-                                                EntryType = byte.Parse(bindingContext.GetValue("Post.EntryType"))
+                                                EntryType = byte.Parse(bindingContext.GetValue("Post.EntryType")),
+                                                BitlyUrl = bindingContext.GetValue("Post.BitlyUrl"),
+                                                BitlySourceUrl = bindingContext.GetValue("Post.BitlySourceUrl")
                                             }
                                 };
 

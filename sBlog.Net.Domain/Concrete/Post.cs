@@ -311,6 +311,8 @@ namespace sBlog.Net.Domain.Concrete
                 post.CanBeShared = postEntity.CanBeShared;
                 post.IsPrivate = postEntity.IsPrivate;
                 post.EntryType = postEntity.EntryType;
+                post.BitlyUrl = postEntity.BitlyUrl;
+                post.BitlySourceUrl = postEntity.BitlySourceUrl;
                 post.Order = postEntity.Order.HasValue ? postEntity.Order.Value : (int?)null;
 
                 context.SubmitChanges();

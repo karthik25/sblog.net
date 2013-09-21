@@ -15,6 +15,7 @@
 
 @Html.Raw(Model.Post.PostContent)
 <br /><br />
+@Html.Partial("BitlyUrlDisplay", (object)Model.Post.BitlyUrl)
 @if (Model.BlogSharingEnabled && Model.Post.CanBeShared)
 {
     @Html.Partial("SharingOptions", Model.SharingType)

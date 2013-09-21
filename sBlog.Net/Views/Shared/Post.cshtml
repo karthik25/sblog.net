@@ -10,7 +10,7 @@
         <span class="posted" style="float: right;">Posted by <b>@Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { })</b> under @Html.Partial("PostCategories", Model.Post.Categories)</span>
     </p>
     <div class="entry">
-	    <p>
+        <p>
             @Html.Raw(Model.Post.PostContent)
         </p>
 
@@ -18,7 +18,7 @@
             var count = Model.Post.Comments != null ? Model.Post.Comments.Count : 0;
         }
 
-	    <p class="meta">
+        <p class="meta">
             Tagged @Html.Partial("PostTags", Model.Post.Tags)
             @* ReSharper disable AssignNullToNotNullAttribute *@
             @if (!Model.DisqusEnabled)
@@ -27,10 +27,11 @@
             }
             else
             {
-                var fullyQualifiedUrl = Model.RootUrl.IndexOf(url, System.StringComparison.Ordinal) >= 0 ? string.Format("{0}#disqus_thread", Model.RootUrl) : string.Format("{0}{1}#disqus_thread", Model.RootUrl, url);
-                <span class="posted"><a href="@fullyQualifiedUrl" data-disqus-identifier="@url">Link</a></span>
+                var fullyQualifiedUrl = Model.RootUrl.IndexOf(url, StringComparison.Ordinal) >= 0 ? string.Format("{0}#disqus_thread", Model.RootUrl) : string.Format("{0}{1}#disqus_thread", Model.RootUrl, url);
+                <span class="posted"><a href="@fullyQualifiedUrl" data-disqus-identifier="@url">loading...</a></span>
             }
             @* ReSharper restore AssignNullToNotNullAttribute *@
-	    </p>
+        </p>
+        @Html.Partial("BitlyUrlDisplay", (object)Model.Post.BitlyUrl)
     </div>
 </div>

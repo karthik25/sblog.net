@@ -1,0 +1,10 @@
+﻿@model sBlog.Net.Areas.Admin.Models.PostViewModel
+
+@if (!string.IsNullOrEmpty(Model.Post.BitlyUrl))
+{
+    <div class="short-link">
+        short url for this post <br/>
+        <input id="bitlyLink" type="text" style="width: 300px" value="@Model.Post.BitlyUrl" /><br />
+        <span class="info">(updated only when the publish/save button  is clicked)</span>
+    </div>
+}

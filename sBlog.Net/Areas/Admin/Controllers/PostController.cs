@@ -86,11 +86,18 @@ namespace sBlog.Net.Areas.Admin.Controllers
                     postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType);
                 }
 
-                var postID = _postRepository.AddPost(postEntity);
-
-                if (postID > 0)
+                var biltyPostUrl = BitlyUrlService.GetBiltyPostUrl(SettingsRepository, postEntity.PostUrl);
+                if (biltyPostUrl != null)
                 {
-                    return RedirectToAction("Edit", new {postID, newlyAdded = true });
+                    postEntity.BitlyUrl = biltyPostUrl;
+                    postEntity.BitlySourceUrl = postEntity.PostUrl;
+                }
+
+                var postId = _postRepository.AddPost(postEntity);
+
+                if (postId > 0)
+                {
+                    return RedirectToAction("Edit", new {postID = postId, newlyAdded = true });
                 }
             }
             postModel.Title = SettingsRepository.BlogName;
@@ -106,16 +113,13 @@ namespace sBlog.Net.Areas.Admin.Controllers
             ValidateEditRequest(post);
 
             var postModel = new PostViewModel
-                                {
-                                    Post = post,
-                                    Categories = GetModel(_categoryRepository.GetCategories(), post.Categories),
-                                    Tags =
-                                        string.Join(",",
-                                                    _tagRepository.GetTagsByPostID(postID).Select(t => t.TagName).
-                                                        ToArray()),
-                                    Title = SettingsRepository.BlogName,
-                                    SharingEnabled = SettingsRepository.BlogSocialSharing
-                                };
+                {
+                    Post = post,
+                    Categories = GetModel(_categoryRepository.GetCategories(), post.Categories),
+                    Tags = string.Join(",",_tagRepository.GetTagsByPostID(postID).Select(t => t.TagName).ToArray()),
+                    Title = SettingsRepository.BlogName,
+                    SharingEnabled = SettingsRepository.BlogSocialSharing,
+                };
 
             if (newlyAdded)
             {
@@ -140,6 +144,16 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 if (string.IsNullOrEmpty(postEntity.PostUrl))
                 {
                     postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType, postEntity.PostID);
+                }
+
+                if (postEntity.PostUrl != postEntity.BitlySourceUrl)
+                {
+                    var biltyPostUrl = BitlyUrlService.GetBiltyPostUrl(SettingsRepository, postEntity.PostUrl);
+                    if (biltyPostUrl != null)
+                    {
+                        postEntity.BitlyUrl = biltyPostUrl;
+                        postEntity.BitlySourceUrl = postEntity.PostUrl;
+                    }
                 }
 
                 _postRepository.UpdatePost(postEntity);

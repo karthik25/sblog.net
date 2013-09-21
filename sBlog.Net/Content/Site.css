@@ -858,3 +858,25 @@ a.edit-trash {
     vertical-align: middle;
     z-index: 9999;
 }
+
+.short-link {
+    background-color: #deedff;
+    border: 3px solid #bbbbbb;
+    text-align: left;
+    position: absolute;
+    padding: 10px; 
+    width: 350px;
+    top: 40px;
+    right: 350px; 
+    color: black; 
+    vertical-align: middle;
+    z-index: 9999;
+    font-weight: bold
+}
+
+.short-link .info{
+   font-size: x-small;
+   float: right;
+   font-style: italic;
+   font-weight: normal
+}

@@ -82,11 +82,18 @@ namespace sBlog.Net.Areas.Admin.Controllers
                     postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType);
                 }
 
-                var pageID = _postRepository.AddPost(postEntity);
-
-                if (pageID > 0)
+                var bitlyPageUrl = BitlyUrlService.GetBitlyPageUrl(SettingsRepository, postEntity.PostUrl);
+                if (bitlyPageUrl != null)
                 {
-                    return RedirectToAction("Edit", new { postID = pageID, newlyAdded = true });
+                    postEntity.BitlyUrl = bitlyPageUrl;
+                    postEntity.BitlySourceUrl = postEntity.PostUrl;
+                }
+
+                var pageId = _postRepository.AddPost(postEntity);
+
+                if (pageId > 0)
+                {
+                    return RedirectToAction("Edit", new { postID = pageId, newlyAdded = true });
                 }
             }
             postModel.Title = SettingsRepository.BlogName;
@@ -104,7 +111,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
             {
                 Post = post,
                 Title = SettingsRepository.BlogName,
-                SharingEnabled = SettingsRepository.BlogSocialSharing
+                SharingEnabled = SettingsRepository.BlogSocialSharing,
             };
 
             if (newlyAdded)
@@ -127,7 +134,17 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
                 if (string.IsNullOrEmpty(postEntity.PostUrl))
                 {
-                    postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType, postEntity.PostID);
+                    postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType, postEntity.PostID);                    
+                }
+
+                if (postEntity.PostUrl != postEntity.BitlySourceUrl)
+                {
+                    var bitlyPageUrl = BitlyUrlService.GetBitlyPageUrl(SettingsRepository, postEntity.PostUrl);
+                    if (bitlyPageUrl != null)
+                    {
+                        postEntity.BitlyUrl = bitlyPageUrl;
+                        postEntity.BitlySourceUrl = postEntity.PostUrl;
+                    }
                 }
 
                 _postRepository.UpdatePost(postEntity);

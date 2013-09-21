@@ -68,5 +68,27 @@ namespace sBlog.Net.Infrastructure
                 return int.TryParse(cacheDuration, out parsedDuration) ? parsedDuration : DefaultCacheDuration;
             }
         }
+
+        /// <summary>
+        /// Gets the bit.ly user name required to authenticate w/ the bit.ly site
+        /// </summary>
+        /// <value>
+        /// Username you signed up for
+        /// </value>
+        public static string BitlyUserName
+        {
+            get { return ConfigurationManager.AppSettings["BitlyUserName"]; }
+        }
+
+        /// <summary>
+        /// Gets the bit.ly api key required to authenticate w/ the bit.ly site
+        /// </summary>
+        /// <value>
+        /// Api key you signed up for
+        /// </value>
+        public static string BitlyApiKey
+        {
+            get { return ConfigurationManager.AppSettings["BitlyApiKey"]; }
+        }
     }
 }
