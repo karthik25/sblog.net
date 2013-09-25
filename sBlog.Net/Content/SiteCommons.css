@@ -229,4 +229,33 @@ fieldset
    cursor: pointer
 }
 
-.short-url-link { float: right }
+.short-url-link {  }
+
+/* Post toolbar */
+.toolbar
+{
+    background-color: #F2F2F2;
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #585858;
+}
+
+.toolbar a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.toolbar img {
+  width: 12px;
+   height: 12px
+}
+
+.toolbar .titlebox{
+	float: right;
+	background:#fff;
+    color: #A4A4A4;
+    cursor: pointer;
+    font-style: italic;
+    font-size: x-small
+}

@@ -1,4 +1,5 @@
-﻿@model sBlog.Net.Models.PostModel
+﻿@using sBlog.Net.Models
+@model PostModel
 
 <div class="post">
     @{
@@ -32,6 +33,6 @@
             }
             @* ReSharper restore AssignNullToNotNullAttribute *@
         </p>
-        @Html.Partial("BitlyUrlDisplay", (object)Model.Post.BitlyUrl)
+        @Html.Partial("Toolbar", new ToolbarViewModel { BitlyUrl = Model.Post.BitlyUrl })
     </div>
 </div>

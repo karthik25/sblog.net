@@ -1,0 +1,12 @@
+﻿@model sBlog.Net.Models.ToolbarViewModel
+
+@if (!string.IsNullOrEmpty(Model.BitlyUrl))
+{
+    <div class="toolbar">
+        @Html.Partial("BitlyUrlDisplay", (object)Model.BitlyUrl)
+        <div class="titlebox">
+            toolbar
+        </div>
+    </div>
+    <br/>
+}

@@ -20,7 +20,7 @@
         var height = $(this).height();
         var width = $(this).width();
         var top = offset.top + height + 3 + "px";
-        var left = offset.left + width - 375 + "px";
+        var left = offset.left + width - 50 + "px";
 
         var element = $(this).next().next();
 

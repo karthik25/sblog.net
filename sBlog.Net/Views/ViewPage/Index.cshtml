@@ -1,5 +1,6 @@
-﻿@using sBlog.Net.Models.Comments
-@model sBlog.Net.Models.ViewPostOrPageModel
+﻿@using sBlog.Net.Models
+@using sBlog.Net.Models.Comments
+@model ViewPostOrPageModel
 
 @{
     ViewBag.Title = string.Format("{0} || {1}", Model.Post.PostTitle, Model.BlogName);
@@ -15,7 +16,7 @@
 
 @Html.Raw(Model.Post.PostContent)
 <br /><br />
-@Html.Partial("BitlyUrlDisplay", (object)Model.Post.BitlyUrl)
+@Html.Partial("Toolbar", new ToolbarViewModel { BitlyUrl = Model.Post.BitlyUrl })
 @if (Model.BlogSharingEnabled && Model.Post.CanBeShared)
 {
     @Html.Partial("SharingOptions", Model.SharingType)
