@@ -556,8 +556,6 @@
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery.sticky.js" />
     <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
-    <Content Include="Scripts\Additional\modernizr-1.7.js" />
-    <Content Include="Scripts\Additional\modernizr-1.7.min.js" />
     <Content Include="Scripts\Required\debug\01-jquery-ui.custom.admin.js" />
     <Content Include="Scripts\Required\debug\06-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
