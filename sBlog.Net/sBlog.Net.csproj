@@ -522,6 +522,7 @@
     <Content Include="Content\Images\sblog-logo-v1-3.jpg" />
     <Content Include="Content\Images\settings.png" />
     <Content Include="Content\Images\sharing.png" />
+    <Content Include="Content\Images\shortlink.png" />
     <Content Include="Content\Images\tags.png" />
     <Content Include="Content\Images\under_construction.png" />
     <Content Include="Content\Images\uploads.png" />
