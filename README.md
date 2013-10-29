@@ -23,3 +23,7 @@ https://github.com/karthik25/sblog.net/tree/sblog.net-v2.0-release.
 
 To use this dev version, get the latest source from github and extract the source and run the application and follow 
 the instructions. Now, you are all set to use the new version of sBlog.Net!
+
+```text
+Notice: This version is the playground for a new feature - sBlog.Net's plugin architecture, this is a work-in-progress!
+```
