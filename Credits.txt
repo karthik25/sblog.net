@@ -85,4 +85,7 @@ Features
 Plugins :: References
 -----------------------
 
+MEF - http://msdn.microsoft.com/en-us/library/dd460648.aspx
 Pluged.Net - http://www.codeproject.com/Articles/574189/Plugged-NET-An-event-based-plug-in-library-for-ent
+MEF - http://www.codeproject.com/Articles/37559/Managed-Extensibility-Framework-Part-1 and 
+	  http://www.codeproject.com/Articles/37579/Managed-Extensibility-Framework-Part-2
