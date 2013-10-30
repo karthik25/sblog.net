@@ -78,3 +78,11 @@ MVC Social Helper
 
 	Akismet (http://akismet.com/) and Akismet Api for .Net (http://akismetapi.codeplex.com/)
 	JS Min (http://www.crockford.com/javascript/jsmin.html)
+
+Features
+----------
+
+Plugins :: References
+-----------------------
+
+Pluged.Net - http://www.codeproject.com/Articles/574189/Plugged-NET-An-event-based-plug-in-library-for-ent

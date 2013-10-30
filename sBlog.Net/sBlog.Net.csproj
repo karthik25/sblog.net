@@ -655,6 +655,10 @@
       <Project>{B8FBB6E2-F283-45E4-ADBA-3010F5323B89}</Project>
       <Name>sBlog.Net.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Extensibility\sBlog.Net.Extensibility.csproj">
+      <Project>{04BEC1C0-7B35-4F5B-950C-5F9B9BE3BEF9}</Project>
+      <Name>sBlog.Net.Extensibility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sBlog.Net.MetaData\sBlog.Net.MetaData.csproj">
       <Project>{5463815F-1105-4C86-8E01-D7EC06335907}</Project>
       <Name>sBlog.Net.MetaData</Name>

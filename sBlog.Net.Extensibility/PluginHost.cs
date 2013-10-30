@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.Reflection;
+using System.Web;
+using sBlog.Net.Domain.Interfaces;
+using sBlog.Net.Extensibility.Abstract;
+using sBlog.Net.Extensibility.Concrete;
+using sBlog.Net.Extensibility.Events;
+using sBlog.Net.Extensibility.Handlers;
+
+namespace sBlog.Net.Extensibility
+{
+    public sealed class PluginHost : IPluginHost
+    {
+        private static readonly object InstanceLock = new object();
+
+        private AggregateCatalog _aggregateCatalog;
+        private CompositionContainer _container;
+        private CompositionBatch _batch;
+
+        private static volatile PluginHost _pluginHost;
+
+        [ImportMany(typeof(IPlugin), AllowRecomposition = true)]
+        public IEnumerable<IPlugin> Plugins;
+
+        private PluginHost()
+        {
+
+        }
+
+        public static PluginHost Instance
+        {
+            get
+            {
+                if (_pluginHost == null)
+                {
+                    lock (InstanceLock)
+                    {
+                        if (_pluginHost == null)
+                            _pluginHost = new PluginHost();
+                    }
+                }
+                return _pluginHost;
+            }
+        }
+
+        public void Compose()
+        {
+            ComposeParts();
+            InitializePlugins();
+        }
+
+        public void Decompose()
+        {
+            ReleasePlugins();
+            DisposeParts();
+        }
+
+        private void DisposeParts()
+        {
+            if (_container == null) return;
+            _container.Catalog.Dispose();
+            _container.Dispose();
+            _container = null;
+        }
+
+        private void ReleasePlugins()
+        {
+
+        }
+
+        private void InitializePlugins()
+        {
+            if (Plugins != null)
+            {
+                var httpContext = HttpContext.Current;
+                var user = (IUserInfo)httpContext.User;
+                var pluginContext = new PluginContext
+                {
+                    Request = httpContext.Request,
+                    IsAuthenticated = httpContext.User != null && httpContext.User.Identity.IsAuthenticated,
+                    UserId = user == null ? string.Empty : user.UserId,
+                    UserToken = user == null ? string.Empty : user.UserToken
+                };
+
+                foreach (var plugin in Plugins)
+                {
+                    plugin.Initialize(pluginContext);
+
+                    var postHandler = new PostEventHandler();
+                    plugin.RegisterPostEvents(postHandler);
+                    plugin.PostHandler = postHandler;
+                }
+            }
+        }
+
+        public void RaisePostEvents(string relativeUrl, string fullyQualifiedUrl, string createdDate)
+        {
+            var eventArgs = new PostEventArgs { RelativeUrl = relativeUrl, FullyQualifiedUrl = fullyQualifiedUrl, PostCreatedDate = DateTime.Parse(createdDate) };
+            
+        }
+
+        private void ComposeParts()
+        {
+            _aggregateCatalog = new AggregateCatalog(new ComposablePartCatalog[]
+                                   {
+                                      new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory),
+                                      new AssemblyCatalog(Assembly.GetExecutingAssembly())
+                                   });
+            _container = new CompositionContainer(_aggregateCatalog);
+            _batch = new CompositionBatch();
+            _batch.AddPart(this);
+
+            _container.Compose(_batch);
+        }
+    }
+}

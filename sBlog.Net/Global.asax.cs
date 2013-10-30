@@ -26,6 +26,7 @@ using sBlog.Net.DB.Enumerations;
 using sBlog.Net.DB.Helpers;
 using sBlog.Net.DB.Services;
 using sBlog.Net.DependencyManagement;
+using sBlog.Net.Extensibility;
 using sBlog.Net.Infrastructure;
 using sBlog.Net.Mappers;
 using sBlog.Net.Models;
@@ -221,6 +222,12 @@ namespace sBlog.Net
             var pathMapper = InstanceFactory.CreatePathMapperInstance();
             var dbStatusGenerator = new SetupStatusGenerator(schemaInstance, pathMapper);
             Application["Installation_Status"] = dbStatusGenerator.GetSetupStatus();
+        }
+
+        private void LoadPlugins()
+        {
+            var host = PluginHost.Instance;
+            host.Compose();
         }
 
         private bool GetInstallationStatus()
