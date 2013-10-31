@@ -14,5 +14,10 @@ namespace sBlog.Net.Extensibility.Handlers
             var handler = PostDisplayed;
             if (handler != null) handler(e);
         }
+
+        public void Fire(PostEventArgs eventArgs)
+        {
+            
+        }
     }
 }

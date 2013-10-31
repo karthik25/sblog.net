@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Linq;
 using System.Reflection;
 using System.Web;
 using sBlog.Net.Domain.Interfaces;
@@ -100,7 +101,11 @@ namespace sBlog.Net.Extensibility
         public void RaisePostEvents(string relativeUrl, string fullyQualifiedUrl, string createdDate)
         {
             var eventArgs = new PostEventArgs { RelativeUrl = relativeUrl, FullyQualifiedUrl = fullyQualifiedUrl, PostCreatedDate = DateTime.Parse(createdDate) };
-            
+            foreach (var postHandler in Plugins.Select(plugin => plugin.PostHandler)
+                                               .Where(postHandler => postHandler != null))
+            {
+                postHandler.Fire(eventArgs);
+            }
         }
 
         private void ComposeParts()
