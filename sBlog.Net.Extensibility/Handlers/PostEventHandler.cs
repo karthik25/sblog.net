@@ -17,7 +17,10 @@ namespace sBlog.Net.Extensibility.Handlers
 
         public void Fire(PostEventArgs eventArgs)
         {
-            
+            foreach (PostHandler handler in PostDisplayed.GetInvocationList())
+            {
+                handler(eventArgs);
+            }
         }
     }
 }
