@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.Tools", "sBlog.Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.Extensibility", "sBlog.Net.Extensibility\sBlog.Net.Extensibility.csproj", "{04BEC1C0-7B35-4F5B-950C-5F9B9BE3BEF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.Plugins.PostViewCount", "sBlog.Net.Plugins.PostViewCount\sBlog.Net.Plugins.PostViewCount.csproj", "{D0CF209F-BF77-4613-AA53-87F404C1BFAD}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = sBlog.Net.vsmdi
@@ -75,6 +77,10 @@ Global
 		{04BEC1C0-7B35-4F5B-950C-5F9B9BE3BEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04BEC1C0-7B35-4F5B-950C-5F9B9BE3BEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04BEC1C0-7B35-4F5B-950C-5F9B9BE3BEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CF209F-BF77-4613-AA53-87F404C1BFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CF209F-BF77-4613-AA53-87F404C1BFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CF209F-BF77-4613-AA53-87F404C1BFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CF209F-BF77-4613-AA53-87F404C1BFAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

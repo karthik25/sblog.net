@@ -21,7 +21,7 @@ namespace sBlog.Net.Extensibility.Abstract
         /// <value>
         /// The name.
         /// </value>
-        string Name { get; set; }
+        string Name { get; }
 
         /// <summary>
         /// Gets or sets the version.
@@ -29,7 +29,7 @@ namespace sBlog.Net.Extensibility.Abstract
         /// <value>
         /// The version.
         /// </value>
-        string Version { get; set; }
+        string Version { get; }
 
         /// <summary>
         /// Gets or sets the unique identifier.
@@ -37,7 +37,7 @@ namespace sBlog.Net.Extensibility.Abstract
         /// <value>
         /// The unique identifier.
         /// </value>
-        string Guid { get; set; }
+        string Guid { get; }
 
         void RegisterApplicationEvents(IApplicationEvent applicationEvent);
 
