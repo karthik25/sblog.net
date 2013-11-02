@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using sBlog.Net.Extensibility.Abstract;
 using sBlog.Net.Extensibility.Concrete;
+using sBlog.Net.Extensibility.Enumerations;
 using sBlog.Net.Extensibility.Events;
 using sBlog.Net.Extensibility.Handlers;
 
@@ -32,6 +33,15 @@ namespace sBlog.Net.Plugins.PostViewCount
         {
             get { return "098fa1e0-6ec4-490d-adcc-414ac175550e"; }
         }
+
+        public PluginType Type 
+        { 
+            get
+            {
+                return PluginType.Post;
+            } 
+        }
+
         public void RegisterApplicationEvents(IApplicationEvent applicationEvent)
         {
             throw new NotImplementedException();

@@ -1,4 +1,5 @@
 ﻿using sBlog.Net.Extensibility.Concrete;
+using sBlog.Net.Extensibility.Enumerations;
 using sBlog.Net.Extensibility.Handlers;
 
 namespace sBlog.Net.Extensibility.Abstract
@@ -38,6 +39,8 @@ namespace sBlog.Net.Extensibility.Abstract
         /// The unique identifier.
         /// </value>
         string Guid { get; }
+
+        PluginType Type { get; }
 
         void RegisterApplicationEvents(IApplicationEvent applicationEvent);
 

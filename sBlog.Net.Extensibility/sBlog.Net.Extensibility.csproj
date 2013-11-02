@@ -51,6 +51,7 @@
     <Compile Include="Abstract\IPluginHost.cs" />
     <Compile Include="Abstract\IPostEvent.cs" />
     <Compile Include="Concrete\PluginContext.cs" />
+    <Compile Include="Enumerations\PluginType.cs" />
     <Compile Include="Events\PageEventArgs.cs" />
     <Compile Include="Events\PostEventArgs.cs" />
     <Compile Include="Handlers\PostEventHandler.cs" />
