@@ -98,9 +98,9 @@ namespace sBlog.Net.Extensibility
             }
         }
 
-        public void RaisePostEvents(string relativeUrl, string fullyQualifiedUrl, string createdDate)
+        public void RaisePostEvents(int postId, string postUrl)
         {
-            var eventArgs = new PostEventArgs { RelativeUrl = relativeUrl, FullyQualifiedUrl = fullyQualifiedUrl, PostCreatedDate = DateTime.Parse(createdDate) };
+            var eventArgs = new PostEventArgs { PostId = postId, PostUrl = postUrl };
             foreach (var postHandler in Plugins.Select(plugin => plugin.PostHandler)
                                                .Where(postHandler => postHandler != null))
             {

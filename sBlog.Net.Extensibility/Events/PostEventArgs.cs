@@ -4,8 +4,7 @@ namespace sBlog.Net.Extensibility.Events
 {
     public class PostEventArgs : EventArgs
     {
-        public string RelativeUrl { get; set; }
-        public string FullyQualifiedUrl { get; set; }
-        public DateTime PostCreatedDate { get; set; }
+        public int PostId { get; set; }
+        public string PostUrl { get; set; }
     }
 }

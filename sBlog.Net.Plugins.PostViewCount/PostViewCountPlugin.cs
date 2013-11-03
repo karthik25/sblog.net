@@ -11,9 +11,11 @@ namespace sBlog.Net.Plugins.PostViewCount
     [Export(typeof(IPlugin))]
     public class PostViewCountPlugin : IPlugin
     {
+        private PostViewCountDataContext _postViewCountDataContext;
+
         public void Initialize(PluginContext pluginContext)
         {
-            
+            _postViewCountDataContext = new PostViewCountDataContext();
         }
 
         public void Dispose()
@@ -61,7 +63,7 @@ namespace sBlog.Net.Plugins.PostViewCount
 
         private void PostEventOnPostDisplayed(PostEventArgs postEventArgs)
         {
-            // Use EF to log this into the database
+            _postViewCountDataContext.InsertPostView(postEventArgs.PostId, postEventArgs.PostUrl);
         }
 
         public void UnregisterPostEvents(IPostEvent postEvent)
