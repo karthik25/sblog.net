@@ -1,0 +1,11 @@
+﻿@using System.Globalization
+@model ArchiveCollection
+
+<div id="section1" class="menu">
+	<h6>archives</h6>
+	@foreach (Archive archive in Model)
+    {
+        var url = Url.RouteUrl("PostByYearMonth", new { year = archive.Year, month = archive.Month });
+        <a href="@url" title="@archive.MonthYear">@string.Format("{0} {1}", DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(int.Parse(archive.Month)), archive.Year)</a> @:|
+    }
+</div>

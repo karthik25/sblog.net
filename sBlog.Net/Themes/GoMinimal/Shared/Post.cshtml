@@ -1,0 +1,44 @@
+﻿@using sBlog.Net.Models
+@model PostModel
+
+<div class="row-fluid">
+    <div class="span2 date-label">
+        <span>@Model.Post.PostAddedDate.ToString("MMM dd")</span>
+        <br/><br/>
+        <span class="year">@Model.Post.PostAddedDate.ToString("yyyy")</span>
+    </div>
+    <div class="span10">
+        <div class="post">
+            @{
+                var url = Url.RouteUrl("IndividualPost", new { year = Model.Post.PostYear, month = Model.Post.PostMonth, url = Model.Post.PostUrl, status = string.Empty });
+            }
+            <h2 class="title"><a href="@url">@Model.Post.PostTitle</a></h2>
+            <span class="post-details">Posted by <b>@Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { })</b> under @Html.Partial("PostCategories", Model.Post.Categories)</span>
+            <div class="entry">
+                <p>
+                    @Html.Raw(Model.Post.PostContent)
+                </p>
+
+                @{
+                    var count = Model.Post.Comments != null ? Model.Post.Comments.Count : 0;
+                }
+
+                <p class="meta">
+                    Tagged @Html.Partial("PostTags", Model.Post.Tags)
+                    @* ReSharper disable AssignNullToNotNullAttribute *@
+                    @if (!Model.DisqusEnabled)
+                    {
+                        <span class="posted">@count <a href="@(url + "#user-comments")">Comments</a></span>
+                    }
+                    else
+                    {
+                        var fullyQualifiedUrl = Model.RootUrl.IndexOf(url, StringComparison.Ordinal) >= 0 ? string.Format("{0}#disqus_thread", Model.RootUrl) : string.Format("{0}{1}#disqus_thread", Model.RootUrl, url);
+                        <span class="posted"><a href="@fullyQualifiedUrl" data-disqus-identifier="@url">loading...</a></span>
+                    }
+                    @* ReSharper restore AssignNullToNotNullAttribute *@
+                </p>
+                @Html.Partial("Toolbar", new ToolbarViewModel { BitlyUrl = Model.Post.BitlyUrl })
+            </div>
+        </div>    
+    </div>
+</div>

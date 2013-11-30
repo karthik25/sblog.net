@@ -94,6 +94,7 @@
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="CustomExceptions\InvalidMonthException.cs" />
     <Compile Include="CustomExceptions\InvalidThemeException.cs" />
+    <Compile Include="CustomViewEngines\CustomRazorViewEngine.cs" />
     <Compile Include="DependencyManagement\NinjectDependencyResolver.cs" />
     <Compile Include="FluentExtensions\AccountValidationFluentExtensions.cs" />
     <Compile Include="FluentExtensions\CacheServiceFluentExtensions.cs" />
@@ -572,6 +573,12 @@
     <Content Include="Themes\GoBootstrapDark\img\glyphicons-halflings.png" />
     <Content Include="Themes\GoBootstrapDark\js\bootstrap.min.js" />
     <Content Include="Themes\GoBootstrapDark\js\site.js" />
+    <Content Include="Themes\GoMinimal\css\bootstrap-responsive.min.css" />
+    <Content Include="Themes\GoMinimal\css\bootstrap.min.css" />
+    <Content Include="Themes\GoMinimal\css\styles.css" />
+    <Content Include="Themes\GoMinimal\img\glyphicons-halflings-white.png" />
+    <Content Include="Themes\GoMinimal\img\glyphicons-halflings.png" />
+    <Content Include="Themes\GoMinimal\js\bootstrap.min.js" />
     <Content Include="Themes\GreenForest\css\style.css" />
     <Content Include="Themes\GreenForest\images\img01.gif" />
     <Content Include="Themes\GreenForest\images\img02.gif" />
@@ -1008,6 +1015,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Toolbar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\GoMinimal\Shared\BlogArchives.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\BlogCategories.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Footer.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Logo.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Pages.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Post.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\SiteActions.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Toolbar.cshtml" />
+    <Content Include="Themes\GoMinimal\_Layout.cshtml" />
+    <Content Include="Themes\GoMinimal\_LayoutPage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

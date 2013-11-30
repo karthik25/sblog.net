@@ -22,12 +22,12 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
+using sBlog.Net.CustomViewEngines;
 using sBlog.Net.DB.Enumerations;
 using sBlog.Net.DB.Helpers;
 using sBlog.Net.DB.Services;
 using sBlog.Net.DependencyManagement;
 using sBlog.Net.Infrastructure;
-using sBlog.Net.Mappers;
 using sBlog.Net.Models;
 using sBlog.Net.Binders;
 using System.Web.Security;
@@ -211,8 +211,9 @@ namespace sBlog.Net
         /// </summary>
         private void SetupViewEngines()
         {
+            var settings = InstanceFactory.CreateSettingsInstance();
             ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
+            ViewEngines.Engines.Add(new CustomRazorViewEngine(settings.BlogTheme));
         }
 
         private void VerifyInstallation()
