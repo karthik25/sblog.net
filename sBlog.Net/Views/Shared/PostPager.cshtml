@@ -1,15 +1,17 @@
 ﻿@model sBlog.Net.Models.ViewPostOrPageModel
 
-@if (Model.PreviousPost != null)
-{
-    <div style="float: left">
-        @Html.RouteLink("<< Previous Post", "IndividualPost", new { year = Model.PreviousPost.PostYear, month = Model.PreviousPost.PostMonth, url = Model.PreviousPost.PostUrl, status = string.Empty }, new { @title = Model.PreviousPost.PostTitle })
-    </div>
-}
+<div class="post-pager">
+    @if (Model.PreviousPost != null)
+    {
+        <div style="float: left">
+            @Html.RouteLink("<< Previous Post", "IndividualPost", new {year = Model.PreviousPost.PostYear, month = Model.PreviousPost.PostMonth, url = Model.PreviousPost.PostUrl, status = string.Empty}, new {@title = Model.PreviousPost.PostTitle})
+        </div>
+    }
 
-@if (Model.NextPost != null)
-{
-    <div style="float: right">
-        @Html.RouteLink("Next Post >>", "IndividualPost", new { year = Model.NextPost.PostYear, month = Model.NextPost.PostMonth, url = Model.NextPost.PostUrl }, new { @title = Model.NextPost.PostTitle })
-    </div>
-}
+    @if (Model.NextPost != null)
+    {
+        <div style="float: right">
+            @Html.RouteLink("Next Post >>", "IndividualPost", new {year = Model.NextPost.PostYear, month = Model.NextPost.PostMonth, url = Model.NextPost.PostUrl}, new {@title = Model.NextPost.PostTitle})
+        </div>
+    }
+</div>

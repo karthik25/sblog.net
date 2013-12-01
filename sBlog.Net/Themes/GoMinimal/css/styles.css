@@ -13,7 +13,12 @@
 
 .post-details {
     font-size: x-small;
-    color: #D8D8D8
+    color: #BDBDBD
+}
+
+.post-pager 
+{
+    font-size: x-small
 }
 
 .date-label {

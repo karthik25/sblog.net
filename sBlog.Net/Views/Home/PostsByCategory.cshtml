@@ -17,16 +17,18 @@
 }
 <br />
 
-@if (Model.Any && Model.PreviousPageValid)
-{
-    <div style="float: left">
-        @Html.RouteLink("<< Previous Page", "CategoryPaged", new { categoryName = Model.Category.CategorySlug, pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
-    </div>
-}
+<div class="post-pager">
+    @if (Model.Any && Model.PreviousPageValid)
+    {
+        <div style="float: left">
+            @Html.RouteLink("<< Previous Page", "CategoryPaged", new {categoryName = Model.Category.CategorySlug, pageNumber = Model.PreviousPageNumber}, new {@class = "link"})
+        </div>
+    }
 
-@if (Model.Any && Model.NextPageValid)
-{
-    <div style="float: right">
-        @Html.RouteLink("Next Page >>", "CategoryPaged", new { categoryName = Model.Category.CategorySlug, pageNumber = Model.NextPageNumber }, new { @class = "link" })
-    </div>
-}
+    @if (Model.Any && Model.NextPageValid)
+    {
+        <div style="float: right">
+            @Html.RouteLink("Next Page >>", "CategoryPaged", new {categoryName = Model.Category.CategorySlug, pageNumber = Model.NextPageNumber}, new {@class = "link"})
+        </div>
+    }
+</div>

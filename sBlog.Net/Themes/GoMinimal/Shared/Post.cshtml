@@ -23,7 +23,7 @@
                     var count = Model.Post.Comments != null ? Model.Post.Comments.Count : 0;
                 }
 
-                <p class="meta">
+                <p class="post-details">
                     Tagged @Html.Partial("PostTags", Model.Post.Tags)
                     @* ReSharper disable AssignNullToNotNullAttribute *@
                     @if (!Model.DisqusEnabled)

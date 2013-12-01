@@ -28,16 +28,18 @@
     <hr style="border:dashed gray; border-width:1px 0 0; height:0;"/>
 }
 
-@if (Model.PreviousPageValid)
-{
-    <div style="float: left">
-        @Html.RouteLink("<< Previous Page", "AuthorsPaged", new { pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
-    </div>
-}
+<div class="post-pager">
+    @if (Model.PreviousPageValid)
+    {
+        <div style="float: left">
+            @Html.RouteLink("<< Previous Page", "AuthorsPaged", new {pageNumber = Model.PreviousPageNumber}, new {@class = "link"})
+        </div>
+    }
 
-@if (Model.NextPageValid)
-{
-    <div style="float: right">
-        @Html.RouteLink("Next Page >>", "AuthorsPaged", new { pageNumber = Model.NextPageNumber }, new { @class = "link" })
-    </div>
-}
+    @if (Model.NextPageValid)
+    {
+        <div style="float: right">
+            @Html.RouteLink("Next Page >>", "AuthorsPaged", new {pageNumber = Model.NextPageNumber}, new {@class = "link"})
+        </div>
+    }
+</div>
