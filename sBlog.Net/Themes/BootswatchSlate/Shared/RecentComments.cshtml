@@ -1,0 +1,23 @@
+﻿@model List<sBlog.Net.Models.Comments.RecentComment>
+
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">recent comments</h3>
+    </div>
+    <div class="list-group">
+        @foreach (var comment in Model)
+        {
+            if (!comment.DisqusComment)
+            {
+                var url = comment.EntryType == 1 ? Url.RouteUrl("IndividualPost", new { year = comment.PostAddedDate.Year, month = comment.PostAddedDate.Month.ToString("00"), url = comment.PostUrl, status = string.Empty })
+                                             : Url.RouteUrl("Pages", new { pageUrl = comment.PostUrl });
+                url = url + "#user-comments";
+                <a class="list-group-item" href="@url">@comment.CommentContent</a>
+            }
+            else
+            {
+                <a class="list-group-item" href="@comment.PostUrl">@comment.CommentContent</a>
+            }
+        }
+    </div>
+</div>

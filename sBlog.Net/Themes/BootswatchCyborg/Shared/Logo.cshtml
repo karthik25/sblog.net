@@ -1,0 +1,6 @@
+﻿@model sBlog.Net.Models.LogoViewModel
+
+@{
+    var caption = Html.Action("BlogCaption", "Blog");
+}
+<a class="navbar-brand" href="@Model.RootUrl" title="@caption">@Model.BlogName</a>    
