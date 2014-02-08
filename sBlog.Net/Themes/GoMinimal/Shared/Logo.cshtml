@@ -1,0 +1,9 @@
+﻿@model sBlog.Net.Models.LogoViewModel
+
+<h1>
+    <a href="@Model.RootUrl"><span>@Model.BlogName</span></a>    
+</h1>
+<h2>
+    @Html.Action("BlogCaption", "Blog")
+</h2>
+<br/>

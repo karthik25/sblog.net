@@ -7,6 +7,7 @@ Many thanks to...
 ASP.Net MVC (http://www.asp.net/mvc)
 jQuery (http://jquery.com)
 Free CSS Templates (http://www.freecsstemplates.org/)
+Bootswatch - Themes by Thomas Park (http://bootswatch.com/)
 CKEditor (http://ckeditor.com/)
 Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
 

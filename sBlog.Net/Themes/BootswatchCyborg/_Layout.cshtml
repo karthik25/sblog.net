@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.GetCommonScriptsAndStyles()
+    @Html.LoadStylesAndScripts(Html.Action("GetBlogTheme", "Blog").ToString())
+</head>
+    <body>
+        @Html.Partial("AdminLinks")
+        
+        <div class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              @Html.Action("Logo","Blog")
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                @Html.Action("Pages", "ViewPage")
+            </div>
+          </div>
+        </div>
+	    <br/><br/><br/><br/>
+	    <div class="container">		
+		    <div class="row">
+		      <div class="col-lg-9">
+			    @RenderBody()
+		      </div>
+		        <div class="col-lg-3">
+		            @Html.Action("RecentPosts", "Recents")
+                    @Html.Action("RecentComments", "Comment")
+		            @Html.Action("BlogArchives", "Recents")
+		            @Html.Action("BlogCategories", "Category")
+		            @Html.Partial("SiteActions")
+		        </div>
+		    </div>
+	    </div>
+        <br/>
+        <div id="footer">
+            @Html.Action("BlogFooter","Blog")
+        </div>              
+    </body>
+</html>

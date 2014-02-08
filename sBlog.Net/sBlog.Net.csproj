@@ -96,6 +96,7 @@
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="CustomExceptions\InvalidMonthException.cs" />
     <Compile Include="CustomExceptions\InvalidThemeException.cs" />
+    <Compile Include="CustomViewEngines\CustomRazorViewEngine.cs" />
     <Compile Include="DependencyManagement\NinjectDependencyResolver.cs" />
     <Compile Include="FluentExtensions\AccountValidationFluentExtensions.cs" />
     <Compile Include="FluentExtensions\CacheServiceFluentExtensions.cs" />
@@ -567,6 +568,18 @@
     <Content Include="Sql\sc020001.sql" />
     <Content Include="Sql\sc020002.sql" />
     <Content Include="Sql\sc020003.sql" />
+    <Content Include="Themes\BootswatchAmelia\css\bootstrap.min.css" />
+    <Content Include="Themes\BootswatchAmelia\css\styles.css" />
+    <Content Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.svg" />
+    <Content Include="Themes\BootswatchAmelia\js\bootstrap.min.js" />
+    <Content Include="Themes\BootswatchCyborg\css\bootstrap.min.css" />
+    <Content Include="Themes\BootswatchCyborg\css\styles.css" />
+    <Content Include="Themes\BootswatchCyborg\img\glyphicons-halflings-regular.svg" />
+    <Content Include="Themes\BootswatchCyborg\js\bootstrap.min.js" />
+    <Content Include="Themes\BootswatchSlate\css\bootstrap.min.css" />
+    <Content Include="Themes\BootswatchSlate\css\styles.css" />
+    <Content Include="Themes\BootswatchSlate\img\glyphicons-halflings-regular.svg" />
+    <Content Include="Themes\BootswatchSlate\js\bootstrap.min.js" />
     <Content Include="Themes\GoBootstrapDark\css\bootstrap-responsive.min.css" />
     <Content Include="Themes\GoBootstrapDark\css\bootstrap.min.css" />
     <Content Include="Themes\GoBootstrapDark\css\styles.css" />
@@ -574,6 +587,12 @@
     <Content Include="Themes\GoBootstrapDark\img\glyphicons-halflings.png" />
     <Content Include="Themes\GoBootstrapDark\js\bootstrap.min.js" />
     <Content Include="Themes\GoBootstrapDark\js\site.js" />
+    <Content Include="Themes\GoMinimal\css\bootstrap-responsive.min.css" />
+    <Content Include="Themes\GoMinimal\css\bootstrap.min.css" />
+    <Content Include="Themes\GoMinimal\css\styles.css" />
+    <Content Include="Themes\GoMinimal\img\glyphicons-halflings-white.png" />
+    <Content Include="Themes\GoMinimal\img\glyphicons-halflings.png" />
+    <Content Include="Themes\GoMinimal\js\bootstrap.min.js" />
     <Content Include="Themes\GreenForest\css\style.css" />
     <Content Include="Themes\GreenForest\images\img01.gif" />
     <Content Include="Themes\GreenForest\images\img02.gif" />
@@ -1015,6 +1034,65 @@
   <ItemGroup>
     <Content Include="Views\Shared\Toolbar.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\GoMinimal\Shared\BlogArchives.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\BlogCategories.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Footer.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Logo.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Pages.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Post.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\SiteActions.cshtml" />
+    <Content Include="Themes\GoMinimal\Shared\Toolbar.cshtml" />
+    <Content Include="Themes\GoMinimal\_Layout.cshtml" />
+    <Content Include="Themes\GoMinimal\_LayoutPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.eot" />
+    <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.ttf" />
+    <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.woff" />
+    <Content Include="Themes\BootswatchAmelia\Shared\BlogArchives.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\BlogCategories.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\Footer.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\Logo.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\Pages.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\Post.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\RecentComments.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\RecentPosts.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\SiteActions.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\Shared\Toolbar.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\_Layout.cshtml" />
+    <Content Include="Themes\BootswatchAmelia\_LayoutPage.cshtml" />
+    <None Include="Themes\BootswatchCyborg\img\glyphicons-halflings-regular.eot" />
+    <None Include="Themes\BootswatchCyborg\img\glyphicons-halflings-regular.ttf" />
+    <None Include="Themes\BootswatchCyborg\img\glyphicons-halflings-regular.woff" />
+    <Content Include="Themes\BootswatchCyborg\Shared\BlogArchives.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\BlogCategories.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\Footer.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\Logo.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\Pages.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\Post.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\RecentComments.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\RecentPosts.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\SiteActions.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\Shared\Toolbar.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\_Layout.cshtml" />
+    <Content Include="Themes\BootswatchCyborg\_LayoutPage.cshtml" />
+    <None Include="Themes\BootswatchSlate\img\glyphicons-halflings-regular.eot" />
+    <None Include="Themes\BootswatchSlate\img\glyphicons-halflings-regular.ttf" />
+    <None Include="Themes\BootswatchSlate\img\glyphicons-halflings-regular.woff" />
+    <Content Include="Themes\BootswatchSlate\Shared\BlogArchives.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\BlogCategories.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\Footer.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\Logo.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\Pages.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\Post.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\RecentComments.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\RecentPosts.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\SiteActions.cshtml" />
+    <Content Include="Themes\BootswatchSlate\Shared\Toolbar.cshtml" />
+    <Content Include="Themes\BootswatchSlate\_Layout.cshtml" />
+    <Content Include="Themes\BootswatchSlate\_LayoutPage.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -1032,7 +1110,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54601</DevelopmentServerPort>
+          <DevelopmentServerPort>59110</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/sblog2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

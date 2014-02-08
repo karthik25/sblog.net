@@ -16,16 +16,18 @@
     @Html.Partial("Post", post)
 }
 <br />
-@if (Model.Any && Model.PreviousPageValid)
-{
-    <div style="float: left">
-        @Html.RouteLink("<< Previous Page", "PostByYearMonthPaged", new { year = Model.Year, month = Model.Month, pageNumber = Model.PreviousPageNumber }, new { @class = "link" })
-    </div>
-}
+<div class="post-pager">
+    @if (Model.Any && Model.PreviousPageValid)
+    {
+        <div style="float: left">
+            @Html.RouteLink("<< Previous Page", "PostByYearMonthPaged", new {year = Model.Year, month = Model.Month, pageNumber = Model.PreviousPageNumber}, new {@class = "link"})
+        </div>
+    }
 
-@if (Model.Any && Model.NextPageValid)
-{
-    <div style="float: right">
-        @Html.RouteLink("Next Page >>", "PostByYearMonthPaged", new { year = Model.Year, month = Model.Month, pageNumber = Model.NextPageNumber }, new { @class = "link" })
-    </div>
-}
+    @if (Model.Any && Model.NextPageValid)
+    {
+        <div style="float: right">
+            @Html.RouteLink("Next Page >>", "PostByYearMonthPaged", new {year = Model.Year, month = Model.Month, pageNumber = Model.NextPageNumber}, new {@class = "link"})
+        </div>
+    }
+</div>

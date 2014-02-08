@@ -1,0 +1,7 @@
+﻿<div id="section3" class="menu">
+	<h6>site options</h6>
+	@Html.Partial("_LogOnPartial") |
+	@Html.ActionLink("dashboard", "Index", "Admin", new { Area = "Admin" }, new { }) |
+    @Html.ActionLink("blog authors", "AuthorListing", "Author") |
+	@Html.ActionLink("post rss","Index", "RssFeed") |
+</div>

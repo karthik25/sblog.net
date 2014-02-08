@@ -37,20 +37,23 @@
 // Required coz. the root may vary based on whether the application is 
 // a 'website' or 'application'
 $(document).ready(function () {
-    $.ajax({
-        type: 'GET',
-        url: siteRoot + 'viewpage/pageslist',
-        dataType: 'html',
-        success: function (data) {
-            initializeList(data);
-        },
-        error: function (req, status, err) {
-            // one possible error condition is when the user 
-            // clicks on another link before this request completes
-            // in that case, this request, which is in process may fail
-            // so suppressing any error messages
-        }
-    });
+    if ($('#more-pages').length > 0)
+    {
+        $.ajax({
+            type: 'GET',
+            url: siteRoot + 'viewpage/pageslist',
+            dataType: 'html',
+            success: function (data) {
+                initializeList(data);
+            },
+            error: function (req, status, err) {
+                // one possible error condition is when the user 
+                // clicks on another link before this request completes
+                // in that case, this request, which is in process may fail
+                // so suppressing any error messages
+            }
+        });
+    }
 });
 
 // admin shortcuts
