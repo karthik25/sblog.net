@@ -8,8 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using sBlog.Net.Domain.Interfaces;
-using sBlog.Net.Extensibility.Abstract;
 using sBlog.Net.Extensibility.Concrete;
+using sBlog.Net.Extensibility.Core;
 using sBlog.Net.Extensibility.Events;
 using sBlog.Net.Extensibility.Handlers;
 
@@ -92,9 +92,16 @@ namespace sBlog.Net.Extensibility
                 {
                     plugin.Initialize(pluginContext);
 
-                    var postHandler = new PostEventHandler();
-                    plugin.RegisterPostEvents(postHandler);
-                    plugin.PostHandler = postHandler;
+                    if (plugin is IPostPlugin)
+                    {
+                        var postHandler = new PostEventHandler();
+                        ((IPostPlugin)plugin).RegisterPostEvents(postHandler);
+                        ((IPostPlugin)plugin).PostHandler = postHandler;
+                    }
+                    if (plugin is IPagePlugin)
+                    {
+                        
+                    }
                 }
             }
         }
@@ -102,10 +109,10 @@ namespace sBlog.Net.Extensibility
         public void RaisePostEvents(int postId, string postUrl)
         {
             var eventArgs = new PostEventArgs { PostId = postId, PostUrl = postUrl };
-            foreach (var postHandler in Plugins.Select(plugin => plugin.PostHandler)
-                                               .Where(postHandler => postHandler != null))
+            var postPlugins = Plugins.Where(p => (p as IPostPlugin) != null);
+            foreach (var plugin in postPlugins.Where(postHandler => postHandler != null).Cast<IPostPlugin>())
             {
-                postHandler.Fire(eventArgs);
+                plugin.PostHandler.Fire(eventArgs);
             }
         }
 

@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using sBlog.Net.Extensibility.Abstract;
 using sBlog.Net.Extensibility.Concrete;
+using sBlog.Net.Extensibility.Core;
 using sBlog.Net.Extensibility.Enumerations;
 using sBlog.Net.Extensibility.Events;
 using sBlog.Net.Extensibility.Handlers;
@@ -9,7 +9,7 @@ using sBlog.Net.Extensibility.Handlers;
 namespace sBlog.Net.Plugins.PostViewCount
 {
     [Export(typeof(IPlugin))]
-    public class PostViewCountPlugin : IPlugin
+    public class PostViewCountPlugin : IPostPlugin
     {
         private PostViewCountDataContext _postViewCountDataContext;
 
@@ -44,16 +44,6 @@ namespace sBlog.Net.Plugins.PostViewCount
             } 
         }
 
-        public void RegisterApplicationEvents(IApplicationEvent applicationEvent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RegisterMainPageEvents(IMainPageEvent mainPageEvent)
-        {
-            throw new NotImplementedException();
-        }
-
         public PostEventHandler PostHandler { get; set; }
 
         public void RegisterPostEvents(IPostEvent postEvent)
@@ -74,21 +64,6 @@ namespace sBlog.Net.Plugins.PostViewCount
         private void RemovePostEventOnPostDisplayed(PostEventArgs postEventArgs)
         {
             
-        }
-
-        public void RegisterPageEvents(IPageEvent pageEvent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RegisterCommentEvent(ICommentEvent commentEvent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RegisterLinkEvent(ILinkEvent linkEvent)
-        {
-            throw new NotImplementedException();
         }
     }
 }

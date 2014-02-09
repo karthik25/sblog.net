@@ -1,4 +1,4 @@
-﻿namespace sBlog.Net.Extensibility.Abstract
+﻿namespace sBlog.Net.Extensibility.Core
 {
     public interface IPluginHost
     {

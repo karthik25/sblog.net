@@ -1,8 +1,7 @@
 ﻿using sBlog.Net.Extensibility.Concrete;
 using sBlog.Net.Extensibility.Enumerations;
-using sBlog.Net.Extensibility.Handlers;
 
-namespace sBlog.Net.Extensibility.Abstract
+namespace sBlog.Net.Extensibility.Core
 {
     public interface IPlugin
     {
@@ -40,20 +39,6 @@ namespace sBlog.Net.Extensibility.Abstract
         /// </value>
         string Guid { get; }
 
-        PluginType Type { get; }
-
-        void RegisterApplicationEvents(IApplicationEvent applicationEvent);
-
-        void RegisterMainPageEvents(IMainPageEvent mainPageEvent);
-
-        PostEventHandler PostHandler { get; set; }
-        void RegisterPostEvents(IPostEvent postEvent);
-        void UnregisterPostEvents(IPostEvent postEvent);
-
-        void RegisterPageEvents(IPageEvent pageEvent);
-
-        void RegisterCommentEvent(ICommentEvent commentEvent);
-        
-        void RegisterLinkEvent(ILinkEvent linkEvent);
+        PluginType Type { get; }        
     }
 }
