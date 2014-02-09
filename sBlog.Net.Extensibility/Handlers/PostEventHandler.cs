@@ -7,7 +7,7 @@ namespace sBlog.Net.Extensibility.Handlers
     {
         public delegate void PostHandler(PostEventArgs e);
 
-        public event PostHandler PostDisplayed;        
+        public event PostHandler PostDisplayed;
 
         protected virtual void OnPostDisplayed(PostEventArgs e)
         {

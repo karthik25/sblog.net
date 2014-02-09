@@ -60,6 +60,7 @@
     <Compile Include="Enumerations\PluginType.cs" />
     <Compile Include="Events\PageEventArgs.cs" />
     <Compile Include="Events\PostEventArgs.cs" />
+    <Compile Include="Handlers\CommentEventHandler.cs" />
     <Compile Include="Handlers\PageEventHandler.cs" />
     <Compile Include="Handlers\PostEventHandler.cs" />
     <Compile Include="PluginHost.cs" />

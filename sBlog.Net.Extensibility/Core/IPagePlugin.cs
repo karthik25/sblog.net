@@ -6,6 +6,7 @@ namespace sBlog.Net.Extensibility.Core
     public interface IPagePlugin : IPlugin
     {
         PageEventHandler PageHandler { get; set; }
-        void RegisterPageEvents(IPageEvent pageEvent); 
+        void RegisterPageEvents(IPageEvent pageEvent);
+        void UnregisterPageEvents(IPageEvent pageEvent);
     }
 }
