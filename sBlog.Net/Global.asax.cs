@@ -140,6 +140,8 @@ namespace sBlog.Net
             SetupViewEngines();
 
             VerifyInstallation();
+
+            LoadPlugins();
         }
 
         protected void Application_Error()

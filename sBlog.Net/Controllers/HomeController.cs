@@ -22,6 +22,7 @@ using System.Web.Mvc;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
+using sBlog.Net.Extensibility;
 using sBlog.Net.Infrastructure;
 using sBlog.Net.Models;
 using sBlog.Net.FluentExtensions;
@@ -130,6 +131,10 @@ namespace sBlog.Net.Controllers
                 ShortName = SettingsRepository.BlogDisqusShortName,
                 DisqusDevMode = System.Web.HttpContext.Current.IsDebuggingEnabled
             };
+
+            var pluginHost = PluginHost.Instance;
+            pluginHost.RaisePostEvents(currentPost.PostID, currentPost.PostUrl);
+
             return View(model);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -112,7 +113,7 @@ namespace sBlog.Net.Extensibility
         {
             _aggregateCatalog = new AggregateCatalog(new ComposablePartCatalog[]
                                    {
-                                      new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory),
+                                      new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin")),
                                       new AssemblyCatalog(Assembly.GetExecutingAssembly())
                                    });
             _container = new CompositionContainer(_aggregateCatalog);
