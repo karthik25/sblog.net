@@ -54,8 +54,11 @@
     <Compile Include="Concrete\PluginContext.cs" />
     <Compile Include="Core\IPostPlugin.cs" />
     <Compile Include="Enumerations\PluginType.cs" />
+    <Compile Include="Events\ApplicationEventArgs.cs" />
+    <Compile Include="Events\CommentEventArgs.cs" />
     <Compile Include="Events\PageEventArgs.cs" />
     <Compile Include="Events\PostEventArgs.cs" />
+    <Compile Include="Handlers\ApplicationEventHandler.cs" />
     <Compile Include="Handlers\CommentEventHandler.cs" />
     <Compile Include="Handlers\PageEventHandler.cs" />
     <Compile Include="Handlers\PostEventHandler.cs" />

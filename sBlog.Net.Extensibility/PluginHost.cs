@@ -102,6 +102,14 @@ namespace sBlog.Net.Extensibility
                     {
                         
                     }
+                    if (plugin is ICommentPlugin)
+                    {
+                        
+                    }
+                    if (plugin is IApplicationPlugin)
+                    {
+                        
+                    }
                 }
             }
         }
