@@ -552,6 +552,7 @@
     <Content Include="Content\themes\base\jquery-ui.custom.css" />
     <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Plugins\ReadMe.txt" />
     <Content Include="Scripts\Required\debug\02-CategoryList.admin.js" />
     <Content Include="Content\sBlog\Site.js" />
     <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />

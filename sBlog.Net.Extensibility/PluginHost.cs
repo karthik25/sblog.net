@@ -120,7 +120,7 @@ namespace sBlog.Net.Extensibility
         {
             _aggregateCatalog = new AggregateCatalog(new ComposablePartCatalog[]
                                    {
-                                      new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin")),
+                                      new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins")),
                                       new AssemblyCatalog(Assembly.GetExecutingAssembly())
                                    });
             _container = new CompositionContainer(_aggregateCatalog);

@@ -1,0 +1,1 @@
+﻿The folder is to hold the plugins that you want sBlog.Net to process!
