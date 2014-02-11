@@ -6,8 +6,6 @@
         Post,
         Page,
         Application,
-        MainPage,
-        Comment,
-        Link
+        Comment
     }
 }
