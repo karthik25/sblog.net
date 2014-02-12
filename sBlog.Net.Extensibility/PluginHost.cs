@@ -15,7 +15,7 @@ using sBlog.Net.Extensibility.Handlers;
 
 namespace sBlog.Net.Extensibility
 {
-    public sealed class PluginHost : IPluginHost
+    public sealed class PluginHost
     {
         private static readonly object InstanceLock = new object();
 

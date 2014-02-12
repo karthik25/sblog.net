@@ -1,10 +1,9 @@
-﻿using System;
-using sBlog.Net.Extensibility.Events;
+﻿using sBlog.Net.Extensibility.Handlers;
 
 namespace sBlog.Net.Extensibility.Abstract
 {
     public interface IPageEvent
     {
-        event EventHandler<PageEventArgs> PageDisplayed;
+        event PageEventHandler.PageHandler PageDisplayed;
     }
 }

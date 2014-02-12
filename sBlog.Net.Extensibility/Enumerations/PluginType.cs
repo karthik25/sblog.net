@@ -2,7 +2,6 @@
 {
     public enum PluginType
     {
-        Multipe,
         Post,
         Page,
         Application,

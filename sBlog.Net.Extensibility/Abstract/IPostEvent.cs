@@ -1,5 +1,4 @@
-﻿using sBlog.Net.Extensibility.Events;
-using sBlog.Net.Extensibility.Handlers;
+﻿using sBlog.Net.Extensibility.Handlers;
 
 namespace sBlog.Net.Extensibility.Abstract
 {

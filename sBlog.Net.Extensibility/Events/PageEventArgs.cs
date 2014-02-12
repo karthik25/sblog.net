@@ -4,8 +4,7 @@ namespace sBlog.Net.Extensibility.Events
 {
     public class PageEventArgs : EventArgs
     {
-        public string RelativeUrl { get; set; }
-        public string FullyQualifiedUrl { get; set; }
-        public DateTime PageCreatedDate { get; set; }
+        public int PageId { get; set; }
+        public string PageUrl { get; set; }
     }
 }

@@ -49,7 +49,6 @@
     <Compile Include="Core\ICommentPlugin.cs" />
     <Compile Include="Core\IPagePlugin.cs" />
     <Compile Include="Core\IPlugin.cs" />
-    <Compile Include="Core\IPluginHost.cs" />
     <Compile Include="Abstract\IPostEvent.cs" />
     <Compile Include="Concrete\PluginContext.cs" />
     <Compile Include="Core\IPostPlugin.cs" />
