@@ -1,0 +1,17 @@
+﻿.post-details {
+    font-size: x-small;
+    color: #BDBDBD
+}
+
+#bootswatch {
+    color: black;
+    position: absolute;
+    top: 15px;
+    right: 50px
+}
+
+#footer {
+    text-align: center;
+    color: #BDBDBD;
+    font-size: x-small
+}

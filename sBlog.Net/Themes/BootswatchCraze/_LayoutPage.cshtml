@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.GetCommonScriptsAndStyles()
+    <link href="//netdna.bootstrapcdn.com/bootswatch/latest/amelia/bootstrap.min.css" rel="stylesheet" type="text/css" id="bwLink"></link>
+    @Html.LoadStylesAndScripts(Html.Action("GetBlogTheme", "Blog").ToString())
+</head>
+<body>
+    @Html.Partial("AdminLinks")
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.Action("Logo","Blog")
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                @Html.Action("Pages", "ViewPage")
+            </div>
+            <select id="bootswatch" name="bootswatch">
+                    
+            </select>
+        </div>
+    </div>
+    <br/><br/><br/><br/>
+    <div class="container">		
+	    <div class="row">
+		    <div class="col-lg-12">
+		    @RenderBody()
+		    </div>
+	    </div>
+    </div>
+    <br/>
+    <div id="footer">
+        @Html.Action("BlogFooter","Blog")
+    </div>              
+</body>
+</html>

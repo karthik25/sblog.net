@@ -1,0 +1,49 @@
+﻿@using sBlog.Net.Models
+@model PostModel
+
+<div class="well">
+    <div class="row-fluid">
+        <div class="span10">
+            <div class="post">
+                @{
+                    var url = Url.RouteUrl("IndividualPost", new { year = Model.Post.PostYear, month = Model.Post.PostMonth, url = Model.Post.PostUrl, status = string.Empty });
+                }
+                <div class="panel panel-primary">
+					<div class="panel-heading">
+					  <h3 class="panel-title"><a href="@url">@Model.Post.PostTitle</a></h3>
+					</div>
+				</div>
+
+                <span class="post-details">Posted by <b>@Html.ActionLink(Model.Post.OwnerUserName, "PostsByAuthor", "Author", new { authorName = Model.Post.UserName }, new { })</b> under @Html.Partial("PostCategories", Model.Post.Categories) on @Model.Post.PostAddedDate.ToString("MMM dd yyyy")</span>
+                <div class="entry">
+                    <p>
+                        @Html.Raw(Model.Post.PostContent)
+                    </p>
+
+                    @{
+                        var count = Model.Post.Comments != null ? Model.Post.Comments.Count : 0;
+                    }
+
+                    <div class="row post-details">
+                        <div class="col-lg-3">Tagged @Html.Partial("PostTags", Model.Post.Tags)</div>
+                        <div class="col-lg-3">@*TODO: No toolbar for now, fix in future*@</div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3">
+                            @* ReSharper disable AssignNullToNotNullAttribute *@
+                            @if (!Model.DisqusEnabled)
+                            {
+                                <span>@count <a href="@(url + "#user-comments")">Comments</a></span>
+                            }
+                            else
+                            {
+                                var fullyQualifiedUrl = Model.RootUrl.IndexOf(url, StringComparison.Ordinal) >= 0 ? string.Format("{0}#disqus_thread", Model.RootUrl) : string.Format("{0}{1}#disqus_thread", Model.RootUrl, url);
+                                <span><a href="@fullyQualifiedUrl" data-disqus-identifier="@url">loading...</a></span>
+                            }
+                            @* ReSharper restore AssignNullToNotNullAttribute *@
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>

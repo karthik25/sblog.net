@@ -1,0 +1,13 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">options</h3>
+    </div>
+    <div class="list-group">        
+        @(Request.IsAuthenticated ? Html.RouteLink("log off", "Logoff", new { }, new { @class = "log-off list-group-item" })
+              : Html.RouteLink("log in", "Logon", new { }, new { @class = "log-off list-group-item" }))
+
+        @Html.ActionLink("dashboard", "Index", "Admin", new { Area = "Admin" }, new { @class = "list-group-item" })
+        @Html.ActionLink("blog authors", "AuthorListing", "Author", new { Area = "" }, new { @class = "list-group-item" })
+        @Html.ActionLink("post rss", "Index", "RssFeed", new { Area = "" }, new { @class = "list-group-item" })
+    </div>
+</div>
