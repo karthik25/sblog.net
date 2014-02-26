@@ -1045,6 +1045,7 @@
     <Content Include="Themes\GoMinimal\_LayoutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Themes\BootswatchCraze\static\bootswatch.json" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.eot" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.ttf" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.woff" />
