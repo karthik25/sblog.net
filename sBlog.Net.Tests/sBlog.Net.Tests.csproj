@@ -61,7 +61,7 @@
     <Compile Include="Generators\UniqueUrlGeneratorTests.cs" />
     <Compile Include="Hasher\HasherTests.cs" />
     <Compile Include="Helpers\MockObjectFactory.cs" />
-    <Compile Include="MockCollections\ArchiveCollectionTests.cs" />
+    <Compile Include="Collections\ArchiveCollectionTests.cs" />
     <Compile Include="MockFrameworkObjects\MockCacheService.cs" />
     <Compile Include="MockFrameworkObjects\MockFactory.cs" />
     <Compile Include="MockFrameworkObjects\MockHelperFactory.cs" />
