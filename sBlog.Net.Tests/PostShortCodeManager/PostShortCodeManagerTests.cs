@@ -5,6 +5,7 @@ using sBlog.Net.ShortCodeManager.Entities;
 using sBlog.Net.Tests.MockFrameworkObjects;
 using sBlog.Net.Domain.Interfaces;
 using System.IO;
+using sBlog.Net.Tests.MockObjects;
 
 namespace sBlog.Net.Tests.PostShortCodeManager
 {

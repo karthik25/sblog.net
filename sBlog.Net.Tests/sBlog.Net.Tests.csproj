@@ -62,11 +62,12 @@
     <Compile Include="Hasher\HasherTests.cs" />
     <Compile Include="Helpers\MockObjectFactory.cs" />
     <Compile Include="Collections\ArchiveCollectionTests.cs" />
-    <Compile Include="MockFrameworkObjects\MockCacheService.cs" />
+    <Compile Include="MockObjects\MockCacheService.cs" />
     <Compile Include="MockFrameworkObjects\MockFactory.cs" />
     <Compile Include="MockFrameworkObjects\MockHelperFactory.cs" />
-    <Compile Include="MockFrameworkObjects\MockPathMapper.cs" />
+    <Compile Include="MockObjects\MockPathMapper.cs" />
     <Compile Include="MockObjects\MockAkismetService.cs" />
+    <Compile Include="MockObjects\MockAppFactory.cs" />
     <Compile Include="MockObjects\MockArchiveCollection.cs" />
     <Compile Include="MockObjects\MockCategory.cs" />
     <Compile Include="MockObjects\MockComment.cs" />
@@ -75,7 +76,6 @@
     <Compile Include="MockObjects\MockSettings.cs" />
     <Compile Include="MockObjects\MockTag.cs" />
     <Compile Include="MockObjects\MockUser.cs" />
-    <Compile Include="MockObjects\MockUserIdentity.cs" />
     <Compile Include="PostShortCodeManager\PostShortCodeManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\RouteTests.cs" />

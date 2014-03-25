@@ -18,7 +18,7 @@ namespace sBlog.Net.Tests.MockFrameworkObjects
             context.SetupGet(c => c.Response).Returns(GetMockResponse(null));
             context.SetupGet(c => c.IsDebuggingEnabled).Returns(true);
 
-            var identity = new MockUserIdentity(null, userId);
+            var identity = MockAppFactory.GetMockUserIdentity(userId);
             IPrincipal principal = new GenericPrincipal(identity, null);
 
             context.SetupGet(c => c.User).Returns(principal);
