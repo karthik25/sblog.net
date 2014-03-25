@@ -71,7 +71,6 @@
     <Compile Include="MockObjects\MockArchiveCollection.cs" />
     <Compile Include="MockObjects\MockCategory.cs" />
     <Compile Include="MockObjects\MockComment.cs" />
-    <Compile Include="MockObjects\MockError.cs" />
     <Compile Include="MockObjects\MockPost.cs" />
     <Compile Include="MockObjects\MockSettings.cs" />
     <Compile Include="MockObjects\MockTag.cs" />

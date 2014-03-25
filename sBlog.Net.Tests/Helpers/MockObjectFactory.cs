@@ -1,7 +1,6 @@
 ﻿using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Tests.MockObjects;
 using sBlog.Net.Akismet.Interfaces;
-using sBlog.Net.Tests.MockFrameworkObjects;
 
 namespace sBlog.Net.Tests.Helpers
 {
@@ -54,7 +53,7 @@ namespace sBlog.Net.Tests.Helpers
 
         public static IError CreateErrorLogger()
         {
-            return new MockError();
+            return MockAppFactory.GetMockError();
         }
     }
 }
