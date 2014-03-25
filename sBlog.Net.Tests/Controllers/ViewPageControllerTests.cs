@@ -158,7 +158,7 @@ namespace sBlog.Net.Tests.Controllers
         {
             var post = MockObjectFactory.CreatePostRepository();
             var cacheService = MockObjectFactory.CreateCacheService();
-            var settings = new MockSettings();
+            var settings = MockObjectFactory.CreateSettingsRepository();
             var user = MockObjectFactory.CreateUserRepository();
             var pageController = new ViewPageController(post, user, settings, cacheService)
                                  {

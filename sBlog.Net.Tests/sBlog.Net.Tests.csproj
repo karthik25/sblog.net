@@ -72,7 +72,6 @@
     <Compile Include="MockObjects\MockCategory.cs" />
     <Compile Include="MockObjects\MockComment.cs" />
     <Compile Include="MockObjects\MockPost.cs" />
-    <Compile Include="MockObjects\MockSettings.cs" />
     <Compile Include="MockObjects\MockTag.cs" />
     <Compile Include="MockObjects\MockUser.cs" />
     <Compile Include="PostShortCodeManager\PostShortCodeManagerTests.cs" />

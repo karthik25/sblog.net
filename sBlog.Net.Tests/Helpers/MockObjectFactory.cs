@@ -31,14 +31,9 @@ namespace sBlog.Net.Tests.Helpers
             return new MockTag();
         }
 
-        public static ISettings CreateSettingsRepository()
+        public static ISettings CreateSettingsRepository(int loadType = 1)
         {
-            return new MockSettings();
-        }
-
-        public static ISettings CreateSettingsRepository(int loadType)
-        {
-            return new MockSettings(loadType);
+            return MockAppFactory.GetMockSettings(loadType);
         }
 
         public static IAkismetService CreateAkismetService()
