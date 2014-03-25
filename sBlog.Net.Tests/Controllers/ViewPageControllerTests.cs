@@ -148,13 +148,13 @@ namespace sBlog.Net.Tests.Controllers
             Assert.AreEqual("a-test-url-40", second.PostUrl);
         }
 
-        private static MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
+        private static HttpContextBase GetHttpContext(bool isAuthenticated, int userId)
         {
-            var mockContext = new MockHttpContext(userId, isAuthenticated);
+            var mockContext = MockFactory.GetMockContext(userId, isAuthenticated);
             return mockContext;
         }
 
-        private static ViewPageController GetViewPageController(MockHttpContext httpContext)
+        private static ViewPageController GetViewPageController(HttpContextBase httpContext)
         {
             var post = MockObjectFactory.CreatePostRepository();
             var cacheService = MockObjectFactory.CreateCacheService();

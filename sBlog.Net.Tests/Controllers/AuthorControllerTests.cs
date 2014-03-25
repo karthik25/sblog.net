@@ -128,9 +128,9 @@ namespace sBlog.Net.Tests.Controllers
             return authorController;
         }
 
-        private static MockHttpContext GetHttpContext(bool isAuthenticated, int userId)
+        private static HttpContextBase GetHttpContext(bool isAuthenticated, int userId)
         {
-            var mockContext = new MockHttpContext(userId, isAuthenticated);
+            var mockContext = MockFactory.GetMockContext(userId, isAuthenticated);
             return mockContext;
         }
     }

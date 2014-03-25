@@ -11,7 +11,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Logon_Url()
         {
-            var context = new MockHttpContext(0, false, "~/logon");
+            var context = MockFactory.GetMockContext(0, false, "~/logon");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -25,7 +25,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Logoff_Url()
         {
-            var context = new MockHttpContext(0, false, "~/logoff");
+            var context = MockFactory.GetMockContext(0, false, "~/logoff");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -39,7 +39,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Credits_Url()
         {
-            var context = new MockHttpContext(0, false, "~/credits");
+            var context = MockFactory.GetMockContext(0, false, "~/credits");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -53,7 +53,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Authors_Url_Without_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/authors");
+            var context = MockFactory.GetMockContext(0, false, "~/authors");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -67,7 +67,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Authors_Url_With_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/authors/page/2");
+            var context = MockFactory.GetMockContext(0, false, "~/authors/page/2");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -82,7 +82,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Author_Posts_Url_Without_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/authors/admin");
+            var context = MockFactory.GetMockContext(0, false, "~/authors/admin");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -97,7 +97,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Author_Posts_Url_With_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/authors/admin/page/2");
+            var context = MockFactory.GetMockContext(0, false, "~/authors/admin/page/2");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -113,7 +113,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Pages_Url()
         {
-            var context = new MockHttpContext(0, false, "~/pages/some-page");
+            var context = MockFactory.GetMockContext(0, false, "~/pages/some-page");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -128,7 +128,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Pages_Url_With_Status()
         {
-            var context = new MockHttpContext(0, false, "~/pages/some-page/comment-posted");
+            var context = MockFactory.GetMockContext(0, false, "~/pages/some-page/comment-posted");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -144,7 +144,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Page_Url()
         {
-            var context = new MockHttpContext(0, false, "~/page/1");
+            var context = MockFactory.GetMockContext(0, false, "~/page/1");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -159,7 +159,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Category_Url_Without_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/category/asp-net");
+            var context = MockFactory.GetMockContext(0, false, "~/category/asp-net");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -174,7 +174,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Category_Url_With_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/category/asp-net/page/2");
+            var context = MockFactory.GetMockContext(0, false, "~/category/asp-net/page/2");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -190,7 +190,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Tag_Url_Without_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/tag/asp-net");
+            var context = MockFactory.GetMockContext(0, false, "~/tag/asp-net");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -205,7 +205,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Tag_Url_With_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/tag/asp-net/page/2");
+            var context = MockFactory.GetMockContext(0, false, "~/tag/asp-net/page/2");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -221,7 +221,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Individual_Post()
         {
-            var context = new MockHttpContext(0, false, "~/2013/03/some-post");
+            var context = MockFactory.GetMockContext(0, false, "~/2013/03/some-post");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -238,7 +238,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Individual_Post_With_Status()
         {
-            var context = new MockHttpContext(0, false, "~/2013/03/some-post/comment-posted");
+            var context = MockFactory.GetMockContext(0, false, "~/2013/03/some-post/comment-posted");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -256,7 +256,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_MonthYear_Url_Without_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/2013/02");
+            var context = MockFactory.GetMockContext(0, false, "~/2013/02");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -272,7 +272,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_MonthYear_Url_With_Page_Number()
         {
-            var context = new MockHttpContext(0, false, "~/2013/02/page/2");
+            var context = MockFactory.GetMockContext(0, false, "~/2013/02/page/2");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -289,7 +289,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_404_Url()
         {
-            var context = new MockHttpContext(0, false, "~/404");
+            var context = MockFactory.GetMockContext(0, false, "~/404");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -303,7 +303,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Under_Construction_Url()
         {
-            var context = new MockHttpContext(0, false, "~/under-construction");
+            var context = MockFactory.GetMockContext(0, false, "~/under-construction");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -317,7 +317,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Invalid_Theme_Url()
         {
-            var context = new MockHttpContext(0, false, "~/invalid-theme");
+            var context = MockFactory.GetMockContext(0, false, "~/invalid-theme");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
@@ -331,7 +331,7 @@ namespace sBlog.Net.Tests.Routes
         [TestMethod]
         public void Can_Identify_Default_Url()
         {
-            var context = new MockHttpContext(0, false, "~/home/index");
+            var context = MockFactory.GetMockContext(0, false, "~/home/index");
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
