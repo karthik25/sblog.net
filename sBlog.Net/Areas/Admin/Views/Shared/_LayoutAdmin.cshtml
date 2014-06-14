@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using StackExchange.Profiling
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -61,5 +62,7 @@
         <div id="content" class="content-actual">
             @RenderBody()
         </div>
+        
+        @MiniProfiler.RenderIncludes()
     </body>
 </html>

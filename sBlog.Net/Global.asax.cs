@@ -20,6 +20,7 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using StackExchange.Profiling;
 using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.CustomViewEngines;
@@ -141,6 +142,19 @@ namespace sBlog.Net
             VerifyInstallation();
         }
 
+        protected void Application_BeginRequest()
+        {
+            if (Request.IsLocal)
+            {
+                MiniProfiler.Start();
+            }
+        }
+
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
+        }
+        
         protected void Application_Error()
         {
             var exception = Server.GetLastError();
