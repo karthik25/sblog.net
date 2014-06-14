@@ -112,6 +112,7 @@
     <Compile Include="Infrastructure\CustomRoleProvider.cs" />
     <Compile Include="Infrastructure\ErrorLogger.cs" />
     <Compile Include="Infrastructure\PasswordHelper.cs" />
+    <Compile Include="Infrastructure\SblogNetSettingsConfiguration.cs" />
     <Compile Include="Infrastructure\UniqueUrlHelper.cs" />
     <Compile Include="Models\Account\AccountBaseViewModel.cs" />
     <Compile Include="Models\Account\LogOnModel.cs" />

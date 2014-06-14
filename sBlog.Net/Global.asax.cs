@@ -16,6 +16,7 @@
 
 #endregion
 using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.Mvc;
@@ -144,7 +145,7 @@ namespace sBlog.Net
 
         protected void Application_BeginRequest()
         {
-            if (Request.IsLocal)
+            if (Configuration.EnableMiniProfiler && Request.IsLocal)
             {
                 MiniProfiler.Start();
             }
@@ -267,5 +268,8 @@ namespace sBlog.Net
                 }
             }
         }
+
+        private static readonly SblogNetSettingsConfiguration Configuration =
+            ConfigurationManager.GetSection("sblognetSettings") as SblogNetSettingsConfiguration;
     }
 }
