@@ -9,6 +9,8 @@ adding categories or tags, adding additional authors and many more. If I have to
 To get started, refer to this short article! You just need an instance of Visual Studio 2010 with ASP.Net MVC 3, MS SQL server (express 
 should also be fine) and optionally IIS.
 
+> You can now use miniprofiler to profile your pages, it's enabled by default, so just go to the administration section to check it out!
+
 Thanks for trying out sBlog.Net!
 http://sblogproject.net
 
