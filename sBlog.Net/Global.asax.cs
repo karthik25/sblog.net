@@ -138,9 +138,9 @@ namespace sBlog.Net
 
             SetupCustomModelBinders();
 
-            SetupViewEngines();
-
             VerifyInstallation();
+            
+            SetupViewEngines();
         }
 
         protected void Application_BeginRequest()
@@ -226,9 +226,17 @@ namespace sBlog.Net
         /// </summary>
         private void SetupViewEngines()
         {
-            var settings = InstanceFactory.CreateSettingsInstance();
             ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new CustomRazorViewEngine(settings.BlogTheme));
+            var appStatus = (SetupStatus) Application["Installation_Status"];
+            if (appStatus == null || appStatus.StatusCode == SetupStatusCode.NoUpdates)
+            {
+                var settings = InstanceFactory.CreateSettingsInstance();
+                ViewEngines.Engines.Add(new CustomRazorViewEngine(settings.BlogTheme));
+            }
+            else
+            {
+                ViewEngines.Engines.Add(new RazorViewEngine());
+            }            
         }
 
         private void VerifyInstallation()
