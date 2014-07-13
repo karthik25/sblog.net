@@ -54,6 +54,10 @@ Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
     Txt (http://www.iconfinder.com/icondetails/6417/128/paper_text_txt_writing_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://sa-ki.deviantart.com/
     User management (http://www.iconfinder.com/icondetails/17879/128/community_group_help_user_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
 
+	Social features
+        Social icons from Medialoot (http://medialoot.com/item/round-social-media-icons/)
+        Some inspiration for css from the post by Brad S. Knutson (http://bradsknutson.com/blog/css3-rollover-social-media-icons/)!
+
     Others
 
     Dashboard (http://www.iconfinder.com/icondetails/82136/128/_icon) | License: http://www.iconfinder.com/data/icons/ledicons/readme.txt | Author - http://rimshotdesign.com/

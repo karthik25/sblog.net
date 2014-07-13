@@ -259,3 +259,28 @@ fieldset
     font-style: italic;
     font-size: x-small
 }
+
+/* Social sharing */
+.pop {
+	border-radius: 50%;
+	margin: 8px;
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	-ms-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+    width: 48px;
+    height: 48px
+}
+
+.pop:hover {
+	margin: 0;
+	box-shadow: 4px 4px 6px 6px rgba(0,0,0,0.3);
+	width: 48px;
+    height: 48px
+}
+
+.rollover{}
+    
+.social-link{ text-decoration: none }

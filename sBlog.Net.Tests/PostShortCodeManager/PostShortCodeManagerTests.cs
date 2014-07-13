@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sBlog.Net.ShortCodeManager;
 using sBlog.Net.ShortCodeManager.Entities;
-using sBlog.Net.Tests.MockFrameworkObjects;
 using sBlog.Net.Domain.Interfaces;
 using System.IO;
 using sBlog.Net.Tests.MockObjects;
