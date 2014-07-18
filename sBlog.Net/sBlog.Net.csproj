@@ -554,8 +554,8 @@
     <Content Include="Content\Images\social_icons\google+.png" />
     <Content Include="Content\Images\social_icons\instagram-hover.png" />
     <Content Include="Content\Images\social_icons\instagram.png" />
-    <Content Include="Content\Images\social_icons\linked-in-hover.png" />
-    <Content Include="Content\Images\social_icons\linked-in.png" />
+    <Content Include="Content\Images\social_icons\linkedin-hover.png" />
+    <Content Include="Content\Images\social_icons\linkedin.png" />
     <Content Include="Content\Images\social_icons\picasa-hover.png" />
     <Content Include="Content\Images\social_icons\picasa.png" />
     <Content Include="Content\Images\social_icons\pinterest-hover.png" />

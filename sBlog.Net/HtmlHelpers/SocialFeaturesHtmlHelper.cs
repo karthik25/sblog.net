@@ -51,6 +51,7 @@ namespace sBlog.Net.HtmlHelpers
 
             anchor.MergeAttribute("class", "social-link");
             anchor.MergeAttribute("href", BuildUrl(feature));
+            anchor.MergeAttribute("target", "_blank");
             anchor.InnerHtml = GetSocialImage(htmlHelper, feature);
 
             return MvcHtmlString.Create(anchor.ToString());
