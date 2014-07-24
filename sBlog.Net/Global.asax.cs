@@ -30,6 +30,7 @@ using sBlog.Net.DB.Helpers;
 using sBlog.Net.DB.Services;
 using sBlog.Net.DependencyManagement;
 using sBlog.Net.Infrastructure;
+using sBlog.Net.Mappers;
 using sBlog.Net.Models;
 using sBlog.Net.Binders;
 using System.Web.Security;
@@ -231,7 +232,8 @@ namespace sBlog.Net
             if (appStatus == null || appStatus.StatusCode == SetupStatusCode.NoUpdates)
             {
                 var settings = InstanceFactory.CreateSettingsInstance();
-                ViewEngines.Engines.Add(new CustomRazorViewEngine(settings.BlogTheme));
+                var themeName = Configuration.Theme.FindTheme(settings, new PathMapper());
+                ViewEngines.Engines.Add(new CustomRazorViewEngine(themeName));
             }
             else
             {

@@ -117,6 +117,8 @@
     <Compile Include="Infrastructure\SblogNetSettingsConfiguration.cs" />
     <Compile Include="Infrastructure\SocialFeatureList.cs" />
     <Compile Include="Infrastructure\SocialFeaturesElement.cs" />
+    <Compile Include="Infrastructure\ThemeElement.cs" />
+    <Compile Include="Infrastructure\ThemeSelector.cs" />
     <Compile Include="Infrastructure\UniqueUrlHelper.cs" />
     <Compile Include="Models\Account\AccountBaseViewModel.cs" />
     <Compile Include="Models\Account\LogOnModel.cs" />

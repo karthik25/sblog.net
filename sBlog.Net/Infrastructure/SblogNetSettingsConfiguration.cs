@@ -15,7 +15,6 @@
 /* *********************************************** */
 
 #endregion
-
 using System.Configuration;
 
 namespace sBlog.Net.Infrastructure
@@ -28,12 +27,19 @@ namespace sBlog.Net.Infrastructure
             get { return (bool) this["enableMiniProfiler"]; }
             set { this["enableMiniProfiler"] = value; }
         }
-
+        
         [ConfigurationProperty("socialFeatures")]
         public SocialFeaturesElement SocialFeatures
         {
             get { return (SocialFeaturesElement) this["socialFeatures"]; }
             set { this["socialFeatures"] = value; }
+        }
+
+        [ConfigurationProperty("theme")]
+        public ThemeElement Theme
+        {
+            get { return (ThemeElement)this["theme"]; }
+            set { this["theme"] = value; }
         }
     }
 }

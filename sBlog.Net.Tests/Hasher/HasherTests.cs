@@ -9,7 +9,7 @@ namespace sBlog.Net.Tests.Hasher
         [TestMethod]
         public void Can_Generate_The_Expected_Hasher()
         {
-            var hasher = Infrastructure.Hasher.Instance;
+            var hasher = Net.Infrastructure.Hasher.Instance;
             Assert.IsNotNull(hasher);
             Assert.IsInstanceOfType(hasher, typeof(Md5Hasher));
         }

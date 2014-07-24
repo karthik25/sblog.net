@@ -16,9 +16,11 @@
 
 #endregion
 using System;
+using System.Configuration;
 using System.Web.Mvc;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Interfaces;
+using sBlog.Net.Infrastructure;
 using sBlog.Net.Mappers;
 using sBlog.Net.Models;
 
@@ -63,7 +65,8 @@ namespace sBlog.Net.Controllers
 
         public string GetBlogTheme()
         {
-            return SettingsRepository.BlogTheme;
+            var themeName = BlogStaticConfig.Theme.FindTheme(SettingsRepository, _pathMapper);
+            return themeName;
         }
 
         public ActionResult Logo()
@@ -103,13 +106,13 @@ namespace sBlog.Net.Controllers
 
             if (action != null && !string.IsNullOrEmpty(ExpectedMasterName))
             {
-                var themeName = SettingsRepository.BlogTheme;
+                var themeName = BlogStaticConfig.Theme.FindTheme(SettingsRepository, _pathMapper);
 
-                if (ThemeExists(themeName))
+                if (!string.IsNullOrEmpty(themeName))
                 {
-                    action.MasterName = MasterExists(themeName) ? string.Format(LayoutFormat, themeName, ExpectedMasterName)
-                                                                : string.Format(DefaultLayoutFormat, ExpectedMasterName);
-
+                    action.MasterName = themeName.MasterExists(_pathMapper, ExpectedMasterName) ? 
+                                                    string.Format(LayoutFormat, themeName, ExpectedMasterName)
+                                                    : string.Format(DefaultLayoutFormat, ExpectedMasterName);
                 }
                 else
                 {
@@ -125,23 +128,14 @@ namespace sBlog.Net.Controllers
             throw new UrlNotFoundException("Unable to find an action with the name specified: [{0}]", actionName);
         }
 
-        private bool MasterExists(string themeName)
-        {
-            var requiredFile = string.Format("{0}\\{1}.cshtml", _pathMapper.MapPath(string.Format("~/Themes/{0}", themeName)), ExpectedMasterName);
-            return System.IO.File.Exists(requiredFile);
-        }
-
-        private bool ThemeExists(string themeName)
-        {
-            var requiredFolder = _pathMapper.MapPath(string.Format("~/Themes/{0}", themeName));
-            return System.IO.Directory.Exists(requiredFolder);
-        }
-
         private const string LayoutFormat = "~/Themes/{0}/{1}.cshtml";
         private const string DefaultLayoutFormat = "~/Views/Shared/{0}.cshtml";
 
         protected const string CachePostsUnauthKey = "GetAllPosts";
         protected const string CachePagesUnauthKey = "GetAllPages";
+
+        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
+                                                                             as SblogNetSettingsConfiguration;
     }
 
     public interface IControllerProperties
