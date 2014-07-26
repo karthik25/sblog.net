@@ -16,20 +16,21 @@
 
 #endregion
 using System.Configuration;
+using sBlog.Net.Configuration;
 
 namespace sBlog.Net.Infrastructure
 {
     public static class ApplicationConfiguration
     {
         /// <summary>
-        /// Gets the connection string from the web.config, identified by the key "AppDb" in the "connectionStrings" section
+        /// Gets the connection string from the web.config, from the sblognetSettings section
         /// </summary>
         public static string ConnectionString
         {
             get
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["AppDb"];
-                return (connectionString != null) ? connectionString.ToString() : null;
+                var connectionString = BlogStaticConfig.ConnectionString;
+                return connectionString;
             }
         }
 
@@ -90,5 +91,8 @@ namespace sBlog.Net.Infrastructure
         {
             get { return ConfigurationManager.AppSettings["BitlyApiKey"]; }
         }
+
+        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
+                                                                     as SblogNetSettingsConfiguration;
     }
 }

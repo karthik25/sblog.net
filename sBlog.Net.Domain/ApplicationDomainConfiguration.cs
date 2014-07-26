@@ -16,6 +16,7 @@
 
 #endregion
 using System.Configuration;
+using sBlog.Net.Configuration;
 
 namespace sBlog.Net.Domain
 {
@@ -25,8 +26,13 @@ namespace sBlog.Net.Domain
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["AppDb"] != null ? ConfigurationManager.ConnectionStrings["AppDb"].ToString() : string.Empty;
+                var connectionString = BlogStaticConfig.ConnectionString;
+                return connectionString;
             }
         }
+
+        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
+                                                             as SblogNetSettingsConfiguration;
+
     }
 }

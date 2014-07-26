@@ -91,6 +91,10 @@
     <Compile Include="Utilities\TripleDES.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\sBlog.Net.Configuration\sBlog.Net.Configuration.csproj">
+      <Project>{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}</Project>
+      <Name>sBlog.Net.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sBlog.Net.MetaData\sBlog.Net.MetaData.csproj">
       <Project>{5463815F-1105-4C86-8E01-D7EC06335907}</Project>
       <Name>sBlog.Net.MetaData</Name>

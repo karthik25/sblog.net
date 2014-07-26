@@ -21,6 +21,13 @@ namespace sBlog.Net.Configuration
 {
     public class SblogNetSettingsConfiguration : ConfigurationSection
     {
+        [ConfigurationProperty("connectionString", DefaultValue = "")]
+        public string ConnectionString
+        {
+            get { return (string) this["connectionString"]; }
+            set { this["connectionString"] = value; }
+        }
+
         [ConfigurationProperty("enableMiniProfiler", DefaultValue = false)]
         public bool EnableMiniProfiler
         {

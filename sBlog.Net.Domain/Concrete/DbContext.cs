@@ -52,7 +52,7 @@ namespace sBlog.Net.Domain.Concrete
             }
             else
             {
-                setupStatus.Message = "Please specify the connection string within the \"AppDb\" application key.";
+                setupStatus.Message = "Please specify the connection string within the \"connectionString\" attribute in the sblognetSettings configuration section.";
                 setupStatus.CssClass = "warning";
             }
 
