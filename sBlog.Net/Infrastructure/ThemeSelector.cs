@@ -1,4 +1,5 @@
-﻿using sBlog.Net.Domain.Interfaces;
+﻿using sBlog.Net.Configuration;
+using sBlog.Net.Domain.Interfaces;
 
 namespace sBlog.Net.Infrastructure
 {

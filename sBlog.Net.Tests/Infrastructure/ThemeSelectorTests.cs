@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using sBlog.Net.Configuration;
 using sBlog.Net.Infrastructure;
 using sBlog.Net.Tests.MockObjects;
 

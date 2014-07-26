@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using sBlog.Net.Configuration;
 using sBlog.Net.Infrastructure;
 
 namespace sBlog.Net.Tests.SocialFeatures

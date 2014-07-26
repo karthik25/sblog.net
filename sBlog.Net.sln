@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.MetaData", "sBlog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.Tools", "sBlog.Net.Tools\sBlog.Net.Tools.csproj", "{0EE92EB7-3179-450F-8FED-9A30DD9E7606}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sBlog.Net.Configuration", "sBlog.Net.Configuration\sBlog.Net.Configuration.csproj", "{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = sBlog.Net.vsmdi
@@ -69,6 +71,10 @@ Global
 		{0EE92EB7-3179-450F-8FED-9A30DD9E7606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE92EB7-3179-450F-8FED-9A30DD9E7606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE92EB7-3179-450F-8FED-9A30DD9E7606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

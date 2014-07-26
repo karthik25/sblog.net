@@ -17,7 +17,7 @@
 #endregion
 using System.Configuration;
 
-namespace sBlog.Net.Infrastructure
+namespace sBlog.Net.Configuration
 {
     public class ThemeElement : ConfigurationElement
     {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using sBlog.Net.Configuration;
 using sBlog.Net.Enumerations;
 
 namespace sBlog.Net.Infrastructure

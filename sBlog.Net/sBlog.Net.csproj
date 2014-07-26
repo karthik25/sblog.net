@@ -114,10 +114,7 @@
     <Compile Include="Infrastructure\CustomRoleProvider.cs" />
     <Compile Include="Infrastructure\ErrorLogger.cs" />
     <Compile Include="Infrastructure\PasswordHelper.cs" />
-    <Compile Include="Infrastructure\SblogNetSettingsConfiguration.cs" />
     <Compile Include="Infrastructure\SocialFeatureList.cs" />
-    <Compile Include="Infrastructure\SocialFeaturesElement.cs" />
-    <Compile Include="Infrastructure\ThemeElement.cs" />
     <Compile Include="Infrastructure\ThemeSelector.cs" />
     <Compile Include="Infrastructure\UniqueUrlHelper.cs" />
     <Compile Include="Models\Account\AccountBaseViewModel.cs" />
@@ -731,6 +728,10 @@
     <ProjectReference Include="..\sBlog.Net.Akismet\sBlog.Net.Akismet.csproj">
       <Project>{BF9A2FB1-604B-4185-847F-0C4FDB04739A}</Project>
       <Name>sBlog.Net.Akismet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Configuration\sBlog.Net.Configuration.csproj">
+      <Project>{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}</Project>
+      <Name>sBlog.Net.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\sBlog.Net.DB\sBlog.Net.DB.csproj">
       <Project>{5875ABD8-5F6C-4F12-B938-E8E82E79DEF1}</Project>

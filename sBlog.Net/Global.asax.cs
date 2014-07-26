@@ -23,6 +23,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using StackExchange.Profiling;
 using sBlog.Net.Areas.Admin.Models;
+using sBlog.Net.Configuration;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.CustomViewEngines;
 using sBlog.Net.DB.Enumerations;

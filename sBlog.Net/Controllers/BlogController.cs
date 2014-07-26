@@ -18,6 +18,7 @@
 using System;
 using System.Configuration;
 using System.Web.Mvc;
+using sBlog.Net.Configuration;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.Infrastructure;

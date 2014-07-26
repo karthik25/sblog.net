@@ -88,6 +88,10 @@
       <Project>{BF9A2FB1-604B-4185-847F-0C4FDB04739A}</Project>
       <Name>sBlog.Net.Akismet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\sBlog.Net.Configuration\sBlog.Net.Configuration.csproj">
+      <Project>{6B2FFFCE-E39B-4A24-A768-AFE697D9EE26}</Project>
+      <Name>sBlog.Net.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sBlog.Net.Domain\sBlog.Net.Domain.csproj">
       <Project>{B8FBB6E2-F283-45E4-ADBA-3010F5323B89}</Project>
       <Name>sBlog.Net.Domain</Name>
