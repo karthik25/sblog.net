@@ -46,7 +46,7 @@ namespace sBlog.Net.Infrastructure
         {
             get
             {
-                return ConfigurationManager.AppSettings["hasher"];
+                return BlogStaticConfig.HasherFullyQualifiedTypeName;
             }
         }
 

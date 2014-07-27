@@ -34,6 +34,13 @@ namespace sBlog.Net.Configuration
             get { return (bool) this["enableMiniProfiler"]; }
             set { this["enableMiniProfiler"] = value; }
         }
+
+        [ConfigurationProperty("hasherFullyQualifiedTypeName")]
+        public string HasherFullyQualifiedTypeName
+        {
+            get { return (string)this["hasherFullyQualifiedTypeName"]; }
+            set { this["hasherFullyQualifiedTypeName"] = value; }
+        }
         
         [ConfigurationProperty("socialFeatures")]
         public SocialFeaturesElement SocialFeatures
