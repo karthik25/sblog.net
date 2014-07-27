@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sBlog.Net.Configuration;
 using sBlog.Net.Infrastructure;
 using sBlog.Net.Tests.MockObjects;
@@ -9,14 +8,6 @@ namespace sBlog.Net.Tests.Infrastructure
     [TestClass]
     public class ThemeSelectorTests
     {
-        [TestMethod]
-        public void CanReadAThemeFromWebConfig()
-        {
-            var themeSettings = BlogStaticConfig.Theme;
-            Assert.IsNotNull(themeSettings);
-            Assert.AreEqual("PerfectBlemish", themeSettings.SelectedTheme);
-        }
-
         [TestMethod]
         public void CanSelectAWebConfigTheme()
         {
@@ -57,9 +48,5 @@ namespace sBlog.Net.Tests.Infrastructure
             var selectedTheme = themeElement.FindTheme(settings, mapper);
             Assert.IsNull(selectedTheme);
         }
-
-        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
-                                                                     as SblogNetSettingsConfiguration;
-
     }
 }

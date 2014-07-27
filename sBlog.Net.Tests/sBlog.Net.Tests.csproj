@@ -62,6 +62,7 @@
     <Compile Include="Hasher\HasherTests.cs" />
     <Compile Include="Helpers\MockObjectFactory.cs" />
     <Compile Include="Collections\ArchiveCollectionTests.cs" />
+    <Compile Include="Infrastructure\ApplicationConfigurationTests.cs" />
     <Compile Include="Infrastructure\ThemeSelectorTests.cs" />
     <Compile Include="MockObjects\MockCacheService.cs" />
     <Compile Include="MockFrameworkObjects\MockFactory.cs" />
