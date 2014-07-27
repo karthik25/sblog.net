@@ -64,7 +64,7 @@ namespace sBlog.Net.Infrastructure
         {
             get
             {
-                var cacheDuration = ConfigurationManager.AppSettings["CacheDuration"];
+                var cacheDuration = BlogStaticConfig.CacheDuration;
                 int parsedDuration;
                 return int.TryParse(cacheDuration, out parsedDuration) ? parsedDuration : DefaultCacheDuration;
             }
@@ -78,7 +78,7 @@ namespace sBlog.Net.Infrastructure
         /// </value>
         public static string BitlyUserName
         {
-            get { return ConfigurationManager.AppSettings["BitlyUserName"]; }
+            get { return BlogStaticConfig.BitlyUserName; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace sBlog.Net.Infrastructure
         /// </value>
         public static string BitlyApiKey
         {
-            get { return ConfigurationManager.AppSettings["BitlyApiKey"]; }
+            get { return BlogStaticConfig.BitlyApiKey; }
         }
 
         private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")

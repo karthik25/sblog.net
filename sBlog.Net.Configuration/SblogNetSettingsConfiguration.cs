@@ -41,7 +41,28 @@ namespace sBlog.Net.Configuration
             get { return (string)this["hasherFullyQualifiedTypeName"]; }
             set { this["hasherFullyQualifiedTypeName"] = value; }
         }
-        
+
+        [ConfigurationProperty("cacheDuration")]
+        public string CacheDuration
+        {
+            get { return (string)this["cacheDuration"]; }
+            set { this["cacheDuration"] = value; }
+        }
+
+        [ConfigurationProperty("bitlyUserName")]
+        public string BitlyUserName
+        {
+            get { return (string)this["bitlyUserName"]; }
+            set { this["bitlyUserName"] = value; }
+        }
+
+        [ConfigurationProperty("bitlyApiKey")]
+        public string BitlyApiKey
+        {
+            get { return (string)this["bitlyApiKey"]; }
+            set { this["bitlyApiKey"] = value; }
+        }
+
         [ConfigurationProperty("socialFeatures")]
         public SocialFeaturesElement SocialFeatures
         {
