@@ -27,5 +27,13 @@ namespace sBlog.Net.Areas.Admin.Models
         public CheckBoxListViewModel Categories { get; set; }
         public bool IsNewPostOrPage { get; set; }
         public bool SharingEnabled { get; set; }
+
+        public bool AjaxSaved { get; set; }
+    }
+
+    public class PostOrPageSaveStatus
+    {
+        public int PostId { get; set; }
+        public bool IsValid { get; set; }
     }
 }

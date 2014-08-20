@@ -44,7 +44,7 @@ namespace sBlog.Net.Binders
                                                 IsPrivate = bool.Parse(bindingContext.GetValue("Post.IsPrivate")),
                                                 EntryType = byte.Parse(bindingContext.GetValue("Post.EntryType")),
                                                 BitlyUrl = bindingContext.GetValue("Post.BitlyUrl"),
-                                                BitlySourceUrl = bindingContext.GetValue("Post.BitlySourceUrl")
+                                                BitlySourceUrl = bindingContext.GetValue("Post.BitlySourceUrl"),                                                
                                             }
                                 };
 
@@ -66,6 +66,8 @@ namespace sBlog.Net.Binders
 
                 postModel.Tags = bindingContext.GetValue("hdnAddedTags");
             }
+
+            postModel.AjaxSaved = bool.Parse(bindingContext.GetValue("AjaxSaved"));
 
             return postModel;
         }

@@ -718,3 +718,34 @@ function resetValidation() {
     $('.request-form-content .field-validation-error').addClass('field-validation-valid');
     $('.request-form-content .field-validation-error').removeClass('field-validation-error');
 }
+
+function savePostOrPage() {
+    $('.privateChkBox').trigger('click');
+    var rUrl = ($('#AjaxSaved').val().toLowerCase() == 'true') ? 'edit' : 'add';
+    var formData = $('form').serializeArray();
+    $.ajax({
+        type: 'POST',
+        url: siteRoot + 'admin/post/' + rUrl,
+        data: formData,
+        dataType: 'json',
+        success: function (data) {
+            if (data.IsValid) {
+                $('#AjaxSaved').val(true);
+                $('#Post_PostID').val(data.PostId);
+                var msg = 'Saved a draft of your post at <b>' + getCurrentDateTime() + '</b>';
+                $('#updateAjaxStatus').html(msg).show();
+            }
+        }
+    });
+}
+
+function getCurrentDateTime() {
+    var now = new Date();
+    var year = "" + now.getFullYear();
+    var month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+    var day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+    var hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+    var minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+    var second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+    return month + "/" + day + "/" + year + " " + hour + ":" + minute + ":" + second;
+}

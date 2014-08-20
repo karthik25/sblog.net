@@ -2,6 +2,11 @@
 
 @Html.Partial("UpdatePostOrPageStatus", Model)
 
+<div id="updateAjaxStatus">
+    
+</div>
+<div style="clear: both"></div>
+
 @using (Html.BeginForm())
 {
     <div id="maincontent">
@@ -10,6 +15,8 @@
             @Html.HiddenFor(model => model.Post.PostAddedDate)
             @Html.HiddenFor(model => model.Post.BitlyUrl)
             @Html.HiddenFor(model => model.Post.BitlySourceUrl)
+            
+            @Html.HiddenFor(model => model.AjaxSaved)
 
             @{
                 var display = "Post";

@@ -384,6 +384,18 @@ a.selected:link, a.selected:active, a.selected:visited
     padding: 10px
 }
 
+#updateAjaxStatus
+{
+    width: 90%;
+    background-color: lightYellow;
+    border: 1px solid #FFFF00;
+    text-align: left;
+    margin: 0 auto;
+    float: left;
+    padding: 10px;
+    display: none
+}
+
 .trashComment { }
 
 .tagCollection

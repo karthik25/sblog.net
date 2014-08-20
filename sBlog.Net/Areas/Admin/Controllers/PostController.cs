@@ -74,6 +74,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (postModel.AjaxSaved)
+                {
+                    return SaveAndRedirect(postModel);
+                }
+
                 var tags = _tagRepository.GetTagEntities(postModel.Tags.Split(',').ToList());
                 _tagRepository.AddTags(tags);
                 var postEntity = postModel.ToPostEntity(_tagRepository);
@@ -97,13 +102,57 @@ namespace sBlog.Net.Areas.Admin.Controllers
 
                 if (postId > 0)
                 {
+                    if (Request.IsAjaxRequest())
+                    {
+                        var status = new PostOrPageSaveStatus { PostId = postId, IsValid = true };
+                        return Json(status, JsonRequestBehavior.AllowGet);
+                    }
+
                     return RedirectToAction("Edit", new {postID = postId, newlyAdded = true });
                 }
             }
+
+            if (Request.IsAjaxRequest())
+            {
+                var status = new PostOrPageSaveStatus { PostId = 0, IsValid = false };
+                return Json(status, JsonRequestBehavior.AllowGet);
+            }
+
             postModel.Title = SettingsRepository.BlogName;
             postModel.SharingEnabled = SettingsRepository.BlogSocialSharing;
-
+            
             return View(postModel);
+        }
+
+        public ActionResult SaveAndRedirect(PostViewModel postModel)
+        {
+            SavePostInternal(postModel);
+            return RedirectToAction("Edit", new { postID = postModel.Post.PostID });
+        }
+
+        private void SavePostInternal(PostViewModel postModel)
+        {
+            var tags = _tagRepository.GetTagEntities(postModel.Tags.Split(',').ToList());
+            _tagRepository.AddTags(tags);
+            var postEntity = postModel.ToPostEntity(_tagRepository);
+            postEntity.PostEditedDate = DateTime.Now;
+
+            if (string.IsNullOrEmpty(postEntity.PostUrl))
+            {
+                postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType, postEntity.PostID);
+            }
+
+            if (postEntity.PostUrl != postEntity.BitlySourceUrl)
+            {
+                var biltyPostUrl = BitlyUrlService.GetBiltyPostUrl(SettingsRepository, postEntity.PostUrl);
+                if (biltyPostUrl != null)
+                {
+                    postEntity.BitlyUrl = biltyPostUrl;
+                    postEntity.BitlySourceUrl = postEntity.PostUrl;
+                }
+            }
+
+            _postRepository.UpdatePost(postEntity);
         }
 
         public ActionResult Edit(int postID, [DefaultValue(false)] bool newlyAdded)
@@ -136,27 +185,13 @@ namespace sBlog.Net.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tags = _tagRepository.GetTagEntities(postModel.Tags.Split(',').ToList());
-                _tagRepository.AddTags(tags);
-                var postEntity = postModel.ToPostEntity(_tagRepository);
-                postEntity.PostEditedDate = DateTime.Now;
+                SavePostInternal(postModel);
 
-                if (string.IsNullOrEmpty(postEntity.PostUrl))
+                if (Request.IsAjaxRequest())
                 {
-                    postEntity.PostUrl = UniqueUrlHelper.FindUniqueUrl(_postRepository, postEntity.PostTitle, ItemEntryType, postEntity.PostID);
+                    var status = new PostOrPageSaveStatus { PostId = postModel.Post.PostID, IsValid = true };
+                    return Json(status, JsonRequestBehavior.AllowGet);
                 }
-
-                if (postEntity.PostUrl != postEntity.BitlySourceUrl)
-                {
-                    var biltyPostUrl = BitlyUrlService.GetBiltyPostUrl(SettingsRepository, postEntity.PostUrl);
-                    if (biltyPostUrl != null)
-                    {
-                        postEntity.BitlyUrl = biltyPostUrl;
-                        postEntity.BitlySourceUrl = postEntity.PostUrl;
-                    }
-                }
-
-                _postRepository.UpdatePost(postEntity);
 
                 postModel.UpdateStatus = true;
                 postModel.IsNewPostOrPage = false;
