@@ -720,7 +720,9 @@ function resetValidation() {
 }
 
 function savePostOrPage() {
-    $('.privateChkBox').trigger('click');
+    if (!$('.privateChkBox').is(':checked')) {
+        $('.privateChkBox').trigger('click');
+    }
     var rUrl = ($('#AjaxSaved').val().toLowerCase() == 'true') ? 'edit' : 'add';
     var formData = $('form').serializeArray();
     $.ajax({
