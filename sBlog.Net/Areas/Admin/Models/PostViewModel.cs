@@ -30,10 +30,4 @@ namespace sBlog.Net.Areas.Admin.Models
 
         public bool AjaxSaved { get; set; }
     }
-
-    public class PostOrPageSaveStatus
-    {
-        public int PostId { get; set; }
-        public bool IsValid { get; set; }
-    }
 }

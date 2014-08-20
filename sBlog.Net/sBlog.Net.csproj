@@ -89,6 +89,7 @@
     <Compile Include="Areas\Admin\Controllers\UploadsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Admin\Models\AdminAuthorsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PostOrPageSaveStatus.cs" />
     <Compile Include="Areas\Prepare\Controllers\DatabaseController.cs" />
     <Compile Include="Areas\Prepare\Models\DatabaseSetupModel.cs" />
     <Compile Include="Areas\Prepare\PrepareAreaRegistration.cs" />
