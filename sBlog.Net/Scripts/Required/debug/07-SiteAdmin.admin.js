@@ -96,6 +96,13 @@ $(document).ready(function () {
             event.preventDefault();
         }).select();
     });
+
+    // If this is an add/edit post page, start saving drafts
+    if ($('#isPartiallySavable').length == 1) {
+        setTimeout(function() {
+            savePostOrPage();
+        }, 30000);
+    }
 });
 
 function clearUrlFields() {
@@ -720,10 +727,18 @@ function resetValidation() {
 }
 
 function savePostOrPage() {
+    if (!canBeSavedPartially()) {
+        setTimeout(function () {
+            savePostOrPage();
+        }, 30000);
+
+        return;
+    }
+    
     if (!$('.privateChkBox').is(':checked')) {
         $('.privateChkBox').trigger('click');
     }
-    var rUrl = ($('#AjaxSaved').val().toLowerCase() == 'true') ? 'edit' : 'add';
+    var rUrl = ($('#AjaxSaved').val().toLowerCase() == 'true' || /(post\/edit)/i.test(document.location.href)) ? 'edit' : 'add';
     var formData = $('form').serializeArray();
     $.ajax({
         type: 'POST',
@@ -737,8 +752,25 @@ function savePostOrPage() {
                 var msg = 'Saved a draft of your post at <b>' + getCurrentDateTime() + '</b>';
                 $('#updateAjaxStatus').html(msg).show();
             }
+
+            // Setup auto-saves every 30s iff the first call succeeds
+            setTimeout(function () {
+                savePostOrPage();
+            }, 30000);
         }
     });
+}
+
+function canBeSavedPartially() {
+    var postTitle = $('#Post_PostTitle').val();
+    var postUrl = $('#Post_PostUrl').val();
+
+    var pattern = /.*\S.*/;
+    if (!pattern.test(postTitle) || !pattern.test(postUrl)) {
+        return false;
+    }
+
+    return true;
 }
 
 function getCurrentDateTime() {
