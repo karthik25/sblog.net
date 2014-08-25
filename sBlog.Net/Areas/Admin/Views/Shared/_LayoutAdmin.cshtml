@@ -32,44 +32,70 @@
                     <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
                         class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">sBlog.Net</a>
+                @Html.ActionLink("sBlog.Net", "Index", "Home", new { Area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.AdminLink("Dashboard", "dashboard", "AdminIndex")</li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="Ad" src="@Url.Content("~/Content/Images/add.png")" class="adminImage"/>
-                        Add <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.AdminLink("Post", "post", "AdminPostsAdd")</li>
-                            <li>@Html.AdminLink("Page", "page", "AdminPagesAdd")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="Manage" src="@Url.Content("~/Content/Images/manage.png")" class="adminImage"/>
-                        Manage <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.AdminLink("Posts", "manageposts", "AdminPosts")</li>
-                            <li>@Html.AdminLink("Pages", "managepages", "AdminPages")</li>
-                            <li>@Html.AdminLink("Comments", "comments", "AdminComments")</li>
-                            <li>@Html.AdminLink("Uploads", "uploads", "AdminUploads")</li>
-                            <li class="divider"></li>
-                            <li>@Html.AdminLink("User Posts", "manage_posts", "AdminPostManagement")</li>
-                            <li>@Html.AdminLink("User Comments", "manage_comments", "AdminCommentManagement")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="Settings" src="@Url.Content("~/Content/Images/settings.png")" class="adminImage"/>
-                        Settings <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.AdminLink("Blog Settings", "blog_settings", "AdminSettings")</li>
-                            <li>@Html.AdminLink("Syntax Highlighter", "highlighter", "AdminSyntaxHighlighterOptions")</li>
-                            <li>@Html.AdminLink("Social Sharing", "sharing", "AdminSocialSharingOptions")</li>
-                            <li class="divider"></li>
-                            <li>@Html.AdminLink("Manage Users", "user_management", "AdminUserManagement")</li>
-                            <li>@Html.AdminLink("Create User", "create_user", "Add", "Account")</li>
-                        </ul>
-                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.AdminLink("Dashboard", "dashboard", "AdminIndex")</li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <img alt="Ad" src="@Url.Content("~/Content/Images/add.png")" class="adminImage"/>
+                                                    Add <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.AdminLink("Post", "post", "AdminPostsAdd")</li>
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li>@Html.AdminLink("Page", "page", "AdminPagesAdd")</li>
+                                }
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <img alt="Manage" src="@Url.Content("~/Content/Images/manage.png")" class="adminImage"/>
+                                                    Manage <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.AdminLink("Posts", "manageposts", "AdminPosts")</li>
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li>@Html.AdminLink("Pages", "managepages", "AdminPages")</li>
+                                }
+                                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.AdminLink("Categories", "categories", "AdminCategories")</li>
+                                    <li>@Html.AdminLink("Tags", "tags", "AdminTags")</li>
+                                }
+                                <li>@Html.AdminLink("Comments", "comments", "AdminComments")</li>
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li>@Html.AdminLink("Uploads", "uploads", "AdminUploads")</li>
+                                }
+                                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <li class="divider"></li>
+                                    <li>@Html.AdminLink("User Posts", "manage_posts", "AdminPostManagement")</li>
+                                    <li>@Html.AdminLink("User Comments", "manage_comments", "AdminCommentManagement")</li>
+                                }
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <img alt="Settings" src="@Url.Content("~/Content/Images/settings.png")" class="adminImage"/>
+                                                    Settings <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li>@Html.AdminLink("Blog Settings", "blog_settings", "AdminSettings")</li>
+                                    <li>@Html.AdminLink("Social Sharing", "sharing", "AdminSocialSharingOptions")</li>
+                                }
+                                <li>@Html.AdminLink("Syntax Highlighter", "highlighter", "AdminSyntaxHighlighterOptions")</li>
+                                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <li class="divider"></li>
+                                    <li>@Html.AdminLink("Manage Users", "user_management", "AdminUserManagement")</li>
+                                    <li>@Html.AdminLink("Create User", "create_user", "Add", "Account")</li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.IsAuthenticated)
