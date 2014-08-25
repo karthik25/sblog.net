@@ -10,54 +10,60 @@
 {
      if (Model.CanEnable)
      {
-         <div class="cpHeader">
-             <b>Syntax Highlighter Options</b>
-         </div>
-         <div class="cpContent">
-             @using (Html.BeginForm("EnableSyntaxHighlighter", "Admin"))
-             {
-                 @Html.CheckBox("enableSyntaxHighlighter", new {@id = "enableSyntaxHighlighter"})
-                 <label for="enableSyntaxHighlighter">Enable Syntax Highlighter</label>
-                 <input type="submit" value="Enable"/>
-             }        
-         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Syntax Highlighter Options</h3>
+            </div>
+            <div class="panel-body">
+                 @using (Html.BeginForm("EnableSyntaxHighlighter", "Admin"))
+                 {
+                     @Html.CheckBox("enableSyntaxHighlighter", new {@id = "enableSyntaxHighlighter"})
+                     <label for="enableSyntaxHighlighter">Enable Syntax Highlighter</label>
+                     <input type="submit" value="Enable" class="btn btn-lg btn-primary" />
+                 }
+             </div>
+         </div>    
      }
      else
      {
-         <div class="cpHeader">
-             <b>Syntax Highlighter Options</b>
-         </div>
-         <div class="cpContent">
-             Please contact the <b>administrator</b> to enable syntax highlighter for this blog.
-         </div>
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 <h3 class="panel-title">Syntax Highlighter Options</h3>
+             </div>
+             <div class="panel-body">
+                 Please contact the <b>administrator</b> to enable syntax highlighter for this blog.
+             </div>
+         </div>    
      }
 }
 
 @if (Model.IsEnabled)
 {
-    <div class="cpHeader">
-        <b>Syntax Highlighter Options</b>
-    </div>
-    <div class="cpContent">
-        @using (Html.BeginForm())
-        {
-            <b>Code highlighter theme:</b>
-            <br />
-            <br />
-            @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
-            <b>(admin only)</b>
-            <br />
-            <br />
-            <b>Brushes:</b>
-            <br />
-            <br />
-            <div style="width: 200px;">
-                @Html.Partial("CheckBoxList", Model.Brushes)
-            </div>
-            <br />
-            <br />
-            <input type="submit" value="Update Preferences" class="submitBtn" />
-            @:&nbsp; @Html.Action("SyntaxHighlighterHelp", "Admin")
-        }
-    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Syntax Highlighter Options</h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                <b>Code highlighter theme:</b>
+                <br />
+                <br />
+                @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
+                <b>(admin only)</b>
+                <br />
+                <br />
+                <b>Brushes:</b>
+                <br />
+                <br />
+                <div style="width: 200px;">
+                    @Html.Partial("CheckBoxList", Model.Brushes)
+                </div>
+                <br />
+                <br />
+                <input type="submit" value="Update Preferences" class="btn btn-lg btn-primary" />
+                @:&nbsp; @Html.Action("SyntaxHighlighterHelp", "Admin")
+            }
+        </div>
+    </div>    
 }

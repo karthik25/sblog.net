@@ -7,95 +7,99 @@
 <table style="width:100%;">
     <tr>
         <td style="width:45%; vertical-align: top">
-            <div class="cpHeader">
-                <b>Posts</b>
-            </div>
-            <div class="cpContent">
-                <div style="padding: 25px;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div style="font-size: small; color: gray">your stats</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PostCount.ToString(), "AdminPosts")</td>
-                            <td style="font-size: x-large;">@Html.RouteLink("Posts", "AdminPosts")</td>
-                        </tr>
-                        @if (Model.CanView)
-                        {
-                            <tr>
-                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PagesCount.ToString(), "AdminPages")</td>
-                                <td style="font-size: x-large;">@Html.RouteLink("Pages", "AdminPages")</td>
-                            </tr>
-                        }
-                        else
-                        {
-                            <tr>
-                                <td style="padding: 10px; font-size: x-large;" title="(at this point) you do not have the permissions view/edit">@Model.PagesCount.ToString()</td>
-                                <td style="font-size: x-large;" title="(at this point) you do not have the permissions view/edit">Pages</td>
-                            </tr>
-                        }
-                        
-                        @if (User.IsInRole("SuperAdmin"))
-                        {
-                            <tr>
-                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.CategoriesCount.ToString(), "AdminCategories")</td>
-                                <td style="font-size: x-large;">@Html.RouteLink("Categories", "AdminCategories")</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.TagsCount.ToString(), "AdminTags")</td>
-                                <td style="font-size: x-large;">@Html.RouteLink("Tags", "AdminTags")</td>
-                            </tr>
-                        }
-                        else
-                        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Summary</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="padding: 25px;">
+                        <table style="width: 100%; border-collapse: collapse;">
                             <tr>
                                 <td></td>
                                 <td>
-                                    <div style="font-size: small; color: gray">blog highlights (informational only)</div>
+                                    <div style="font-size: small; color: gray">your stats</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; font-size: x-large;" title="you do not have the permissions view/edit">@Model.CategoriesCount.ToString()</td>
-                                <td style="font-size: x-large;" title="you do not have the permissions view/edit">Categories</td>
+                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PostCount.ToString(), "AdminPosts")</td>
+                                <td style="font-size: x-large;">@Html.RouteLink("Posts", "AdminPosts")</td>
                             </tr>
-                            <tr>
-                                <td style="padding: 10px; font-size: x-large;" title="you do not have the permissions view/edit">@Model.TagsCount.ToString()</td>
-                                <td style="font-size: x-large;" title="you do not have the permissions view/edit">Tags</td>
-                            </tr>
-                        }
-                    </table>
+                            @if (Model.CanView)
+                            {
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PagesCount.ToString(), "AdminPages")</td>
+                                    <td style="font-size: x-large;">@Html.RouteLink("Pages", "AdminPages")</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;" title="(at this point) you do not have the permissions view/edit">@Model.PagesCount.ToString()</td>
+                                    <td style="font-size: x-large;" title="(at this point) you do not have the permissions view/edit">Pages</td>
+                                </tr>
+                            }
+                        
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.CategoriesCount.ToString(), "AdminCategories")</td>
+                                    <td style="font-size: x-large;">@Html.RouteLink("Categories", "AdminCategories")</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.TagsCount.ToString(), "AdminTags")</td>
+                                    <td style="font-size: x-large;">@Html.RouteLink("Tags", "AdminTags")</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div style="font-size: small; color: gray">blog highlights (informational only)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;" title="you do not have the permissions view/edit">@Model.CategoriesCount.ToString()</td>
+                                    <td style="font-size: x-large;" title="you do not have the permissions view/edit">Categories</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; font-size: x-large;" title="you do not have the permissions view/edit">@Model.TagsCount.ToString()</td>
+                                    <td style="font-size: x-large;" title="you do not have the permissions view/edit">Tags</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
                 </div>
             </div>
         </td>
         <td style="width:5%;">
         </td>
         <td style="width:45%; vertical-align: top">
-            <div class="cpHeader">
-                <b>Comments</b>
-            </div>
-            <div class="cpContent">
-                <div style="padding: 25px;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr>
-                            <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.AllCommentsCount.ToString(), "AdminComments", new { type = "all" }, new { @class = "allcmts" })</td>
-                            <td style="font-size: x-large;">@Html.RouteLink("All", "AdminComments", new { type = "all" }, new { @class = "allcmts" })</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.ApprovedCount.ToString(), "AdminComments", new { type = "approved" })</td>
-                            <td style="font-size: x-large;">@Html.RouteLink("Approved", "AdminComments", new { type = "approved" })</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PendingCount.ToString(), "AdminComments", new { type = "pending" }, new { @class = "pending" })</td>
-                            <td style="font-size: x-large;">@Html.RouteLink("Pending", "AdminComments", new { type = "pending" }, new { @class = "pending" })</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.SpamCount.ToString(), "AdminComments", new { type = "spam" }, new { @class = "spam" })</td>
-                            <td style="font-size: x-large;">@Html.RouteLink("Spam", "AdminComments", new { type = "spam" }, new { @class = "spam" })</td>
-                        </tr>
-                    </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Comments</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="padding: 25px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.AllCommentsCount.ToString(), "AdminComments", new { type = "all" }, new { @class = "allcmts" })</td>
+                                <td style="font-size: x-large;">@Html.RouteLink("All", "AdminComments", new { type = "all" }, new { @class = "allcmts" })</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.ApprovedCount.ToString(), "AdminComments", new { type = "approved" })</td>
+                                <td style="font-size: x-large;">@Html.RouteLink("Approved", "AdminComments", new { type = "approved" })</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PendingCount.ToString(), "AdminComments", new { type = "pending" }, new { @class = "pending" })</td>
+                                <td style="font-size: x-large;">@Html.RouteLink("Pending", "AdminComments", new { type = "pending" }, new { @class = "pending" })</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.SpamCount.ToString(), "AdminComments", new { type = "spam" }, new { @class = "spam" })</td>
+                                <td style="font-size: x-large;">@Html.RouteLink("Spam", "AdminComments", new { type = "spam" }, new { @class = "spam" })</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </td>

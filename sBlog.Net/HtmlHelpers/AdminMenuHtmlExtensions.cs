@@ -15,6 +15,7 @@
 /* *********************************************** */
 
 #endregion
+
 using System.Linq;
 using System.Web.Mvc;
 using System.Text;
@@ -24,6 +25,36 @@ namespace sBlog.Net.HtmlHelpers
 {
     public static class AdminMenuHtmlExtensions
     {
+        public static MvcHtmlString AdminLink(this HtmlHelper htmlHelper, string displayText, string iconName, string routeName)
+        {
+            var urlHelper = htmlHelper.GetUrlHelper();
+
+            var img = new TagBuilder("img");
+            img.MergeAttribute("alt", displayText);
+            img.MergeAttribute("src", urlHelper.Content(string.Format("~/Content/Images/{0}.png", iconName)));
+            img.MergeAttribute("class", "adminImage");
+
+            var aTag = GetAnchorTag(urlHelper.RouteUrl(routeName));
+            aTag.InnerHtml = string.Format("{0} {1}", img, displayText);
+
+            return MvcHtmlString.Create(aTag.ToString());
+        }
+
+        public static MvcHtmlString AdminLink(this HtmlHelper htmlHelper, string displayText, string iconName, string actionName, string controllerName)
+        {
+            var urlHelper = htmlHelper.GetUrlHelper();
+
+            var img = new TagBuilder("img");
+            img.MergeAttribute("alt", displayText);
+            img.MergeAttribute("src", urlHelper.Content(string.Format("~/Content/Images/{0}.png", iconName)));
+            img.MergeAttribute("class", "adminImage");
+
+            var aTag = GetAnchorTag(urlHelper.Action(actionName, controllerName, new { Area = "" }));
+            aTag.InnerHtml = string.Format("{0} {1}", img, displayText);
+
+            return MvcHtmlString.Create(aTag.ToString());
+        }
+
         public static MvcHtmlString AdminLink(this HtmlHelper htmlHelper, string linkText, string routeName, string actionName, string controllerName, string imageUrl, string toolTip = "")
         {
             var builder = new StringBuilder();

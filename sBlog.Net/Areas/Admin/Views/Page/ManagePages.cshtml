@@ -42,5 +42,7 @@
     </tfoot>
 </table>
     
-@Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePages", new { page = x, type = Model.Type }))
+<ul class="pagination">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePages", new { page = x, type = Model.Type }))
+</ul>
 @Html.HiddenFor(model => Model.OneTimeCode)

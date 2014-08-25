@@ -493,18 +493,17 @@
     <Content Include="Content\codeHighlighter\styles\shThemeRDark.css" />
     <Content Include="Content\Images\404_black.png" />
     <Content Include="Content\Images\404_brown.png" />
-    <Content Include="Content\Images\close_icon.png" />
-    <Content Include="Content\Images\loader-transparent.gif" />
-    <Content Include="Content\Images\new_window_icon.png" />
-    <Content Include="Content\Images\preview.png" />
-    <Content Include="Content\Images\profile.png" />
+    <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\arrow.png" />
+    <Content Include="Content\Images\blog_settings.png" />
     <Content Include="Content\Images\categories.png" />
     <Content Include="Content\Images\Classic1.png" />
+    <Content Include="Content\Images\close_delete.png" />
+    <Content Include="Content\Images\close_icon.png" />
     <Content Include="Content\Images\collapse.png" />
     <Content Include="Content\Images\comments.png" />
+    <Content Include="Content\Images\create_user.png" />
     <Content Include="Content\Images\dashboard.png" />
-    <Content Include="Content\Images\close_delete.png" />
     <Content Include="Content\Images\expand.png" />
     <Content Include="Content\Images\extension_icons\css.png" />
     <Content Include="Content\Images\extension_icons\doc.png" />
@@ -520,12 +519,22 @@
     <Content Include="Content\Images\extension_icons\zip.png" />
     <Content Include="Content\Images\highlighter.png" />
     <Content Include="Content\Images\Horizontal.png" />
+    <Content Include="Content\Images\loader-transparent.gif" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\login.png" />
+    <Content Include="Content\Images\logoff.png" />
+    <Content Include="Content\Images\manage.png" />
     <Content Include="Content\Images\managepages.png" />
     <Content Include="Content\Images\manageposts.png" />
+    <Content Include="Content\Images\manage_comments.png" />
+    <Content Include="Content\Images\manage_posts.png" />
     <Content Include="Content\Images\Multichannel.png" />
+    <Content Include="Content\Images\new_window_icon.png" />
+    <Content Include="Content\Images\options.png" />
     <Content Include="Content\Images\page.png" />
     <Content Include="Content\Images\post.png" />
+    <Content Include="Content\Images\preview.png" />
+    <Content Include="Content\Images\profile.png" />
     <Content Include="Content\Images\Rectangle Button.png" />
     <Content Include="Content\Images\request_account.png" />
     <Content Include="Content\Images\sblog-logo-v1-3.jpg" />
@@ -548,10 +557,10 @@
     <Content Include="Content\Images\social_icons\foursquare.png" />
     <Content Include="Content\Images\social_icons\github-hover.png" />
     <Content Include="Content\Images\social_icons\github.png" />
-    <Content Include="Content\Images\social_icons\google-hover.png" />
     <Content Include="Content\Images\social_icons\google+-hover.png" />
-    <Content Include="Content\Images\social_icons\google.png" />
     <Content Include="Content\Images\social_icons\google+.png" />
+    <Content Include="Content\Images\social_icons\google-hover.png" />
+    <Content Include="Content\Images\social_icons\google.png" />
     <Content Include="Content\Images\social_icons\instagram-hover.png" />
     <Content Include="Content\Images\social_icons\instagram.png" />
     <Content Include="Content\Images\social_icons\linkedin-hover.png" />
@@ -1189,7 +1198,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59110</DevelopmentServerPort>
+          <DevelopmentServerPort>54897</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/sblog2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

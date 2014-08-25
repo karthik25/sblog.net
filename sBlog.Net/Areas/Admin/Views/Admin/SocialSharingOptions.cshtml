@@ -8,43 +8,49 @@
 
 @if (Model.IsEnabled)
 {
-    <div class="cpHeader">
-        Social Sharing Settings
-    </div>
-    <div class="cpContentPlain">
-        @using (Html.BeginForm())
-        {
-            foreach (var shareable in Model.Options)
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Social Sharing Settings</h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
             {
-                var id = string.Format("radio{0}", shareable.Value);
+                foreach (var shareable in Model.Options)
+                {
+                    var id = string.Format("radio{0}", shareable.Value);
 
-                if (shareable.Selected)
-                {
-                    <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" checked="checked" />
+                    if (shareable.Selected)
+                    {
+                        <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" />
+                    }
+                    <span><img src="@Url.Content(shareable.ImageUrl)" alt="" class="@Model.ImageClass" /></span>
+                    <br />
                 }
-                else
-                {
-                    <input type="radio" value="@shareable.Value" id="@id" name="@Model.Name" />
-                }
-                <span><img src="@Url.Content(shareable.ImageUrl)" alt="" class="@Model.ImageClass" /></span>
                 <br />
+                <p class="pull-right">
+                    <input type="submit" value="Update Settings" class="btn btn-lg btn-primary" />
+                </p>
             }
-            <br />
-            <input type="submit" value="Update Settings" class="submitBtn" />
-        }
+        </div>
     </div>
 }
 else
 {
-    <div class="cpHeader">
-        Social Sharing Settings
-    </div>
-    <div class="cpContent">
-        @using(Html.BeginForm("EnableSocialSharing","Admin"))
-        {
-            @Html.CheckBox("enableSocialSharing", new { @id = "enableSocialSharing" })
-            <label for="enableSocialSharing">Enable Social Sharing</label>
-            <input type="submit" value="Enable"/>
-        }
-    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Social Sharing Settings</h3>
+        </div>
+        <div class="panel-body">
+            @using(Html.BeginForm("EnableSocialSharing","Admin"))
+            {
+                @Html.CheckBox("enableSocialSharing", new { @id = "enableSocialSharing" })
+                <label for="enableSocialSharing">Enable Social Sharing</label>
+                <input type="submit" value="Enable"  class="btn btn-lg btn-primary" />
+            }
+        </div>
+    </div>    
 }

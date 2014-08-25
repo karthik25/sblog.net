@@ -31,12 +31,15 @@ namespace sBlog.Net.HtmlHelpers
             var sb = new StringBuilder();
             for (var i = 1; i <= pagingInfo.TotalPages; i++)
             {
-                var tag = new TagBuilder("a");
-                tag.MergeAttribute("href", pageUrl(i));
-                tag.InnerHtml = i.ToString(CultureInfo.InvariantCulture);
+                var anchor = new TagBuilder("a");
+                anchor.MergeAttribute("href", pageUrl(i));
+                anchor.InnerHtml = i.ToString(CultureInfo.InvariantCulture);
+
+                var item = new TagBuilder("li") { InnerHtml = anchor.ToString() };
                 if (i == pagingInfo.CurrentPage)
-                    tag.AddCssClass("selected");
-                sb.AppendLine(tag.ToString());
+                    item.MergeAttribute("class", "active");
+
+                sb.AppendLine(item.ToString());
             }
             return MvcHtmlString.Create(sb.ToString());
         }
