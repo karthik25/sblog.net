@@ -25,7 +25,7 @@
                 }
             }
 
-            <b>@display.ToLower() title</b><br /><br />
+            <b>@display.ToLower() title</b><br />
             @Html.TextBoxFor(model => model.Post.PostTitle, new { @class = "inputBoxBigPost postTitle" })
             <br /><br />
             <div style="float: left; width: 60%;"> 
@@ -42,7 +42,7 @@
             @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText" })
             <br />
             <b>post url</b>
-            <br /><br />
+            <br />
             <h4 class="postUrlLabel" title="click to edit the url">---</h4>
             <span class="postUrlPrefix"></span>@Html.TextBoxFor(model => model.Post.PostUrl, new { @class = "postUrl" })
             @Html.HiddenFor(model => model.Post.PostUrl, new { @class = "postUrlValue" })
@@ -53,62 +53,69 @@
         </div>
 
         <div id="right" style="float: left;">
-            <div class="cpHeader">
-                <b>Publish Options</b>
-            </div>
-            <div class="cpContent">
-                @Html.CheckBoxFor(model => model.Post.IsPrivate, new { @class = "privateChkBox" })
-                @Html.LabelFor(model => model.Post.IsPrivate)
-                <br /><br />
-                <input type="submit" value="Publish" class="publishBtn" />  
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h3 class="panel-title">Publish Options</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.CheckBoxFor(model => model.Post.IsPrivate, new { @class = "privateChkBox" })
+                    @Html.LabelFor(model => model.Post.IsPrivate)
+                    <br /><br />
+                    <input type="submit" value="Publish" class="publishBtn" />  
                 
-                <span>&nbsp;</span>
+                    <span>&nbsp;</span>
                 
-                @if (Model.Post.EntryType == 1)
-                {
-                    @Html.ActionLink("delete post", "DeletePost", "Post", new {postID = Model.Post.PostID}, new { @class = "edit-trash" });
-                }
-                else
-                {
-                    @Html.ActionLink("delete page", "DeletePage", "Page", new { postID = Model.Post.PostID }, new { @class = "edit-trash" });
-                }
+                    @if (Model.Post.EntryType == 1)
+                    {
+                        @Html.ActionLink("delete post", "DeletePost", "Post", new {postID = Model.Post.PostID}, new { @class = "edit-trash" });
+                    }
+                    else
+                    {
+                        @Html.ActionLink("delete page", "DeletePage", "Page", new { postID = Model.Post.PostID }, new { @class = "edit-trash" });
+                    }
+                </div>
             </div>
-            <br /><br />
-            <div class="cpHeader">
-                <b>@display Options</b>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@display Options</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.CheckBoxFor(model => model.Post.UserCanAddComments)
+                    @Html.LabelFor(model => model.Post.UserCanAddComments)
+                    <br /><br />
+                    @{
+                        var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
+                        var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
+                    }
+                    <span title="@title" class="@cssStyle">
+                        @Html.CheckBoxFor(model => model.Post.CanBeShared)
+                        @Html.LabelFor(model => model.Post.CanBeShared)
+                    </span>
+                </div>
             </div>
-            <div class="cpContent">
-                @Html.CheckBoxFor(model => model.Post.UserCanAddComments)
-                @Html.LabelFor(model => model.Post.UserCanAddComments)
-                <br /><br />
-                @{
-                    var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
-                    var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
-                }
-                <span title="@title" class="@cssStyle">
-                    @Html.CheckBoxFor(model => model.Post.CanBeShared)
-                    @Html.LabelFor(model => model.Post.CanBeShared)
-                </span>
-            </div>
-            <br /><br />
+            
             @if (Model.Post.EntryType == 1)
             {
-                <div class="cpHeader">
-                    <b>Categories</b>
-                </div>
-                <div class="cpContent">
-                    @Html.Partial("Categories", Model.Categories)
-                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Categories</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("Categories", Model.Categories)
+                    </div>
+                </div>                
             }
             
             @if (Model.Post.EntryType == 2)
-            {
-                
-                <div class="cpHeader">
-                    <b>Page Order</b>
-                </div>
-                <div class="cpContent">
-                    @Html.TextBoxFor(model => model.Post.Order, new { @class = "inputBoxBigOrder" })
+            {                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Page Order</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.TextBoxFor(model => model.Post.Order, new { @class = "inputBoxBigOrder" })
+                    </div>
                 </div>
             }
 
@@ -116,13 +123,14 @@
             
             @if (Model.Post.EntryType == 1)
             {
-                <br />
-                <div class="cpHeader">
-                    <b>Tags</b>
-                </div>
-                <div class="cpContent">
-                    @Html.Partial("Tags", Model.Tags)
-                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tags</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("Tags", Model.Tags)
+                    </div>
+                </div>                
             }
         </div>
     </div>

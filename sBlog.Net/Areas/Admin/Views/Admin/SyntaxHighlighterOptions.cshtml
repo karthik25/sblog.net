@@ -44,25 +44,26 @@
             <h3 class="panel-title">Syntax Highlighter Options</h3>
         </div>
         <div class="panel-body">
+            <p class="pull-right">
+                @Html.Action("SyntaxHighlighterHelp", "Admin")
+            </p>
             @using (Html.BeginForm())
             {
-                <b>Code highlighter theme:</b>
-                <br />
+                <span class="sub-title">Code highlighter theme:</span>
                 <br />
                 @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
                 <b>(admin only)</b>
                 <br />
                 <br />
-                <b>Brushes:</b>
-                <br />
+                <span class="sub-title">Brushes:</span>
                 <br />
                 <div style="width: 200px;">
                     @Html.Partial("CheckBoxList", Model.Brushes)
                 </div>
                 <br />
-                <br />
-                <input type="submit" value="Update Preferences" class="btn btn-lg btn-primary" />
-                @:&nbsp; @Html.Action("SyntaxHighlighterHelp", "Admin")
+                <p class="pull-right">                    
+                    <input type="submit" value="Update Preferences" class="btn btn-lg btn-primary" />
+                </p>
             }
         </div>
     </div>    
