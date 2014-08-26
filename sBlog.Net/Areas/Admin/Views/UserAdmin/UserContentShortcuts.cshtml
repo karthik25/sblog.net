@@ -1,0 +1,13 @@
+﻿@if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+{
+    @Html.RouteLink("Manage Public Posts", "AdminPostManagement") @:|
+    @Html.RouteLink("Manage Comments", "AdminCommentManagement")
+}
+@if (User.IsInRole("SuperAdmin"))
+{
+    @:|
+    <span class="addPost">
+        <img src="@Url.Content("~/Content/Images/profile.png")" alt="" style="width: 16px; height: 16px;" />
+        @Html.ActionLink("Create a new blog author", "add", "account", new {Area = ""}, new {})
+    </span>
+}

@@ -4,12 +4,7 @@
     ViewBag.Title = string.Format("Manage Comments || {0}", Model.Title);
 }
 
-@Html.RouteLink("Manage Public Posts", "AdminPostManagement") | 
-@Html.RouteLink("Manage Comments", "AdminCommentManagement") | 
-<span class="addPost">
-    <img src="@Url.Content("~/Content/Images/profile.png")" alt="" style="width: 16px; height: 16px;" />
-    @Html.ActionLink("Create a new blog author", "Register", "Account", new { Area = "" }, new { })
-</span>
+@Html.Partial("UserContentShortcuts")
 
 <br/><br/>
 <hr />
@@ -19,27 +14,32 @@
 @Html.ActionLink("Pending", "ManagePublicComments", new { type = "pending" }) (@Model.PendingCommentsCount ) | 
 @Html.ActionLink("Spam", "ManagePublicComments", new { type = "spam" }) (@Model.SpamCommentsCount ) | 
 @Html.ActionLink("Trash", "ManagePublicComments", new { type = "trash" }) (@Model.TrashCommentsCount ) | 
+<br/><br/>
 
-<table id="manage-table">
-    <thead>
-        <tr>
-            <th class="header" scope="col">Author</th>
-            <th class="header" scope="col">Comment</th>
-            <th class="header" scope="col">Post</th>
-        </tr>
-    </thead>
-        @Html.Partial("ItemInfo", Model.Comments.Count)
-        @foreach(var comment in Model.Comments){ 
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Comment</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+        @foreach (var comment in Model.Comments)
+        {
             @Html.Partial("Comment", comment)
         }
-    <tfoot>
-        <tr>
-            <th class="footer" scope="col">Author</th>
-            <th class="footer" scope="col">Comment</th>
-            <th class="footer" scope="col">Post</th>
-        </tr>        
-    </tfoot>
-</table>
-    
-@Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePublicComments", new { page = x, type = Model.Type }))
+    </table>
+}
+else
+{    
+    <div class="alert alert-warning">
+        there are no items in this section at this point!
+    </div>
+}
+
+<ul class="pagination">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePublicComments", new { page = x, type = Model.Type }))
+</ul>
 @Html.HiddenFor(model => Model.OneTimeCode)
