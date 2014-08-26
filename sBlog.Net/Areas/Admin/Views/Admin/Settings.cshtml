@@ -8,45 +8,7 @@
     #disqusShortName {
         display: none
     }
-    
-    .setting-header 
-    {
-        width: 75%;
-        background-color: #D8D8D8;
-        border: 1px solid #6E6E6E;
-        font-weight: bolder;
-        text-align: left;
-        margin: 0 auto;
-        float: left;
-        padding: 10px;
-        cursor: pointer;
-        font-family: Verdana, Tahoma, Arial , Sans-Serif
-    }
-    
-    .setting-content 
-    {
-        width: 75%;
-        background-color: #F2F2F2;
-        border: 1px solid #6E6E6E;
-        text-align: left;
-        margin: 0 auto;
-        float: left;
-        padding: 10px;
-        font-family: Verdana, Tahoma, Arial, Sans-Serif;
-        display: none
-    }
-    
-    .settings-main {
-        width: 75%
-    }
-    
-    #openAll,#closeAll {
-        float: right;
-        color: black;
-        border-bottom: 1px dashed black;
-        cursor: pointer
-    }
-    
+        
     .seperator {
         float: right;
         color: black
@@ -54,7 +16,7 @@
     
     #disqus-akiemet {
         display: none
-    }
+    }    
 </style>
 
 <script type="text/javascript">
@@ -86,167 +48,146 @@
             var content = $(this).next().next();
             $(content).toggle('fast');
         });
-
-        $('#openAll').live('click', function () {
-            $('.setting-content').show('fast');
-        });
-
-        $('#closeAll').live('click', function () {
-            $('.setting-content').hide('fast');
-        });
     });
 </script>
 
 @Html.Partial("UpdateStatus", Model.UpdateStatus)
 
-<div class="settings-main">
-    <b>Blog settings</b>
-    <a id="closeAll">close all</a> <span class="seperator">&nbsp;//&nbsp;</span> <a id="openAll">open all</a>
-</div>
 <div>
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary()
 
-        <div id="settings-accordion">
-            <div class="setting-header">Main Settings</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
-                <b>@Html.LabelFor(model => model.BlogName)</b> <br /><br />
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#main" data-toggle="tab">Main</a></li>
+            <li><a href="#email" data-toggle="tab">Email</a></li>
+            <li><a href="#social_sharing" data-toggle="tab">Sharing & Social</a></li>
+            <li><a href="#per_page" data-toggle="tab">Per Page</a></li>
+            <li><a href="#errors" data-toggle="tab">Site Errors</a></li>
+            <li><a href="#disqus" data-toggle="tab">Disqus</a></li>
+            <li><a href="#akismet" data-toggle="tab">Akismet</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="main">
+                <br/>
+
+                <span class="sub-title">@Html.LabelFor(model => model.BlogName)</span> <br />
                 @Html.TextBoxFor(model => model.BlogName, new {@class = "inputBoxBig"})
 
                 <br /><br />
 
-                <b>@Html.LabelFor(model => model.BlogCaption)</b> <br /><br />
+                <span class="sub-title">@Html.LabelFor(model => model.BlogCaption)</span> <br />
                 @Html.TextBoxFor(model => model.BlogCaption, new {@class = "inputBoxBig"})
 
                 <br /><br />
 
-                <b>@Html.LabelFor(model => model.BlogTheme)</b> <br /><br />
+                <span class="sub-title">@Html.LabelFor(model => model.BlogTheme)</span> <br />
                 @Html.DropDownListFor(model => model.BlogTheme, Model.BlogThemes, new {@class = "dropDownBox"})
             </div>
-            
-            <div style="clear: both"></div>
+            <div class="tab-pane fade" id="email">
+                <br/>
 
-            <div class="setting-header">Email Related</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
-                <b>@Html.LabelFor(model => model.AdminEmailAddress)</b> <br /><br />
-                @Html.TextBoxFor(model => model.AdminEmailAddress, new {@class = "inputBoxBig"})<br/><br/>
+                <span class="sub-title">@Html.LabelFor(model => model.AdminEmailAddress)</span> <br />
+                @Html.TextBoxFor(model => model.AdminEmailAddress, new {@class = "inputBoxBig"})<br/>
                 <span class="settings-info">(will be used as the from address in emails sent, and also as the user name for the smtp server if a password is specified)</span><br/>
-        
-                <b>@Html.LabelFor(model => model.BlogSmtpAddress)</b> <br /><br />
-                @Html.TextBoxFor(model => model.BlogSmtpAddress, new {@class = "inputBoxBig"})<br /><br />
-                <span class="settings-info">(without a valid smtp address, sending emails [site errors & forgotten password] would fail)</span>
-        
-                <br /><br /><br />
+                <br/>
 
-                <b>@Html.LabelFor(model => model.BlogSmtpPassword)</b> <br /><br />
-                @Html.PasswordFor(model => model.BlogSmtpPassword, new {@class = "inputBoxBig"})<br /><br />
+                <span class="sub-title">@Html.LabelFor(model => model.BlogSmtpAddress)</span> <br />
+                @Html.TextBoxFor(model => model.BlogSmtpAddress, new {@class = "inputBoxBig"})<br />
+                <span class="settings-info">(without a valid smtp address, sending emails [site errors & forgotten password] would fail)</span>        
+                <br /><br />
+
+                <span class="sub-title">@Html.LabelFor(model => model.BlogSmtpPassword)</span> <br />
+                @Html.PasswordFor(model => model.BlogSmtpPassword, new {@class = "inputBoxBig"})<br />
                 <span class="settings-info">(some email servers might require a password, enter if any [not shown, if you have entered already])</span><br />
                 <span class="settings-info">(the smtp password won't be updated if you leave this field blank. so after you enter the password for the first time, you don't have to enter it every time)</span><br/>
             </div>
-        
-            <div style="clear: both"></div>
+            <div class="tab-pane fade" id="social_sharing">
+                <br/>
 
-            <div class="setting-header">Sharing & Syntax Highlighter</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
-                <b>Social sharing options</b> <br /><br />
+                <span class="sub-title">Social sharing options</span> <br />
                 @Html.CheckBoxFor(model => model.BlogSocialSharing)
                 @Html.LabelFor(model => model.BlogSocialSharing)
 
-                <br /><br /><br />
+                <br /><br/>
 
-                <b>Syntax highlighting</b> <br /><br />
+                <span class="sub-title">Syntax highlighting</span> <br />
                 @Html.CheckBoxFor(model => model.BlogSyntaxHighlighting)
                 @Html.LabelFor(model => model.BlogSyntaxHighlighting)
             </div>
-            
-            <div style="clear: both"></div>
+            <div class="tab-pane fade" id="per_page">
+                <br/>
 
-            <div class="setting-header">Per Page Settings</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
-                <b>@Html.LabelFor(model => model.PostsPerPage)</b> <br /><br />
+                <span class="sub-title">@Html.LabelFor(model => model.PostsPerPage)</span> <br />
                 @Html.TextBoxFor(model => model.PostsPerPage, new {@class = "inputBoxBig"})
 
-                <br /><br /><br />
+                <br /><br />
         
-                <b>@Html.LabelFor(model => model.ManageItemsPerPage)</b> <br /><br />
+                <span class="sub-title">@Html.LabelFor(model => model.ManageItemsPerPage)</span> <br />
                 @Html.TextBoxFor(model => model.ManageItemsPerPage, new {@class = "inputBoxBig"})
             </div>
-            
-            <div style="clear: both"></div>
+            <div class="tab-pane fade" id="errors">
+                <br/>
 
-            <div class="setting-header">Site Errors</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
                 @Html.CheckBoxFor(model => model.BlogErrorAction)
                 @Html.LabelFor(model => model.BlogErrorAction)
             </div>
-            
-            <div style="clear: both"></div>
+            <div class="tab-pane fade" id="disqus">
+                <br/>
 
-            <div class="setting-header">Disqus</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
-                <b>Enable Disqus?</b> <br /><br />
+                <span class="sub-title">Enable Disqus?</span> <br /><br />
                 @Html.CheckBoxFor(model => model.DisqusEnabled)
                 @Html.LabelFor(model => model.DisqusEnabled)
                 <span id="disqus-akiemet">(<a href="#" target="_blank" id="disqusAkismet">akismet settings</a>)</span>
                 <br/>
                 <span class="settings-info">(enabling disqus will disable the default commenting system. to enable akismet go to the disqus admin page)</span>
-                <br /><br /><br/>
+                <br /><br />
 
                 <div id="disqusShortName">
-                    <b>@Html.LabelFor(model => model.DisqusShortName)</b> <br /><br />
+                    <span class="sub-title">@Html.LabelFor(model => model.DisqusShortName)</span> <br /><br />
                     @Html.TextBoxFor(model => model.DisqusShortName, new {@class = "inputBoxBig"})
                 </div>
             </div>
-            
-            <div style="clear: both"></div>
-                
-            <div class="setting-header">Akismet</div>
-            <div style="clear: both"></div>
-            <div class="setting-content">
+            <div class="tab-pane fade" id="akismet">
+                <br/>
+
                 @Html.CheckBoxFor(model => model.AkismetEnabled)
                 @Html.LabelFor(model => model.AkismetEnabled)
                 <br/>
                 <span class="settings-info">(not required if you are planning to use disqus)</span>
+                <br/><br/>
 
-                <div class="akismetAdvancedOptions">
-                    <fieldset>
-                        <legend>Akismet Advanced Options</legend>
-
-                        <b>Akismet Spam Message Handling</b> <br /><br />
+                <div class="panel panel-default akismetAdvancedOptions">                    
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Akismet Advanced Options</h3>
+                    </div>
+                    <div class="panel-body">
+                        <span class="sub-title">Akismet Spam Message Handling</span> <br />
                         @Html.CheckBoxFor(model => model.AkismetDeleteSpam)
                         @Html.LabelFor(model => model.AkismetDeleteSpam)
 
                         <br /><br />
 
-                        <b title="you will have to register in the akismet's site (http://akismet.com/) by specifying your blog's url to obtain this key">
+                        <span class="sub-title" title="you will have to register in the akismet's site (http://akismet.com/) by specifying your blog's url to obtain this key">
                             @Html.LabelFor(model => model.AkismetKey)
-                        </b> 
-                        <br /><br />
+                        </span> 
+                        <br />
                         @Html.TextBoxFor(model => model.AkismetKey, new {@class = "inputBoxBig"})
 
                         <br /><br />
 
-                        <b title="by default, this field is populated with the root site address identified by the url in the address bar">
+                        <span class="sub-title" title="by default, this field is populated with the root site address identified by the url in the address bar">
                             @Html.LabelFor(model => model.AkismetUrl)
-                        </b> 
-                        <br /><br />
+                        </span> 
+                        <br />
                         @Html.TextBoxFor(model => model.AkismetUrl, new {@class = "inputBoxBig"})
-                    </fieldset>
-
-                    <br /><br />    
+                    </div>
                 </div>
             </div>
         </div>
-        <div style="clear: both"></div>
-        <br/>
         
-        <input type="submit" value="Update Settings" class="submitBtn" />
+        <p class="pull-right">
+            <input type="submit" value="Update Settings" class="btn btn-lg btn-primary" />
+        </p>
     }
 </div>

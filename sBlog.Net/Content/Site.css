@@ -404,22 +404,6 @@ a.selected:link, a.selected:active, a.selected:visited
    word-wrap: break-word
 }
 
-.akismetAdvancedOptions fieldset
-{
-    border: 3px;
-    background-color: #FFFFFF;
-    width: 75%;
-    border-color:#000000;
-    border-style: solid
-}
-
-.akismetAdvancedOptions legend
-{
-    color: #2A0A12;
-    font-weight: bolder;
-    font-size: large
-}
-
 .akismetAdvancedOptions { display: none }
 
 .urlControls { }
@@ -891,4 +875,13 @@ a.edit-trash {
    float: right;
    font-style: italic;
    font-weight: normal
+}
+
+.sub-title {
+    font-weight: bold;
+    color: #428bca
+}
+
+a.sub-title, a.sub-title:hover {
+    color: #428bca
 }

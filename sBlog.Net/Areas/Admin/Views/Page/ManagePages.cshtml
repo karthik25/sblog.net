@@ -12,36 +12,35 @@
     <img src="@Url.Content("~/Content/Images/page.png")" alt="Add a new page" class="add-post-page" />
     @Html.ActionLink("Add a new page", "Add", "Page") 
 </span>
+<br/><br/>
+@if (Model.Posts != null && Model.Posts.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Page</th>
+                <th>Author</th>
+                <th>Categories</th>
+                <th>Tags</th>
+                <th>Comments</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                @Html.Partial("PostDetail", post)
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        there are no items in this section at this point!
+    </div>    
+}
 
-<table id="manage-table">
-    <thead>
-        <tr>
-            <th class="header" scope="col">Page</th>
-            <th class="header col-no-display" scope="col">Author</th>
-            <th class="header col-no-display" scope="col">Categories</th>
-            <th class="header col-no-display" scope="col">Tags</th>
-            <th class="header" scope="col">Comments</th>
-            <th class="header" scope="col">Added/Edited Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @Html.Partial("ItemInfo", Model.Posts.Count)
-        @foreach(var post in Model.Posts){ 
-            @Html.Partial("PostDetail", post)
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <th class="footer" scope="col">Page</th>
-            <th class="footer" scope="col">Author</th>
-            <th class="footer" scope="col">Categories</th>
-            <th class="footer" scope="col">Tags</th>
-            <th class="footer" scope="col">Comments</th>
-            <th class="footer" scope="col">Added/Edited Date</th>
-        </tr>
-    </tfoot>
-</table>
-    
 <ul class="pagination">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManagePages", new { page = x, type = Model.Type }))
 </ul>
