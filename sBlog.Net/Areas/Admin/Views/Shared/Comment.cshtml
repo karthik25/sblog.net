@@ -12,9 +12,7 @@
         <br />
     </td>
     <td>
-        <b>
-            @(Model.Post.EntryType == 1 ? Html.RouteLink(Model.Post.PostTitle, "IndividualPost", new {year = Model.Post.PostYear, month = Model.Post.PostMonth, url = Model.Post.PostUrl}) 
-            : Html.RouteLink(Model.Post.PostTitle, "Pages", new {pageUrl = Model.Post.PostUrl}))
-        </b>
+        @(Model.Post.EntryType == 1 ? Html.RouteLink(Model.Post.PostTitle, "IndividualPost", new {year = Model.Post.PostYear, month = Model.Post.PostMonth, url = Model.Post.PostUrl}, new { @class = "sub-title" }) 
+        : Html.RouteLink(Model.Post.PostTitle, "Pages", new {pageUrl = Model.Post.PostUrl}, new { @class = "sub-title" }))
     </td>
 </tr>

@@ -8,29 +8,32 @@
 @Html.ActionLink("Approved", "ManageComments", new { type = "approved" }) (@Model.ApprovedCommentsCount ) | 
 @Html.ActionLink("Pending", "ManageComments", new { type = "pending" }) (@Model.PendingCommentsCount ) | 
 @Html.ActionLink("Spam", "ManageComments", new { type = "spam" }) (@Model.SpamCommentsCount ) | 
-@Html.ActionLink("Trash", "ManageComments", new { type = "trash" }) (@Model.TrashCommentsCount ) | 
+@Html.ActionLink("Trash", "ManageComments", new { type = "trash" }) (@Model.TrashCommentsCount )
 
-<table id="manage-table">
-    <thead>
-        <tr>
-            <th class="header" scope="col">Author</th>
-            <th class="header comment-col" scope="col">Comment</th>
-            <th class="header" scope="col">Post</th>
-        </tr>
-    </thead>
-        @Html.Partial("ItemInfo", Model.Comments.Count)
-        @foreach(var comment in Model.Comments){ 
+<br/><br/>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th class="comment-col">Comment</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+        @foreach (var comment in Model.Comments)
+        {
             @Html.Partial("Comment", comment)
         }
-    <tfoot>
-        <tr>
-            <th class="footer" scope="col">Author</th>
-            <th class="footer comment-col" scope="col">Comment</th>
-            <th class="footer" scope="col">Post</th>
-        </tr>        
-    </tfoot>
-</table>
-    
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        there are no items in this section at this point!
+    </div>
+}
+
 <ul class="pagination">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageComments", new { page = x, type = Model.Type }))
 </ul>

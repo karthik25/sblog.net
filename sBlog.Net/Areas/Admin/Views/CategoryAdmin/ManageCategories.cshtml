@@ -4,18 +4,27 @@
     ViewBag.Title = string.Format("Manage Categories || {0}", Model.Title);
 }
 
-<div id="left" style="float: left; width: 20%; padding: 5px;"> 
-    <b>Add a category</b><br /><br />
-    <input type="text" class="inputBoxBigCategory" id="txtCat" name="txtCat" size="20" /><br /><br />
-    <input type="button" class="submitBtn" id="btnCreateCategory" value="Add Category" /><br /><br />
-    <span class="add-msg"></span>
+<div id="left" style="float: left; width: 20%; padding: 5px;">     
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add a Category</h3>
+      </div>
+      <div class="panel-body">
+        <input type="text" class="inputBoxBigCategory" id="txtCat" name="txtCat" size="20" /><br /><br />
+          <p class="pull-right">
+              <input type="button" class="btn btn-primary" id="btnCreateCategory" value="Add Category" />
+          </p>  
+        <br /><br />
+        <span class="add-msg"></span>
+      </div>
+    </div>
 </div>
-<div id="right" style="float: left; width: 60%">
-    <table id="manage-table">
+<div id="right" style="float: left; width: 60%; padding-left: 20px">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th class="header" scope="col">Category Name</th>
-                <th class="header" scope="col">Category Slug</th>
+                <th>Category Name</th>
+                <th>Category Slug</th>
             </tr>
         </thead>
         <tbody>
@@ -24,12 +33,6 @@
                 @Html.Partial("Category", category)
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <th class="footer" scope="col">Category Name</th>
-                <th class="footer" scope="col">Category Slug</th>
-            </tr>        
-        </tfoot>
     </table>
     
     <ul class="pagination">
