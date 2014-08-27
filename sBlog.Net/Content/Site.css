@@ -345,34 +345,6 @@ a.selected:link, a.selected:active, a.selected:visited
     font-size: xx-large
 }
 
-.possibilityHeader
-{
-    width: 500px;
-    background-color: #D8D8D8;
-    border: 1px solid #6E6E6E;
-    font-weight: bolder;
-    text-align: left;
-    margin: 0 auto;
-    float: left;
-    padding: 10px;
-    cursor: pointer;
-    font-family: Verdana, Tahoma, Arial , Sans-Serif
-}
-
-.possibilityContent
-{
-    width: 500px;
-    background-color: #F2F2F2;
-    border: 1px solid #6E6E6E;
-    text-align: left;
-    margin: 0 auto;
-    float: left;
-    padding: 10px;
-    font-family: Verdana, Tahoma, Arial , Sans-Serif
-}
-​
-#accordion { padding: 10px }
-
 #updateStatus
 {
     width: 90%;
@@ -633,7 +605,7 @@ a.selected:link, a.selected:active, a.selected:visited
 }
 
 #showHelp {
-    color: red;
+    color: #5cb85c;
     font-weight: bold
 }
 
