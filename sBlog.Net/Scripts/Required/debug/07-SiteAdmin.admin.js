@@ -488,8 +488,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#forgottenPswd').click(function (e) {
         e.preventDefault();
-        $('.login-errors').html('');
-        $('.client-login-errors').html('');
         $('#username').val('username');
         $('#fake-password').show().val('password');
         $('#passwd').hide();
@@ -506,13 +504,12 @@ $(document).ready(function () {
     });
 
     $('#btnLogin').click(function () {
-        if ($('#username').val() != 'username' && $('#passwd').val() != 'password') {
-            $('.client-login-errors').html('');
-            return true;
+        if ($('#username').val().trim() == '' || $('#password').val().trim() == '') {
+            $('.login-errors').html('Username and/or password is required').show();
+            return false;
         }
-        $('.login-errors').html('');
-        $('.client-login-errors').html('Invalid username/password');
-        return false;
+        $('.login-errors').hide().html('');
+        return true;
     });
 
     $('#btnForgottenPswd').click(function () {

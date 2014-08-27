@@ -13,36 +13,36 @@
 
 @Html.Partial("UserContentShortcuts")
 
-<table id="manage-table">
-    <thead>
-        <tr>
-            <th class="header" scope="col">Author Name</th>
-            <th class="header" scope="col">Author User Name</th>
-            <th class="header" scope="col">Number of Posts</th>
-            <th class="header" scope="col">
-                User Status
-                <img src="@Url.Content("~/Content/Images/loader-transparent.gif")" alt="updating..." id="imgLoading"/>
-            </th>
-            <th class="header" scope="col">Last Login Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @Html.Partial("ItemInfo", Model.AuthorsCount)
-        @foreach(var author in Model.Authors)
-        {
-            @Html.Partial("AuthorDetail", author)
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <th class="header" scope="col">Author Name</th>
-            <th class="header" scope="col">Author User Name</th>
-            <th class="header" scope="col">Number of Posts</th>
-            <th class="header" scope="col">User Status</th>
-            <th class="header" scope="col">Last Login Date</th>
-        </tr>
-    </tfoot>
-</table>
+<br /><br/>
+@if (Model.Authors != null && Model.Authors.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Author Name</th>
+                <th>Author User Name</th>
+                <th>Number of Posts</th>
+                <th>
+                    User Status
+                    <img src="@Url.Content("~/Content/Images/loader-transparent.gif")" alt="updating..." id="imgLoading"/>
+                </th>
+                <th class="header" scope="col">Last Login</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model.Authors)
+            {
+                @Html.Partial("AuthorDetail", author)
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        there are no items in this section at this point!
+    </div>    
+}
 
 <ul class="pagination">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("UserManagement", new { page = x }))
