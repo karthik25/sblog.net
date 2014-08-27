@@ -6,14 +6,14 @@
 
 @Html.Partial("UserContentShortcuts")
 
-<br/><br/>
+<br/>
 <hr />
 
-@Html.ActionLink("All", "ManagePublicComments", new { type = "all" })  (@Model.AllCommentsCount ) |
-@Html.ActionLink("Approved", "ManagePublicComments", new { type = "approved" }) (@Model.ApprovedCommentsCount ) | 
-@Html.ActionLink("Pending", "ManagePublicComments", new { type = "pending" }) (@Model.PendingCommentsCount ) | 
-@Html.ActionLink("Spam", "ManagePublicComments", new { type = "spam" }) (@Model.SpamCommentsCount ) | 
-@Html.ActionLink("Trash", "ManagePublicComments", new { type = "trash" }) (@Model.TrashCommentsCount ) | 
+@Html.ActionLink("All", "ManagePublicComments", new { type = "all" })  (@Model.AllCommentsCount) |
+@Html.ActionLink("Approved", "ManagePublicComments", new { type = "approved" }) (@Model.ApprovedCommentsCount) | 
+@Html.ActionLink("Pending", "ManagePublicComments", new { type = "pending" }) (@Model.PendingCommentsCount) | 
+@Html.ActionLink("Spam", "ManagePublicComments", new { type = "spam" }) (@Model.SpamCommentsCount) | 
+@Html.ActionLink("Trash", "ManagePublicComments", new { type = "trash" }) (@Model.TrashCommentsCount)
 <br/><br/>
 
 @if (Model.Comments != null && Model.Comments.Any())

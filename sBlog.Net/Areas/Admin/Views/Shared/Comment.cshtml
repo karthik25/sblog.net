@@ -6,7 +6,7 @@
         @Model.Comment.CommenterSite
     </td>
     <td class="comment-col">
-        Submitted on @Model.Comment.CommentPostedDate.ToString()<br /><br />
+        Submitted on <strong>@Model.Comment.CommentPostedDate.ToString()</strong><br /><br />
         @Model.Comment.CommentContent<br /><br /><br />
         @Html.Partial("CommentPartial", Model.Links)
         <br />

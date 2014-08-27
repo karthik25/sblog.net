@@ -92,9 +92,6 @@
 .col-no-display { }
 
 /* new */
-a:link, a:visited, a:active { color: #3c9632; text-decoration: none; outline:none }
-a:hover { text-decoration: none; color: #34742d; }
-
 a.spam:link, a.spam:visited, a.spam:active { color: #FF0000; text-decoration: none; outline:none }
 a.spam:hover { text-decoration: none; color: #DF0101; }
 
@@ -773,9 +770,9 @@ a.edit-trash {
 
 .sub-title {
     font-weight: bold;
-    color: #428bca
+    color: #5cb85c
 }
 
 a.sub-title, a.sub-title:hover {
-    color: #428bca
+    color: #5cb85c
 }

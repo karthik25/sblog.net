@@ -4,13 +4,7 @@
     ViewBag.Title = string.Format("Manage Uploads || {0}", Model.Title);
 }
 
-<div id="left" style="float: left; width: 20%; padding: 5px;"> 
-
-</div>
-<div style="float: right">
-    <a href="#upload-new">upload a file</a>
-</div>
-<div id="right" style="float: left; width: 60%">
+<div>
     @if (Model.FileEntries != null && Model.FileEntries.Any())
     {
         <table class="table table-striped">
@@ -52,25 +46,36 @@
         @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageUploads", new { page = x }))
     </ul>
     @Html.HiddenFor(model => Model.OneTimeCode)
+</div>
 
-    <br />
-    <div id="upload-new">       
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Upload a File</h3>
-          </div>
-          <div class="panel-body">
-            @using (Html.BeginForm("UploadFileWithRefresh", "Uploads", FormMethod.Post, new { Area = "Admin", enctype = "multipart/form-data" }))
-            {
-                <div>
-                    <input type="file" id="file" name="file" />
-                </div>
-                <br /><br />
-                <p class="pull-right">
-                    <input type="submit" value="Upload Selected File" class="btn btn-lg btn-primary" />
-                </p>
-            }
-          </div>
+<div class="pull-right">
+    <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+      Upload a File
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload a File</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("UploadFileWithRefresh", "Uploads", FormMethod.Post, new { Area = "Admin", enctype = "multipart/form-data" }))
+                {
+                    <div>
+                        <input type="file" id="file" name="file" />
+                    </div>
+                    <br />
+                    <p class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Upload Selected File" class="btn btn-primary" />
+                    </p>
+                    <br /><br />
+                }
+            </div>
         </div>
     </div>
 </div>

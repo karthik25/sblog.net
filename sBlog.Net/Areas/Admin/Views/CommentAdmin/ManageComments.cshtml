@@ -4,11 +4,11 @@
     ViewBag.Title = string.Format("Manage Comments || {0}", Model.Title);
 }
 
-@Html.ActionLink("All", "ManageComments", new { type = "all" })  (@Model.AllCommentsCount ) |
-@Html.ActionLink("Approved", "ManageComments", new { type = "approved" }) (@Model.ApprovedCommentsCount ) | 
-@Html.ActionLink("Pending", "ManageComments", new { type = "pending" }) (@Model.PendingCommentsCount ) | 
-@Html.ActionLink("Spam", "ManageComments", new { type = "spam" }) (@Model.SpamCommentsCount ) | 
-@Html.ActionLink("Trash", "ManageComments", new { type = "trash" }) (@Model.TrashCommentsCount )
+@Html.ActionLink("All", "ManageComments", new { type = "all" })  (@Model.AllCommentsCount) |
+@Html.ActionLink("Approved", "ManageComments", new { type = "approved" }) (@Model.ApprovedCommentsCount) | 
+@Html.ActionLink("Pending", "ManageComments", new { type = "pending" }) (@Model.PendingCommentsCount) | 
+@Html.ActionLink("Spam", "ManageComments", new { type = "spam" }) (@Model.SpamCommentsCount) | 
+@Html.ActionLink("Trash", "ManageComments", new { type = "trash" }) (@Model.TrashCommentsCount)
 
 <br/><br/>
 @if (Model.Comments != null && Model.Comments.Any())
