@@ -39,6 +39,9 @@ Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
     Uploads (http://www.iconfinder.com/icondetails/27886/128/upload_icon) | License: http://creativecommons.org/licenses/by-nd/3.0/ - CC-nd 3.0 | Author - http://www.visualpharm.com/
     Xls (http://www.iconfinder.com/icondetails/8898/128/document_excel_spreadsheet_table_icon) | License: http://creativecommons.org/licenses/by-nc-nd/2.5/ - CC-nc-nd 2.5 | Author - http://www.oxygen-icons.org/
     Zip (http://www.iconfinder.com/icondetails/47569/128/file_zip_icon) | License: http://creativecommons.org/licenses/by/3.0/ - CC 3.0 | Author - http://tooschee.com/
+    Link (https://www.iconfinder.com/icons/134225/anchor_link_ocean_sea_ship_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC 3.0 | Author - https://www.iconfinder.com/iconsets/wirecons-free-vector-icons#readme
+    File upload (https://www.iconfinder.com/icons/48761/add_file_upload_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC 3.0 | Author - http://neurovit.deviantart.com/
+    Login (https://www.iconfinder.com/icons/173049/login_icon) | License: http://creativecommons.org/licenses/by-sa/3.0/ - CC 3.0 | Author - https://www.iconfinder.com/snipicons
 
     LGPL
 
@@ -53,6 +56,8 @@ Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
     Syntax highlighter (http://www.iconfinder.com/icondetails/17933/128/highlight_marker_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
     Txt (http://www.iconfinder.com/icondetails/6417/128/paper_text_txt_writing_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://sa-ki.deviantart.com/
     User management (http://www.iconfinder.com/icondetails/17879/128/community_group_help_user_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+	Manager (https://www.iconfinder.com/icons/17904/cabinet_drawer_file_filing_manager_icon) | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
+	Settings (https://www.iconfinder.com/icons/18214/settings_software_icon | License: http://www.gnu.org/licenses/lgpl.html - LGPL | Author - http://www.everaldo.com/
 
 	Social features
         Social icons from Medialoot (http://medialoot.com/item/round-social-media-icons/)
@@ -63,6 +68,10 @@ Syntax Highlighter (http://alexgorbatchev.com/SyntaxHighlighter/)
     Dashboard (http://www.iconfinder.com/icondetails/82136/128/_icon) | License: http://www.iconfinder.com/data/icons/ledicons/readme.txt | Author - http://rimshotdesign.com/
     Preview (http://www.iconfinder.com/icondetails/32560/24/preview_text_icon) | License: http://www.iconfinder.com/data/icons/freeapplication/readme.txt | Author - http://www.aha-soft.com/
     Xml (http://www.iconfinder.com/icondetails/15209/128/document_file_xml_icon) | Author - http://www.woothemes.com/
+    Add user (https://www.iconfinder.com/icons/174634/add_user_icon) | <a href="http://icons8.com/" target="_blank">Author</a></li>
+    Logoff (https://www.iconfinder.com/icons/100315/logoff_power_icon) | <a href="http://dakirby309.deviantart.com/" target="_blank">Author</a></li>
+    Manage user (https://www.iconfinder.com/icons/131514/auditor_bullets_checkboxes_manager_organize_organizer_stock_supervisor_task_to_do_list_todo_user_icon) | Author - https://www.iconfinder.com/krasnoyarsk
+    Comments (https://www.iconfinder.com/icons/300105/bubble_chat_comment_communication_connection_mail_message_messages_send_talk_icon) | Author - https://www.iconfinder.com/Re66y
 
     Findicons (http://findicons.com/)
         
