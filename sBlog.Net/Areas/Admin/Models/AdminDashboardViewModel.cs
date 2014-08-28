@@ -32,5 +32,7 @@ namespace sBlog.Net.Areas.Admin.Models
         public bool CanView { get; set; }
 
         public string BlogName { get; set; }
+
+        public string DisplayName { get; set; }
     }
 }

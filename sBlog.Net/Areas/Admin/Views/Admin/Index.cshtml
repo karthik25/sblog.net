@@ -4,6 +4,13 @@
     ViewBag.Title = string.Format("Dashboard || {0}", Model.BlogName);
 }
 
+<div class="alert alert-success">
+    Welcome <strong>@Model.DisplayName</strong>! Do you want to 
+    @Html.RouteLink("add a post", "AdminPostsAdd", new {}, new { @class = "alert-link" }), 
+    @Html.RouteLink("manage comments", "AdminComments", new {}, new { @class = "alert-link" }) or just 
+    @Html.RouteLink("update your profile", "AdminUpdateProfile", new { }, new { @class = "alert-link" })?
+</div>
+
 <table style="width:100%;">
     <tr>
         <td style="width:45%; vertical-align: top">
@@ -14,12 +21,6 @@
                 <div class="panel-body">
                     <div style="padding: 25px;">
                         <table style="width: 100%; border-collapse: collapse;">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <div style="font-size: small; color: gray">your stats</div>
-                                </td>
-                            </tr>
                             <tr>
                                 <td style="padding: 10px; font-size: x-large;">@Html.RouteLink(Model.PostCount.ToString(), "AdminPosts")</td>
                                 <td style="font-size: x-large;">@Html.RouteLink("Posts", "AdminPosts")</td>

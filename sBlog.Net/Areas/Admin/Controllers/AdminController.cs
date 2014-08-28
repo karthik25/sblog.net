@@ -67,13 +67,15 @@ namespace sBlog.Net.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var comments = _commentRepository.GetAllComments();
-            var posts = _postRepository.GetPostsByUserID(GetUserId()).Select(p => p.PostID);
+            var userId = GetUserId();
+            var userEntity = _userRepository.GetUserObjByUserID(GetUserId());
+            var posts = _postRepository.GetPostsByUserID(userId).Select(p => p.PostID);
             var filteredComments = comments.Where(c => posts.Contains(c.PostID)).ToList();
 
             var model = new AdminDashboardViewModel
             {
-                PostCount = _postRepository.GetPostsByUserID(GetUserId(), 1).Count,
-                PagesCount = _postRepository.GetPostsByUserID(GetUserId(), 2).Count, // at this point non-admin users cannot add pages
+                PostCount = _postRepository.GetPostsByUserID(userId, 1).Count,
+                PagesCount = _postRepository.GetPostsByUserID(userId, 2).Count, // at this point non-admin users cannot add pages
                 CategoriesCount = _categoryRepository.GetCategories().Count,
                 TagsCount = _tagRepository.GetAllTags().Count,
 
@@ -82,9 +84,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 PendingCount = filteredComments.Count(c => c.CommentStatus == 1),
                 SpamCount = filteredComments.Count(c => c.CommentStatus == 2),
 
-                CanView = GetUserId() == 1,
+                CanView = userId == 1,
 
-                BlogName = SettingsRepository.BlogName
+                BlogName = SettingsRepository.BlogName,
+
+                DisplayName = userEntity.UserDisplayName
             };
 
             return View(model);
