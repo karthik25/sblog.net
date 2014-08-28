@@ -602,31 +602,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.min.css" />
     <Content Include="Content\SiteCommons.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery-ui.custom.css" />
-    <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Scripts\Required\debug\02-CategoryList.admin.js" />
+    <Content Include="Scripts\Required\debug\01-CategoryList.admin.js" />
     <Content Include="Content\sBlog\Site.js" />
-    <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />
+    <Content Include="Scripts\Required\debug\06-SiteAdmin.admin.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery.sticky.js" />
-    <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
-    <Content Include="Scripts\Required\debug\06-jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Scripts\Required\debug\03-jquery.validate.admin.js" />
+    <Content Include="Scripts\Required\debug\05-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
     <Content Include="Scripts\SyntaxHighlighter.js" />
     <Content Include="Sql\sc020004.sql" />
@@ -712,8 +696,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\Required\debug\03-jquery.unobtrusive-ajax.admin.js" />
-    <Content Include="Scripts\Required\debug\05-jquery.validate.unobtrusive.admin.js" />
+    <Content Include="Scripts\Required\debug\02-jquery.unobtrusive-ajax.admin.js" />
+    <Content Include="Scripts\Required\debug\04-jquery.validate.unobtrusive.admin.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UpdateProfile.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
