@@ -776,3 +776,7 @@ a.edit-trash {
 a.sub-title, a.sub-title:hover {
     color: #5cb85c
 }
+
+#showHelp {
+    cursor: pointer
+}
