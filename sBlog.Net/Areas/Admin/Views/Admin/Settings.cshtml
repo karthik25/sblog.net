@@ -56,7 +56,7 @@
 <div>
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary()
+        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Main</a></li>
