@@ -30,15 +30,15 @@
                 @Html.TextAreaFor(model => model.AuthorMessage, new { @cols = "30", @rows = "10", @class = "validate-html" })<br/>
                 @Html.ValidationMessageFor(model => model.AuthorMessage)
             </div>
-            <br/><br/>
+            <br/>
             <div style="float: left">
                 <a id="closeForm">close</a>
             </div>
             <div style="float: right">
                 <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="requestStatus" />
-                <input type="submit" id="sendRequest" value="send request"/>
+                <input type="submit" id="sendRequest" class="btn btn-primary" value="send request"/>
             </div>
-            <br/><br/>
+            <br/><br />
             <div id="requestResults"></div>
         }
     </div>

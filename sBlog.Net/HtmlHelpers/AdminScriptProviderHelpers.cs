@@ -39,18 +39,9 @@ namespace sBlog.Net.HtmlHelpers
         {
             var builder = new StringBuilder();
             var urlHelper = htmlHelper.GetUrlHelper();
-            if (IsDebug())
-            {
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/Site.css"));
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.css"));
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.custom.css"));
-            }
-            else
-            {
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/Site.min.css"));
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.css"));
-                builder.AppendLine(GetStyleElement(urlHelper, "~/Content/themes/base/jquery-ui.custom.min.css"));                
-            }
+            builder.AppendLine(IsDebug()
+                                   ? GetStyleElement(urlHelper, "~/Content/Site.css")
+                                   : GetStyleElement(urlHelper, "~/Content/Site.min.css"));
             return MvcHtmlString.Create(builder.ToString());
         }
 

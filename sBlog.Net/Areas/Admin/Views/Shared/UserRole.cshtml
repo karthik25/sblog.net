@@ -5,5 +5,5 @@
 {
     @Html.Hidden("userId", Model.UserID)
     @Html.DropDownList("roleId", RolePossibilitiesProviderModel.AvailableRoles, new { @id = string.Format("roleId{0}", Model.UserID), @name = string.Format("roleId{0}", Model.UserID), @class = "role-list" })
-    <input type="submit" value="set"/>
+    <input type="submit" value="set" class="btn btn-sm btn-success"/>
 }

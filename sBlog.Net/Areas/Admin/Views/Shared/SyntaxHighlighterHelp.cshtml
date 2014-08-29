@@ -1,35 +1,65 @@
-﻿@model sBlog.Net.ShortCodeManager.SyntaxPossibilitiesViewModel
+﻿@using System.Text.RegularExpressions
+@model sBlog.Net.ShortCodeManager.SyntaxPossibilitiesViewModel
 
 @if (Model.IsEnabled)
 {
-    <a href="javascript:void(0)" id="showHelp">syntax highlighter usage</a>
+    <!-- Button trigger modal -->
+    <a id="showHelp" data-toggle="modal" data-target="#myModal">syntax highlighter usage</a>
 
-    <div id="dialog" title="Syntax Highlighter Help">
-        <div class="selected-brushes-title">Selected brushes:</div>
-        <br/>
-        <div id="accordion">
-            @foreach (sBlog.Net.ShortCodeManager.Entities.SyntaxPossibility possibility in Model.SyntaxPossibilities)
-            {
-                var cssClass = possibility.IsSelected ? "possibilityHeader brush-selected" : "possibilityHeader brush-not-selected";
-                <div class="@cssClass">
-                    Brush: @possibility.BrushName
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Syntax Highlighter Usage</h4>
                 </div>
-                <div class="possibilityContent">
-                    @foreach (var alias in possibility.PossibleAliases)
-                    {
-                        @:&lt;pre class="brush: @alias;"&gt;<br/>
-                        <span style="white-space: pre">        </span>
-                        @:// Some code for @alias brush<br/>
-                        @:&lt;/pre&gt;
-                        <hr />
-                    }
+                <div class="modal-body">
+                    <div class="selected-brushes-title">Selected brushes:</div>
+                    <br/>        
+                    <div class="panel-group" id="accordion">
+                        @{
+                            var regex = new Regex("[^a-zA-Z0-9-]");
+                        }
+
+                        @foreach (sBlog.Net.ShortCodeManager.Entities.SyntaxPossibility possibility in Model.SyntaxPossibilities)
+                        {
+                            var cssClass = possibility.IsSelected ? "possibilityHeader brush-selected" : "possibilityHeader brush-not-selected";
+                            var panelId = regex.Replace(possibility.BrushName, "");
+                            <div class="panel panel-default @cssClass">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#@panelId">
+                                            Brush: @possibility.BrushName
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="@panelId" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @foreach (var alias in possibility.PossibleAliases)
+                                        {
+                                            @:&lt;pre class="brush: @alias;"&gt;<br/>
+                                            <span style="white-space: pre">        </span>
+                                            @:// Some code for @alias brush<br/>
+                                            @:&lt;/pre&gt;
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div style="float: right">
+                        <input type="checkbox" id="chk-show-all" />
+                        <label for="chk-show-all">Show all brushes (including unselected)</label>
+                    </div>
+                    <br/>
                 </div>
-            }
-        </div>
-    
-        <div style="float: right">
-            <input type="checkbox" id="chk-show-all" />
-            <label for="chk-show-all">Show all brushes (including unselected)</label>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 }

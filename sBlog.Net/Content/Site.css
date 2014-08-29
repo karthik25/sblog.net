@@ -92,9 +92,6 @@
 .col-no-display { }
 
 /* new */
-a:link, a:visited, a:active { color: #3c9632; text-decoration: none; outline:none }
-a:hover { text-decoration: none; color: #34742d; }
-
 a.spam:link, a.spam:visited, a.spam:active { color: #FF0000; text-decoration: none; outline:none }
 a.spam:hover { text-decoration: none; color: #DF0101; }
 
@@ -271,8 +268,8 @@ fieldset
 
 .adminImage
 {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     vertical-align: middle;
     border: 0px
 }
@@ -345,34 +342,6 @@ a.selected:link, a.selected:active, a.selected:visited
     font-size: xx-large
 }
 
-.possibilityHeader
-{
-    width: 500px;
-    background-color: #D8D8D8;
-    border: 1px solid #6E6E6E;
-    font-weight: bolder;
-    text-align: left;
-    margin: 0 auto;
-    float: left;
-    padding: 10px;
-    cursor: pointer;
-    font-family: Verdana, Tahoma, Arial , Sans-Serif
-}
-
-.possibilityContent
-{
-    width: 500px;
-    background-color: #F2F2F2;
-    border: 1px solid #6E6E6E;
-    text-align: left;
-    margin: 0 auto;
-    float: left;
-    padding: 10px;
-    font-family: Verdana, Tahoma, Arial , Sans-Serif
-}
-​
-#accordion { padding: 10px }
-
 #updateStatus
 {
     width: 90%;
@@ -404,22 +373,6 @@ a.selected:link, a.selected:active, a.selected:visited
    word-wrap: break-word
 }
 
-.akismetAdvancedOptions fieldset
-{
-    border: 3px;
-    background-color: #FFFFFF;
-    width: 75%;
-    border-color:#000000;
-    border-style: solid
-}
-
-.akismetAdvancedOptions legend
-{
-    color: #2A0A12;
-    font-weight: bolder;
-    font-size: large
-}
-
 .akismetAdvancedOptions { display: none }
 
 .urlControls { }
@@ -433,6 +386,7 @@ a.selected:link, a.selected:active, a.selected:visited
 .editor-display-field { }
 
 .validation-summary-errors { color: #ff0000 }
+.validation-summary-errors ul { list-style-type: none }
 
 /* Fixed menu */
 .qLinksContent
@@ -512,131 +466,6 @@ a.selected:link, a.selected:active, a.selected:visited
 
 .setup-errors .setup-link { text-decoration: none }
 
-/* Slick login */
-#slick-login {
-	width: 220px;
-	height: 155px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: -110px;
-	margin-top: -75px;
-
-	-webkit-animation: login 1s ease-in-out;
-	-moz-animation: login 1s ease-in-out;
-	-ms-animation: login 1s ease-in-out;
-	-o-animation: login 1s ease-in-out;
-	animation: login 1s ease-in-out
-}
-
-#slick-login label,#slick-forgotten label { display: none }
-
-#slick-login .remember-me label { display: inline-block }
-
-.placeholder { color: #444 }
-
-#slick-login input[type="text"],#slick-login input[type="password"],
-#slick-forgotten input[type="text"],#slick-forgotten input[type="password"] {
-	width: 197px;
-	height: 40px;
-	positon: relative;
-	margin-top: 7px;
-	font-size: 14px;
-	color: #444;
-	outline: none;
-	border: 1px solid rgba(0, 0, 0, .49);
-
-	padding-left: 20px;
-	
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding-box;
-	background-clip: padding-box;
-	border-radius: 6px;
-
-	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
-	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
-	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
-	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
-	background-image: linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
-
-	-webkit-box-shadow: inset 0px 2px 0px #d9d9d9;
-	box-shadow: inset 0px 2px 0px #d9d9d9;
-
-	-webkit-transition: all .1s ease-in-out;
-	-moz-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	-ms-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out
-}
-
-#slick-login input[type="text"]:focus,#slick-login input[type="password"]:focus,
-#slick-forgotten input[type="text"]:focus,#slick-forgotten input[type="password"]:focus {
-	-webkit-box-shadow: inset 0px 2px 0px #a7a7a7;
-	box-shadow: inset 0px 2px 0px #a7a7a7
-}
-
-#slick-login input:first-child,#slick-forgotten input:first-child { margin-top: 0px }
-
-#slick-login input[type="submit"],#slick-forgotten input[type="submit"] {
-	width: 100%;
-	height: 50px;
-	margin-top: 7px;
-	color: #fff;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow: 0px -1px 0px #5b6ddc;
-	outline: none;
-	border: 1px solid rgba(0, 0, 0, .49);
-
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding-box;
-	background-clip: padding-box;
-	border-radius: 6px;
-
-	background-color: #5466da;
-	background-image: -webkit-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
-	background-image: -moz-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
-	background-image: -o-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
-	background-image: -ms-linear-gradient(bottom, #5466da 0%, #768ee4 100%);
-	background-image: linear-gradient(bottom, #5466da 0%, #768ee4 100%);
-	
-	-webkit-box-shadow: inset 0px 1px 0px #9ab1ec;
-	box-shadow: inset 0px 1px 0px #9ab1ec;
-	
-	cursor: pointer;
-
-	-webkit-transition: all .1s ease-in-out;
-	-moz-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	-ms-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out
-}
-
-#slick-login input[type="submit"]:hover,#slick-forgotten input[type="submit"]:hover {
-	background-color: #5f73e9;
-	background-image: -webkit-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
-	background-image: -moz-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
-	background-image: -o-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
-	background-image: -ms-linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
-	background-image: linear-gradient(bottom, #5f73e9 0%, #859bef 100%);
-
-	-webkit-box-shadow: inset 0px 1px 0px #aab9f4;
-	box-shadow: inset 0px 1px 0px #aab9f4;
-	margin-top: 10px
-}
-
-#slick-login input[type="submit"]:active,#slick-forgotten input[type="submit"]:active {
-	background-color: #7588e1;
-	background-image: -webkit-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
-	background-image: -moz-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
-	background-image: -o-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
-	background-image: -ms-linear-gradient(bottom, #7588e1 0%, #7184df 100%);
-	background-image: linear-gradient(bottom, #7588e1 0%, #7184df 100%);
-
-	-webkit-box-shadow: inset 0px 1px 0px #93a9e9;
-	box-shadow: inset 0px 1px 0px #93a9e9
-}
-
 .addl-links { text-align: center }
 
 #forgottenPswd 
@@ -667,28 +496,74 @@ a.selected:link, a.selected:active, a.selected:visited
 	border-bottom:1px dashed
 }
 
-#passwd { display: none }
-
-.client-login-errors {
-    left: 43%;
-	top: 30%;
-	position: absolute;
-    color: #848484;
-    text-align: center;
-    font-weight: bolder
+.login-errors {
+    display: none
 }
 
-.login-errors
-{
-    left: 35%;
-	top: 30%;
-	position: absolute;
-    color: #848484;
-    text-align: center;
-    font-weight: bolder
+/* Login form */
+.form-signin{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
-
-.login-errors ul { list-style-type: none }
+.form-signin .form-signin-heading, .form-signin .checkbox{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox{
+    font-weight: normal;
+}
+.form-signin .form-control{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus{
+    z-index: 2;
+}
+.form-signin input[type="text"]{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin input[type="password"].nomargin{
+	margin-bottom: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.login-title{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+    
+.account-wall{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+    
+.profile-img{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
 
 /* Forgotten password */
 #slick-forgotten {
@@ -727,7 +602,7 @@ a.selected:link, a.selected:active, a.selected:visited
 }
 
 #showHelp {
-    color: red;
+    color: #5cb85c;
     font-weight: bold
 }
 
@@ -891,4 +766,17 @@ a.edit-trash {
    float: right;
    font-style: italic;
    font-weight: normal
+}
+
+.sub-title {
+    font-weight: bold;
+    color: #5cb85c
+}
+
+a.sub-title, a.sub-title:hover {
+    color: #5cb85c
+}
+
+#showHelp {
+    cursor: pointer
 }

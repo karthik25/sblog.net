@@ -4,76 +4,76 @@
     ViewBag.Title = string.Format("Manage Uploads || {0}", Model.Title);
 }
 
-<div id="left" style="float: left; width: 20%; padding: 5px;"> 
-
-</div>
-<div style="float: right">
-    <a href="#upload-new">upload a file</a>
-</div>
-<div id="right" style="float: left; width: 60%">
-    <table id="manage-table">
-        <thead>
-            <tr>
-                <th class="header" scope="col">File Name</th>
-                <th class="header" scope="col">Manage</th>
-            </tr>
-        </thead>
-        <tbody>            
-            @if (Model.FileEntries.Count == 0)
-            {
+<div>
+    @if (Model.FileEntries != null && Model.FileEntries.Any())
+    {
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        there are no items in this section at this point!
-                    </td>
-                    <td></td>
+                    <th>File Name</th>
+                    <th>Manage</th>
                 </tr>
-            }
-
-            @foreach (var item in Model.FileEntries)
-            {
-                var imgUrl = Url.Content("~/Content/Images/extension_icons/" + item.FileIconName);
-                <tr>
-                    <td>
-                        <span>
-                            <a href="@item.FileUrl" class="upload-item">
-                                <img src="@imgUrl" alt="@item.FileName" class="upload-img" />
-                                <span>@item.FileName</span>
-                            </a>
-                        </span>
-                    </td>
-                    <td>
-                        <img class="deleteFile" data-file-name="@item.FileName" src="@Url.Content("~/Content/Images/close_delete.png")" alt="" title="delete this file" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <th class="footer" scope="col">File Name</th>
-                <th class="footer" scope="col">Manage</th>
-            </tr>        
-        </tfoot>
-    </table>
-
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageUploads", new { page = x }))
-    @Html.HiddenFor(model => Model.OneTimeCode)
-
-    <br /><br />
-    <div id="upload-new">
-        <div class="cpHeader">
-            <b>Upload a file</b>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.FileEntries)
+                {
+                    var imgUrl = Url.Content("~/Content/Images/extension_icons/" + item.FileIconName);
+                    <tr>
+                        <td>
+                            <span>
+                                <a href="@item.FileUrl" class="upload-item">
+                                    <img src="@imgUrl" alt="@item.FileName" class="upload-img" />
+                                    <span>@item.FileName</span>
+                                </a>
+                            </span>
+                        </td>
+                        <td>
+                            <img class="deleteFile" data-file-name="@item.FileName" src="@Url.Content("~/Content/Images/close_delete.png")" alt="" title="delete this file" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            there are no items in this section at this point!
         </div>
-        <div class="cpContent">
-            <div class="fileUpload">
+    }
+
+    <ul class="pagination">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("ManageUploads", new { page = x }))
+    </ul>
+    @Html.HiddenFor(model => Model.OneTimeCode)
+</div>
+
+<div class="pull-right">
+    <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+      Upload a File
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload a File</h4>
+            </div>
+            <div class="modal-body">
                 @using (Html.BeginForm("UploadFileWithRefresh", "Uploads", FormMethod.Post, new { Area = "Admin", enctype = "multipart/form-data" }))
                 {
                     <div>
                         <input type="file" id="file" name="file" />
                     </div>
+                    <br />
+                    <p class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Upload Selected File" class="btn btn-primary" />
+                    </p>
                     <br /><br />
-                    <div>
-                        <input type="submit" value="Upload Selected File" class="submitBtn" />
-                    </div>
                 }
             </div>
         </div>

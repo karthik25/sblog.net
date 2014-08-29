@@ -1,59 +1,48 @@
 ﻿@model sBlog.Net.Models.Account.LogOnModel
-
 @{
     ViewBag.Title = string.Format("{0} || {1}", Model.Title, "Log On");
 }
 
-<div style="height: 65px;"></div>
-@Html.Action("IncompleteSetup","Blog")
-
-<br/>
-
-<div>
-    @Html.ValidationSummary(true, string.Empty, new { @class = "login-errors" })
-    <div class="client-login-errors"></div>
-
-    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @id = "slick-login" }))
-    {
-        @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName, new { @id = "username", @Value = "username", @autocomplete = "off" }) @Html.ValidationMessageFor(m => m.UserName)
-
-        @Html.LabelFor(m => m.Password)
-        <input type="text" id="fake-password" name="fake-password" value="password" />
-        @Html.PasswordFor(m => m.Password, new { @id = "passwd", @value = "password" }) @Html.ValidationMessageFor(m => m.Password)
-        
-        <br/><br/>
-        
-        <div class="remember-me">
-            @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe)
-        </div>
-        
-        <input type="submit" value="log in" id="btnLogin" />
-        <br/><br/>
-        <div class="addl-links">
-            <div style="float: left">
-                <a href="javascript:void(0)" id="showOptions">options</a>
-            </div>
-            <div style="float: right">
-                <a href="javascript:void(0)" id="forgottenPswd">forgot password</a>
+@Html.Action("IncompleteSetup", "Blog")
+<br />
+<div>    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <h1 class="text-center login-title">
+                    <div class="login-errors alert alert-danger"></div>
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+                    <div class="account-wall">
+                        <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                             class="profile-img" alt="Logon">
+                             
+                        @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class = "form-signin"} ))
+                        {
+                            @Html.TextBoxFor(m => m.UserName, new { @id = "username", @placeholder = "username", @autocomplete = "off", @required = "true", @autofocus = "true", @class = "form-control" }) 
+                            @Html.PasswordFor(m => m.Password, new { @id = "password", @placeholder = "password", @required = "true", @class = "form-control" }) 
+                            <input type="submit" id="btnLogin" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
+                            <span class="clearfix"></span>
+                        }
+                    </div>
+                </h1>
             </div>
         </div>
-    }
-    
+    </div>
+
     @using (Ajax.BeginForm("ForgotPassword", "Account", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "results", LoadingElementId = "forgottenStatus" }, new { @id = "slick-forgotten" }))
     {
-        <input type="text" id="emailAddress" name="emailAddress" value="your email address" autocomplete="off" />
+        <input type="text" id="emailAddress" name="emailAddress" value="your email address"
+               autocomplete="off" />
         <br />
-        <p style="text-align:right;">
+        <p style="text-align: right;">
             <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="forgottenStatus" />
             <input type="submit" value="reset password" class="submitBtn" id="btnForgottenPswd" />
         </p>
-        <div id="results"></div>
+        <div id="results">
+        </div>
         <div class="addl-links">
-	        <a href="javascript:void(0)" id="loginForm">login</a>
+            <a href="javascript:void(0)" id="loginForm">login</a>
         </div>
     }
 </div>
-
 @Html.Partial("RequestAccount", new sBlog.Net.Models.Account.RequestAccountModel())

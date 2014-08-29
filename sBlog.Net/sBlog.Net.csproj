@@ -493,18 +493,17 @@
     <Content Include="Content\codeHighlighter\styles\shThemeRDark.css" />
     <Content Include="Content\Images\404_black.png" />
     <Content Include="Content\Images\404_brown.png" />
-    <Content Include="Content\Images\close_icon.png" />
-    <Content Include="Content\Images\loader-transparent.gif" />
-    <Content Include="Content\Images\new_window_icon.png" />
-    <Content Include="Content\Images\preview.png" />
-    <Content Include="Content\Images\profile.png" />
+    <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\arrow.png" />
+    <Content Include="Content\Images\blog_settings.png" />
     <Content Include="Content\Images\categories.png" />
     <Content Include="Content\Images\Classic1.png" />
+    <Content Include="Content\Images\close_delete.png" />
+    <Content Include="Content\Images\close_icon.png" />
     <Content Include="Content\Images\collapse.png" />
     <Content Include="Content\Images\comments.png" />
+    <Content Include="Content\Images\create_user.png" />
     <Content Include="Content\Images\dashboard.png" />
-    <Content Include="Content\Images\close_delete.png" />
     <Content Include="Content\Images\expand.png" />
     <Content Include="Content\Images\extension_icons\css.png" />
     <Content Include="Content\Images\extension_icons\doc.png" />
@@ -520,12 +519,22 @@
     <Content Include="Content\Images\extension_icons\zip.png" />
     <Content Include="Content\Images\highlighter.png" />
     <Content Include="Content\Images\Horizontal.png" />
+    <Content Include="Content\Images\loader-transparent.gif" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\login.png" />
+    <Content Include="Content\Images\logoff.png" />
+    <Content Include="Content\Images\manage.png" />
     <Content Include="Content\Images\managepages.png" />
     <Content Include="Content\Images\manageposts.png" />
+    <Content Include="Content\Images\manage_comments.png" />
+    <Content Include="Content\Images\manage_posts.png" />
     <Content Include="Content\Images\Multichannel.png" />
+    <Content Include="Content\Images\new_window_icon.png" />
+    <Content Include="Content\Images\options.png" />
     <Content Include="Content\Images\page.png" />
     <Content Include="Content\Images\post.png" />
+    <Content Include="Content\Images\preview.png" />
+    <Content Include="Content\Images\profile.png" />
     <Content Include="Content\Images\Rectangle Button.png" />
     <Content Include="Content\Images\request_account.png" />
     <Content Include="Content\Images\sblog-logo-v1-3.jpg" />
@@ -548,10 +557,10 @@
     <Content Include="Content\Images\social_icons\foursquare.png" />
     <Content Include="Content\Images\social_icons\github-hover.png" />
     <Content Include="Content\Images\social_icons\github.png" />
-    <Content Include="Content\Images\social_icons\google-hover.png" />
     <Content Include="Content\Images\social_icons\google+-hover.png" />
-    <Content Include="Content\Images\social_icons\google.png" />
     <Content Include="Content\Images\social_icons\google+.png" />
+    <Content Include="Content\Images\social_icons\google-hover.png" />
+    <Content Include="Content\Images\social_icons\google.png" />
     <Content Include="Content\Images\social_icons\instagram-hover.png" />
     <Content Include="Content\Images\social_icons\instagram.png" />
     <Content Include="Content\Images\social_icons\linkedin-hover.png" />
@@ -593,32 +602,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.min.css" />
     <Content Include="Content\SiteCommons.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery-ui.custom.css" />
-    <Content Include="Content\themes\base\jquery-ui.custom.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Scripts\Required\debug\02-CategoryList.admin.js" />
+    <Content Include="Scripts\Required\debug\01-CategoryList.admin.js" />
     <Content Include="Content\sBlog\Site.js" />
-    <Content Include="Scripts\Required\debug\07-SiteAdmin.admin.js" />
+    <Content Include="Scripts\Required\debug\06-SiteAdmin.admin.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery.sticky.js" />
-    <Content Include="Scripts\Required\debug\04-jquery.validate.admin.js" />
-    <Content Include="Scripts\Required\debug\01-jquery-ui.custom.admin.js" />
-    <Content Include="Scripts\Required\debug\06-jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Scripts\Required\debug\03-jquery.validate.admin.js" />
+    <Content Include="Scripts\Required\debug\05-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
     <Content Include="Scripts\SyntaxHighlighter.js" />
     <Content Include="Sql\sc020004.sql" />
@@ -704,8 +696,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\Required\debug\03-jquery.unobtrusive-ajax.admin.js" />
-    <Content Include="Scripts\Required\debug\05-jquery.validate.unobtrusive.admin.js" />
+    <Content Include="Scripts\Required\debug\02-jquery.unobtrusive-ajax.admin.js" />
+    <Content Include="Scripts\Required\debug\04-jquery.validate.unobtrusive.admin.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UpdateProfile.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
@@ -1109,6 +1101,7 @@
     <Content Include="Themes\GoMinimal\_LayoutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\UserAdmin\UserContentShortcuts.cshtml" />
     <None Include="Themes\BootswatchCraze\static\bootswatch.json" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.eot" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.ttf" />
@@ -1189,7 +1182,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59110</DevelopmentServerPort>
+          <DevelopmentServerPort>54897</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/sblog2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -5,7 +5,7 @@
         @{
             var type = Model.EntryType == 1 ? "Post" : "Page";
         }
-        <b>@Html.ActionLink(Model.PostTitle, "Edit", type, new { postID = Model.PostID }, new { @class = "mainLink" })</b><br /><br />
+        <b>@Html.ActionLink(Model.PostTitle, "Edit", type, new { postID = Model.PostID }, new { @class = "sub-title" })</b><br /><br />
         @Html.Partial("PostOptions", Model)
     </td>
     <td>
