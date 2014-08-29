@@ -471,24 +471,7 @@ $(document).ready(function () {
     }
 });
 
-$(document).ready(function () {
-    $('#forgottenPswd').click(function (e) {
-        e.preventDefault();
-        $('#username').val('username');
-        $('#fake-password').show().val('password');
-        $('#passwd').hide();
-        $('#slick-login').hide();
-        $('#slick-forgotten').show();
-    });
-
-    $('#loginForm').click(function (e) {
-        e.preventDefault();
-        $('#results').html('');
-        $('#emailAddress').val('your email address');
-        $('#slick-login').show();
-        $('#slick-forgotten').hide();
-    });
-
+$(document).ready(function () {    
     $('#btnLogin').click(function () {
         if ($('#username').val().trim() == '' || $('#password').val().trim() == '') {
             $('.login-errors').html('Username and/or password is required').show();
@@ -496,18 +479,6 @@ $(document).ready(function () {
         }
         $('.login-errors').hide().html('');
         return true;
-    });
-
-    $('#btnForgottenPswd').click(function () {
-        if ($.trim($('#emailAddress').val()) != '' && $.trim($('#emailAddress').val()) != 'your email address') {
-            return true;
-        }
-        $('#emailAddress').val('your email address');
-        return false;
-    });
-
-    $('#btnClose').click(function () {
-        $('#dialog').dialog('close');
     });
 });
 

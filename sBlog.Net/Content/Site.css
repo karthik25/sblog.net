@@ -475,6 +475,10 @@ a.selected:link, a.selected:active, a.selected:visited
 	border-bottom:1px dashed
 }
 
+#results {
+    color: red
+}
+
 #forgottenPswd:hover
 {
 	color: #848484;
@@ -565,22 +569,8 @@ a.selected:link, a.selected:active, a.selected:visited
     border-radius: 50%;
 }
 
-/* Forgotten password */
-#slick-forgotten {
-	width: 220px;
-	height: 155px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: -110px;
-	margin-top: -75px;
-    display: none;
-
-	-webkit-animation: login 1s ease-in-out;
-	-moz-animation: login 1s ease-in-out;
-	-ms-animation: login 1s ease-in-out;
-	-o-animation: login 1s ease-in-out;
-	animation: login 1s ease-in-out
+#forgotPassword {
+    cursor: pointer
 }
 
 #showOptions

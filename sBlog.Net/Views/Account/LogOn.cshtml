@@ -5,44 +5,63 @@
 
 @Html.Action("IncompleteSetup", "Blog")
 <br />
-<div>    
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-md-offset-4">
-                <h1 class="text-center login-title">
-                    <div class="login-errors alert alert-danger"></div>
-                    @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
-                    <div class="account-wall">
-                        <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                             class="profile-img" alt="Logon">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">
+                <div class="login-errors alert alert-danger"></div>
+                @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+                <div class="account-wall">
+                    <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                            class="profile-img" alt="Logon">
                              
-                        @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class = "form-signin"} ))
-                        {
-                            @Html.TextBoxFor(m => m.UserName, new { @id = "username", @placeholder = "username", @autocomplete = "off", @required = "true", @autofocus = "true", @class = "form-control" }) 
-                            @Html.PasswordFor(m => m.Password, new { @id = "password", @placeholder = "password", @required = "true", @class = "form-control" }) 
-                            <input type="submit" id="btnLogin" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
-                            <span class="clearfix"></span>
-                        }
+                    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class = "form-signin"} ))
+                    {
+                        @Html.TextBoxFor(m => m.UserName, new { @id = "username", @placeholder = "username", @autocomplete = "off", @required = "true", @autofocus = "true", @class = "form-control" }) 
+                        @Html.PasswordFor(m => m.Password, new { @id = "password", @placeholder = "password", @required = "true", @class = "form-control" }) 
+                        <input type="submit" id="btnLogin" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
+                        <span class="clearfix"></span>
+                    }
+                        
+                    <div style="padding: 3px">
+                        <div class="pull-left small">
+                            
+                        </div>
+                        <div class="pull-right small">
+                            <a data-toggle="modal" data-target="#forgottenPassword" id="forgotPassword">forgot your password?</a>
+                        </div>
                     </div>
-                </h1>
-            </div>
+                </div>
+            </h1>
         </div>
     </div>
+</div>
 
-    @using (Ajax.BeginForm("ForgotPassword", "Account", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "results", LoadingElementId = "forgottenStatus" }, new { @id = "slick-forgotten" }))
-    {
-        <input type="text" id="emailAddress" name="emailAddress" value="your email address"
-               autocomplete="off" />
-        <br />
-        <p style="text-align: right;">
-            <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="forgottenStatus" />
-            <input type="submit" value="reset password" class="submitBtn" id="btnForgottenPswd" />
-        </p>
-        <div id="results">
+<div class="modal fade" id="forgottenPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Forgot your password?</h4>
+            </div>
+            @using (Ajax.BeginForm("ForgotPassword", "Account", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "results", LoadingElementId = "forgottenStatus" }, new { @id = "forgottenForm" }))
+            {
+                <div class="modal-body">
+                    <div id="results">
+                    </div>
+                    <br/>
+                    <input type="text" id="emailAddress" name="emailAddress" class="form-control" placeholder="your email address" 
+                        value="" autocomplete="off" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <img src="@Url.Content("~/Content/Images/loading.gif")" alt="loading..." id="forgottenStatus" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="reset password" class="btn btn-success" id="btnForgottenPswd" />
+                    </div>
+            }
         </div>
-        <div class="addl-links">
-            <a href="javascript:void(0)" id="loginForm">login</a>
-        </div>
-    }
+    </div>
 </div>
 @Html.Partial("RequestAccount", new sBlog.Net.Models.Account.RequestAccountModel())
