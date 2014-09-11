@@ -3,77 +3,6 @@
     font-family:"Open Sans Condensed",sans-serif;
     font-size: 12px
 }
-
-#sub-nav {
-  list-style: none;
-  position: absolute;
-  top: 40px;
-  padding:0
-}
-
-#sub-nav li {
-  margin-bottom: 2px;
-  list-style-type:none
-}
-
-#sub-nav a {
-  background: #ededed;
-  color: #666;
-  display: block;
-  font-size: 12px;
-  font-family:"Open Sans Condensed",sans-serif;
-  font-weight:700;
-  padding: 10px 10px;
-  text-decoration: none;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px
-}
-
-#sub-nav li .sub-menu a
-{
-  background: #ededed;
-  color: #666;
-  display: block;
-  font-size: 12px;
-  font-family:"Open Sans Condensed",sans-serif;
-  font-weight:700;
-  padding: 10px 10px;
-  text-decoration: none
-}
-
-#sub-nav a:hover { background: #dedede }
-
-#sub-nav li .sub-menu a:hover { background: #dedede }
-
-#sub-nav .current a {
-  background: #666;
-  color: #ededed
-}
-
-#sub-nav li .sub-menu .current a 
-{
-  background: #BDBDBD;
-  color: #000000
-}
-
-#sub-nav .collapse a {
-  background: red;
-  color: #ededed
-}
-
-.current { }
-
-.restore-menu {
-	position: fixed;
-	top: 330px
-}
-
-.restore-link {
-	font-weight: bolder;
-	background-color: #dedede
-}
-
 .init-state {
 	display: none
 }
@@ -769,4 +698,8 @@ a.sub-title, a.sub-title:hover {
 
 #showHelp {
     cursor: pointer
+}
+
+#preview {
+    display: none
 }

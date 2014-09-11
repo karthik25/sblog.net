@@ -262,6 +262,17 @@ function updatePublishBtn() {
     $('.publishBtn').attr('value', text);
 }
 
+function updatePreview() {
+    var selectedTheme = $('#Theme').val();
+    if (selectedTheme == null || selectedTheme == '') {
+        selectedTheme = "Default";
+    }
+    var themeUrl = siteRoot + 'Content/codeHighlighter/styles/shTheme' + selectedTheme + '.css';
+    $('#themeChoice').attr('href', themeUrl);
+    $('#previewMsg').hide();
+    $('#preview').show();
+}
+
 $(document).ready(function () {
     $('.brush-not-selected').hide();
 
@@ -274,6 +285,14 @@ $(document).ready(function () {
             $('.brush-not-selected').hide();
             $('.selected-brushes-title').html('Selected brushes:');
         }
+    });
+
+    setTimeout(function() {
+        updatePreview();
+    }, 2000);
+
+    $('#Theme').on('change', function () {
+        updatePreview();
     });
 });
 

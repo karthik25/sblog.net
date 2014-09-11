@@ -1102,6 +1102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserAdmin\UserContentShortcuts.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\SyntaxHighlighterPreview.cshtml" />
     <None Include="Themes\BootswatchCraze\static\bootswatch.json" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.eot" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.ttf" />
