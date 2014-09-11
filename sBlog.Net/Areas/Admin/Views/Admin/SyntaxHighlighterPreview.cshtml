@@ -16,16 +16,21 @@
         </div>
         <div id="preview">
             <pre class="brush: c#;">
-                protected void Session_Start()
+                protected void SomeMethod(SetupStatus databaseStatus)
                 {
-                    var databaseStatus = (SetupStatus)Application["Installation_Status"];
                     var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
                     if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.NoUpdates)
                     {
-                        var installationStatus = GetInstallationStatus();
-                        if (installationStatus == false)
+                        if (GetInstallationStatus() == false)
                         {
                             Response.Redirect(urlHelper.RouteUrl("SetupIndex"), true);
+                        }
+                    }
+                    else
+                    {
+                        if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseError)
+                        {
+                            Response.Redirect(urlHelper.RouteUrl("SetupError"), true);
                         }
                     }
                 }

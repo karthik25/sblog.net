@@ -39,34 +39,41 @@
 
 @if (Model.IsEnabled)
 {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Syntax Highlighter Options</h3>
-        </div>
-        <div class="panel-body">
-            <p class="pull-right">
-                @Html.Action("SyntaxHighlighterHelp", "Admin")
-            </p>
-            @using (Html.BeginForm())
-            {
-                <span class="sub-title">Code highlighter theme:</span>
-                <br />
-                @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
-                <b>(super admin only)</b>
-                <br />
-                <br />
-                <span class="sub-title">Brushes:</span>
-                <br />
-                <div style="width: 200px;">
-                    @Html.Partial("CheckBoxList", Model.Brushes)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Syntax Highlighter Options</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="pull-right">
+                            @Html.Action("SyntaxHighlighterHelp", "Admin")
+                        </p>
+                        @using (Html.BeginForm())
+                        {
+                            <span class="sub-title">Code highlighter theme:</span>
+                            <br />
+                            @Html.DropDownListFor(model => model.Theme, Model.AvailableThemes, Model.EditThemeAttributes)
+                            <b>(super admin only)</b>
+                            <br />
+                            <br />
+                            <span class="sub-title">Brushes:</span>
+                            <br />
+                            <div style="width: 200px;">
+                                @Html.Partial("CheckBoxList", Model.Brushes)
+                            </div>
+                            <br />
+                            <p class="pull-right">                    
+                                <input type="submit" value="Update Preferences" class="btn btn-lg btn-success" />
+                            </p>
+                        }
+                    </div>
                 </div>
-                <br />
-                <p class="pull-right">                    
-                    <input type="submit" value="Update Preferences" class="btn btn-lg btn-primary" />
-                </p>
-            }
+            </div>
+            <div class="col-md-6">
+                @Html.Partial("SyntaxHighlighterPreview")
+            </div>
         </div>
     </div>
-    
-    @Html.Partial("SyntaxHighlighterPreview")
 }
