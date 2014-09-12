@@ -4,16 +4,16 @@
     ViewBag.Title = string.Format("Dashboard || {0}", Model.BlogName);
 }
 
-<div class="alert alert-success">
-    Welcome <strong>@Model.DisplayName</strong>! Do you want to 
-    @Html.RouteLink("add a post", "AdminPostsAdd", new {}, new { @class = "alert-link" }), 
-    @Html.RouteLink("manage comments", "AdminComments", new {}, new { @class = "alert-link" }) or just 
-    @Html.RouteLink("update your profile", "AdminUpdateProfile", new { }, new { @class = "alert-link" })?
-</div>
+<div class="container">
+    <div class="alert alert-success">
+        Welcome <strong>@Model.DisplayName</strong>! Do you want to 
+        @Html.RouteLink("add a post", "AdminPostsAdd", new {}, new { @class = "alert-link" }), 
+        @Html.RouteLink("manage comments", "AdminComments", new {}, new { @class = "alert-link" }) or just 
+        @Html.RouteLink("update your profile", "AdminUpdateProfile", new { }, new { @class = "alert-link" })?
+    </div>
 
-<table style="width:100%;">
-    <tr>
-        <td style="width:45%; vertical-align: top">
+    <div class="row">
+        <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Summary</h3>
@@ -72,10 +72,8 @@
                     </div>
                 </div>
             </div>
-        </td>
-        <td style="width:5%;">
-        </td>
-        <td style="width:45%; vertical-align: top">
+        </div>
+        <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Comments</h3>
@@ -103,9 +101,6 @@
                     </div>
                 </div>
             </div>
-        </td>
-    </tr>
-    <tr>
-            
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
