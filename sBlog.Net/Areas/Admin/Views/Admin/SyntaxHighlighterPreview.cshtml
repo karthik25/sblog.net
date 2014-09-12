@@ -17,23 +17,24 @@
         </div>
         <div id="preview">
             <pre class="brush: c#;">
-                protected void SomeMethod(SetupStatus databaseStatus)
+                public void SomeMethod(SetupStatus databaseStatus)
                 {
-                    var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                    if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.NoUpdates)
+                    if (databaseStatus != null)
                     {
-                        if (GetInstallationStatus() == false)
+                        if (GetInstallationStatus() == false
+                            && databaseStatus.StatusCode == 1)
                         {
-                            Response.Redirect(urlHelper.RouteUrl("SetupIndex"), true);
+                            return;
                         }
                     }
                     else
                     {
-                        if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseError)
+                        if (databaseStatus.StatusCode == 2)
                         {
-                            Response.Redirect(urlHelper.RouteUrl("SetupError"), true);
+                            return;
                         }
                     }
+
                 }
             </pre>
         </div>

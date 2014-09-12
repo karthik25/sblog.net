@@ -289,7 +289,7 @@ $(document).ready(function () {
 
     setTimeout(function() {
         updatePreview();
-    }, 2000);
+    }, 1000);
 
     $('#Theme').on('change', function () {
         updatePreview();
