@@ -5,3 +5,8 @@
 }
 
 @Html.Partial("AddEditPost", Model)
+
+@section preScripts
+{
+    @Html.GenerateCkEditorScripts()
+}

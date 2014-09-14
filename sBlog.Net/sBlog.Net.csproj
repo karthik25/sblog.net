@@ -231,6 +231,7 @@
     <Content Include="Areas\Setup\Content\Site.css" />
     <Content Include="Content\CKEditor\adapters\jquery.js" />
     <Content Include="Content\CKEditor\ckeditor.js" />
+    <Content Include="Content\CKEditor\ckeditor_init.js" />
     <Content Include="Content\CKEditor\config.js" />
     <Content Include="Content\CKEditor\contents.css" />
     <Content Include="Content\CKEditor\images\spacer.gif" />
