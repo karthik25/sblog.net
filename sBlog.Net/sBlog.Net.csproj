@@ -110,6 +110,7 @@
     <Compile Include="FluentExtensions\StringUrlExtensions.cs" />
     <Compile Include="CustomExceptions\UrlNotFoundException.cs" />
     <Compile Include="FluentExtensions\TagExtensions.cs" />
+    <Compile Include="HtmlHelpers\PostOrPageEditorHelpers.cs" />
     <Compile Include="HtmlHelpers\SocialFeaturesHtmlHelper.cs" />
     <Compile Include="Infrastructure\BitlyUrlService.cs" />
     <Compile Include="Infrastructure\CustomRoleProvider.cs" />

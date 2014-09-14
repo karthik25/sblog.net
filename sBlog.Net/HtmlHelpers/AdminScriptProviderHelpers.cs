@@ -16,7 +16,6 @@
 
 #endregion
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,27 +44,7 @@ namespace sBlog.Net.HtmlHelpers
                                    ? GetStyleElement(urlHelper, "~/Content/Site.css")
                                    : GetStyleElement(urlHelper, "~/Content/Site.min.css"));
             return MvcHtmlString.Create(builder.ToString());
-        }
-
-        public static MvcHtmlString GenerateCkEditorScripts(this HtmlHelper htmlHelper)
-        {
-            const string prefix = "~/Content/CKEditor/";
-            var scripts = new List<string> { "ckeditor.js", "adapters/jquery.js", "ckeditor_init.js" };
-            var builder = new StringBuilder();
-            var urlHelper = htmlHelper.GetUrlHelper();
-
-            scripts.ForEach(script =>
-                {
-                    var scriptTag = new TagBuilder("script");
-                    scriptTag.MergeAttribute("type", "text/javascript");
-                    var scriptUrl = urlHelper.Content(string.Format("{0}{1}", prefix, script));
-                    scriptTag.MergeAttribute("src", scriptUrl);
-
-                    builder.AppendLine(scriptTag.ToString());
-                });
-
-            return MvcHtmlString.Create(builder.ToString());
-        }
+        }        
 
         private static StringBuilder BuildDebugScripts(UrlHelper urlHelper)
         {
