@@ -1,4 +1,5 @@
-﻿@model sBlog.Net.Areas.Admin.Models.PostViewModel
+﻿@using sBlog.Net.Areas.Admin.Models
+@model sBlog.Net.Areas.Admin.Models.PostViewModel
 
 @Html.Partial("UpdatePostOrPageStatus", Model)
 
@@ -39,8 +40,17 @@
                 @Html.Action("SyntaxHighlighterHelp", "Admin")
             </div>
             <br /><br />
-            @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText" })
+            @if (PostViewModel.IsMarkDown())
+            {
+                <div class="mdd_toolbar"></div>
+            }
+            @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText mdd_editor" })
             <br />
+            @if (PostViewModel.IsMarkDown())
+            {
+                <div class="mdd_resizer"></div>
+                <div class="mdd_preview"></div>
+            }
             <b>post url</b>
             <br />
             <h4 class="postUrlLabel" title="click to edit the url">---</h4>
@@ -67,7 +77,7 @@
                 
                     @if (Model.Post.EntryType == 1)
                     {
-                        @Html.ActionLink("delete post", "DeletePost", "Post", new {postID = Model.Post.PostID}, new { @class = "edit-trash" });
+                        @Html.ActionLink("delete post", "DeletePost", "Post", new { postID = Model.Post.PostID }, new { @class = "edit-trash" });
                     }
                     else
                     {
@@ -85,8 +95,8 @@
                     @Html.LabelFor(model => model.Post.UserCanAddComments)
                     <br /><br />
                     @{
-                        var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
-                        var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
+                    var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
+                    var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
                     }
                     <span title="@title" class="@cssStyle">
                         @Html.CheckBoxFor(model => model.Post.CanBeShared)
