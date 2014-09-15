@@ -1,5 +1,5 @@
 ﻿@using sBlog.Net.Areas.Admin.Models
-@model sBlog.Net.Areas.Admin.Models.PostViewModel
+@model PostViewModel
 
 @Html.Partial("UpdatePostOrPageStatus", Model)
 
@@ -35,22 +35,23 @@
                 </b>
             </div>
             <div class="pull-right">
-                <img src="@Url.Content("~/Content/Images/new_window_icon.png")" alt="" title="full screen" style="border:0px; width: 12px; height: 12px" />  <a title="open the editor in full screen" id="fullScreen" href="javascript:void(0)"><span style="text-decoration: underline">full screen</span></a> |
-                <img src="@Url.Content("~/Content/Images/preview.png")" alt="" title="preview" style="border:0px; width: 12px; height: 12px" />  <a title="click for a preview" id="contentPreview" href="javascript:void(0)"><span style="text-decoration: underline">preview</span></a> |
+                <div id="ckeditor_toolbar">
+                    <img src="@Url.Content("~/Content/Images/new_window_icon.png")" alt="" title="full screen" style="border:0px; width: 12px; height: 12px" />  <a title="open the editor in full screen" id="fullScreen" href="javascript:void(0)"><span style="text-decoration: underline">full screen</span></a> |
+                    <img src="@Url.Content("~/Content/Images/preview.png")" alt="" title="preview" style="border:0px; width: 12px; height: 12px" />  <a title="click for a preview" id="contentPreview" href="javascript:void(0)"><span style="text-decoration: underline">preview</span></a> |
+                </div>
                 @Html.Action("SyntaxHighlighterHelp", "Admin")
             </div>
             <br /><br />
             @if (PostViewModel.IsMarkDown())
             {
                 <div class="mdd_toolbar"></div>
+                @Html.TextAreaFor(model => model.Post.PostContent, new {@class = "mdd_editor"})
             }
-            @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText mdd_editor" })
-            <br />
-            @if (PostViewModel.IsMarkDown())
+            else
             {
-                <div class="mdd_resizer"></div>
-                <div class="mdd_preview"></div>
+                @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText" })
             }
+            <br />
             <b>post url</b>
             <br />
             <h4 class="postUrlLabel" title="click to edit the url">---</h4>
