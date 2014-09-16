@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
@@ -171,7 +170,7 @@ namespace sBlog.Net.Controllers
             var markdown = new MarkdownDeep.Markdown{ ExtraMode = true };
             postList.ForEach(p =>
                 {
-                    if (PostViewModel.IsMarkDown())
+                    if (ContentInterpretationExtensions.IsMarkDown())
                         p.PostContent = markdown.Transform(p.PostContent);
                     if (p.IsPrivate)
                         p.PostTitle = string.Format("[Private] {0}", p.PostTitle);

@@ -15,8 +15,6 @@
 /* *********************************************** */
 
 #endregion
-using System.Configuration;
-using sBlog.Net.Configuration;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Models;
 
@@ -31,13 +29,5 @@ namespace sBlog.Net.Areas.Admin.Models
         public bool SharingEnabled { get; set; }
 
         public bool AjaxSaved { get; set; }
-
-        public static bool IsMarkDown()
-        {
-            return BlogStaticConfig.EditorType == "markdown";
-        }
-
-        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
-                                                         as SblogNetSettingsConfiguration;
     }
 }

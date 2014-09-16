@@ -42,7 +42,7 @@
                 @Html.Action("SyntaxHighlighterHelp", "Admin")
             </div>
             <br /><br />
-            @if (PostViewModel.IsMarkDown())
+            @if (ContentInterpretationExtensions.IsMarkDown())
             {
                 <div class="mdd_toolbar"></div>
                 @Html.TextAreaFor(model => model.Post.PostContent, new {@class = "mdd_editor"})

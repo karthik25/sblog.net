@@ -106,6 +106,7 @@
     <Compile Include="Enumerations\SocialFeature.cs" />
     <Compile Include="FluentExtensions\AccountValidationFluentExtensions.cs" />
     <Compile Include="FluentExtensions\CacheServiceFluentExtensions.cs" />
+    <Compile Include="FluentExtensions\ContentInterpretationExtensions.cs" />
     <Compile Include="FluentExtensions\EntityValidatorExtensions.cs" />
     <Compile Include="FluentExtensions\HtmlHelperExtensions.cs" />
     <Compile Include="FluentExtensions\PostExtensions.cs" />

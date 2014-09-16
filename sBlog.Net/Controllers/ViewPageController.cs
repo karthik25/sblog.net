@@ -113,7 +113,7 @@ namespace sBlog.Net.Controllers
         private static List<PostEntity> GetProcessedPages(List<PostEntity> pages)
         {
             var markdown = new MarkdownDeep.Markdown { ExtraMode = true };
-            if (PostViewModel.IsMarkDown())
+            if (ContentInterpretationExtensions.IsMarkDown())
             {
                 pages.ForEach(p =>
                     {
