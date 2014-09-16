@@ -5,4 +5,6 @@
         help_location: "/Scripts/mdd_help.htm",
         ExtraMode: true
     }).attr("rows", "10");
+
+    $('.mdd_preview').before('<br/>');
 })

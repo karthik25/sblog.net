@@ -703,3 +703,9 @@ a.sub-title, a.sub-title:hover {
 #preview {
     display: none
 }
+
+.mdd_preview {
+    border: 1px dotted gray;
+    clear: both;
+    padding: 5px
+}
