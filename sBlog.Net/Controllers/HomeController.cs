@@ -19,10 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
-using sBlog.Net.Infrastructure;
 using sBlog.Net.Models;
 using sBlog.Net.FluentExtensions;
 
@@ -168,8 +168,11 @@ namespace sBlog.Net.Controllers
 
         private static List<PostEntity> GetProcessedPosts(List<PostEntity> postList)
         {
+            var markdown = new MarkdownDeep.Markdown{ ExtraMode = true };
             postList.ForEach(p =>
                 {
+                    if (PostViewModel.IsMarkDown())
+                        p.PostContent = markdown.Transform(p.PostContent);
                     if (p.IsPrivate)
                         p.PostTitle = string.Format("[Private] {0}", p.PostTitle);
                 });

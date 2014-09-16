@@ -16,6 +16,7 @@
 
 #endregion
 using System.Collections.Generic;
+using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
 
@@ -25,12 +26,24 @@ namespace sBlog.Net.FluentExtensions
     {
         public static List<PostEntity> GetPostsFromCache(this ICacheService cacheService, IPost postRepository, string keyName)
         {
-            return cacheService.Get(keyName, () => postRepository.GetPosts());
+            var markdown = new MarkdownDeep.Markdown { ExtraMode = true };
+            var posts = cacheService.Get(keyName, () => postRepository.GetPosts());
+            if (PostViewModel.IsMarkDown())
+            {
+                posts.ForEach(p => p.PostContent = markdown.Transform(p.PostContent));
+            }
+            return posts;
         }
 
         public static List<PostEntity> GetPagesFromCache(this ICacheService cacheService, IPost postRepository, string keyName)
         {
-            return cacheService.Get(keyName, () => postRepository.GetPages());
+            var markdown = new MarkdownDeep.Markdown{ ExtraMode = true };
+            var pages = cacheService.Get(keyName, () => postRepository.GetPages());
+            if (PostViewModel.IsMarkDown())
+            {
+                pages.ForEach(p => p.PostContent = markdown.Transform(p.PostContent));
+            }
+            return pages;
         }
     }
 }
