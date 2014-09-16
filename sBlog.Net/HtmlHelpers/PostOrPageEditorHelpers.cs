@@ -42,11 +42,7 @@ namespace sBlog.Net.HtmlHelpers
 
             scripts.ForEach(script =>
             {
-                var scriptTag = new TagBuilder("script");
-                scriptTag.MergeAttribute("type", "text/javascript");
-                var scriptUrl = urlHelper.Content(string.Format("{0}{1}", prefix, script));
-                scriptTag.MergeAttribute("src", scriptUrl);
-
+                var scriptTag = urlHelper.GetScript(prefix, script);
                 builder.AppendLine(scriptTag.ToString());
             });
 
@@ -61,14 +57,10 @@ namespace sBlog.Net.HtmlHelpers
             var urlHelper = htmlHelper.GetUrlHelper();
 
             scripts.ForEach(script =>
-            {
-                var scriptTag = new TagBuilder("script");
-                scriptTag.MergeAttribute("type", "text/javascript");
-                var scriptUrl = urlHelper.Content(string.Format("{0}{1}", prefix, script));
-                scriptTag.MergeAttribute("src", scriptUrl);
-
-                builder.AppendLine(scriptTag.ToString());
-            });
+                {
+                    var scriptTag = urlHelper.GetScript(prefix, script);
+                    builder.AppendLine(scriptTag.ToString());
+                });
 
             var markdownStyle = new TagBuilder("link");
             markdownStyle.MergeAttribute("rel", "stylesheet");
@@ -79,6 +71,15 @@ namespace sBlog.Net.HtmlHelpers
             builder.AppendLine(markdownStyle.ToString());
 
             return MvcHtmlString.Create(builder.ToString());
+        }
+
+        private static string GetScript(this UrlHelper urlHelper, string prefix, string script)
+        {
+            var scriptTag = new TagBuilder("script");
+            scriptTag.MergeAttribute("type", "text/javascript");
+            var scriptUrl = urlHelper.Content(string.Format("{0}{1}", prefix, script));
+            scriptTag.MergeAttribute("src", scriptUrl);
+            return scriptTag.ToString();
         }
 
         private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
