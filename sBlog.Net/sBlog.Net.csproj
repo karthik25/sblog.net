@@ -629,6 +629,7 @@
     <Content Include="Scripts\Required\debug\05-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
     <Content Include="Scripts\SyntaxHighlighter.js" />
+    <Content Include="Sql\sc020005.sql" />
     <Content Include="Sql\sc020004.sql" />
     <Content Include="Sql\sc010001.sql" />
     <Content Include="Sql\sc020001.sql" />

@@ -63,13 +63,6 @@ namespace sBlog.Net.Configuration
             set { this["bitlyApiKey"] = value; }
         }
 
-        [ConfigurationProperty("editorType")]
-        public string EditorType
-        {
-            get { return (string) this["editorType"]; }
-            set { this["editorType"] = value; }
-        }
-
         [ConfigurationProperty("socialFeatures")]
         public SocialFeaturesElement SocialFeatures
         {

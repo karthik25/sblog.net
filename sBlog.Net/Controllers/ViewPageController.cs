@@ -105,15 +105,15 @@ namespace sBlog.Net.Controllers
         private List<PostEntity> GetPages()
         {
             var pages = Request.IsAuthenticated
-                            ? GetProcessedPages(_postRepository.GetPages(GetUserId()))
-                            : _cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey);
+                            ? GetProcessedPages(_postRepository.GetPages(GetUserId()), IsMarkDown())
+                            : _cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey, IsMarkDown());
             return pages.OrderBy(p => p.Order.Value).ToList();
         }
 
-        private static List<PostEntity> GetProcessedPages(List<PostEntity> pages)
+        private static List<PostEntity> GetProcessedPages(List<PostEntity> pages, bool isMarkDown)
         {
             var markdown = new MarkdownDeep.Markdown { ExtraMode = true };
-            if (ContentInterpretationExtensions.IsMarkDown())
+            if (isMarkDown)
             {
                 pages.ForEach(p =>
                     {

@@ -93,9 +93,9 @@ namespace sBlog.Net.Controllers
             {
                 var allPosts = Request.IsAuthenticated
                                    ? _postRepository.GetPosts().Concat(_postRepository.GetPages()).ToList()
-                                   : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey)
+                                   : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey, IsMarkDown())
                                                   .Concat(_cacheService.GetPagesFromCache(_postRepository,
-                                                                                          CachePagesUnauthKey)).ToList();
+                                                                                          CachePagesUnauthKey, IsMarkDown())).ToList();
                 var topComments = allPosts.SelectMany(p => p.Comments)
                                           .Where(c => c.CommentStatus == 0)
                                           .OrderByDescending(c => c.CommentPostedDate)

@@ -42,6 +42,7 @@ namespace sBlog.Net.Tests.MockObjects
             settings.SetupProperty(x => x.BlogAkismetUrl, string.Empty);
             settings.SetupProperty(x => x.BlogAkismetEnabled, false);
             settings.SetupProperty(x => x.BlogAkismetDeleteSpam, false);
+            settings.SetupProperty(x => x.EditorType, "html");
 
             return settings;
         }

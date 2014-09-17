@@ -16,10 +16,9 @@
 
 #endregion
 using System.Collections.Generic;
-using System.Configuration;
 using System.Text;
 using System.Web.Mvc;
-using sBlog.Net.Configuration;
+using sBlog.Net.DependencyManagement;
 using sBlog.Net.FluentExtensions;
 
 namespace sBlog.Net.HtmlHelpers
@@ -28,7 +27,8 @@ namespace sBlog.Net.HtmlHelpers
     {
         public static MvcHtmlString GenerateEditorScriptBySelection(this HtmlHelper htmlHelper)
         {
-            return BlogStaticConfig.EditorType == "html"
+            var settingsRepository = InstanceFactory.CreateSettingsInstance();
+            return settingsRepository.EditorType == "html"
                        ? htmlHelper.GenerateCkEditorScripts()
                        : htmlHelper.GenerateMarkdownStypesAndScripts();
         }
@@ -81,8 +81,5 @@ namespace sBlog.Net.HtmlHelpers
             scriptTag.MergeAttribute("src", scriptUrl);
             return scriptTag.ToString();
         }
-
-        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
-                                                             as SblogNetSettingsConfiguration;
     }
 }

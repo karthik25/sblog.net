@@ -179,26 +179,17 @@ namespace sBlog.Net
             var databaseStatus = (SetupStatus)Application["Installation_Status"];
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
 
-            if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.NoUpdates)
+            switch (databaseStatus.StatusCode)
             {
-                var installationStatus = GetInstallationStatus();
-
-                if (installationStatus == false)
-                {
-                    Response.Redirect(urlHelper.RouteUrl("SetupIndex"), true);
-                }
-            }
-            else
-            {
-                if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseError)
-                {
+                case SetupStatusCode.HasUpdates:
+                    Response.Redirect(urlHelper.RouteUrl("UpdateDatabase"), true);
+                    break;
+                case SetupStatusCode.DatabaseNotSetup:
+                    Response.Redirect(urlHelper.RouteUrl("InitializeDatabase"), true);
+                    break;
+                case SetupStatusCode.DatabaseError:
                     Response.Redirect(urlHelper.RouteUrl("SetupError"), true);
-                }
-
-                if (databaseStatus != null && databaseStatus.StatusCode == SetupStatusCode.DatabaseNotSetup)
-                {
-                    Response.Redirect(urlHelper.RouteUrl("InitializeDatabase"));
-                }
+                    break;
             }
         }
 
@@ -248,13 +239,6 @@ namespace sBlog.Net
             var pathMapper = InstanceFactory.CreatePathMapperInstance();
             var dbStatusGenerator = new SetupStatusGenerator(schemaInstance, pathMapper);
             Application["Installation_Status"] = dbStatusGenerator.GetSetupStatus();
-        }
-
-        private bool GetInstallationStatus()
-        {
-            var settingsRepository = InstanceFactory.CreateSettingsInstance();
-            var installationStatus = settingsRepository.InstallationComplete;
-            return installationStatus;
         }
 
         private void Log(Exception exception)

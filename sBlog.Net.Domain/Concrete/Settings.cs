@@ -347,17 +347,17 @@ namespace sBlog.Net.Domain.Concrete
             }
         }
 
-        public string BlogDbVersion
+        public string EditorType
         {
             get
             {
-                var blogDbVersion = GetValue("BlogDbVersion");
-                return blogDbVersion ?? string.Empty;
+                var editorType = GetValue("EditorType");
+                return editorType ?? string.Empty;
             }
             set
             {
-                var blogDbVersion = GetValueInternal(value) ?? string.Empty;
-                UpdateSettings("BlogDbVersion", blogDbVersion);
+                var editorType = GetValueInternal(value) ?? string.Empty;
+                UpdateSettings("EditorType", editorType);
             }
         }
 

@@ -49,6 +49,9 @@ namespace sBlog.Net.MetaData.MetaData
         [DisplayName("Number of items per page (admin section)")]
         public object ManageItemsPerPage { get; set; }
 
+        [DisplayName("Blog post/page editor type")]
+        public object EditorType { get; set; }
+
         [DisplayName("Enable akismet to catch/eliminate spam")]
         public object AkismetEnabled { get; set; }
 

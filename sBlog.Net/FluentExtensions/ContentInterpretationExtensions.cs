@@ -15,8 +15,7 @@
 /* *********************************************** */
 
 #endregion
-using System.Configuration;
-using sBlog.Net.Configuration;
+using sBlog.Net.DependencyManagement;
 
 namespace sBlog.Net.FluentExtensions
 {
@@ -24,11 +23,8 @@ namespace sBlog.Net.FluentExtensions
     {
         public static bool IsMarkDown()
         {
-            return BlogStaticConfig.EditorType == "markdown";
+            var settingsRepository = InstanceFactory.CreateSettingsInstance();
+            return settingsRepository.EditorType == "markdown";
         }
-
-        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
-                                                 as SblogNetSettingsConfiguration;
-
     }
 }
