@@ -5,6 +5,10 @@
         @{
             var type = Model.EntryType == 1 ? "Post" : "Page";
         }
+        @if (Model.IsPrivate)
+        {
+            <span class="label label-warning">Private</span>
+        }
         <b>@Html.ActionLink(Model.PostTitle, "Edit", type, new { postID = Model.PostID }, new { @class = "sub-title" })</b><br /><br />
         @Html.Partial("PostOptions", Model)
     </td>
