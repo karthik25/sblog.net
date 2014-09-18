@@ -89,7 +89,8 @@
                 <br/>
 
                 <span class="sub-title">@Html.LabelFor(model => model.EditorType)</span> <br />
-                @Html.DropDownListFor(model => model.EditorType, Model.EditorTypes, new {@class = "dropDownBox"})                
+                @Html.DropDownListFor(model => model.EditorType, Model.EditorTypes, new {@class = "dropDownBox"})
+                &nbsp;<a id="markdownHelp" target="_blank" href="https://daringfireball.net/projects/markdown/basics">what is markdown?</a>
             </div>
             <div class="tab-pane fade" id="email">
                 <br/>
