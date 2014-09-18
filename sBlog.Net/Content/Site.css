@@ -543,9 +543,16 @@ a.selected:link, a.selected:active, a.selected:visited
 
 .selected-brushes-title { font-weight: bold }
 
-a.edit-trash {
+a.edit-trash,a:hover.edit-trash {
     color: red;
+    text-decoration: none;
     border-bottom: 1px dashed red
+}
+
+a:hover.edit-trash {
+    background-color: red;
+    color: white;
+    padding: 5px
 }
 
 #request-account {

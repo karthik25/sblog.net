@@ -31,6 +31,6 @@
         @{
             var date = Model.PostEditedDate ?? Model.PostAddedDate;
          }
-        @date.ToLongDateString()
+        <span title="@date.ToLongDateString()">@date.ToString("g")</span>
     </td>
 </tr>
