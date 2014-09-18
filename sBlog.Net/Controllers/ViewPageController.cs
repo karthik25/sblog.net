@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using sBlog.Net.Areas.Admin.Models;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Interfaces;
 using sBlog.Net.FluentExtensions;
@@ -104,9 +105,22 @@ namespace sBlog.Net.Controllers
         private List<PostEntity> GetPages()
         {
             var pages = Request.IsAuthenticated
-                            ? _postRepository.GetPages(GetUserId())
-                            : _cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey);
+                            ? GetProcessedPages(_postRepository.GetPages(GetUserId()), IsMarkDown())
+                            : _cacheService.GetPagesFromCache(_postRepository, CachePagesUnauthKey, IsMarkDown());
             return pages.OrderBy(p => p.Order.Value).ToList();
+        }
+
+        private static List<PostEntity> GetProcessedPages(List<PostEntity> pages, bool isMarkDown)
+        {
+            var markdown = new MarkdownDeep.Markdown { ExtraMode = true };
+            if (isMarkDown)
+            {
+                pages.ForEach(p =>
+                    {
+                        p.PostContent = markdown.Transform(p.PostContent);
+                    });
+            }
+            return pages;
         }
 
         private BlogMenuViewModel GetBlogMenus(List<PostEntity> pages, string requestPage)

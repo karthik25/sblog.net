@@ -23,14 +23,26 @@ namespace sBlog.Net.FluentExtensions
 {
     public static class CacheServiceFluentExtensions
     {
-        public static List<PostEntity> GetPostsFromCache(this ICacheService cacheService, IPost postRepository, string keyName)
+        public static List<PostEntity> GetPostsFromCache(this ICacheService cacheService, IPost postRepository, string keyName, bool isMarkdown)
         {
-            return cacheService.Get(keyName, () => postRepository.GetPosts());
+            var markdown = new MarkdownDeep.Markdown { ExtraMode = true };
+            var posts = cacheService.Get(keyName, () => postRepository.GetPosts());
+            if (isMarkdown)
+            {
+                posts.ForEach(p => p.PostContent = markdown.Transform(p.PostContent));
+            }
+            return posts;
         }
 
-        public static List<PostEntity> GetPagesFromCache(this ICacheService cacheService, IPost postRepository, string keyName)
+        public static List<PostEntity> GetPagesFromCache(this ICacheService cacheService, IPost postRepository, string keyName, bool isMarkdown)
         {
-            return cacheService.Get(keyName, () => postRepository.GetPages());
+            var markdown = new MarkdownDeep.Markdown{ ExtraMode = true };
+            var pages = cacheService.Get(keyName, () => postRepository.GetPages());
+            if (isMarkdown)
+            {
+                pages.ForEach(p => p.PostContent = markdown.Transform(p.PostContent));
+            }
+            return pages;
         }
     }
 }

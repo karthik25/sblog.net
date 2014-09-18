@@ -65,7 +65,7 @@ namespace sBlog.Net.Controllers
 
         private List<PostEntity> GetPostsInternal()
         {
-            var posts = _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey);
+            var posts = _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey, IsMarkDown());
             return posts.Take(NumberOfPostsInFeed).ToList();
         }
     }

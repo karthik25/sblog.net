@@ -42,8 +42,7 @@ namespace sBlog.Net.Domain.Interfaces
         int ManageItemsPerPage { get; set; }
         bool DisqusEnabled { get; set; }
         string BlogDisqusShortName { get; set; }
-
-        string BlogDbVersion { get; set; }
+        string EditorType { get; set; }
 
         // raw methods
         string GetValue(string key);

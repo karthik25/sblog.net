@@ -22,7 +22,6 @@ using System.Web.Mvc;
 using sBlog.Net.CustomExceptions;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Domain.Interfaces;
-using sBlog.Net.Infrastructure;
 using sBlog.Net.Models;
 using sBlog.Net.FluentExtensions;
 
@@ -161,15 +160,18 @@ namespace sBlog.Net.Controllers
         private List<PostEntity> GetPostsInternal()
         {
             var posts = Request.IsAuthenticated
-                            ? GetProcessedPosts(_postRepository.GetPosts(GetUserId()))
-                            : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey);
+                            ? GetProcessedPosts(_postRepository.GetPosts(GetUserId()), IsMarkDown())
+                            : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey, IsMarkDown());
             return posts;
         }
 
-        private static List<PostEntity> GetProcessedPosts(List<PostEntity> postList)
+        private static List<PostEntity> GetProcessedPosts(List<PostEntity> postList, bool isMarkDown)
         {
+            var markdown = new MarkdownDeep.Markdown{ ExtraMode = true };
             postList.ForEach(p =>
                 {
+                    if (isMarkDown)
+                        p.PostContent = markdown.Transform(p.PostContent);
                     if (p.IsPrivate)
                         p.PostTitle = string.Format("[Private] {0}", p.PostTitle);
                 });

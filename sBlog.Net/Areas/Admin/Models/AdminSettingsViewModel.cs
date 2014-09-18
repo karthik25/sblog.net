@@ -28,7 +28,6 @@ namespace sBlog.Net.Areas.Admin.Models
         public string BlogName { get; set; }
         public string BlogCaption { get; set; }
         public string BlogTheme { get; set; }        
-        public List<SelectListItem> BlogThemes { get; set; }
         public bool BlogSyntaxHighlighting { get; set; }        
         public bool BlogSocialSharing { get; set; }        
         public int PostsPerPage { get; set; }
@@ -43,5 +42,9 @@ namespace sBlog.Net.Areas.Admin.Models
         public bool BlogErrorAction { get; set; }
         public bool DisqusEnabled { get; set; }
         public string DisqusShortName { get; set; }
+        public string EditorType { get; set; }
+        
+        public List<SelectListItem> BlogThemes { get; set; }
+        public List<SelectListItem> EditorTypes { get; set; } 
     }
 }

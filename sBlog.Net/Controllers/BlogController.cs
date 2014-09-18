@@ -96,6 +96,11 @@ namespace sBlog.Net.Controllers
             return SettingsRepository.BlogCaption;
         }
 
+        protected bool IsMarkDown()
+        {
+            return SettingsRepository.EditorType == "markdown";
+        }
+
         protected string GetRootUrl()
         {
             return string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));            

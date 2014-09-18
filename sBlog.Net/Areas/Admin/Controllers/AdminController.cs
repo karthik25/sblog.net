@@ -105,7 +105,6 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 BlogName = SettingsRepository.BlogName,
                 BlogCaption = SettingsRepository.BlogCaption,
                 BlogTheme = SettingsRepository.BlogTheme,
-                BlogThemes = GetAvailableThemes(SettingsRepository.BlogTheme),
                 BlogSocialSharing = SettingsRepository.BlogSocialSharing,
                 BlogSyntaxHighlighting = SettingsRepository.BlogSyntaxHighlighting,
                 PostsPerPage = SettingsRepository.BlogPostsPerPage,
@@ -119,7 +118,11 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 BlogErrorAction = SettingsRepository.BlogSiteErrorEmailAction,
                 Title = SettingsRepository.BlogName,
                 DisqusEnabled = SettingsRepository.DisqusEnabled,
-                DisqusShortName = SettingsRepository.BlogDisqusShortName
+                DisqusShortName = SettingsRepository.BlogDisqusShortName,
+                EditorType = SettingsRepository.EditorType,
+                
+                BlogThemes = GetAvailableThemes(SettingsRepository.BlogTheme),
+                EditorTypes = GetEditorTypes()
             };
             return View(adminSettings);
         }
@@ -129,6 +132,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
         public ActionResult Settings(AdminSettingsViewModel adminSettingsViewModel)
         {
             adminSettingsViewModel.BlogThemes = GetAvailableThemes(adminSettingsViewModel.BlogTheme);
+            adminSettingsViewModel.EditorTypes = GetEditorTypes();
 
             if (ModelState.IsValid && ValidateAkismetSettings(adminSettingsViewModel))
             {
@@ -144,6 +148,7 @@ namespace sBlog.Net.Areas.Admin.Controllers
                 SettingsRepository.BlogAkismetUrl = adminSettingsViewModel.AkismetUrl;
                 SettingsRepository.BlogAdminEmailAddress = adminSettingsViewModel.AdminEmailAddress;
                 SettingsRepository.BlogSmtpAddress = adminSettingsViewModel.BlogSmtpAddress;
+                SettingsRepository.EditorType = adminSettingsViewModel.EditorType;
 
                 if (!string.IsNullOrEmpty(adminSettingsViewModel.BlogSmtpPassword))
                 {
@@ -421,6 +426,15 @@ namespace sBlog.Net.Areas.Admin.Controllers
             var databaseStatusGenerator = new SetupStatusGenerator(_schemaRepository, _pathMapper);
             var databaseStatus = databaseStatusGenerator.GetSetupStatus();
             return databaseStatus;
+        }
+
+        private static List<SelectListItem> GetEditorTypes()
+        {
+            return new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Html (CkEditor)", Value = "html", Selected = true },
+                    new SelectListItem { Text = "Markdown", Value = "markdown" }
+                };
         }
     }
 }

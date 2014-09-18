@@ -52,7 +52,7 @@ fieldset
 	padding: 6px 0 0 7px;
 	border: 3px solid #E7E7E7;
 	color: #000000;
-	font-size: 1.6em
+	font-size: 1.2em
 }
 
 .inputBoxBigEmail
@@ -62,7 +62,7 @@ fieldset
 	padding: 6px 0 0 7px;
 	border: 3px solid #E7E7E7;
 	color: #000000;
-	font-size: 1.6em
+	font-size: 1.2em
 }
 
 .inputBoxBigPost
@@ -164,7 +164,7 @@ fieldset
 	color: #000000;
 	background:transparent;
 	padding:2px 10px;
-	font-size: 20px
+	font-size: 16px
 }
 
 #dialog { display: none }
@@ -688,8 +688,7 @@ a.edit-trash {
 }
 
 .sub-title {
-    font-weight: bold;
-    color: #5cb85c
+    font-weight: bold
 }
 
 a.sub-title, a.sub-title:hover {
@@ -702,4 +701,10 @@ a.sub-title, a.sub-title:hover {
 
 #preview {
     display: none
+}
+
+.mdd_preview {
+    border: 1px dotted gray;
+    clear: both;
+    padding: 5px
 }

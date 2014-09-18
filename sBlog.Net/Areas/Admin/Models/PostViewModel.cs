@@ -15,6 +15,8 @@
 /* *********************************************** */
 
 #endregion
+
+using sBlog.Net.DependencyManagement;
 using sBlog.Net.Domain.Entities;
 using sBlog.Net.Models;
 
@@ -29,5 +31,11 @@ namespace sBlog.Net.Areas.Admin.Models
         public bool SharingEnabled { get; set; }
 
         public bool AjaxSaved { get; set; }
+
+        public static bool IsMarkDown()
+        {
+            var settingsRepository = InstanceFactory.CreateSettingsInstance();
+            return settingsRepository.EditorType == "markdown";
+        }
     }
 }

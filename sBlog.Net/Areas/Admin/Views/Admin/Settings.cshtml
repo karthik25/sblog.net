@@ -60,6 +60,7 @@
 
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Main</a></li>
+            <li><a href="#editor" data-toggle="tab">Blog Editor</a></li>
             <li><a href="#email" data-toggle="tab">Email</a></li>
             <li><a href="#social_sharing" data-toggle="tab">Sharing & Social</a></li>
             <li><a href="#per_page" data-toggle="tab">Per Page</a></li>
@@ -83,6 +84,13 @@
 
                 <span class="sub-title">@Html.LabelFor(model => model.BlogTheme)</span> <br />
                 @Html.DropDownListFor(model => model.BlogTheme, Model.BlogThemes, new {@class = "dropDownBox"})
+            </div>
+            <div class="tab-pane fade" id="editor">
+                <br/>
+
+                <span class="sub-title">@Html.LabelFor(model => model.EditorType)</span> <br />
+                @Html.DropDownListFor(model => model.EditorType, Model.EditorTypes, new {@class = "dropDownBox"})
+                &nbsp;<a id="markdownHelp" target="_blank" href="https://daringfireball.net/projects/markdown/basics">what is markdown?</a>
             </div>
             <div class="tab-pane fade" id="email">
                 <br/>

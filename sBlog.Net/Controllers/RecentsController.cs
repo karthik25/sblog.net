@@ -58,7 +58,7 @@ namespace sBlog.Net.Controllers
         {
             var posts = Request.IsAuthenticated
                             ? _postRepository.GetPosts(GetUserId())
-                            : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey);
+                            : _cacheService.GetPostsFromCache(_postRepository, CachePostsUnauthKey, IsMarkDown());
             return posts;
         }
     }

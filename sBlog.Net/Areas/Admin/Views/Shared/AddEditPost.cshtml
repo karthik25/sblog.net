@@ -1,4 +1,5 @@
-﻿@model sBlog.Net.Areas.Admin.Models.PostViewModel
+﻿@using sBlog.Net.Areas.Admin.Models
+@model PostViewModel
 
 @Html.Partial("UpdatePostOrPageStatus", Model)
 
@@ -34,12 +35,22 @@
                 </b>
             </div>
             <div class="pull-right">
-                <img src="@Url.Content("~/Content/Images/new_window_icon.png")" alt="" title="full screen" style="border:0px; width: 12px; height: 12px" />  <a title="open the editor in full screen" id="fullScreen" href="javascript:void(0)"><span style="text-decoration: underline">full screen</span></a> |
-                <img src="@Url.Content("~/Content/Images/preview.png")" alt="" title="preview" style="border:0px; width: 12px; height: 12px" />  <a title="click for a preview" id="contentPreview" href="javascript:void(0)"><span style="text-decoration: underline">preview</span></a> |
+                <div id="ckeditor_toolbar">
+                    <img src="@Url.Content("~/Content/Images/new_window_icon.png")" alt="" title="full screen" style="border:0px; width: 12px; height: 12px" />  <a title="open the editor in full screen" id="fullScreen" href="javascript:void(0)"><span style="text-decoration: underline">full screen</span></a> |
+                    <img src="@Url.Content("~/Content/Images/preview.png")" alt="" title="preview" style="border:0px; width: 12px; height: 12px" />  <a title="click for a preview" id="contentPreview" href="javascript:void(0)"><span style="text-decoration: underline">preview</span></a> |
+                </div>
                 @Html.Action("SyntaxHighlighterHelp", "Admin")
             </div>
             <br /><br />
-            @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText" })
+            @if (PostViewModel.IsMarkDown())
+            {
+                <div class="mdd_toolbar"></div>
+                @Html.TextAreaFor(model => model.Post.PostContent, new {@class = "mdd_editor"})
+            }
+            else
+            {
+                @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "adminRichText" })
+            }
             <br />
             <b>post url</b>
             <br />
@@ -67,7 +78,7 @@
                 
                     @if (Model.Post.EntryType == 1)
                     {
-                        @Html.ActionLink("delete post", "DeletePost", "Post", new {postID = Model.Post.PostID}, new { @class = "edit-trash" });
+                        @Html.ActionLink("delete post", "DeletePost", "Post", new { postID = Model.Post.PostID }, new { @class = "edit-trash" });
                     }
                     else
                     {
@@ -85,8 +96,8 @@
                     @Html.LabelFor(model => model.Post.UserCanAddComments)
                     <br /><br />
                     @{
-                        var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
-                        var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
+                    var cssStyle = Model.SharingEnabled ? "" : "sharing-disabled";
+                    var title = Model.SharingEnabled ? "" : "Sharing is disabled for this blog. Your setting is overriden by the blog's setting.";
                     }
                     <span title="@title" class="@cssStyle">
                         @Html.CheckBoxFor(model => model.Post.CanBeShared)

@@ -468,6 +468,12 @@ function ajaxAddTagPartial(text) {
 }
 
 $(document).ready(function () {
+    showHideMarkdownHelp($('#EditorType').val());
+    
+    $('#EditorType').on('change', function () {
+        showHideMarkdownHelp($(this).val());
+    });
+
     $('#AkismetEnabled').change(function () {
         $('.akismetAdvancedOptions').toggle();
     });
@@ -742,4 +748,12 @@ function getCurrentDateTime() {
     var minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
     var second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
     return month + "/" + day + "/" + year + " " + hour + ":" + minute + ":" + second;
+}
+
+function showHideMarkdownHelp(val) {
+    if (val == 'markdown') {
+        $('#markdownHelp').show();
+    } else {
+        $('#markdownHelp').hide();
+    }
 }

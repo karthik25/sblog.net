@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.Full.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MiniProfiler">
       <HintPath>..\packages\MiniProfiler.3.1\lib\net40\MiniProfiler.dll</HintPath>
@@ -605,6 +608,16 @@
     <Content Include="Content\Site.min.css" />
     <Content Include="Content\SiteCommons.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\MarkdownDeep License.txt" />
+    <Content Include="Scripts\MarkdownDeep Quick Reference.txt" />
+    <Content Include="Scripts\MarkdownDeepLib.min.js" />
+    <Content Include="Scripts\markdown_init.js" />
+    <Content Include="Scripts\mdd_ajax_loader.gif" />
+    <Content Include="Scripts\mdd_gripper.png" />
+    <Content Include="Scripts\mdd_help.htm" />
+    <Content Include="Scripts\mdd_modal_background.png" />
+    <Content Include="Scripts\mdd_styles.css" />
+    <Content Include="Scripts\mdd_toolbar.png" />
     <Content Include="Scripts\Required\debug\01-CategoryList.admin.js" />
     <Content Include="Content\sBlog\Site.js" />
     <Content Include="Scripts\Required\debug\06-SiteAdmin.admin.js" />
@@ -615,6 +628,7 @@
     <Content Include="Scripts\Required\debug\05-jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\Required\minified\script-bundle.min.js" />
     <Content Include="Scripts\SyntaxHighlighter.js" />
+    <Content Include="Sql\sc020005.sql" />
     <Content Include="Sql\sc020004.sql" />
     <Content Include="Sql\sc010001.sql" />
     <Content Include="Sql\sc020001.sql" />
