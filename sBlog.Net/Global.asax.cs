@@ -177,6 +177,7 @@ namespace sBlog.Net
         protected void Session_Start()
         {
             var databaseStatus = (SetupStatus)Application["Installation_Status"];
+            if (databaseStatus == null) return;
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
 
             switch (databaseStatus.StatusCode)
