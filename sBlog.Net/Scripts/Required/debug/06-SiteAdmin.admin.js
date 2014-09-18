@@ -86,9 +86,20 @@ $(document).ready(function () {
 
     // If this is an add/edit post page, start saving drafts
     if ($('#isPartiallySavable').length == 1) {
-        setTimeout(function() {
+        setTimeout(function () {
             savePostOrPage();
         }, 30000);
+    }
+
+    if ($('.hide-column').length > 0) {
+        var cell = $('.hide-column');
+        var col = $(cell).parent().children().index(cell);
+        var tbl = $(cell).parents('table');
+        var rows = $(tbl).find('tbody').find('tr');
+        $(cell).hide();
+        $(rows).each(function () {
+            $(this).find('td:eq(' + col + ')').hide();
+        });
     }
 });
 
