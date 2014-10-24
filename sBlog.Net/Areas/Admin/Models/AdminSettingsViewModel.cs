@@ -16,8 +16,10 @@
 
 #endregion
 using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
+using sBlog.Net.Configuration;
 using sBlog.Net.MetaData.MetaData;
 
 namespace sBlog.Net.Areas.Admin.Models
@@ -45,6 +47,14 @@ namespace sBlog.Net.Areas.Admin.Models
         public string EditorType { get; set; }
         
         public List<SelectListItem> BlogThemes { get; set; }
-        public List<SelectListItem> EditorTypes { get; set; } 
+        public List<SelectListItem> EditorTypes { get; set; }
+
+        public string SelectedTheme
+        {
+            get { return BlogStaticConfig.Theme.SelectedTheme; }
+        }
+
+        private static readonly SblogNetSettingsConfiguration BlogStaticConfig = ConfigurationManager.GetSection("sblognetSettings")
+                                                     as SblogNetSettingsConfiguration;
     }
 }

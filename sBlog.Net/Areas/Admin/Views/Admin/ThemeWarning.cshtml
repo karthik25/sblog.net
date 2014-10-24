@@ -1,0 +1,15 @@
+﻿@model sBlog.Net.Areas.Admin.Models.AdminSettingsViewModel
+
+@if (!string.IsNullOrEmpty(Model.SelectedTheme))
+{
+    <div class="alert alert-warning alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <strong>Warning!</strong><br />
+        <br />
+        Theme settings set here will be overridden by the value set in the web.config <strong>
+            (@Model.SelectedTheme)</strong>. Please note that It is recommended to have
+        the theme selection setting in the web.config!
+    </div>
+}

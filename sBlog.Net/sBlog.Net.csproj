@@ -61,7 +61,10 @@
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -1119,6 +1122,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserAdmin\UserContentShortcuts.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SyntaxHighlighterPreview.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ThemeWarning.cshtml" />
     <None Include="Themes\BootswatchCraze\static\bootswatch.json" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.eot" />
     <None Include="Themes\BootswatchAmelia\img\glyphicons-halflings-regular.ttf" />

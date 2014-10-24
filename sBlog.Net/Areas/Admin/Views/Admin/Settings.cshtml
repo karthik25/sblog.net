@@ -71,6 +71,8 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="main">
                 <br/>
+                
+                @Html.Partial("ThemeWarning", Model)
 
                 <span class="sub-title">@Html.LabelFor(model => model.BlogName)</span> <br />
                 @Html.TextBoxFor(model => model.BlogName, new {@class = "inputBoxBig"})
