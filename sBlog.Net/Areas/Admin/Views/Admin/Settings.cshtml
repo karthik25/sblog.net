@@ -16,7 +16,20 @@
     
     #disqus-akiemet {
         display: none
-    }    
+    }
+    
+    #error {
+        display: none
+    }
+    
+    #error span {
+        font-weight: bold
+    }
+    
+    #error ul {
+        padding: 20px;
+        list-style-type: square
+    }
 </style>
 
 <script type="text/javascript">
@@ -48,6 +61,16 @@
             var content = $(this).next().next();
             $(content).toggle('fast');
         });
+
+        $("form").submit(function (e) {
+            if ($(this).valid() == false) {
+                if ($('.input-validation-error').length > 0) {
+                    $('#error').show();
+                    var tabId = $('.input-validation-error:eq(0)').parent().prop('id');
+                    $('#myTab a[href="#' + tabId + '"]').tab('show');
+                }
+            }
+        });
     });
 </script>
 
@@ -56,7 +79,7 @@
 <div>
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+        @Html.ValidationSummary(false, "Please correct the following errors", new { @class = "alert alert-danger", @id = "error" })
 
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Main</a></li>
