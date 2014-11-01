@@ -6,22 +6,26 @@ adding categories or tags, adding additional authors and many more. If I have to
 
 "For the love of asp.net mvc and wordpress"
 
-To get started, refer to this short article! You just need an instance of Visual Studio 2010 with ASP.Net MVC 3, MS SQL server (express 
+To get started, you just need an instance of Visual Studio 2010/2012 with ASP.Net MVC 4, MS SQL server (express 
 should also be fine) and optionally IIS.
 
-> You can now use miniprofiler to profile your pages, it's enabled by default, so just go to the administration section to check it out!
+##### Release Notes for v3.0
+---
+
+Feature additions
+
+> * Fresh and clean admin UI using bootstrap with easily accessible menus & interface
+> * More themes
+> * Ability to use markdown editor w/ live preview instead of ckeditor w/ options to easily switch
+> * Ability to auto save drafts every 30 seconds
+> * Social bar in the blog footer
+> * Ability to select blog theme using the web.config or the admin interface
+> * Ways to identify private posts easily
+> * Shortcuts in the dashboard for most frequently used options
+> * Live preview for syntax highlighter on the admin section to see how code sections will look
+> * Tabbed interface for blog settings
+> * Ability to shorten urls using the blt.ly service
+> * Mini profiler support
 
 Thanks for trying out sBlog.Net!
 http://sblogproject.net
-
-## Notes for sBlog.Net v3.0
-
-```text
-Notice: This version is currently under development and so is not fully tested.
-```
-
-This repository is for the development version of sBlog.Net. For the released version go to 
-https://github.com/karthik25/sblog.net/tree/sblog.net-v2.0-release.
-
-To use this dev version, get the latest source from github and extract the source and run the application and follow 
-the instructions. Now, you are all set to use the new version of sBlog.Net!
